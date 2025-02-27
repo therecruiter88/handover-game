@@ -10,26 +10,15 @@ const imageContainer = document.getElementById("img");
 const correctHash = "88f442a457d27b6a2c7d60829f2e5c8b56c8f6b714c88b5e110d9bcc4397def3";
 
 function isMobileDevice() {
-    // Check for common mobile user agent strings
-    if (
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      )
-    ) {
-      return true; // User is on a mobile device
-    } else {
-      return false; // User is not on a mobile device
-    }
-  }
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Mobile|Opera Mini/i.test(navigator.userAgent);
+}
   
-  function showMobileMessage() {
+function showMobileMessage() {
     const mobileMessageElement = document.getElementById("mobile-message");
-    mobileMessageElement.innerText = navigator.userAgent;
-    mobileMessageElement.style.display = "block"; // Show the message
     if (isMobileDevice()) {
       mobileMessageElement.style.display = "block"; // Show the message
     }
-  }
+}
   
 // Run the function when the page loads
 window.onload = showMobileMessage;
