@@ -23,6 +23,7 @@ function showMobileMessage() {
         mobileMessageElement.className = "mobile-message";
         tokenContainerElement.className = "hidden";
     //}
+    music.play();
 }
   
 function toggleMusic() {
