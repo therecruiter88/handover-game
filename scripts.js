@@ -17,12 +17,9 @@ function isMobileDevice() {
 }
   
 function showMobileMessage() {
-    if (window.location.pathname.endsWith("index.html")) {
-        const mobileMessageElement = document.getElementById("mobile-message");
-        if (isMobileDevice()) {
-            // mobileMessageElement.style.display = "block";
-            window.location.href = "device_not_supported.html";
-        }
+    const currentPage = window.location.pathname.split("/").pop(); // Get current filename
+    if (currentPage === "index.html" && isMobileDevice()) {
+        window.location.href = "mobile_not_supported.html";
     }
 }
   
