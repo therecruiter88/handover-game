@@ -1,4 +1,15 @@
 /* Common styles for both pages */
+body {
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
+}
 .mobile-message {
     display: flex;
     flex-direction: column;
@@ -57,17 +68,6 @@
 .token-button:hover {
     background-color: #EB257A;
     color: white;
-}
-body {
-    background-color: black;
-    color: white;
-    text-align: center;
-    font-family: 'Press Start 2P', cursive;
-    margin: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Ensure body takes at least full viewport height */
 }
 .top-panel {
     position: fixed;
