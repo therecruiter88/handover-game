@@ -9,6 +9,9 @@ const imageContainer = document.getElementById("img");
 // **IMPORTANT:** Replace this with the actual SHA-256 hash of your secret content.
 const correctHash = "88f442a457d27b6a2c7d60829f2e5c8b56c8f6b714c88b5e110d9bcc4397def3";
 
+// Run the function when the page loads
+window.onload = showMobileMessage;
+
 function isMobileDevice() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Mobile|Opera Mini/i.test(navigator.userAgent);
 }
@@ -20,9 +23,6 @@ function showMobileMessage() {
     }
 }
   
-// Run the function when the page loads
-window.onload = showMobileMessage;
-
 function toggleMusic() {
     if (music && !music.paused) {
         music.pause();
