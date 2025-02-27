@@ -13,9 +13,8 @@ body {
 .mobile-message {
     border-radius: 10px;
     color: #EB257A;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    top: 50%;
+    left: 50%;
 }
 .hidden {
     display: none;
