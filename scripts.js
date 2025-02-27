@@ -24,6 +24,8 @@ function isMobileDevice() {
   
   function showMobileMessage() {
     const mobileMessageElement = document.getElementById("mobile-message");
+          mobileMessageElement.innerText = navigator.userAgent;
+    mobileMessageElement.style.display = "block"; // Show the message
     if (isMobileDevice()) {
       mobileMessageElement.style.display = "block"; // Show the message
     }
