@@ -17,9 +17,11 @@ function isMobileDevice() {
 }
   
 function showMobileMessage() {
-    const currentPage = window.location.pathname.split("/").pop(); // Get current filename
-    if (currentPage === "index.html" && isMobileDevice()) {
-        window.location.href = "mobile_not_supported.html";
+    const currentPath = window.location.pathname;
+
+    // If user is on root ("/handover-game/") or "index.html" and is on a mobile device
+    if ((currentPath === "/handover-game/" || currentPath.endsWith("index.html")) && isMobileDevice()) {
+        window.location.href = "device_not_supported.html";
     }
 }
   
