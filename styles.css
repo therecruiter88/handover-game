@@ -14,11 +14,20 @@ body {
     border-radius: 10px;
     color: #EB257A;
     display: flex;
-    /*display: flex;  Remove this line */
-    /*align-items: center; Remove this line */
-    /*justify-content: center; Remove this line */
-    display: block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.secret-value {
+    color: white;
 }
 .hidden {
     display: none;
