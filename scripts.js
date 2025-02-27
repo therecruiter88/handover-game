@@ -18,7 +18,7 @@ function isMobileDevice() {
   
 function showMobileMessage() {
     const currentPath = window.location.pathname;
-
+    console.log(currentPath);
     // If user is on root ("/handover-game/") or "index.html" and is on a mobile device
     if ((currentPath === "/handover-game/" || currentPath.endsWith("index.html")) && isMobileDevice()) {
         window.location.href = "device_not_supported.html";
