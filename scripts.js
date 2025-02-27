@@ -6,8 +6,7 @@ const tokenInput = document.getElementById("token-input");
 const submitTokenButton = document.getElementById("submit-token");
 const imageContainer = document.getElementById("img");
 
-// **IMPORTANT:** Replace this with the actual SHA-256 hash of your secret content.
-const correctHash = "88f442a457d27b6a2c7d60829f2e5c8b56c8f6b714c88b5e110d9bcc4397def3";
+const correctHash = "9642d80235bf792303a5a29fa759191be2fa82cf6c01daace44d3a97da8d38d2";
 
 // Run the function when the page loads
 window.onload = showMobileMessage;

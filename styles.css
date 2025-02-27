@@ -14,6 +14,11 @@ body {
     border-radius: 10px;
     color: #EB257A;
     display: flex;
+    /*display: flex;  Remove this line */
+    /*align-items: center; Remove this line */
+    /*justify-content: center; Remove this line */
+    display: block;
+    padding: 20px;
 }
 .hidden {
     display: none;
