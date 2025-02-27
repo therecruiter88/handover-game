@@ -18,7 +18,7 @@ function isMobileDevice() {
   
 function showMobileMessage() {
     const mobileMessageElement = document.getElementById("mobile-message");
-    const tokenInputElement = document.getElementById("token-input");
+    const tokenInputElement = document.getElementById("token");
     if (isMobileDevice()) {
         mobileMessageElement.style.display = "block";
         tokenInputElement.style.display = "none";
