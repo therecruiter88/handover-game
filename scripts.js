@@ -18,10 +18,9 @@ function isMobileDevice() {
   
 function showMobileMessage() {
     const mobileMessageElement = document.getElementById("mobile-message");
-    const tokenInputElement = document.getElementById("token");
     if (isMobileDevice()) {
-        mobileMessageElement.style.display = "block";
-        tokenInputElement.style.display = "none";
+        // mobileMessageElement.style.display = "block";
+        window.location.href = "device_not_supported.html";
     }
 }
   
