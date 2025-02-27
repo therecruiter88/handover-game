@@ -8,10 +8,33 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ensure body takes at least full viewport height */
+    min-height: 100vh;
 }
-.mobile-message {
-    border-radius: 10px;
+.secret-value {
+    color: white;
+}
+.let-the-game-begin {
+    font-size: 20px;
+}
+.instruction-section {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #EB257A;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    text-align: left;
+}
+.instruction-section p {
+    margin-bottom: 5px;
+    text-align: left;
+}
+.instruction-title {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.mobile-message{
     color: #EB257A;
     display: flex;
     flex-direction: column;
@@ -19,15 +42,13 @@ body {
     justify-content: center;
     gap: 10px;
     padding: 20px;
+    border: 2px solid white;
     border-radius: 10px;
     margin-bottom: 20px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-.secret-value {
-    color: white;
 }
 .hidden {
     display: none;
