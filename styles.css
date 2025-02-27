@@ -10,6 +10,13 @@ body {
     flex-direction: column;
     min-height: 100vh; /* Ensure body takes at least full viewport height */
 }
+.mobile-message {
+    border-radius: 10px;
+    color: #EB257A;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .hidden {
     display: none;
 }
