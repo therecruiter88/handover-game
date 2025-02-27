@@ -17,10 +17,12 @@ function isMobileDevice() {
 }
   
 function showMobileMessage() {
-    const mobileMessageElement = document.getElementById("mobile-message");
-    if (isMobileDevice()) {
-        // mobileMessageElement.style.display = "block";
-        window.location.href = "device_not_supported.html";
+    if (window.location.pathname.endsWith("index.html")) {
+        const mobileMessageElement = document.getElementById("mobile-message");
+        if (isMobileDevice()) {
+            // mobileMessageElement.style.display = "block";
+            window.location.href = "device_not_supported.html";
+        }
     }
 }
   
