@@ -72,7 +72,8 @@ async function checkToken() {
         // Redirect to main page on successful login
         window.location.href = "handover.html";
     } else {
-        alert("Incorrect secret. Please try again.");
+        alert("Incorrect secret. Please try again!");
+        music.play();
         tokenInput.value = "";
     }
 }
