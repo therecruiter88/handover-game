@@ -19,7 +19,7 @@ function showMobileMessage() {
     const mobileMessageElement = document.getElementById("mobile-message");
     const tokenContainerElement = document.getElementById("token");
     
-    if (!isMobileDevice()) {
+    if (isMobileDevice()) {
         mobileMessageElement.className = "mobile-message";
         tokenContainerElement.className = "hidden";
     }
