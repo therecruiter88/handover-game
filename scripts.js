@@ -6,7 +6,7 @@ const tokenInput = document.getElementById("token-input");
 const submitTokenButton = document.getElementById("submit-token");
 const imageContainer = document.getElementById("img");
 
-const correctHash = "9642d80235bf792303a5a29fa759191be2fa82cf6c01daace44d3a97da8d38d2";
+const correctHash = "f2d4f0817db4dcdc4123dd7e122b55266c9d2ee6c01597f911f6143bfd86cc1b";
 
 // Run the function when the page loads
 window.onload = showMobileMessage;
