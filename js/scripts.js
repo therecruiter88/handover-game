@@ -8,8 +8,26 @@ const imageContainer = document.getElementById("img");
 
 const correctHash = "f2d4f0817db4dcdc4123dd7e122b55266c9d2ee6c01597f911f6143bfd86cc1b";
 
-// Run the function when the page loads
 window.onload = showMobileMessage;
+
+// Disable right-click
+document.addEventListener("contextmenu", (event) => event.preventDefault());
+
+// Detect DevTools opening
+setInterval(() => {
+    if (window.outerWidth - window.innerWidth > 200 || window.outerHeight - window.innerHeight > 200) {
+        document.body.innerHTML = "DevTools detected! Access denied.";
+    }
+}, 1000);
+
+// Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+document.addEventListener("keydown", (event) => {
+    if (event.key === "F12" || 
+        (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J")) || 
+        (event.ctrlKey && event.key === "U")) {
+        event.preventDefault();
+    }
+});
 
 function isMobileDevice() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Mobile|Opera Mini/i.test(navigator.userAgent);
@@ -69,7 +87,6 @@ async function checkToken() {
     const enteredHash = await calculateHash(enteredSecret);
 
     if (enteredHash === correctHash) {
-        // Redirect to main page on successful login
         window.location.href = "handover.html";
     } else {
         alert("Incorrect secret. Please try again!");
