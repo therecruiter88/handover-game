@@ -1,0 +1,17 @@
+<script>
+    var path = window.location.pathname;
+
+    if (path === "/handovergame") {
+        window.history.replaceState(null, "", "/handovergame");
+
+        fetch("/index.html")
+            .then(response => response.text())
+            .then(html => {
+                document.open();
+                document.write(html);
+                document.close();
+            });
+    } else {
+        document.write("<h1>TV Show Not Found! You need to append the tv show name on the url (example: /handovergame)</h1>");
+    }
+</script>
