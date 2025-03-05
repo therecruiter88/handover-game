@@ -1,0 +1,216 @@
+/* Common styles for both pages */
+body {
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+.mobile-message{
+    border-radius: 10px;
+    color: #EB257A;
+    display: block;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 2px solid white;
+    width: 90%;
+    max-width: 500px;
+    min-width: 300px;
+    box-sizing: border-box; /* Include padding in the width calculation */
+    margin: 10px;
+    text-align: center;
+    font-size: 12px;
+}
+.let-the-game-begin {
+    color: white;
+    font-size: 20px;
+    animation: neon-glow 1.5s ease-in-out infinite alternate; /* Apply the animation */
+}
+
+/* Keyframes for the animation */
+@keyframes neon-glow {
+    from {
+        text-shadow: 0 0 10px #EB257A, 0 0 20px #EB257A, 0 0 30px #EB257A, 0 0 40px #EB257A;
+    }
+    to {
+        text-shadow: 0 0 5px #EB257A, 0 0 10px #EB257A, 0 0 15px #EB257A, 0 0 20px #EB257A;
+    }
+}
+.instruction-section {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #EB257A;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    text-align: left;
+}
+.instruction-section p {
+    margin-bottom: 5px;
+    text-align: left;
+}
+.instruction-section a {
+    word-break: break-all;
+}
+.instruction-title {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.hidden {
+    display: none;
+}
+.token-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    border: 2px solid white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.token-input {
+    background-color: #EB257A;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 200px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 16px;
+    text-align: center;
+}
+.token-button {
+    background-color: white;
+    color: #EB257A;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 16px;
+    transition: 0.3s;
+}
+.token-button:hover {
+    background-color: #EB257A;
+    color: white;
+}
+.top-panel {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border: 3px solid white;
+    border-radius: 10px;
+    background-color: black;
+    z-index: 10; /* Ensure top-panel is above other content */
+}
+.icons {
+    font-size: 24px;
+    font-weight: bolder;
+    text-align: left;
+}
+.handover-link {
+    font-size: 20px;
+    color: #EB257A;
+    text-decoration: none;
+}
+.buttons-link {
+    color: white;
+    text-decoration: none;
+}
+.content-container {
+    display: flex;
+    flex-grow: 1; /* Allow content-container to take available space */
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 50px 20px 20px 20px;
+    box-sizing: border-box;
+}
+.countdown {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(4, auto);
+    gap: 15px;
+    align-items: center;
+    justify-items: center;
+    width: fit-content;
+}
+.countdown-item {
+    display: flex;
+    flex-direction: column; /* stack the number on the label */
+    align-items: center;
+    justify-content: center;
+    font-family: 'Game of Squids';
+}
+.countdown-number {
+    background: #EB257A;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 24px;
+    width: 80px;
+    text-align: center;
+}
+.countdown-label {
+    font-size: 16px;
+    color: #EB257A;
+    white-space: nowrap;
+    text-align: center;
+}
+.image-container img {
+    width: 700px;
+    height: 700px;
+    margin-left: 200px;
+    margin-top: 1px;
+    object-fit: contain;
+}
+.music-panel{
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    flex-direction: column;
+    width: fit-content;
+    padding-left: 90px;
+    margin-right: 0px;
+    margin-top: 500px;
+    height: 100%;
+}
+.music-button {
+    background-color: #EB257A;
+    border: 3px solid white;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 16px;
+    padding: 15px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    align-self: flex-end;
+}
+.music-button:hover {
+    background-color: white;
+    color: #EB257A;
+}
+.music-icon {
+    font-size: 20px;
+}

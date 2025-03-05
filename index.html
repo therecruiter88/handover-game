@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Handover Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <audio id="background-music" autoplay>
+        <source src="./audio/sg_doll_song.mp3" type="audio/mp3">
+    </audio>
+
+    <div id="mobile-message" class="hidden">
+        <p>!Mobile devices not supported!</p><br>
+        <p>You have been selected for the Handover Game!</p>
+        <div class="instruction-section">
+            <h4 class="instruction-title">Instructions on how to proceed:</h4>
+            <p>1> Click on the Teams group chat new tab</p>
+            <p>&nbsp;&nbsp;&nbsp;OR                    </p>
+            <p>&nbsp;&nbsp;&nbsp;Access url using your desktop <a href="https://www.criticalflix.com/handovergame" target="_blank">https://www.criticalflix.com/handovergame</a></p>
+            <p>2> Secret: the name of the Handover secret Squadron exactly as it appears on Pulsar</p>
+        </div>
+        <br>
+        <p><span class="let-the-game-begin">LET THE GAME BEGIN</span></p><br>
+    </div>
+
+    <div id="token" class="hidden">
+        <label for="token-input">Enter Secret:</label>
+        <input type="password" id="token-input" class="token-input">
+        <button id="submit-token" class="token-button">Start Game</button>
+    </div>
+
+    <script src="./js/scripts.js"></script>
+</body>
+</html>

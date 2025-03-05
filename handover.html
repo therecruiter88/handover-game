@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handover Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <audio id="background-music" autoplay loop>
+        <source src="./audio/sg_theme_song.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="top-panel">
+        <div class="icons"><a href="https://www.youtube.com/watch?v=wU3z6hp1ZYM" target="_blank" class="buttons-link">◯</a> △ ☐</div>
+        <a href="https://confluence.k8s2.grupocgd.com/pages/viewpage.action?pageId=156864402" target="_blank" class="handover-link">&gt ACCEPT CHALLENGE</a>
+    </div>
+
+    <div class="content-container visible">
+        <div class="countdown">
+            <div class="countdown-item">
+                <div class="countdown-number" id="days">00</div>
+                <span class="countdown-label">Days</span>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="hours">00</div>
+                <span class="countdown-label">Hours</span>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="minutes">00</div>
+                <span class="countdown-label">Minutes</span>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="seconds">00</div>
+                <span class="countdown-label">Seconds</span>
+            </div>
+        </div>
+        <div class="image-container">
+            <img id="img" src="" alt="Handover Game Tile"/>
+        </div>
+        <div class="music-panel">
+            <button id="music-button" class="music-button" onclick="toggleMusic()">
+                <span id="music-icon" class="music-icon">⏸️</span> Stop Music
+            </button>
+        </div>
+    </div>
+
+    <script src="./js/scripts.js"></script>
+</body>
+</html>
