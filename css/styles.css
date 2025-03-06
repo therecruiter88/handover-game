@@ -1,4 +1,3 @@
-/* Common styles for both pages */
 body {
     background-color: black;
     color: white;
@@ -22,7 +21,7 @@ body {
     width: 90%;
     max-width: 500px;
     min-width: 300px;
-    box-sizing: border-box; /* Include padding in the width calculation */
+    box-sizing: border-box;
     margin: 10px;
     text-align: center;
     font-size: 12px;
@@ -30,10 +29,9 @@ body {
 .let-the-game-begin {
     color: white;
     font-size: 20px;
-    animation: neon-glow 1.5s ease-in-out infinite alternate; /* Apply the animation */
+    animation: neon-glow 1.5s ease-in-out infinite alternate; 
 }
 
-/* Keyframes for the animation */
 @keyframes neon-glow {
     from {
         text-shadow: 0 0 10px #EB257A, 0 0 20px #EB257A, 0 0 30px #EB257A, 0 0 40px #EB257A;
@@ -119,12 +117,13 @@ body {
     border: 3px solid white;
     border-radius: 10px;
     background-color: black;
-    z-index: 10; /* Ensure top-panel is above other content */
+    z-index: 10;
 }
 .icons {
     font-size: 24px;
     font-weight: bolder;
     text-align: left;
+    flex-grow: 0;
 }
 .handover-link {
     font-size: 20px;
@@ -137,7 +136,7 @@ body {
 }
 .content-container {
     display: flex;
-    flex-grow: 1; /* Allow content-container to take available space */
+    flex-grow: 1;
     justify-content: space-around;
     align-items: center;
     width: 100%;
@@ -155,7 +154,7 @@ body {
 }
 .countdown-item {
     display: flex;
-    flex-direction: column; /* stack the number on the label */
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     font-family: 'Game of Squids';
@@ -213,4 +212,32 @@ body {
 }
 .music-icon {
     font-size: 20px;
+}
+.news-ticker {
+    position: relative;
+    width: 300px;
+    height: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 0;
+}
+.news-ticker span {
+    display: inline-block;
+    animation: ticker 20s linear infinite;
+    color: red;
+}
+@keyframes ticker {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
 }
