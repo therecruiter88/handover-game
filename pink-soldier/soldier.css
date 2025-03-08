@@ -1,0 +1,85 @@
+/* Define a common variable for scaling */
+:root {
+    --soldier-scale: 0.2;
+}
+
+/* General page styling */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    position: relative;
+}
+  
+/* Soldier Styling */
+.soldier {
+    width: 394px;
+    height: 597px;
+    /*background-color: pink;*/
+    border-radius: 0px;
+    position: absolute;
+    top: 20%;
+    cursor: pointer;
+    display: block;
+    background: url('pink-soldier.png') no-repeat center center / cover; /* Optional: Replace with your soldier image */
+    transform: scale(var(--soldier-scale));
+    animation: jump 4s infinite; /* Looping jump animation */
+}
+  
+/* Jumping Animation */
+@keyframes jump {
+    0%, 100% { transform: scale(var(--soldier-scale)) translateY(0); } /* Normal position */
+    5%, 15%, 25% { transform: scale(var(--soldier-scale)) translateY(-10px); } /* Quick jump up */
+    10%, 20%, 30% { transform: scale(var(--soldier-scale)) translateY(0); } /* Back down */
+    35% { transform: scale(var(--soldier-scale)) translateY(0); } /* Stop jumping */
+    100% { transform: scale(var(--soldier-scale)) translateY(0); } /* Pause before repeating */
+}
+ 
+/* Dialog styling (initially hidden) */
+.dialog {
+    display: none;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+ 
+/* Dialog bubble styling */
+.dialog-bubble {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
+    font-size: 16px;
+}
+  
+.dialog-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+  
+/* Optional for an appearance animation */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+  
+.dialog.show {
+    display: block;
+    animation: fadeIn 0.5s ease-out;
+}  
