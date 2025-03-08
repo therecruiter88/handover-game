@@ -1,3 +1,6 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap'); */ /* Example font similar to Squid Game */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 /* Define a common variable for scaling */
 :root {
     --soldier-scale: 0.2;
@@ -5,7 +8,8 @@
 
 /* General page styling */
 body {
-    font-family: Arial, sans-serif;
+    /*font-family: 'Rubik Mono One', sans-serif;*/
+    font-family: 'Press Start 2P', cursive;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,72 +18,87 @@ body {
     background-color: #f0f0f0;
     position: relative;
 }
-  
+
 /* Soldier Styling */
 .soldier {
     width: 394px;
     height: 597px;
-    /*background-color: pink;*/
-    border-radius: 0px;
     position: absolute;
-    top: 20%;
+    top: 50%;
+    left: 10%;
+    transform: scale(var(--soldier-scale)) translate(-50%, -50%);
     cursor: pointer;
     display: block;
-    background: url('pink-soldier.png') no-repeat center center / cover; /* Optional: Replace with your soldier image */
-    transform: scale(var(--soldier-scale));
-    animation: jump 4s infinite; /* Looping jump animation */
+    background: url('pink-soldier.png') no-repeat center center / cover;
+    animation: jump 4s infinite;
 }
-  
+
 /* Jumping Animation */
 @keyframes jump {
-    0%, 100% { transform: scale(var(--soldier-scale)) translateY(0); } /* Normal position */
-    5%, 15%, 25% { transform: scale(var(--soldier-scale)) translateY(-10px); } /* Quick jump up */
-    10%, 20%, 30% { transform: scale(var(--soldier-scale)) translateY(0); } /* Back down */
-    35% { transform: scale(var(--soldier-scale)) translateY(0); } /* Stop jumping */
-    100% { transform: scale(var(--soldier-scale)) translateY(0); } /* Pause before repeating */
+    0%, 100% { transform: scale(var(--soldier-scale)) translate(-50%, -50%) translateY(0); }
+    5%, 15%, 25% { transform: scale(var(--soldier-scale)) translate(-50%, -50%) translateY(-10px); }
+    10%, 20%, 30% { transform: scale(var(--soldier-scale)) translate(-50%, -50%) translateY(0); }
 }
- 
-/* Dialog styling (initially hidden) */
+
+/* Dialog Styling */
 .dialog {
-    display: none;
     position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
- 
-/* Dialog bubble styling */
-.dialog-bubble {
+    display: none;
     background-color: #333;
     color: white;
-    padding: 10px;
-    border-radius: 10px;
-    position: relative;
-    font-size: 16px;
+    left: 30%; /* Center it */
+    padding: 15px 20px;
+    font-size: 12px;
+    border-radius: 15px;
+    box-shadow: 4px 4px 10px rgba(181, 149, 149, 0.3);
+    max-width: 550px;
+    text-align: center;
 }
-  
-.dialog-bubble::after {
+
+/* Speech bubble tail (triangle) */
+.dialog::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -15px; /* Moves the tail below the dialog */
+    left: 50%; /* Center it */
+    transform: translateX(-50%); /* Ensures it's perfectly centered */
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid #333; /* Matches the dialog background */
+}
+
+/* 🟢 INDEX PAGE LAYOUT */
+.index-layout .soldier {
+    top: 60%;
     left: 50%;
-    transform: translateX(-50%);
-    border-width: 10px;
-    border-style: solid;
-    border-color: #333 transparent transparent transparent;
 }
-  
-/* Optional for an appearance animation */
+
+.index-layout .dialog {
+    top: 30%;
+    left: 50%;
+}
+
+/* 🟡 HANDOVER PAGE LAYOUT */
+.handover-layout .soldier {
+    top: 40%;
+    left: 70%;
+    --soldier-scale: 0.15;  /* Smaller for this page */
+}
+
+.handover-layout .dialog {
+    top: 20%;
+    left: 65%;
+}
+
+/* Show dialog animation */
 @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
 }
-  
+
 .dialog.show {
     display: block;
-    animation: fadeIn 0.5s ease-out;
-}  
+    animation: fadeIn 0.3s ease-out;
+}

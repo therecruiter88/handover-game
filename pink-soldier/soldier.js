@@ -1,20 +1,34 @@
 // Select the soldier and dialog elements
 const soldier = document.getElementById('soldier');
 const dialog = document.getElementById('dialog');
+const messageElement = document.getElementById('message');
 
 // Define the message for the dialog
-const message = "Welcome to the Squid Game! You need to survive and win!";
+const message = "Player, you thought discovering the secret was the challenge? (laughs) \n Oh, players, you’re just getting started \n Relax, this next game won’t be too hard...(giggle) but let’s find out, shall we?";
 
 // Add a click event to the soldier
 soldier.addEventListener('click', () => {
-  // Change the message inside the dialog
-  document.getElementById('message').textContent = message;
+    // Replace \n with <br> for line breaks
+    messageElement.innerHTML = message.replace(/\n/g, '<br>');
 
-  // Show the dialog
-  dialog.classList.add('show');
+    // Temporarily make the dialog visible to get its dimensions
+    dialog.style.display = "block";
+    dialog.style.visibility = "hidden"; // Hide it but still allow measuring
 
-  // Optional: Hide the dialog after a few seconds
-  setTimeout(() => {
-    dialog.classList.remove('show');
-  }, 5000);  // Hide after 5 seconds (you can adjust the time)
+    // Calculate the correct position above the soldier
+    const soldierRect = soldier.getBoundingClientRect();
+    const dialogHeight = dialog.offsetHeight; // Get actual height now
+
+    dialog.style.top = `${soldierRect.top - dialogHeight - 10}px`; // 10px gap above head
+    dialog.style.left = `${soldierRect.left + soldierRect.width / 2 - dialog.offsetWidth / 2}px`; // Centered
+
+    // Now make it fully visible
+    dialog.style.visibility = "visible";
+    dialog.classList.add('show');
+
+    // Hide the dialog after a few seconds
+    setTimeout(() => {
+        dialog.classList.remove('show');
+        dialog.style.display = "none"; // Fully hide after animation
+    }, 10000);
 });
