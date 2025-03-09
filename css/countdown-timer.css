@@ -1,10 +1,10 @@
 .content-container {
     display: flex;
     flex-grow: 1;
-    justify-content: space-around;
+    justify-content: start;
     align-items: center;
     width: 100%;
-    padding: 50px 20px 10px 20px;
+    padding: 120px 20px 10px 10px;
     box-sizing: border-box;
 }
 .countdown {
@@ -15,6 +15,7 @@
     align-items: center;
     justify-items: center;
     width: fit-content;
+    margin-left: 50px;
 }
 .countdown-item {
     display: flex;
