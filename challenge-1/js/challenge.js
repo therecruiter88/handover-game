@@ -7,7 +7,6 @@ const instructionsPopup = document.getElementById('instructions-popup');
 const instructionsClose = document.getElementById('instructions-close');
 const playerSelector = document.getElementById('player-selector');
 const startGameBtn = document.getElementById('start-game');
-const playerOptions = document.querySelectorAll('.player-option');
 const celebration = document.getElementById('celebration');
 const gameOver = document.getElementById('game-over');
 const gameCompletion = document.getElementById('game-completion');
@@ -134,26 +133,6 @@ instructionsClose.addEventListener('click', () => {
       clearInterval(fadeAudio);
     }
   }, 200);
-});
-
-// Add player selection functionality
-let selectedShape = null;
-
-playerOptions.forEach(option => {
-  option.addEventListener('click', () => {
-    // Remove selected class from all options
-    playerOptions.forEach(opt => opt.classList.remove('selected'));
-    
-    // Add selected class to clicked option
-    option.classList.add('selected');
-    
-    // Store selected shape
-    selectedShape = option.getAttribute('data-shape');
-    
-    // Enable start button
-    startGameBtn.classList.add('enabled');
-    startGameBtn.disabled = false;
-  });
 });
 
 startGameBtn.addEventListener('click', () => {
@@ -547,22 +526,6 @@ function endGame(isVictory) {
     gameOver.style.display = 'flex';
     eliminationSound.play();
   }
-}
-
-function createConfetti() {
-  const confetti = document.createElement('div');
-  confetti.className = 'confetti';
-  confetti.style.left = `${Math.random() * gameContainer.offsetWidth}px`;
-  confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-  confetti.style.animationDuration = `${3 + Math.random() * 2}s`;
-  gameContainer.appendChild(confetti);
-  
-  // Remove confetti after animation
-  setTimeout(() => {
-    if (gameContainer.contains(confetti)) {
-      gameContainer.removeChild(confetti);
-    }
-  }, 5000);
 }
 
 // Retry button functionality

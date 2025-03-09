@@ -1,0 +1,75 @@
+// Sound elements
+const introSound = document.getElementById('intro-sound');
+const storylineSound = document.getElementById('storyline-sound');
+
+const introContainer = document.getElementById('intro-container');
+const storyContainer = document.getElementById('story-container');
+const storyText = document.getElementById('story-text');
+const continueBtn = document.getElementById('continue-btn');
+const instructionsPopup = document.getElementById('instructions-popup');
+
+const storyTitles = ["Storyline", "Challenge"];
+
+// Story text
+const storylineText = [
+    "Tomorrow was meant to be a simple farewell pizza party for António Silva. But something went horribly wrong. Dark forces have unleashed an unstoppable plague of pineapple pizzas, threatening to take over the planet.",
+    "What was once a celebration has become a mission, a battle for survival. To save António's farewell and stop the invasion, you must destroy every last slice before it's too late!"
+];
+
+setTimeout(() => {
+    introContainer.style.display = 'none';
+    storyContainer.style.display = 'flex';
+    document.getElementById('story-title').textContent = storyTitles[0];
+    
+    // Stop intro sound and start typing sound at a low volume
+    introSound.pause();
+    storylineSound.volume = 0.5;
+    storylineSound.loop = true;
+    
+    // Type out the storyline text
+    let storyStep = 0;
+    let charIndex = 0;
+    let currentParagraph = document.createElement('p');
+    storyText.innerHTML = ''; // Clear any existing content
+    storyText.appendChild(currentParagraph);
+    
+    const typingInterval = setInterval(() => {
+      if (charIndex < storylineText[storyStep].length) {
+        currentParagraph.textContent += storylineText[storyStep][charIndex];
+        charIndex++;
+      } else {
+        // Text complete, show continue button
+        clearInterval(typingInterval);
+        continueBtn.style.display = 'block';
+      }
+    }, 50);
+    
+    continueBtn.addEventListener('click', () => {
+      storyStep++;
+      
+      if (storyStep < storylineText.length) {
+        // Move to next story step
+        document.getElementById('story-title').textContent = storyTitles[storyStep];
+        storyText.innerHTML = '';
+        currentParagraph = document.createElement('p');
+        storyText.appendChild(currentParagraph);
+        charIndex = 0;
+        continueBtn.style.display = 'none';
+        
+        const nextTypingInterval = setInterval(() => {
+          if (charIndex < storylineText[storyStep].length) {
+            currentParagraph.textContent += storylineText[storyStep][charIndex];
+            charIndex++;
+          } else {
+            // Text complete, show continue button
+            clearInterval(nextTypingInterval);
+            continueBtn.style.display = 'block';
+          }
+        }, 50);
+      } else {
+        // Move to instructions
+        storyContainer.style.display = 'none';
+        instructionsPopup.style.display = 'block';
+      }
+    });
+  }, 4500); // Show story after intro animation
