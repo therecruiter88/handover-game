@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./css/players-list.css">
     <link rel="stylesheet" href="./css/music.css">
     <link rel="stylesheet" href="./css/game-challenges.css">
+    <link rel="stylesheet" href="./css/leaderboard.css">
     <link rel="stylesheet" href="./pink-soldier/soldier.css">
     <link rel="icon" href="./favicon/icon.png" type="image/x-icon">
 </head>
@@ -77,12 +78,17 @@
         </button>
         <div class="challenge-list">
             <div class="challenge-item" data-url="./challenge-1/the_pinneaple_pizza_invasion.html" alt="The Pineapple Pizza Invasion">Challenge 1</div>
-            <div class="challenge-item-leaderboard" alt="Scoreboard">Scoreboard</div>
+            <div class="challenge-item-leaderboard" id="scoreboard-trigger" alt="Scoreboard">Scoreboard</div>
+        </div>
+        <div id="leaderboard-panel" class="leaderboard-panel">
+            <h3 class="leaderboard-title">Leaderboard</h3>
+            <table id="leaderboard-table" class="leaderboard-table"></table>
         </div>
     </div>
 
     <script src="./js/scripts.js"></script>
-    <script src="./pink-soldier/soldier.js"></script>
     <script src="./js/game-challenges.js"></script>
+    <script src="./js/leaderboard.js"></script>
+    <script src="./pink-soldier/soldier.js"></script>
 </body>
 </html>

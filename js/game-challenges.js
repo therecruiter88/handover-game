@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const fabButton = document.getElementById('fab-button');
     const challengeList = document.querySelector('.challenge-list');
+    const challengeLeaderboard = document.getElementById('scoreboard-trigger');
     const challengeItems = document.querySelectorAll('.challenge-item');
     let isListVisible = false;
     
@@ -31,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     challengeItems.forEach(item => {
         item.addEventListener('click', (event) => {
             const url = item.getAttribute('data-url');
+            isListVisible = false;
             if (url) {
                 window.location.href = url;
             }

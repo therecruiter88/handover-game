@@ -1,0 +1,47 @@
+.leaderboard-panel {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #333;
+    border: 2px solid #EB257A;
+    padding: 20px;
+    border-radius: 10px;
+    max-height: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 200;
+    color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+.leaderboard-title {
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    margin-bottom: 20px;
+    color: #EB257A;
+}
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.leaderboard-table th,
+.leaderboard-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #EB257A;
+    font-family: 'Press Start 2P', cursive;
+}
+.leaderboard-table th {
+    background-color: #EB257A;
+    color: #fff;
+}
+.overlay {
+    display: none;
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: #EB257A; 
+}
