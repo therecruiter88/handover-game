@@ -1,0 +1,41 @@
+.token-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    border: 2px solid white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.token-input {
+    background-color: #EB257A;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 200px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 16px;
+    text-align: center;
+}
+.token-button {
+    background-color: white;
+    color: #EB257A;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 16px;
+    transition: 0.3s;
+}
+.token-button:hover {
+    background-color: #EB257A;
+    color: white;
+}
