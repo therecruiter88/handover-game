@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const fabButton = document.getElementById('fab-button');
-    const challengeList = document.querySelector('.challenge-list');
-    const challengeLeaderboard = document.getElementById('scoreboard-trigger');
+    const challengeList = document.getElementById('challenge-list');
     const challengeItems = document.querySelectorAll('.challenge-item');
     let isListVisible = false;
     

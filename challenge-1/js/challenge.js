@@ -2,9 +2,6 @@ const gameContainer = document.getElementById('game-container');
 const player = document.getElementById('player');
 const scoreDisplay = document.getElementById('score-display');
 const timerDisplay = document.getElementById('timer-display');
-const introContainer = document.getElementById('intro-container');
-const instructionsPopup = document.getElementById('instructions-popup');
-const instructionsClose = document.getElementById('instructions-close');
 const playerSelector = document.getElementById('player-selector');
 const startGameBtn = document.getElementById('start-game');
 const celebration = document.getElementById('celebration');
@@ -14,10 +11,6 @@ const homeButton = document.getElementById('home-button');
 const nextGameButton = document.getElementById('next-game-button');
 const retryButton = document.getElementById('retry-button');
 
-const storyContainer = document.getElementById('story-container');
-const storyText = document.getElementById('story-text');
-const continueBtn = document.getElementById('continue-btn');
-
 const hearts = [
   document.getElementById('heart1'),
   document.getElementById('heart2'),
@@ -25,8 +18,6 @@ const hearts = [
 ];
 
 // Sound elements
-const introSound = document.getElementById('intro-sound');
-const storylineSound = document.getElementById('storyline-sound');
 const victorySound = document.getElementById('victory-sound');
 //const typingSound = document.getElementById('typing-sound');
 const gameStartSound = document.getElementById('game-start-sound');
@@ -47,93 +38,6 @@ let isGameOver = false;
 let targetGenerationInterval;
 let lives = 3;
 const reasonEliminated = document.getElementById('reason-eliminated');
-
-// Story text
-const storylineText = [
-  "Tomorrow was meant to be a simple farewell pizza party for António Silva. But something went horribly wrong. Dark forces have unleashed an unstoppable plague of pineapple pizzas, threatening to take over the planet.",
-  "What was once a celebration has become a mission, a battle for survival. To save António's farewell and stop the invasion, you must destroy every last slice before it's too late!"
-];
-
-const storyTitles = ["Storyline", "Challenge"];
-
-// Intro sequence and game initialization
-setTimeout(() => {
-  introSound.volume = 0.5;
-  introSound.play();
-}, 500);
-
-setTimeout(() => {
-  introContainer.style.display = 'none';
-  storyContainer.style.display = 'flex';
-  document.getElementById('story-title').textContent = storyTitles[0];
-  
-  // Stop intro sound and start typing sound at a low volume
-  introSound.pause();
-  storylineSound.volume = 0.5;
-  storylineSound.loop = true;
-  
-  // Type out the storyline text
-  let storyStep = 0;
-  let charIndex = 0;
-  let currentParagraph = document.createElement('p');
-  storyText.innerHTML = ''; // Clear any existing content
-  storyText.appendChild(currentParagraph);
-  
-  const typingInterval = setInterval(() => {
-    if (charIndex < storylineText[storyStep].length) {
-      currentParagraph.textContent += storylineText[storyStep][charIndex];
-      charIndex++;
-    } else {
-      // Text complete, show continue button
-      clearInterval(typingInterval);
-      continueBtn.style.display = 'block';
-    }
-  }, 50);
-  
-  continueBtn.addEventListener('click', () => {
-    storyStep++;
-    
-    if (storyStep < storylineText.length) {
-      // Move to next story step
-      document.getElementById('story-title').textContent = storyTitles[storyStep];
-      storyText.innerHTML = '';
-      currentParagraph = document.createElement('p');
-      storyText.appendChild(currentParagraph);
-      charIndex = 0;
-      continueBtn.style.display = 'none';
-      
-      const nextTypingInterval = setInterval(() => {
-        if (charIndex < storylineText[storyStep].length) {
-          currentParagraph.textContent += storylineText[storyStep][charIndex];
-          charIndex++;
-        } else {
-          // Text complete, show continue button
-          clearInterval(nextTypingInterval);
-          continueBtn.style.display = 'block';
-        }
-      }, 50);
-    } else {
-      // Move to instructions
-      storyContainer.style.display = 'none';
-      instructionsPopup.style.display = 'block';
-    }
-  });
-}, 4500); // Show story after intro animation
-
-instructionsClose.addEventListener('click', () => {
-  instructionsPopup.style.display = 'none';
-  playerSelector.style.display = 'block';
-  
-  const fadeAudio = setInterval(() => {
-    if (storylineSound.volume > 0.1) {
-      storylineSound.volume -= 0.1;
-    } else {
-      storylineSound.pause();
-      storylineSound.volume = 0.5;
-      clearInterval(fadeAudio);
-    }
-  }, 200);
-});
 
 startGameBtn.addEventListener('click', () => {
   if (selectedShape) {

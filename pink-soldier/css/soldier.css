@@ -31,8 +31,9 @@ body {
     justify-content: center;
     align-items: center;
 }
-
-/* Soldier Styling */
+.soldier-container {
+    align-items: center;
+}
 .soldier {
     width: 394px;
     height: 597px;
@@ -42,10 +43,9 @@ body {
     transform: scale(var(--soldier-scale)) translate(-50%, -50%);
     cursor: pointer;
     display: block;
-    background: url('pink-soldier.png') no-repeat center center / cover;
+    background: url('../resources/img/pink-soldier.png') no-repeat center center / cover;
     animation: soldierPopIn 1s forwards, jump 4s infinite 1s; /* Pop-in first, then jump */
 }
-
 /* Soldier Pop-in Animation */
 @keyframes soldierPopIn {
     0% {
@@ -57,14 +57,12 @@ body {
         transform: scale(var(--soldier-scale)) translate(-50%, -50%) translateY(0); /* End at original position */
     }
 }
-
 /* Jumping Animation */
 @keyframes jump {
     0%, 100% { transform: scale(var(--soldier-scale)) translate(-50%, -50%) translateY(0); }
     5%, 15%, 25% { transform: scale(var(--soldier-scale)) translate(-50%, -50%) translateY(-10px); }
     10%, 20%, 30% { transform: scale(var(--soldier-scale)) translate(-50%, -50%) translateY(0); }
 }
-
 .click-me{
     position: absolute;
     color: #EB257A;
@@ -74,8 +72,25 @@ body {
     bottom: 0%; /* Put below soldier */
     padding: 15px 20px;
 }
-
-/* Dialog Styling */
+/* 🟢 INDEX PAGE LAYOUT */
+.index-layout .soldier {
+    top: 60%;
+    left: 50%;
+}
+.index-layout .dialog {
+    top: 30%;
+    left: 50%;
+}
+/* 🟡 HANDOVER PAGE LAYOUT */
+.handover-layout .soldier {
+    top: 40%;
+    left: 70%;
+    --soldier-scale: 0.15;  /* Smaller for this page */
+}
+.handover-layout .dialog {
+    top: 20%;
+    left: 65%;
+}
 .dialog {
     position: absolute;
     display: none;
@@ -90,7 +105,6 @@ body {
     line-height: 1.7;
     text-align: justify;
 }
-
 /* Speech bubble tail (triangle) */
 .dialog::after {
     content: '';
@@ -104,37 +118,12 @@ body {
     border-right: 15px solid transparent;
     border-top: 15px solid #333; /* Matches the dialog background */
 }
-
 /* Show dialog animation */
 @keyframes fadeIn {
     0% { opacity: 0; transform: scale(0.8); }
     100% { opacity: 1; transform: scale(1); }
 }
-
 .dialog.show {
     display: block;
     animation: fadeIn 0.3s ease-out;
-}
-
-/* 🟢 INDEX PAGE LAYOUT */
-.index-layout .soldier {
-    top: 60%;
-    left: 50%;
-}
-
-.index-layout .dialog {
-    top: 30%;
-    left: 50%;
-}
-
-/* 🟡 HANDOVER PAGE LAYOUT */
-.handover-layout .soldier {
-    top: 40%;
-    left: 70%;
-    --soldier-scale: 0.15;  /* Smaller for this page */
-}
-
-.handover-layout .dialog {
-    top: 20%;
-    left: 65%;
 }
