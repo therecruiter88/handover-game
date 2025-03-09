@@ -4,19 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./css/intro.css">
-  <link rel="stylesheet" href="./css/storyline.css">
-  <link rel="stylesheet" href="./css/instructions.css">
-  <link rel="stylesheet" href="./css/player-selector.css">
   <link rel="stylesheet" href="./css/challenge.css">
   <link rel="stylesheet" href="./css/elimination.css">
+  <link rel="stylesheet" href="./css/intro.css">
+  <link rel="stylesheet" href="./css/instructions.css">
+  <link rel="stylesheet" href="./css/player-selector.css">
+  <link rel="stylesheet" href="./css/storyline.css">
   <link rel="stylesheet" href="./css/victory.css">
-  <link rel="icon" href="./resources/favicon/icon.png" type="image/x-icon">
+  <link rel="icon" href="../resources/favicon/icon.png" type="image/x-icon">
 </head>
 <body>
     <!-- Audio elements for game sounds -->
     <audio id="intro-sound" preload="auto">
-      <source src="https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3" type="audio/mpeg">
+      <source src="https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3;muted=1&amp" type="audio/mpeg">
     </audio>
   
     <audio id="storyline-sound" preload="auto">
@@ -60,7 +60,7 @@
     <div id="intro-logo">THE PINEAPPLE PIZZA INVASION</div>
   </div>
   
-  <!-- Story container -->
+  <!-- Storyline container -->
   <div id="story-container">
     <div id="story-box">
       <h2 id="story-title">Backstory</h2>
@@ -81,7 +81,7 @@
   
   <!-- Player selector -->
   <div id="player-selector">
-    <h2>Choose Your Player</h2>
+    <h2>Choose Your Soldier</h2>
     <div class="player-options">
       <div class="player-option" data-shape="circle">
         <svg width="60" height="80" viewBox="0 0 60 80">
@@ -143,7 +143,7 @@
     <div id="game-over">
       <h2>ELIMINATED!</h2>
       <p id="reason-eliminated"></p>
-      <p>The pineapple pizzas destroyed the planet and you were not able to save PEMP!</p>
+      <p>The pineapple pizzas destroyed the planet and you were not able to save player 297 pizza party!</p>
       <div id="elimination-x">X</div>
       <button id="retry-button">Retry</button>
     </div>
@@ -160,10 +160,10 @@
   </div>
 
   <script src="./js/challenge.js"></script>
-  <script src="./js/intro.js"></script>
-  <script src="./js/storyline.js"></script>
   <script src="./js/instructions.js"></script>
+  <script src="./js/intro.js"></script>
   <script src="./js/player-selector.js"></script>
+  <script src="./js/storyline.js"></script>
   <script src="./js/victory.js"></script>
 </body>
 </html>

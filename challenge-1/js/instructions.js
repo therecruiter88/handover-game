@@ -1,6 +1,3 @@
-// Sound elements
-const storylineSound = document.getElementById('storyline-sound');
-
 const instructionsPopup = document.getElementById('instructions-popup');
 const instructionsClose = document.getElementById('instructions-close');
 const playerSelector = document.getElementById('player-selector');

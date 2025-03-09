@@ -2,7 +2,6 @@ const gameContainer = document.getElementById('game-container');
 const player = document.getElementById('player');
 const scoreDisplay = document.getElementById('score-display');
 const timerDisplay = document.getElementById('timer-display');
-const playerSelector = document.getElementById('player-selector');
 const startGameBtn = document.getElementById('start-game');
 const celebration = document.getElementById('celebration');
 const gameOver = document.getElementById('game-over');
@@ -75,7 +74,6 @@ startGameBtn.addEventListener('click', () => {
     gameContainer.style.display = 'block';
     
     // Start the game
-    gameStartSound.play();
     startGame();
   }
 });
@@ -86,13 +84,15 @@ function startGame() {
   gameTime = 30;
   bullets = [];
   targets = [];
-  lives = 3;
   for (let i = 0; i < hearts.length; i++) {
     hearts[i].style.display = 'inline';
   }
   
   reasonEliminated.innerHTML= "";
   isGameOver = false;
+
+  gameStartSound.play();
+  gameStartSound.volume = 0.5;
   
   // Update UI
   scoreDisplay.textContent = `Score: ${score}`;
@@ -175,6 +175,12 @@ function handleKeyDown(e) {
   if (e.key === 'ArrowRight') keys.right = true;
   if (e.key === ' ' && !keys.space) {
     keys.space = true;
+
+    // Reset sound and play
+    laserSound.currentTime = 0; // Restart from beginning
+    laserSound.play();
+    laserSound.volume = 1.0;
+    
     fireBullet();
   }
 }
@@ -263,7 +269,7 @@ function fireBullet() {
   bulletElement.style.top = `${bulletY}px`;
   
   gameContainer.appendChild(bulletElement);
-  
+
   bullets.push({
     element: bulletElement,
     x: bulletX,
@@ -271,7 +277,7 @@ function fireBullet() {
     width: 5,
     height: 15
   });
-  laserSound.play();
+
 }
 
 function generateTarget() {
@@ -404,7 +410,8 @@ function endGame(isVictory) {
   countdownSound.pause();
   countdownFastSound.pause();
   gameStartSound.pause();
-  
+  gameStartSound.volume = 0.5;
+   
   if (isVictory) {
     reasonEliminated.innerHTML = "";
 

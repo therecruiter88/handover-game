@@ -11,10 +11,12 @@
     <link rel="icon" href="./resources/favicon/icon.png" type="image/x-icon">
 </head>
 <body>
+    <!-- Audio imports -->
     <audio id="background-music">
         <source src="./resources/audio/sg_doll_song.mp3" type="audio/mp3">
     </audio>
 
+    <!-- Mobile devices not supported message -->
     <div id="mobile-message" class="hidden">
         <p>!Mobile devices not supported!</p><br>
         <p>You have been selected for the Handover Game!</p>
@@ -29,6 +31,7 @@
         <p><span class="let-the-game-begin">LET THE GAME BEGIN</span></p><br>
     </div>
 
+    <!-- Authentication panel -->
     <div id="token" class="hidden">
         <label for="token-input">Enter Secret:</label>
         <input type="password" id="token-input" class="token-input">

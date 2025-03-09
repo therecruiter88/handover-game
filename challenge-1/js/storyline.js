@@ -1,19 +1,15 @@
 // Sound elements
-const introSound = document.getElementById('intro-sound');
 const storylineSound = document.getElementById('storyline-sound');
-
-const introContainer = document.getElementById('intro-container');
 const storyContainer = document.getElementById('story-container');
 const storyText = document.getElementById('story-text');
 const continueBtn = document.getElementById('continue-btn');
-const instructionsPopup = document.getElementById('instructions-popup');
 
 const storyTitles = ["Storyline", "Challenge"];
 
 // Story text
 const storylineText = [
     "Tomorrow was meant to be a simple farewell pizza party for Player 297. But something went horribly wrong. Dark forces have unleashed an unstoppable plague of pineapple pizzas, threatening to take over the planet and ruining the party...",
-    "What was once a celebration has become a mission, a battle for survival... To save Player 297 farewell and stop the invasion, you must destroy every mutant pizza before it's too late!"
+    "What was once a celebration has become a mission, a battle for survival. To save Player 297 farewell and stop the invasion, you must destroy every mutant pizza before it's too late!"
 ];
 
 setTimeout(() => {
