@@ -1,0 +1,164 @@
+<html>
+<head>
+  <title>The Pineapple Pizza Invasion</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/intro.css">
+  <link rel="stylesheet" href="./css/storyline.css">
+  <link rel="stylesheet" href="./css/instructions.css">
+  <link rel="stylesheet" href="./css/player-selector.css">
+  <link rel="stylesheet" href="./css/challenge.css">
+  <link rel="stylesheet" href="./css/elimination.css">
+  <link rel="stylesheet" href="./css/victory.css">
+  <link rel="icon" href="./resources/favicon/icon.png" type="image/x-icon">
+</head>
+<body>
+    <!-- Audio elements for game sounds -->
+    <audio id="intro-sound" preload="auto">
+      <source src="https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3" type="audio/mpeg">
+    </audio>
+  
+    <audio id="storyline-sound" preload="auto">
+      <!--<source src="https://assets.soundbible.com/mp3/dark-music-loop-40818.mp3" type="audio/mpeg">-->
+      <source src="./resources/audio/storyline.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="typing-sound" preload="auto">
+      <source src="https://assets.mixkit.co/active_storage/sfx/2363/2363-preview.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="game-start-sound" preload="auto">
+      <!--<source src="https://assets.mixkit.co/active_storage/sfx/2020/2020-preview.mp3" type="audio/mpeg">-->
+      <source src="./resources/audio/never_gonna_give_you_up.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="countdown-sound" preload="auto">
+      <source src="https://assets.mixkit.co/active_storage/sfx/212/212-preview.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="countdown-fast-sound" preload="auto">
+      <source src="https://assets.mixkit.co/active_storage/sfx/212/212-preview.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="laser-sound" preload="auto">
+      <!--<source src="https://assets.mixkit.co/active_storage/sfx/202/202-preview.mp3" type="audio/mpeg">-->
+      <source src="./resources/audio/laser_beam_efx.mp3" type="audio/mp3">
+    </audio>
+    
+    <audio id="elimination-sound" preload="auto">
+      <source src="https://assets.mixkit.co/active_storage/sfx/218/218-preview.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="victory-sound" preload="auto">
+      <!--<source src="https://assets.mixkit.co/active_storage/sfx/943/943-preview.mp3" type="audio/mpeg">-->
+      <source src="./resources/audio/victory.mp3" type="audio/mp3">
+    </audio>
+
+  <!-- Netflix-style intro -->
+  <div id="intro-container">
+    <div id="intro-logo">THE PINEAPPLE PIZZA INVASION</div>
+  </div>
+  
+  <!-- Story container -->
+  <div id="story-container">
+    <div id="story-box">
+      <h2 id="story-title">Backstory</h2>
+      <div id="story-text"></div>
+      <button id="continue-btn">Continue</button>
+    </div>
+  </div>
+  
+  <!-- Instructions popup -->
+  <div id="instructions-popup">
+    <h2>How to Play</h2>
+    <p>Use arrow keys to move the Squid Game soldier left and right.</p>
+    <p>Press SPACE to shoot at the pineapple pizzas.</p>
+    <p>Each hit earns you 10 points!</p>
+    <p>You have 30 seconds to reach 500 points or you'll be ELIMINATED!</p>
+    <button id="instructions-close">Got it!</button>
+  </div>
+  
+  <!-- Player selector -->
+  <div id="player-selector">
+    <h2>Choose Your Player</h2>
+    <div class="player-options">
+      <div class="player-option" data-shape="circle">
+        <svg width="60" height="80" viewBox="0 0 60 80">
+          <!-- Circle player -->
+          <rect x="15" y="10" width="30" height="40" fill="#ff0066" />
+          <circle cx="30" cy="20" r="10" fill="black" />
+          <circle cx="30" cy="20" r="5" fill="white" />
+          <rect x="18" y="50" width="24" height="25" fill="#ff0066" />
+          <rect x="10" y="40" width="40" height="10" fill="#ff0066" />
+        </svg>
+      </div>
+      <div class="player-option" data-shape="square">
+        <svg width="60" height="80" viewBox="0 0 60 80">
+          <!-- Square player -->
+          <rect x="15" y="10" width="30" height="40" fill="#ff0066" />
+          <circle cx="30" cy="20" r="10" fill="black" />
+          <rect x="25" y="15" width="10" height="10" fill="white" />
+          <rect x="18" y="50" width="24" height="25" fill="#ff0066" />
+          <rect x="10" y="40" width="40" height="10" fill="#ff0066" />
+        </svg>
+      </div>
+      <div class="player-option" data-shape="triangle">
+        <svg width="60" height="80" viewBox="0 0 60 80">
+          <!-- Triangle player -->
+          <rect x="15" y="10" width="30" height="40" fill="#ff0066" />
+          <circle cx="30" cy="20" r="10" fill="black" />
+          <polygon points="30,15 25,25 35,25" fill="white" />
+          <rect x="18" y="50" width="24" height="25" fill="#ff0066" />
+          <rect x="10" y="40" width="40" height="10" fill="#ff0066" />
+        </svg>
+      </div>
+    </div>
+    <button id="start-game" disabled>Start Game</button>
+  </div>
+  
+  <div id="game-container">
+    <div id="player">
+      <svg width="60" height="80" viewBox="0 0 60 80">
+        <!-- Squid Game Soldier -->
+        <rect x="15" y="10" width="30" height="40" fill="#ff0066" />
+        <circle cx="30" cy="20" r="10" fill="black" />
+        <rect x="18" y="50" width="24" height="25" fill="#ff0066" />
+        <rect x="10" y="40" width="40" height="10" fill="#ff0066" />
+      </svg>
+    </div>
+    <div id="score-display">Score: 0</div>
+    <div class="hearts-container">
+      <span class="heart" id="heart1">❤️</span><span class="heart" id="heart2">❤️</span><span class="heart" id="heart3">❤️</span>
+    </div>
+    <div id="timer-display">Time: 30</div>
+    
+    <!-- Celebration container -->
+    <div id="celebration">
+      <h2>Congratulations!</h2>
+      <p>You have saved the planet from all of the pineapple pizzas!</p>
+    </div>
+    
+    <!-- Game over container -->
+    <div id="game-over">
+      <h2>ELIMINATED!</h2>
+      <p id="reason-eliminated"></p>
+      <p>The pineapple pizzas destroyed the planet and you were not able to save PEMP!</p>
+      <div id="elimination-x">X</div>
+      <button id="retry-button">Retry</button>
+    </div>
+  </div>
+
+  <!-- Game completion popup -->
+  <div id="game-completion">
+    <h2>Next Game Unlocked!</h2>
+    <p>You have successfully completed this challenge and unlocked the next game!</p>
+    <div class="buttons">
+      <button id="home-button">Return to Base</button>
+      <button id="next-game-button">Next Game</button>
+    </div>
+  </div>
+
+  <script src="./js/challenge.js"></script> 
+</body>
+</html>
