@@ -5,7 +5,7 @@ const messageElement = document.getElementById('message');
 const clickMe = document.getElementById("click-me")
 
 // Define the message for the dialog
-const message = "Player, you thought discovering the secret was the challenge? (laughs) \n Oh, you’re just getting started \n Relax, this next game won’t be too hard...(giggle) but let’s find out, shall we? \n To proceed just click on the + icon";
+const message = "Player, you thought discovering the secret was the challenge? (laughs) \n Oh, you’re just getting started \n Relax, this next game won’t be too hard...(giggle) but let’s find out, shall we? \n To proceed just click on my face near the music controls...";
 
 // Add a click event to the soldier
 soldier.addEventListener('click', () => {
