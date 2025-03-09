@@ -2,9 +2,10 @@
 const soldier = document.getElementById('soldier');
 const dialog = document.getElementById('dialog');
 const messageElement = document.getElementById('message');
+const clickMe = document.getElementById("click-me")
 
 // Define the message for the dialog
-const message = "Player, you thought discovering the secret was the challenge? (laughs) \n Oh, players, you’re just getting started \n Relax, this next game won’t be too hard...(giggle) but let’s find out, shall we?";
+const message = "Player, you thought discovering the secret was the challenge? (laughs) \n Oh, you’re just getting started \n Relax, this next game won’t be too hard...(giggle) but let’s find out, shall we? \n To proceed just click on the + icon";
 
 // Add a click event to the soldier
 soldier.addEventListener('click', () => {
@@ -31,4 +32,6 @@ soldier.addEventListener('click', () => {
         dialog.classList.remove('show');
         dialog.style.display = "none"; // Fully hide after animation
     }, 10000);
+
+    clickMe.style.display="none"
 });

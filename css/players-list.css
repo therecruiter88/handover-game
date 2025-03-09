@@ -1,0 +1,59 @@
+.right-panel {
+    position: fixed;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    background-color: transparent;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    z-index: 10;
+    width: 320px;
+    height: 300px;
+}
+.collapse-button {
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    font-size: 16px;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+}
+.collapse-button:hover {
+    background-color: white;
+    color: #EB257A;
+}
+.players-list {
+    list-style-type: none;
+    padding-left: 20px;
+    visibility: hidden;
+    opacity: 0;
+    max-height: 200px;
+    max-width: 300px;
+    overflow-x: auto;
+    overflow-y: auto;
+    margin-top: 10px;
+    color: #EB257A;
+    transition: visibility 0s 0.3s, opacity 0.3s ease-in-out;
+    text-align: left;
+    flex-grow: 1;
+}
+.players-list.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s 0s, opacity 0.3s ease-in-out;
+}
+.players-list li {
+    margin-bottom: 8px;
+    align-items: left;
+    min-width: 200px;
+    font-size: 12px;
+}

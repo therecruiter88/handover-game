@@ -1,0 +1,43 @@
+.fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.fab-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #f01;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    line-height: 60px;
+    border: none;
+}
+
+.challenge-list {
+    display: none;
+    background-color: #333;
+    color: white;
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    width: 250px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.challenge-item {
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #444;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.fab-btn:active + .challenge-list {
+    display: block; /* Expand the list when the button is clicked */
+}

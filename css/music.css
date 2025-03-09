@@ -1,0 +1,30 @@
+.music-panel {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+}
+.music-button {
+    background-color: #EB257A;
+    border: 3px solid white;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 15px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    align-self: flex-end;
+}
+.music-button:hover {
+    background-color: white;
+    color: #EB257A;
+}
+.music-icon {
+    font-size: 20px;
+}
