@@ -1,10 +1,10 @@
 .music-panel {
     display: flex;
     justify-content: start;
-    align-items: start;
+    align-items: center;
     position: absolute;
-    bottom: 1%;
-    left: 50px;
+    bottom: 3%;
+    right: 10%;
 }
 .music-button {
     background-color: #EB257A;
@@ -14,7 +14,7 @@
     font-size: 15px;
     padding: 10px 15px;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 10%;
     transition: 0.3s;
     display: flex;
     align-items: center;
@@ -27,4 +27,5 @@
 }
 .music-icon {
     font-size: 20px;
+    margin: auto;
 }
