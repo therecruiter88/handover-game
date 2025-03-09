@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/player-selector.css">
   <link rel="stylesheet" href="./css/challenge.css">
   <link rel="stylesheet" href="./css/elimination.css">
   <link rel="stylesheet" href="./css/intro.css">
   <link rel="stylesheet" href="./css/instructions.css">
-  <link rel="stylesheet" href="./css/player-selector.css">
   <link rel="stylesheet" href="./css/storyline.css">
   <link rel="stylesheet" href="./css/victory.css">
   <link rel="icon" href="../resources/favicon/icon.png" type="image/x-icon">
@@ -55,6 +55,13 @@
       <source src="./resources/audio/victory.mp3" type="audio/mp3">
     </audio>
 
+   <!-- Player Name Prompt -->
+  <div id="player-name-prompt" class="player-selector">
+    <h2>Enter Your Player Number</h2>
+    <input type="text" id="player-number" maxlength="3" placeholder="example: 000">
+    <button id="continue-intro" disabled>Begin Challenge</button>
+  </div>
+  
   <!-- Netflix-style intro -->
   <div id="intro-container">
     <div id="intro-logo">THE PINEAPPLE PIZZA INVASION</div>
@@ -159,11 +166,11 @@
     </div>
   </div>
 
+  <script src="./js/storyline.js"></script> <!-- It must load before challenge.js to use its functions -->
+  <script src="./js/player-selector.js"></script>
   <script src="./js/challenge.js"></script>
   <script src="./js/instructions.js"></script>
   <script src="./js/intro.js"></script>
-  <script src="./js/player-selector.js"></script>
-  <script src="./js/storyline.js"></script>
   <script src="./js/victory.js"></script>
 </body>
 </html>

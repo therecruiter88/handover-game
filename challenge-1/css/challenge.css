@@ -9,6 +9,58 @@ body {
     overflow: hidden;
     color: white;
 }
+#player-name-prompt {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #1d1d1d; /* Dark background */
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    width: 70%;
+    max-width: 400px;
+    z-index: 200;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Shadow for depth */
+}
+/* Player number input section */
+#player-name-prompt h2 {
+    color: #EB257A;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2rem;
+    margin-bottom: 20px;
+} 
+/* Input field style */
+#player-number {
+    background-color: #333;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+}
+/* Button for continuing */
+#continue-intro {
+    background-color: #EB257A;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}  
+#continue-intro:disabled {
+    background-color: #666;
+    cursor: not-allowed;
+}
+#continue-intro:hover:enabled {
+    background-color: #d62056;
+}  
 #game-container {
     width: 600px;
     height: 400px;

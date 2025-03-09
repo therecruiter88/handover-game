@@ -12,60 +12,61 @@ const storylineText = [
     "What was once a celebration has become a mission, a battle for survival. To save Player 297 farewell and stop the invasion, you must destroy every mutant pizza before it's too late!"
 ];
 
-setTimeout(() => {
-    introContainer.style.display = 'none';
-    storyContainer.style.display = 'flex';
-    document.getElementById('story-title').textContent = storyTitles[0];
+function startStoryline() {
+  introContainer.style.display = 'none';
+  storyContainer.style.display = 'flex';
+  document.getElementById('story-title').textContent = storyTitles[0];
+  
+  // Stop intro sound and start typing sound at a low volume
+  introSound.pause();
+  storylineSound.volume = 0.5;
+  storylineSound.loop = true;
+  
+  // Type out the storyline text
+  let storyStep = 0;
+  let charIndex = 0;
+  let currentParagraph = document.createElement('p');
+  storyText.innerHTML = ''; // Clear any existing content
+  storyText.appendChild(currentParagraph);
+  
+  const typingInterval = setInterval(() => {
+    if (charIndex < storylineText[storyStep].length) {
+      currentParagraph.textContent += storylineText[storyStep][charIndex];
+      charIndex++;
+    } else {
+      // Text complete, show continue button
+      clearInterval(typingInterval);
+      continueBtn.style.display = 'block';
+    }
+  }, 50);
+  
+  continueBtn.addEventListener('click', () => {
+    storyStep++;
     
-    // Stop intro sound and start typing sound at a low volume
-    introSound.pause();
-    storylineSound.volume = 0.5;
-    storylineSound.loop = true;
-    
-    // Type out the storyline text
-    let storyStep = 0;
-    let charIndex = 0;
-    let currentParagraph = document.createElement('p');
-    storyText.innerHTML = ''; // Clear any existing content
-    storyText.appendChild(currentParagraph);
-    
-    const typingInterval = setInterval(() => {
-      if (charIndex < storylineText[storyStep].length) {
-        currentParagraph.textContent += storylineText[storyStep][charIndex];
-        charIndex++;
-      } else {
-        // Text complete, show continue button
-        clearInterval(typingInterval);
-        continueBtn.style.display = 'block';
-      }
-    }, 50);
-    
-    continueBtn.addEventListener('click', () => {
-      storyStep++;
+    if (storyStep < storylineText.length) {
+      // Move to next story step
+      document.getElementById('story-title').textContent = storyTitles[storyStep];
+      storyText.innerHTML = '';
+      currentParagraph = document.createElement('p');
+      storyText.appendChild(currentParagraph);
+      charIndex = 0;
+      continueBtn.style.display = 'none';
       
-      if (storyStep < storylineText.length) {
-        // Move to next story step
-        document.getElementById('story-title').textContent = storyTitles[storyStep];
-        storyText.innerHTML = '';
-        currentParagraph = document.createElement('p');
-        storyText.appendChild(currentParagraph);
-        charIndex = 0;
-        continueBtn.style.display = 'none';
-        
-        const nextTypingInterval = setInterval(() => {
-          if (charIndex < storylineText[storyStep].length) {
-            currentParagraph.textContent += storylineText[storyStep][charIndex];
-            charIndex++;
-          } else {
-            // Text complete, show continue button
-            clearInterval(nextTypingInterval);
-            continueBtn.style.display = 'block';
-          }
-        }, 50);
-      } else {
-        // Move to instructions
-        storyContainer.style.display = 'none';
-        instructionsPopup.style.display = 'block';
-      }
-    });
-  }, 4500); // Show story after intro animation
+      const nextTypingInterval = setInterval(() => {
+        if (charIndex < storylineText[storyStep].length) {
+          currentParagraph.textContent += storylineText[storyStep][charIndex];
+          charIndex++;
+        } else {
+          // Text complete, show continue button
+          clearInterval(nextTypingInterval);
+          continueBtn.style.display = 'block';
+        }
+      }, 50);
+    } else {
+      // Move to instructions
+      storyContainer.style.display = 'none';
+      instructionsPopup.style.display = 'block';
+    }
+  });
+
+}

@@ -1,3 +1,5 @@
+const playerNumberInput = document.getElementById('player-number');
+const continueIntroBtn = document.getElementById('continue-intro');
 const gameContainer = document.getElementById('game-container');
 const player = document.getElementById('player');
 const scoreDisplay = document.getElementById('score-display');
@@ -37,6 +39,34 @@ let isGameOver = false;
 let targetGenerationInterval;
 let lives = 3;
 const reasonEliminated = document.getElementById('reason-eliminated');
+
+window.onload = showPlayerNumberInput;
+
+// Display player number promtp
+function showPlayerNumberInput() {
+  const playerNumberInputElement = document.getElementById("player-name-prompt");
+
+  if (playerNumberInputElement) {
+    document.getElementById('player-name-prompt').style.display = 'flex';
+    document.getElementById('intro-container').style.display = 'none';
+    document.getElementById('story-container').style.display = 'none';
+  }
+
+}
+
+// Validate input player number
+playerNumberInput.addEventListener('input', () => {
+  const isValid = playerNumberInput.value.length === 3;
+  continueIntroBtn.disabled = !isValid;
+});
+
+// Start the intro after input player number
+continueIntroBtn.addEventListener('click', () => {
+  setTimeout(() => {
+    // Sstart the intro
+    startIntro();
+  }, 500);
+});
 
 startGameBtn.addEventListener('click', () => {
   if (selectedShape) {
@@ -180,7 +210,7 @@ function handleKeyDown(e) {
     laserSound.currentTime = 0; // Restart from beginning
     laserSound.play();
     laserSound.volume = 1.0;
-    
+
     fireBullet();
   }
 }
