@@ -3,13 +3,13 @@
 
 /* Define a common variable for scaling */
 :root {
-    --soldier-scale: 0.2;
+    --soldier-scale: 0.15;
 }
 
 /* General page styling */
-body {
+/*body {*/
     /*font-family: 'Rubik Mono One', sans-serif;*/
-    font-family: 'Press Start 2P', cursive;
+    /*font-family: 'Press Start 2P', cursive;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,6 +17,19 @@ body {
     margin: 0;
     background-color: #f0f0f0;
     position: relative;
+}*/
+body {
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Soldier Styling */
@@ -46,21 +59,22 @@ body {
     display: none;
     background-color: #333;
     color: white;
-    left: 30%; /* Center it */
+    left: 50%; /* Center it */
     padding: 15px 20px;
     font-size: 12px;
     border-radius: 15px;
     box-shadow: 4px 4px 10px rgba(181, 149, 149, 0.3);
     max-width: 550px;
-    text-align: center;
+    line-height: 1.7;
+    text-align: justify;
 }
 
 /* Speech bubble tail (triangle) */
 .dialog::after {
     content: '';
     position: absolute;
-    bottom: -15px; /* Moves the tail below the dialog */
-    left: 50%; /* Center it */
+    bottom: -10px; /* Moves the tail below the dialog */
+    left: 25%; /* Center it */
     transform: translateX(-50%); /* Ensures it's perfectly centered */
     width: 0;
     height: 0;

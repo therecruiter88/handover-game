@@ -20,7 +20,7 @@ soldier.addEventListener('click', () => {
     const dialogHeight = dialog.offsetHeight; // Get actual height now
 
     dialog.style.top = `${soldierRect.top - dialogHeight - 10}px`; // 10px gap above head
-    dialog.style.left = `${soldierRect.left + soldierRect.width / 2 - dialog.offsetWidth / 2}px`; // Centered
+    dialog.style.left = `${soldierRect.left + soldierRect.width + 250 / 2 - dialog.offsetWidth / 2}px`; // Centered
 
     // Now make it fully visible
     dialog.style.visibility = "visible";
