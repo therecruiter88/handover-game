@@ -250,7 +250,7 @@ function updateGame() {
   if (keys.left && playerPosition > 30) {
     playerPosition -= moveSpeed;
   }
-  if (keys.right && playerPosition < gameContainer.offsetWidth - 20) {
+  if (keys.right && playerPosition < gameContainer.offsetWidth - 30) {
     playerPosition += moveSpeed;
   }
   player.style.left = `${playerPosition}px`;
@@ -394,7 +394,13 @@ function createHitEffect(x, y) {
 
 function updateHeartsDisplay() {
   for (let i = 0; i < hearts.length; i++) {
-    hearts[i].style.display = i < lives ? 'inline' : 'none';
+    if (i < lives) {
+      hearts[i].src = './resources/img/heart_full.png'; // Full heart
+      hearts[i].alt = 'Full Heart';
+    } else {
+      hearts[i].src = './resources/img/heart_empty.png'; // Empty heart
+      hearts[i].alt = 'Empty Heart';
+    }
   }
 }
 

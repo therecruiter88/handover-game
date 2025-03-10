@@ -122,11 +122,14 @@ select {
     gap: 5px;
     position: absolute;
     top: 10px;
-    left: 30%;
+    left: 50%;
     transform: translateX(-50%);
+    width: 100px;
+    justify-content: center;
 }
 .heart {
-    color: red;
+    width: 30px;
+    height: 30px;
 }
 #score-display {
     position: absolute;
