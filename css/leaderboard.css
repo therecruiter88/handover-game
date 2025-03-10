@@ -1,3 +1,4 @@
+/* Styling for the leaderboard panel */
 .leaderboard-panel {
     display: none;
     position: fixed;
@@ -15,16 +16,44 @@
     color: white;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
+
+/* Styling for the leaderboard title */
 .leaderboard-title {
     text-align: center;
     font-family: 'Press Start 2P', cursive;
     margin-bottom: 20px;
     color: #EB257A;
 }
+
+/* Styling for the tabs */
+.leaderboard-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    background-color: #333;
+    color: #EB257A;
+    border: none;
+    padding: 10px 20px;
+    font-family: 'Press Start 2P', cursive;
+    cursor: pointer;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+
+.tab-button.active {
+    background-color: #EB257A;
+    color: #fff;
+}
+
+/* Styling for the leaderboard table */
 .leaderboard-table {
     width: 100%;
     border-collapse: collapse;
 }
+
 .leaderboard-table th,
 .leaderboard-table td {
     padding: 10px;
@@ -32,16 +61,21 @@
     border-bottom: 1px solid #EB257A;
     font-family: 'Press Start 2P', cursive;
 }
+
 .leaderboard-table th {
     background-color: #EB257A;
     color: #fff;
 }
+
+/* Styling for the overlay */
 .overlay {
     display: none;
 }
+
 ::-webkit-scrollbar {
     width: 10px;
 }
+
 ::-webkit-scrollbar-thumb {
-    background: #EB257A; 
+    background: #EB257A;
 }
