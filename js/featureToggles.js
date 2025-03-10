@@ -1,22 +1,23 @@
 // Flags for visibility
 let isSoldierAndDialogVisible = true;
 let isFabVisible = true;
+let isChallengeOneVisible = true;
 let isLeaderboardVisible = true;
 
 document.addEventListener('DOMContentLoaded', () => {
     toggleSoldierAndDialog();
     toggleGameChallengesSelector();
+    toggleChallengeOne();
     toggleLeaderboard();
 });
 
-// Functions to toggle visibility
 function toggleSoldierAndDialog() {
     const soldierContainer = document.getElementById('soldier-container');
 
     if (isSoldierAndDialogVisible) {
-        soldierContainer.classList.remove('hidden');
+        if(soldierContainer) soldierContainer.classList.remove('hidden');
     } else {
-        soldierContainer.classList.add('hidden');
+        if(soldierContainer) soldierContainer.classList.add('hidden');
     }
 }
 
@@ -27,6 +28,16 @@ function toggleGameChallengesSelector() {
         if(fab) fab.classList.remove('hidden');
     } else {
         if(fab) fab.classList.add('hidden');
+    }
+}
+
+function toggleChallengeOne() {
+    const challengeOneItem = document.getElementById('challenge-1');
+
+    if (isChallengeOneVisible) {
+        if(challengeOneItem) challengeOneItem.classList.remove('hidden');
+    } else {
+        if(challengeOneItem) challengeOneItem.classList.add('hidden');
     }
 }
 

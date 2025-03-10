@@ -30,6 +30,7 @@
 }
 .player-option:hover, .player-option.selected {
     background-color: rgba(235, 37, 122, 0.5);
+    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
 }
 #player-selector button {
     background-color: #EB257A;
@@ -47,7 +48,9 @@
 #player-selector button.enabled {
     opacity: 1;
     pointer-events: auto;
+    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
 }
 #start-game:hover:enabled {
     background-color: #d62056;
+    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
 }  

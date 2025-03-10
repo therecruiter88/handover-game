@@ -38,4 +38,5 @@
 .token-button:hover {
     background-color: #EB257A;
     color: white;
+    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
 }

@@ -39,9 +39,15 @@ body {
     color: #EB257A;
     text-decoration: none;
 }
+.handover-link:hover {
+    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 8 8, auto;
+}
 .buttons-link {
     color: white;
     text-decoration: none;
+}
+.buttons-link:hover {
+    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 8 8, auto;
 }
 .image-container img {
     position: absolute;

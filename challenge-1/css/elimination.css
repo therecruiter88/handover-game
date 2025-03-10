@@ -50,6 +50,9 @@
     cursor: pointer;
     font-family: 'Press Start 2P', cursive;
 }
+#retry-button:hover {
+    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
+}
 #game-completion {
     position: fixed;
     top: 50%;
@@ -81,4 +84,7 @@
     font-size: 0.8rem;
     cursor: pointer;
     font-family: 'Press Start 2P', cursive;
+}
+#game-completion:hover {
+    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
 }
