@@ -105,10 +105,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to fetch leaderboard data from Firebase
     async function fetchLeaderboardData(tab) {
         try {
-            const db = getDatabase(app);
-            const snapshot = await get(ref(db, `leaderboards/${tab}`)); // Adjust this based on your DB structure
+            const database = getDatabase(app);
+            const leaderboardChallengesRef = ref(database, `leaderboards/${tab}`);
+            const snapshot = await get(leaderboardChallengesRef);
+            console.log(`database: ${database}`);
+            console.log(`leaderboardChallengesRef: ${leaderboardChallengesRef}`);
+            console.log(`snapshot: ${snapshot}`);
+
             if (snapshot.exists()) {
-                return Object.values(snapshot.val()); // Convert object to array
+                const data = snapshot.val();
+                console.log(`Fetched ${tab} data:`, data);
+
+                // Convert the object to an array of { player, score }
+                const leaderboardArray = Object.values(data).map(player => ({
+                    player: player.player,
+                    score: player.score
+                }));
+
+                return leaderboardArray;
             } else {
                 console.warn(`No data found for ${tab}`);
                 return [];
@@ -120,29 +134,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Function to generate the leaderboard based on the selected tab
-    function generateLeaderboard(tab) {
+    async function generateLeaderboard(tab) {
         leaderboardTable.innerHTML = '';
         const headerRow = leaderboardTable.insertRow();
-        const headerPlayer = headerRow.insertCell();
-        const headerScore = headerRow.insertCell();
-        headerPlayer.textContent = "Player";
-        headerScore.textContent = "Score";
-
-        // When need to test static data
-        //const data = leaderboardData[tab];
-        // For dynamic data from firebase connection
-        const data = fetchLeaderboardData(tab);
-
-        // Sort the data by score in descending order
+        headerRow.insertCell().textContent = "Player";
+        headerRow.insertCell().textContent = "Score";
+    
+        // Fetch data from Firebase
+        const data = await fetchLeaderboardData(tab);
+    
+        if (!Array.isArray(data)) {
+            console.error(`Data for ${tab} is not an array:`, data);
+            return;
+        }
+    
+        // Sort the data by score (descending order)
         data.sort((a, b) => b.score - a.score);
-
-        // Populate the table with sorted data
+    
+        // Populate the table
         data.forEach(entry => {
             const row = leaderboardTable.insertRow();
-            const cellPlayer = row.insertCell();
-            const cellScore = row.insertCell();
-            cellPlayer.textContent = entry.player;
-            cellScore.textContent = entry.score;
+            row.insertCell().textContent = entry.player;
+            row.insertCell().textContent = entry.score;
         });
     }
 
