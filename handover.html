@@ -100,9 +100,9 @@
         <!-- Tabs for each challenge -->
         <div id="leaderboard-tabs" class="leaderboard-tabs">
             <!--<button class="tab-button active" data-tab="total">Total</button>-->
-            <button class="tab-button active" data-tab="challenge1">Challenge 1</button>
-            <!--<button class="tab-button" data-tab="challenge2">Challenge 2</button>-->
-            <!--<button class="tab-button" data-tab="challenge3">Challenge 3</button>-->
+            <button class="tab-button active" data-tab="challenge-1">Challenge 1</button>
+            <!--<button class="tab-button" data-tab="challenge-2">Challenge 2</button>-->
+            <!--<button class="tab-button" data-tab="challenge-3">Challenge 3</button>-->
         </div>
 
         <!-- Leaderboard Table -->
@@ -110,13 +110,14 @@
     </div>
 
     <!-- Insert this script at the bottom of the HTML, but before you use any Firebase services -->
-    <script type="module">
+    <!--<script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js'
         // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
         import { getAnalytics } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js'
         // Add Firebase products that you want to use
         import { getAuth } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js'
         import { getFirestore } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js'
+        import { getDatabase, ref, get } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js'
 
         const firebaseConfig = {
             apiKey: "AIzaSyDyj0Awkh6K4AATQdLnxP8AgEmTD2WqdM4",
@@ -129,12 +130,12 @@
             measurementId: "G-Z1F7ZPCL1L"
         };
 
-        // Initialize Firebase
+        // Initialize Firebase bd
         const app = initializeApp(firebaseConfig);
-    </script>
+    </script>-->
 
     <script src="./pink-soldier/js/soldier.js"></script>
-    <script src="./js/leaderboard.js" defer></script>
+    <script src="./js/leaderboard.js" type="module"></script>
     <script src="./js/scripts.js"></script>    
     <script src="./js/game-challenges.js"></script>
     <script src="./js/featureToggles.js"></script>

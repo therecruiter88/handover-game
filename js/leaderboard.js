@@ -1,3 +1,25 @@
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js'
+// If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+import { getAnalytics } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js'
+// Add Firebase products that you want to use
+import { getAuth } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js'
+import { getFirestore } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js'
+import { getDatabase, ref, get } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js'
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDyj0Awkh6K4AATQdLnxP8AgEmTD2WqdM4",
+    authDomain: "handover-game.firebaseapp.com",
+    databaseURL: "https://handover-game-default-rtdb.firebaseio.com",
+    projectId: "handover-game",
+    storageBucket: "handover-game.firebasestorage.app",
+    messagingSenderId: "611197045900",
+    appId: "1:611197045900:web:49afa6563517dd16523fa9",
+    measurementId: "G-Z1F7ZPCL1L"
+};
+
+// Initialize Firebase bd
+const app = initializeApp(firebaseConfig);
+
 document.addEventListener('DOMContentLoaded', () => {
     const scoreboardTrigger = document.getElementById('challenge-leaderboard');
     const leaderboardPanel = document.getElementById('leaderboard-panel');
@@ -79,6 +101,24 @@ document.addEventListener('DOMContentLoaded', () => {
         ]*/
     };
 
+
+    // Function to fetch leaderboard data from Firebase
+    async function fetchLeaderboardData(tab) {
+        try {
+            const db = getDatabase(app);
+            const snapshot = await get(ref(db, `leaderboards/${tab}`)); // Adjust this based on your DB structure
+            if (snapshot.exists()) {
+                return Object.values(snapshot.val()); // Convert object to array
+            } else {
+                console.warn(`No data found for ${tab}`);
+                return [];
+            }
+        } catch (error) {
+            console.error(`Error fetching ${tab} data:`, error);
+            return [];
+        }
+    }
+
     // Function to generate the leaderboard based on the selected tab
     function generateLeaderboard(tab) {
         leaderboardTable.innerHTML = '';
@@ -88,7 +128,10 @@ document.addEventListener('DOMContentLoaded', () => {
         headerPlayer.textContent = "Player";
         headerScore.textContent = "Score";
 
-        const data = leaderboardData[tab];
+        // When need to test static data
+        //const data = leaderboardData[tab];
+        // For dynamic data from firebase connection
+        const data = fetchLeaderboardData(tab);
 
         // Sort the data by score in descending order
         data.sort((a, b) => b.score - a.score);
