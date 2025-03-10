@@ -57,8 +57,49 @@
 
    <!-- Player Name Prompt -->
   <div id="player-name-prompt">
-    <h2>Enter Your Player Number</h2>
-    <input type="text" id="player-number" maxlength="3" placeholder="example: 000">
+    <h2>Select Your Player Number</h2>
+    <!--<input type="text" id="player-number" maxlength="3" placeholder="example: 000">-->
+    <select id="player-number" aria-label="Select your player number">
+      <option value="" disabled selected>xxx</option>
+      <option value="002">002</option>
+      <option value="016">016</option>
+      <option value="018">018</option>
+      <option value="019">019</option>
+      <option value="023">023</option>
+      <option value="026">026</option>
+      <option value="051">051</option>
+      <option value="054">054</option>
+      <option value="057">057</option>
+      <option value="065">065</option>
+      <option value="068">068</option>
+      <option value="077">077</option>
+      <option value="107">107</option>
+      <option value="120">120</option>
+      <option value="130">130</option>
+      <option value="135">135</option>
+      <option value="136">136</option>
+      <option value="141">141</option>
+      <option value="182">182</option>
+      <option value="183">183</option>
+      <option value="186">186</option>
+      <option value="187">187</option>
+      <option value="188">188</option>
+      <option value="194">194</option>
+      <option value="221">221</option>
+      <option value="222">222</option>
+      <option value="226">226</option>
+      <option value="229">229</option>
+      <option value="232">232</option>
+      <option value="243">243</option>
+      <option value="273">273</option>
+      <option value="278">278</option>
+      <option value="286">286</option>
+      <option value="287">287</option>
+      <option value="297">297</option>
+      <option value="301">301</option>
+      <option value="339">339</option>
+      <option value="343">343</option>
+    </select>
     <button id="begin-challenge" disabled>Begin Challenge</button>
   </div>
   
@@ -168,9 +209,9 @@
 
   <script src="./js/storyline.js"></script> <!-- It must load before challenge.js to use its functions -->
   <script src="./js/player-selector.js"></script>
-  <script src="./js/challenge.js"></script>
   <script src="./js/instructions.js"></script>
   <script src="./js/intro.js"></script>
   <script src="./js/victory.js"></script>
+  <script src="./js/challenge.js"></script>
 </body>
 </html>

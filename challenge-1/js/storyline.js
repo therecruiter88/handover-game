@@ -9,7 +9,7 @@ const storyTitles = ["Storyline", "Challenge"];
 // Story text
 const storylineText = [
     "Tomorrow was meant to be a simple farewell pizza party for Player 297. But something went horribly wrong. Dark forces have unleashed an unstoppable plague of pineapple pizzas, threatening to take over the planet and ruining the party...",
-    "What was once a celebration has become a mission, a battle for survival. To save Player 297 farewell and stop the invasion, you must destroy every mutant pizza before it's too late!"
+    "What was once a celebration has become a mission, a battle for survival. To save Player 297 farewell and stop the invasion, you must destroy every mutant pizza before it's too late!\nYou have 30 seconds to do it and 3 lifes to attempt the challenge..."
 ];
 
 function startStoryline() {

@@ -42,7 +42,7 @@ const reasonEliminated = document.getElementById('reason-eliminated');
 
 window.onload = showPlayerNumberInput;
 
-// Display player number promtp
+// Display player number prompt
 function showPlayerNumberInput() {
   const playerNumberInputElement = document.getElementById("player-name-prompt");
 
@@ -54,6 +54,14 @@ function showPlayerNumberInput() {
 
 }
 
+const playerNumberSelect = document.getElementById('player-number');
+
+// Enable the "Begin Challenge" button once a player number is selected
+playerNumberSelect.addEventListener('change', () => {
+    // Enable the button if a valid number is selected
+    beginChallengeBtn.disabled = playerNumberSelect.value === '';
+});
+
 // Validate input player number
 playerNumberInput.addEventListener('input', () => {
   const isValid = playerNumberInput.value.length === 3;
@@ -62,8 +70,10 @@ playerNumberInput.addEventListener('input', () => {
 
 // Start the intro after input player number
 beginChallengeBtn.addEventListener('click', () => {
+  const selectedPlayerNumber = playerNumberSelect.value;
+  // Proceed with the challenge...
   setTimeout(() => {
-    // Sstart the intro
+    // Start the intro
     startIntro();
   }, 500);
 });
@@ -131,6 +141,7 @@ function startGame() {
   reasonEliminated.innerHTML= "";
   isGameOver = false;
 
+  gameStartSound.currentTime = 0; // Restart from beginning
   gameStartSound.play();
   gameStartSound.volume = 0.5;
   
@@ -239,7 +250,7 @@ function updateGame() {
   if (keys.left && playerPosition > 30) {
     playerPosition -= moveSpeed;
   }
-  if (keys.right && playerPosition < gameContainer.offsetWidth - 30) {
+  if (keys.right && playerPosition < gameContainer.offsetWidth - 20) {
     playerPosition += moveSpeed;
   }
   player.style.left = `${playerPosition}px`;
@@ -322,78 +333,38 @@ function fireBullet() {
 
 function generateTarget() {
   if (isGameOver) return;
-  
+
   const targetElement = document.createElement('div');
   targetElement.className = 'target';
-  
-  // Create pineapple pizza SVG
-  const pizzaSVG = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  pizzaSVG.setAttribute('width', '40');
-  pizzaSVG.setAttribute('height', '40');
-  pizzaSVG.setAttribute('viewBox', '0 0 40 40');
-  
-  // Pizza base (circle)
-  const pizzaBase = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-  pizzaBase.setAttribute('cx', '20');
-  pizzaBase.setAttribute('cy', '20');
-  pizzaBase.setAttribute('r', '18');
-  pizzaBase.setAttribute('fill', '#E8B96F');
-  pizzaBase.setAttribute('stroke', '#C87137');
-  pizzaBase.setAttribute('stroke-width', '2');
-  
-  // Pizza sauce
-  const pizzaSauce = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-  pizzaSauce.setAttribute('cx', '20');
-  pizzaSauce.setAttribute('cy', '20');
-  pizzaSauce.setAttribute('r', '15');
-  pizzaSauce.setAttribute('fill', '#D13B1C');
-  
-  // Pizza cheese
-  const pizzaCheese = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-  pizzaCheese.setAttribute('cx', '20');
-  pizzaCheese.setAttribute('cy', '20');
-  pizzaCheese.setAttribute('r', '14');
-  pizzaCheese.setAttribute('fill', '#F7D358');
-  
-  // Pineapple pieces (triangles)
-  const positions = [
-    { x: 10, y: 15 },
-    { x: 25, y: 10 },
-    { x: 20, y: 25 },
-    { x: 15, y: 30 },
-    { x: 28, y: 22 }
-  ];
-  
-  positions.forEach(pos => {
-    const pineapple = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-    pineapple.setAttribute('points', `${pos.x},${pos.y} ${pos.x + 5},${pos.y} ${pos.x + 2.5},${pos.y - 5}`);
-    pineapple.setAttribute('fill', '#FFD700');
-    pizzaSVG.appendChild(pineapple);
-  });
-  
-  // Add all elements to SVG
-  pizzaSVG.appendChild(pizzaBase);
-  pizzaSVG.appendChild(pizzaSauce);
-  pizzaSVG.appendChild(pizzaCheese);
-  
-  targetElement.appendChild(pizzaSVG);
-  
+
+  // Create an image element instead of the SVG
+  const pizzaImage = document.createElement('img');
+  pizzaImage.src = './resources/img/pineapple-pizza.png'; // Path to your image
+  pizzaImage.alt = 'Pineapple Pizza'; // For accessibility
+  pizzaImage.style.width = '40px'; // Adjust the size as needed
+  pizzaImage.style.height = '40px'; // Adjust the size as needed
+  pizzaImage.style.objectFit = 'cover'; // To ensure the image fits inside the container
+
+  targetElement.appendChild(pizzaImage);
+
   // Random position and speed
-  const targetX = Math.random() * (gameContainer.offsetWidth - 40);
-  const targetY = -40;
-  const targetSpeed = 1 + Math.random() * 2;
-  
+  const targetX = Math.random() * (gameContainer.offsetWidth - 40); // Ensure pizza stays within game area
+  const targetY = -40; // Start above the screen
+  const targetSpeed = 1 + Math.random() * 2; // Random speed for falling
+
+  // Set position using template literals
   targetElement.style.left = `${targetX}px`;
   targetElement.style.top = `${targetY}px`;
-  
+
+  // Append the target to the game container
   gameContainer.appendChild(targetElement);
-  
+
   targets.push({
     element: targetElement,
     x: targetX,
     y: targetY,
-    width: 40,
-    height: 40,
+    width: 40, // Match the image size for collision detection
+    height: 40, // Match the image size for collision detection
     speed: targetSpeed
   });
 }
@@ -430,7 +401,7 @@ function updateHeartsDisplay() {
 function checkLifes(){
   if (lives <= 0) {
     endGame(false);
-    reasonEliminated.innerHTML= "The pineapple pizzas destroyed the planet because there was no hearts left";
+    reasonEliminated.innerHTML= "The pineapple pizzas destroyed the planet because there was no hearts left!";
   }
 }
 
@@ -450,7 +421,6 @@ function endGame(isVictory) {
   countdownSound.pause();
   countdownFastSound.pause();
   gameStartSound.pause();
-  gameStartSound.volume = 0.5;
    
   if (isVictory) {
     reasonEliminated.innerHTML = "";

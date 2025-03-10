@@ -6,7 +6,6 @@ body {
     min-height: 100vh;
     background-color: #f9c0c0;
     margin: 0;
-    overflow: hidden;
     color: white;
 }
 #player-name-prompt {
@@ -21,14 +20,21 @@ body {
     max-width: 500px;
     text-align: center;
     z-index: 90;
-    display: none;
-    border: 2px solid #E50914;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: visible;
+    padding-bottom: 20px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Optional: for better contrast */
+    max-height: 400px; /* Ensure it has a height large enough to allow space for the dropdown */
 }
 /* Player number input section */
 #player-name-prompt h2 {
     color: #EB257A;
     margin-top: 0;
-    font-size: 20px;
+    font-size: 16px;
 } 
 /* Ensuring the elements are stacked vertically in the same column */
 #player-name-prompt {
@@ -36,16 +42,41 @@ body {
     flex-direction: column;
     align-items: center;
 }
+/* Style for select dropdown */
 #player-number {
     background-color: #333;
-    border: none;
     color: #fff;
     font-size: 1.5rem;
-    padding: 10px;
-    margin-bottom: 1px;
+    padding: 1px;
     border-radius: 5px;
     width: 100%;
+    margin-bottom: 20px;
     text-align: center;
+    border: none;
+    cursor: pointer;
+    bottom: auto;
+    appearance: none; /* Remove default arrow */
+    -webkit-appearance: none; /* For Safari */
+    -moz-appearance: none; /* For Firefox */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: 50%;
+    padding-right: 2em; /* Add space for the arrow */
+}
+#player-number:focus {
+    outline: none;
+}
+#player-number option {
+      text-align: center;
+}
+select {
+    max-height: none;
+    overflow-y: visible;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    border: none;
 }
 #player-name-prompt button {
     background-color: #EB257A;
@@ -57,7 +88,7 @@ body {
     margin-top: 20px;
     cursor: pointer;
     font-family: 'Press Start 2P', cursive;
-}  
+}
 #begin-challenge:disabled {
     background-color: #666;
     cursor: not-allowed;
@@ -91,7 +122,7 @@ body {
     gap: 5px;
     position: absolute;
     top: 10px;
-    left: 50%;
+    left: 30%;
     transform: translateX(-50%);
 }
 .heart {
@@ -128,4 +159,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 10; /* Make sure targets appear above other elements */
+}
+.target img {
+    width: 100%;  /* Ensure the image fits within the target container */
+    height: 100%; /* Ensure the image fits within the target container */
+    object-fit: cover; /* Ensure the pizza image covers the container */
 }
