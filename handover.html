@@ -99,10 +99,10 @@
 
         <!-- Tabs for each challenge -->
         <div id="leaderboard-tabs" class="leaderboard-tabs">
-            <!--<button class="tab-button active" data-tab="total">Total</button>-->
-            <button class="tab-button active" data-tab="challenge-1">Challenge 1</button>
-            <!--<button class="tab-button" data-tab="challenge-2">Challenge 2</button>-->
-            <!--<button class="tab-button" data-tab="challenge-3">Challenge 3</button>-->
+            <!--<button id="leaderboard-tab-button" class="tab-button active" data-tab="total">Total</button>-->
+            <button id="leaderboard-tab-button" class="tab-button active" data-tab="challenge-1">Challenge 1</button>
+            <!--<button id="leaderboard-tab-button" class="tab-button" data-tab="challenge-2">Challenge 2</button>-->
+            <!--<button id="leaderboard-tab-button" class="tab-button" data-tab="challenge-3">Challenge 3</button>-->
         </div>
 
         <!-- Leaderboard Table -->
@@ -134,11 +134,11 @@
         const app = initializeApp(firebaseConfig);
     </script>-->
 
+    <script src="./js/feature-toggles.js"></script>
     <script src="./pink-soldier/js/soldier.js"></script>
     <!-- Use the following to prevent CORS error in browser when testing locally -->
     <script src="https://www.criticalflix.com/js/leaderboard.js" type="module"></script>
     <script src="./js/scripts.js"></script>    
     <script src="./js/game-challenges.js"></script>
-    <script src="./js/feature-toggles.js"></script>
 </body>
 </html>
