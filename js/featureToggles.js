@@ -1,7 +1,7 @@
 // Flags for visibility
-let isSoldierAndDialogVisible = false;
-let isFabVisible = false;
-let isLeaderboardVisible = false;
+let isSoldierAndDialogVisible = true;
+let isFabVisible = true;
+let isLeaderboardVisible = true;
 
 document.addEventListener('DOMContentLoaded', () => {
     toggleSoldierAndDialog();

@@ -9,7 +9,7 @@ const celebration = document.getElementById('celebration');
 const gameOver = document.getElementById('game-over');
 const gameCompletion = document.getElementById('game-completion');
 const homeButton = document.getElementById('home-button');
-const nextGameButton = document.getElementById('next-game-button');
+const scoreboardButton = document.getElementById('scoreboard-button');
 const retryButton = document.getElementById('retry-button');
 
 const hearts = [
@@ -45,11 +45,15 @@ window.onload = showPlayerNumberInput;
 // Display player number prompt
 function showPlayerNumberInput() {
   const playerNumberInputElement = document.getElementById("player-name-prompt");
-
+  const playerNumberSelect = document.getElementById('player-number');
+  
   if (playerNumberInputElement) {
     document.getElementById('player-name-prompt').style.display = 'flex';
     document.getElementById('intro-container').style.display = 'none';
     document.getElementById('story-container').style.display = 'none';
+
+    // Reset the select dropdown to its default state
+    playerNumberSelect.value = ''; // This will select the first (disabled) option
   }
 
 }
@@ -155,7 +159,7 @@ function startGame() {
   
   // Start game loops
   gameInterval = setInterval(updateGame, 20);
-  targetGenerationInterval = setInterval(generateTarget, 600);
+  targetGenerationInterval = setInterval(generateTarget, 500);
   
   // Start timer countdown
   timerInterval = setInterval(() => {
@@ -356,7 +360,7 @@ function generateTarget() {
   
   const targetX = leftPadding + Math.random() * maxTargetX; // Ensure pizza stays within game area
   const targetY = -targetWidth; // Start above the screen
-  const targetSpeed = 1 + Math.random() * 2; // Random speed for falling
+  const targetSpeed = 2 + Math.random() * 4; // Random speed for falling
 
   // Set position using template literals
   targetElement.style.left = `${targetX}px`;
@@ -411,14 +415,20 @@ function updateHeartsDisplay() {
 }
 
 function checkLifes(){
+  // Player lost all lives
   if (lives <= 0) {
-    endGame(false);
-    reasonEliminated.innerHTML= "The pineapple pizzas destroyed the planet because there was no hearts left!";
+    reasonEliminated.innerHTML= "Oh no! You have failed this mission!";
+    retryButton.classList.add('hidden');
+
+    // Redirect to the new page after 5 seconds
+    setTimeout(() => {
+      window.location.href = "https://www.criticalflix.com/handover.html"; // Replace with the actual URL you want to redirect to
+    }, 5000); // 5000 milliseconds = 5 seconds
   }
 }
 
 function endGame(isVictory) {
-  isGameOver = true;
+  isGameOver = true; // Prevent further execution if the game is already over (player ran out of lives)
 
   // Clear intervals
   clearInterval(gameInterval);
@@ -453,12 +463,17 @@ function endGame(isVictory) {
     }, 5000);
   } else {
     // Game over sequence
-    lives--;
-    updateHeartsDisplay();
-    checkLifes();
     gameOver.style.display = 'flex';
     eliminationSound.play();
+    loseLife();
   }
+}
+
+// Call checkLifes when you lose a life
+function loseLife() {
+  lives--;
+  updateHeartsDisplay();
+  checkLifes();  // This will trigger the end game logic if lives <= 0
 }
 
 // Retry button functionality
@@ -478,11 +493,6 @@ retryButton.addEventListener('click', () => {
   startGame();
 });
 
-// Home and next game buttons
-homeButton.addEventListener('click', () => {
-  window.location.reload();
-});
-
-nextGameButton.addEventListener('click', () => {
-  alert('Next game would load here!');
+scoreboardButton.addEventListener('click', () => {
+  alert('Not implemented yet!');
 });
