@@ -12,10 +12,13 @@
     z-index: 90;
     display: none;
     border: 2px solid #E50914;
-} 
+}
 #instructions-popup h2 {
     color: #EB257A;
     margin-top: 0;
+}
+#instructions-popup p {
+    text-align: center;
 } 
 #instructions-popup button {
     background-color: #EB257A;
@@ -28,6 +31,6 @@
     cursor: pointer;
     font-family: 'Press Start 2P', cursive;
 }
-#instructions-popup p {
-    text-align: center;
-}
+#instructions-close:hover:enabled {
+    background-color: #d62056;
+}  

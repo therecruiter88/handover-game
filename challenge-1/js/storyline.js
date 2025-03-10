@@ -18,9 +18,10 @@ function startStoryline() {
   document.getElementById('story-title').textContent = storyTitles[0];
   
   // Stop intro sound and start typing sound at a low volume
-  introSound.pause();
-  storylineSound.volume = 0.5;
-  storylineSound.loop = true;
+  //introSound.pause();
+  //storylineSound.volume = 0.5;
+  //storylineSound.play();
+  //storylineSound.loop = true;
   
   // Type out the storyline text
   let storyStep = 0;

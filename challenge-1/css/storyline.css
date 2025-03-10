@@ -38,7 +38,7 @@
     overflow: hidden;
 }
 #story-text p {
-    margin-bottom: 1.5em;
+    margin-bottom: 1.3em;
 }
 #continue-btn {
     background-color: #EB257A;
@@ -56,3 +56,6 @@
     left: 50%;
     transform: translateX(-50%);
 }
+#continue-btn:hover:enabled {
+    background-color: #d62056;
+}  

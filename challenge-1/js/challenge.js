@@ -1,5 +1,5 @@
 const playerNumberInput = document.getElementById('player-number');
-const continueIntroBtn = document.getElementById('continue-intro');
+const beginChallengeBtn = document.getElementById('begin-challenge');
 const gameContainer = document.getElementById('game-container');
 const player = document.getElementById('player');
 const scoreDisplay = document.getElementById('score-display');
@@ -57,11 +57,11 @@ function showPlayerNumberInput() {
 // Validate input player number
 playerNumberInput.addEventListener('input', () => {
   const isValid = playerNumberInput.value.length === 3;
-  continueIntroBtn.disabled = !isValid;
+  beginChallengeBtn.disabled = !isValid;
 });
 
 // Start the intro after input player number
-continueIntroBtn.addEventListener('click', () => {
+beginChallengeBtn.addEventListener('click', () => {
   setTimeout(() => {
     // Sstart the intro
     startIntro();
@@ -69,6 +69,16 @@ continueIntroBtn.addEventListener('click', () => {
 });
 
 startGameBtn.addEventListener('click', () => {
+  const fadeAudio = setInterval(() => {
+    if (storylineSound.volume > 0.1) {
+      storylineSound.volume -= 0.1;
+    } else {
+      storylineSound.pause();
+      storylineSound.volume = 0.5;
+      clearInterval(fadeAudio);
+    }
+  }, 200);
+  
   if (selectedShape) {
     // Set player shape based on selection
     const playerSvg = player.querySelector('svg');

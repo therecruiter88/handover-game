@@ -48,3 +48,6 @@
     opacity: 1;
     pointer-events: auto;
 }
+#start-game:hover:enabled {
+    background-color: #d62056;
+}  
