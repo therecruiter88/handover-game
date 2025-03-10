@@ -25,7 +25,7 @@
     <div id="top-panel" class="top-panel">
         <div class="icons"><a href="#" id="circle-video-link" target="_blank" class="buttons-link">◯</a> △ ☐</div>
         <div class="news-ticker">
-            <span>Player discharged >>> 120 | Thank you for your service🏅 #strongertogether</span>
+            <span>Players discharged >>> 120; 183 | Thank you for your service🏅 #strongertogether</span>
         </div>
         <a href="#" id="handover-link" target="_blank" class="handover-link">&gt ACCEPT CHALLENGE</a>
     </div>
@@ -59,6 +59,7 @@
         <div id="players-right-panel" class="players-right-panel">
             <div class="collapse-button" onclick="togglePlayersPanel()">🎮 Players Discharged</div>
             <ul id="players-list" class="players-list">
+                <li>Player 183 🏅</li>
                 <li>Player 120 🏅</li>
                 <li>Player 002 🏅</li>
             </ul>
@@ -98,18 +99,42 @@
 
         <!-- Tabs for each challenge -->
         <div id="leaderboard-tabs" class="leaderboard-tabs">
-            <button class="tab-button active" data-tab="total">Total</button>
-            <button class="tab-button" data-tab="challenge1">Challenge 1</button>
-            <button class="tab-button" data-tab="challenge2">Challenge 2</button>
-            <button class="tab-button" data-tab="challenge3">Challenge 3</button>
+            <!--<button class="tab-button active" data-tab="total">Total</button>-->
+            <button class="tab-button active" data-tab="challenge1">Challenge 1</button>
+            <!--<button class="tab-button" data-tab="challenge2">Challenge 2</button>-->
+            <!--<button class="tab-button" data-tab="challenge3">Challenge 3</button>-->
         </div>
 
         <!-- Leaderboard Table -->
         <table id="leaderboard-table" class="leaderboard-table"></table>
     </div>
 
+    <!-- Insert this script at the bottom of the HTML, but before you use any Firebase services -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js'
+        // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+        import { getAnalytics } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js'
+        // Add Firebase products that you want to use
+        import { getAuth } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js'
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js'
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDyj0Awkh6K4AATQdLnxP8AgEmTD2WqdM4",
+            authDomain: "handover-game.firebaseapp.com",
+            databaseURL: "https://handover-game-default-rtdb.firebaseio.com",
+            projectId: "handover-game",
+            storageBucket: "handover-game.firebasestorage.app",
+            messagingSenderId: "611197045900",
+            appId: "1:611197045900:web:49afa6563517dd16523fa9",
+            measurementId: "G-Z1F7ZPCL1L"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+    </script>
+
     <script src="./pink-soldier/js/soldier.js"></script>
-    <script src="./js/leaderboard.js"></script> 
+    <script src="./js/leaderboard.js" defer></script>
     <script src="./js/scripts.js"></script>    
     <script src="./js/game-challenges.js"></script>
     <script src="./js/featureToggles.js"></script>

@@ -1,17 +1,3 @@
-const firebaseConfig = {
-    apiKey: "AIzaSyDyj0Awkh6K4AATQdLnxP8AgEmTD2WqdM4",
-    authDomain: "handover-game.firebaseapp.com",
-    databaseURL: "https://handover-game-default-rtdb.firebaseio.com",
-    projectId: "handover-game",
-    storageBucket: "handover-game.firebasestorage.app",
-    messagingSenderId: "611197045900",
-    appId: "1:611197045900:web:49afa6563517dd16523fa9",
-    measurementId: "G-Z1F7ZPCL1L"
-};
-  
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
 document.addEventListener('DOMContentLoaded', () => {
     const scoreboardTrigger = document.getElementById('challenge-leaderboard');
     const leaderboardPanel = document.getElementById('leaderboard-panel');
@@ -57,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { player: "Player 014", score: 20 },
             { player: "Player 015", score: 10 }
         ],
-        challenge2: [
+        /*challenge2: [
             { player: "Player 001", score: 40 },
             { player: "Player 002", score: 30 },
             { player: "Player 003", score: 30 },
@@ -73,8 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
             { player: "Player 013", score: 30 },
             { player: "Player 014", score: 20 },
             { player: "Player 015", score: 10 }
-        ],
-        challenge3: [
+        ],*/
+        /*challenge3: [
             { player: "Player 001", score: 60 },
             { player: "Player 002", score: 40 },
             { player: "Player 003", score: 50 },
@@ -90,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { player: "Player 013", score: 30 },
             { player: "Player 014", score: 20 },
             { player: "Player 015", score: 10 }
-        ]
+        ]*/
     };
 
     // Function to generate the leaderboard based on the selected tab
