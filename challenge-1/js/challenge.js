@@ -348,8 +348,14 @@ function generateTarget() {
   targetElement.appendChild(pizzaImage);
 
   // Random position and speed
-  const targetX = Math.random() * (gameContainer.offsetWidth - 40); // Ensure pizza stays within game area
-  const targetY = -40; // Start above the screen
+  const targetWidth = 40; // Width of the pizza image
+  const leftPadding = 30; // Add padding on the left
+  const rightPadding = 0; // Add padding on the right (optional)
+  const gameWidth = gameContainer.offsetWidth;
+  const maxTargetX = gameWidth - targetWidth - rightPadding - leftPadding;
+  
+  const targetX = leftPadding + Math.random() * maxTargetX; // Ensure pizza stays within game area
+  const targetY = -targetWidth; // Start above the screen
   const targetSpeed = 1 + Math.random() * 2; // Random speed for falling
 
   // Set position using template literals
