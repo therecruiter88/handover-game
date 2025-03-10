@@ -1,3 +1,17 @@
+const firebaseConfig = {
+    apiKey: "AIzaSyDyj0Awkh6K4AATQdLnxP8AgEmTD2WqdM4",
+    authDomain: "handover-game.firebaseapp.com",
+    databaseURL: "https://handover-game-default-rtdb.firebaseio.com",
+    projectId: "handover-game",
+    storageBucket: "handover-game.firebasestorage.app",
+    messagingSenderId: "611197045900",
+    appId: "1:611197045900:web:49afa6563517dd16523fa9",
+    measurementId: "G-Z1F7ZPCL1L"
+};
+  
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
 document.addEventListener('DOMContentLoaded', () => {
     const scoreboardTrigger = document.getElementById('challenge-leaderboard');
     const leaderboardPanel = document.getElementById('leaderboard-panel');
