@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(overlay);
     let isPanelVisible = false;
 
+    // Initialize the leaderboard with the "Total" tab data
+    //generateLeaderboard('total');
+
     // Function to fetch leaderboard data from Firebase
     async function fetchLeaderboardData(tab) {
         try {
@@ -85,9 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
             row.insertCell().textContent = entry.score;
         });
     }
-
-    // Initialize the leaderboard with the "Total" tab data
-    generateLeaderboard('total');
 
     // Event listener to toggle the leaderboard panel visibility
     scoreboardTrigger.addEventListener('click', (event) => {
