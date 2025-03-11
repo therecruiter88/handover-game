@@ -522,7 +522,7 @@ retryButton.addEventListener('click', () => {
 });
 
 scoreboardButton.addEventListener('click', () => {
-  alert('Not implemented yet!');
+  alert('Not implemented yet! Will implement later, maybe...\nFor now just access the scoreboard throught the main page.');
 });
 
 // Function to update the player's score in Firebase
@@ -543,7 +543,7 @@ function saveScoreToDatabase(playerNumber, score, challengeName) {
               player: playerName,
               score: score
           }).then(() => {
-              console.log(`Player ${playerName} score updated to ${score}`);
+              console.log(`Player "${playerName}" score updated to ${score}`);
           }).catch((error) => {
               console.error("Error updating score:", error);
           });
@@ -553,12 +553,12 @@ function saveScoreToDatabase(playerNumber, score, challengeName) {
               player: playerName,
               score: score
           }).then(() => {
-              console.log(`New player ${playerName} created with score ${score}`);
+              console.log(`New player "${playerName}" created with score ${score}`);
           }).catch((error) => {
-              console.error("Error creating new player:", error);
+              console.error(`Error creating new player "${playerName}":`, error);
           });
       }
   }).catch((error) => {
-      console.error("Error checking player:", error);
+      console.error(`Error checking player "${playerName}":`, error);
   });
 }
