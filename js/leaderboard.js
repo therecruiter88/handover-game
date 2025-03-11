@@ -29,8 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(overlay);
     let isPanelVisible = false;
 
-    // Initialize the leaderboard with the "Total" tab data
-    //generateLeaderboard('total');
+    // Initialize the leaderboard with the first active tab
+    const activeTabButton = document.querySelector('#leaderboard-tab-button.active');
+    if (activeTabButton) {
+        const activeTab = activeTabButton.getAttribute('data-tab');
+        generateLeaderboard(`${activeTab}`);
+    }
 
     // Function to fetch leaderboard data from Firebase
     async function fetchLeaderboardData(tab) {
@@ -38,9 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const database = getDatabase(app);
             const leaderboardChallengesRef = ref(database, `leaderboards/${tab}`);
             const snapshot = await get(leaderboardChallengesRef);
-            console.log(`database: ${database}`);
-            console.log(`leaderboardChallengesRef: ${leaderboardChallengesRef}`);
-            console.log(`snapshot: ${snapshot}`);
+            //console.log(`database: ${database}`);
+            //console.log(`leaderboardChallengesRef: ${leaderboardChallengesRef}`);
+            //console.log(`snapshot: ${snapshot}`);
 
             if (snapshot.exists()) {
                 const data = snapshot.val();
