@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Event listener to switch between leaderboard tabs
-    const tabButtons = document.getElementById('leaderboard-tab-button');
+    const tabButtons = document.querySelectorAll('#leaderboard-tab-button');
     tabButtons.forEach(button => {
         button.addEventListener('click', (event) => {
             const selectedTab = event.target.dataset.tab;
