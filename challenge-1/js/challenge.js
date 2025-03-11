@@ -19,6 +19,7 @@ const firebaseConfig = {
 
 // Initialize Firebase bd
 const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
 
 const playerNumberInput = document.getElementById('player-number');
 const beginChallengeBtn = document.getElementById('begin-challenge');
