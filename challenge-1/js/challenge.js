@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js'
-import { getDatabase, ref, set } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js'
+import { getDatabase, ref, set, get } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js'
 // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
 //import { getAnalytics } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js'
 // Add Firebase products that you want to use
@@ -528,7 +528,7 @@ scoreboardButton.addEventListener('click', () => {
 // Function to update the player's score in Firebase
 function saveScoreToDatabase(playerNumber, score, challengeName) {
   const database = getDatabase(app);
-  
+
   const playerId = `player${playerNumber.padStart(3, '0')}`;
   const playerName = `Player ${playerNumber}`;
   const playerRef = ref(database, `leaderboards/${challengeName}/${playerId}`);

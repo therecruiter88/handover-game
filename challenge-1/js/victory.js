@@ -1,3 +1,5 @@
+const gameContainer = document.getElementById('game-container');
+
 function createConfetti() {
     const confetti = document.createElement('div');
     confetti.className = 'confetti';

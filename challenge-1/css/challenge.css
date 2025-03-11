@@ -129,7 +129,7 @@ select {
     display: flex;
     gap: 5px;
     position: absolute;
-    top: 2%;
+    top: 7px;
     left: 47%;
     transform: translateX(-50%);
     width: 100px;
