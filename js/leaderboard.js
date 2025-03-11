@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (snapshot.exists()) {
                 const data = snapshot.val();
-                console.log(`Fetched ${tab} data:`, data);
+                //console.log(`Fetched ${tab} data:`, data);
 
                 // Convert the object to an array of { player, score }
                 const leaderboardArray = Object.values(data).map(player => ({

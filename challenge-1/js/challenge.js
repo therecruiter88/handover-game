@@ -1,3 +1,25 @@
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js'
+// If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+import { getAnalytics } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js'
+// Add Firebase products that you want to use
+import { getAuth } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js'
+import { getFirestore } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js'
+import { getDatabase, ref, set, get } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js'
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDyj0Awkh6K4AATQdLnxP8AgEmTD2WqdM4",
+    authDomain: "handover-game.firebaseapp.com",
+    databaseURL: "https://handover-game-default-rtdb.firebaseio.com",
+    projectId: "handover-game",
+    storageBucket: "handover-game.firebasestorage.app",
+    messagingSenderId: "611197045900",
+    appId: "1:611197045900:web:49afa6563517dd16523fa9",
+    measurementId: "G-Z1F7ZPCL1L"
+};
+
+// Initialize Firebase bd
+const app = initializeApp(firebaseConfig);
+
 const playerNumberInput = document.getElementById('player-number');
 const beginChallengeBtn = document.getElementById('begin-challenge');
 const gameContainer = document.getElementById('game-container');
@@ -8,7 +30,6 @@ const startGameBtn = document.getElementById('start-game');
 const celebration = document.getElementById('celebration');
 const gameOver = document.getElementById('game-over');
 const gameCompletion = document.getElementById('game-completion');
-const homeButton = document.getElementById('home-button');
 const scoreboardButton = document.getElementById('scoreboard-button');
 const retryButton = document.getElementById('retry-button');
 
@@ -138,6 +159,7 @@ function startGame() {
   gameTime = 30;
   bullets = [];
   targets = [];
+
   for (let i = 0; i < hearts.length; i++) {
     hearts[i].style.display = 'inline';
   }
@@ -303,9 +325,7 @@ function updateGame() {
         targets.splice(i, 1);
         
         // Check win condition
-        if (score >= 500) {
-          endGame(true);
-        }
+        if (score >= 500) endGame(true);
         
         break;
       }
@@ -455,6 +475,10 @@ function endGame(isVictory) {
     for (let i = 0; i < 50; i++) {
       createConfetti();
     }
+
+    // Save score to Firebase
+    const playerNumber = playerNumberSelect.value;
+    saveScoreToDatabase(playerNumber, score, "challenge-1");
     
     // Show game completion after a delay
     setTimeout(() => {
@@ -496,3 +520,37 @@ retryButton.addEventListener('click', () => {
 scoreboardButton.addEventListener('click', () => {
   alert('Not implemented yet!');
 });
+
+// Function to update the player's score in Firebase
+function saveScoreToDatabase(playerNumber, score, challengeName) {
+  const playerId = `player${playerNumber.padStart(3, '0')}`;  // Create player ID like 'player001', 'player002'
+  const playerName = `Player ${playerNumber}`;  // Create player name like 'Player 1', 'Player 2'
+  const playerRef = ref(database, `leaderboards/${challengeName}/${playerId}`);
+
+  // First, let's check if the player already exists in the database
+  get(playerRef).then((snapshot) => {
+      if (snapshot.exists()) {
+          // If player exists, update the score
+          set(playerRef, {
+              player: playerName,
+              score: score
+          }).then(() => {
+              console.log(`Player ${playerName} score updated to ${score}`);
+          }).catch((error) => {
+              console.error("Error updating score:", error);
+          });
+      } else {
+          // If player doesn't exist, create a new player with the score
+          set(playerRef, {
+              player: playerName,
+              score: score
+          }).then(() => {
+              console.log(`New player ${playerName} created with score ${score}`);
+          }).catch((error) => {
+              console.error("Error creating new player:", error);
+          });
+      }
+  }).catch((error) => {
+      console.error("Error checking player:", error);
+  });
+}
