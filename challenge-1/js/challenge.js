@@ -527,13 +527,13 @@ scoreboardButton.addEventListener('click', () => {
 
 // Function to update the player's score in Firebase
 function saveScoreToDatabase(playerNumber, score, challengeName) {
+  const database = getDatabase(app);
+  
   const playerId = `player${playerNumber.padStart(3, '0')}`;
   const playerName = `Player ${playerNumber}`;
   const playerRef = ref(database, `leaderboards/${challengeName}/${playerId}`);
   
   console.log(`Saving score to database: Player ID: ${playerId}, Player Name: ${playerName}, Challenge Name: ${challengeName}, Player Reference: ${playerRef.toString()}`);
-
-  const database = getDatabase(app);
 
   // First, let's check if the player already exists in the database
   get(playerRef).then((snapshot) => {
