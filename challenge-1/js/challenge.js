@@ -1,10 +1,10 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js'
+import { getDatabase, ref, set } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js'
 // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
-import { getAnalytics } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js'
+//import { getAnalytics } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js'
 // Add Firebase products that you want to use
-import { getAuth } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js'
-import { getFirestore } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js'
-import { getDatabase, ref, set, get } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js'
+//import { getAuth } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js'
+//import { getFirestore } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js'
 
 const firebaseConfig = {
     apiKey: "AIzaSyDyj0Awkh6K4AATQdLnxP8AgEmTD2WqdM4",
@@ -19,7 +19,6 @@ const firebaseConfig = {
 
 // Initialize Firebase bd
 const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
 
 const playerNumberInput = document.getElementById('player-number');
 const beginChallengeBtn = document.getElementById('begin-challenge');
@@ -441,6 +440,10 @@ function checkLifes(){
     reasonEliminated.innerHTML= "Oh no! You have failed this mission!";
     retryButton.classList.add('hidden');
 
+    // Save score to Firebase
+    const playerNumber = playerNumberSelect.value;
+    saveScoreToDatabase(playerNumber, score, "challenge-1");
+    
     // Redirect to the new page after 5 seconds
     setTimeout(() => {
       window.location.href = "https://www.criticalflix.com/handover.html"; // Replace with the actual URL you want to redirect to
@@ -527,7 +530,8 @@ function saveScoreToDatabase(playerNumber, score, challengeName) {
   const playerId = `player${playerNumber.padStart(3, '0')}`;  // Create player ID like 'player001', 'player002'
   const playerName = `Player ${playerNumber}`;  // Create player name like 'Player 1', 'Player 2'
   const playerRef = ref(database, `leaderboards/${challengeName}/${playerId}`);
-
+  const database = getDatabase(app);
+  
   // First, let's check if the player already exists in the database
   get(playerRef).then((snapshot) => {
       if (snapshot.exists()) {

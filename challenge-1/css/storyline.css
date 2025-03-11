@@ -34,11 +34,12 @@
     font-size: 15px;
     line-height: 1.6;
     text-align: justify;
-    height: 200px;
-    overflow: hidden;
+    height: 210px;
+    overflow-y: hidden;
 }
 #story-text p {
-    margin-bottom: 1.3em;
+    margin-bottom: 1.5em;
+    padding-bottom: 1px;
 }
 #continue-btn {
     background-color: #EB257A;

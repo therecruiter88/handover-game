@@ -1,4 +1,5 @@
 const playerOptions = document.querySelectorAll('.player-option');
+const startGameButton = document.getElementById('start-game');
 
 // Add player selection functionality
 let selectedShape = null;
@@ -15,7 +16,7 @@ playerOptions.forEach(option => {
     selectedShape = option.getAttribute('data-shape');
     
     // Enable start button
-    startGameBtn.classList.add('enabled');
-    startGameBtn.disabled = false;
+    startGameButton.classList.add('enabled');
+    startGameButton.disabled = false;
   });
 });
