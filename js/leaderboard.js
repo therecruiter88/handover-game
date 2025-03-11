@@ -100,14 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
         leaderboardPanel.style.display = isPanelVisible ? "block" : "none";
         overlay.style.display = isPanelVisible ? "block" : "none";
 
-        const target = event.target;
-        const isInsideFab = fabButton.contains(target);
-        const isInsideList = challengeList.contains(target);
-    
-        if (!isInsideFab && !isInsideList && isListVisible) {
-            isListVisible = false;
-            challengeList.classList.remove('show'); // Hide the list when clicking outside
-        }
+        const challengeList = document.getElementById('challenge-list');
+        challengeList.classList.remove('show'); // Hide the list
     });
 
     // Event listener to close the leaderboard panel when clicking outside of it
