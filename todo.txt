@@ -1,10 +1,12 @@
+> Código comum para config bd
+
 > Icon dos challenges a mudar aleatoriamente entre circle, triangle e square
 
 > Efeito do avatar de saltar mais intenso e retirar o Click Me, mas primeiro alinhar por baixo do avatar (em ecrãs gigantes)
 
 > Estilizar panel de cima
 
-> Colocar coluna victory (yes/no) e actualizar os dados conforme
+> Colocar coluna victory (yes/no) na bd e scoreboard e actualizar os dados conforme
 
 > corrigir quando perdemos no challenge-1 e no retry o player começa a andar ou fica bloqueado
  
@@ -20,6 +22,6 @@ Implementar scoreboard no final do challenge
 
 Fit content on huge screens
 
-Pedir ao gemini AI para rever codigo comum e retirar inutilizado
+Rever codigo comum e retirar inutilizado
 
 Integrar o codigo do challenge 2 e melhorar
