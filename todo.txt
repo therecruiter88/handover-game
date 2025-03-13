@@ -1,5 +1,3 @@
-> Código comum para config bd
-
 > Icon dos challenges a mudar aleatoriamente entre circle, triangle e square
 
 > Efeito do avatar de saltar mais intenso e retirar o Click Me, mas primeiro alinhar por baixo do avatar (em ecrãs gigantes)

@@ -1,24 +1,4 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js'
-import { getDatabase, ref, set, get } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js'
-// If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
-//import { getAnalytics } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js'
-// Add Firebase products that you want to use
-//import { getAuth } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js'
-//import { getFirestore } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js'
-
-const firebaseConfig = {
-    apiKey: "AIzaSyDyj0Awkh6K4AATQdLnxP8AgEmTD2WqdM4",
-    authDomain: "handover-game.firebaseapp.com",
-    databaseURL: "https://handover-game-default-rtdb.firebaseio.com",
-    projectId: "handover-game",
-    storageBucket: "handover-game.firebasestorage.app",
-    messagingSenderId: "611197045900",
-    appId: "1:611197045900:web:49afa6563517dd16523fa9",
-    measurementId: "G-Z1F7ZPCL1L"
-};
-
-// Initialize Firebase bd
-const app = initializeApp(firebaseConfig);
+import { database, ref, get, set } from '../../common/js/firebaseConfig.js';
 
 const playerNumberInput = document.getElementById('player-number');
 const beginChallengeBtn = document.getElementById('begin-challenge');
@@ -372,7 +352,7 @@ function generateTarget() {
 
   // Create an image element instead of the SVG
   const pizzaImage = document.createElement('img');
-  pizzaImage.src = './resources/img/pineapple-pizza.png'; // Path to your image
+  pizzaImage.src = './assets/img/pineapple-pizza.png'; // Path to your image
   pizzaImage.alt = 'Pineapple Pizza'; // For accessibility
   pizzaImage.style.width = '40px'; // Adjust the size as needed
   pizzaImage.style.height = '40px'; // Adjust the size as needed
@@ -434,10 +414,10 @@ function createHitEffect(x, y) {
 function updateHeartsDisplay() {
   for (let i = 0; i < hearts.length; i++) {
     if (i < lives) {
-      hearts[i].src = './resources/img/heart_full.png'; // Full heart
+      hearts[i].src = './assets/img/heart_full.png'; // Full heart
       hearts[i].alt = 'Full Heart';
     } else {
-      hearts[i].src = './resources/img/heart_empty.png'; // Empty heart
+      hearts[i].src = './assets/img/heart_empty.png'; // Empty heart
       hearts[i].alt = 'Empty Heart';
     }
   }
@@ -536,8 +516,6 @@ scoreboardButton.addEventListener('click', () => {
 
 // Function to update the player's score in Firebase
 function saveScoreToDatabase(playerNumber, score, challengeName) {
-  const database = getDatabase(app);
-
   const playerId = `player${playerNumber.padStart(3, '0')}`;
   const playerName = `Player ${playerNumber}`;
   const playerRef = ref(database, `leaderboards/${challengeName}/${playerId}`);

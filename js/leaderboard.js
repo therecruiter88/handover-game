@@ -1,24 +1,4 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js'
-import { getDatabase, ref, get } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js'
-// If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
-//import { getAnalytics } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js'
-// Add Firebase products that you want to use
-//import { getAuth } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js'
-//import { getFirestore } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js'
-
-const firebaseConfig = {
-    apiKey: "AIzaSyDyj0Awkh6K4AATQdLnxP8AgEmTD2WqdM4",
-    authDomain: "handover-game.firebaseapp.com",
-    databaseURL: "https://handover-game-default-rtdb.firebaseio.com",
-    projectId: "handover-game",
-    storageBucket: "handover-game.firebasestorage.app",
-    messagingSenderId: "611197045900",
-    appId: "1:611197045900:web:49afa6563517dd16523fa9",
-    measurementId: "G-Z1F7ZPCL1L"
-};
-
-// Initialize Firebase bd
-const app = initializeApp(firebaseConfig);
+import { database, ref, get } from '../common/js/firebaseConfig.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const scoreboardTrigger = document.getElementById('challenge-leaderboard');
@@ -39,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to fetch leaderboard data from Firebase
     async function fetchLeaderboardData(tab) {
         try {
-            const database = getDatabase(app);
             const leaderboardChallengesRef = ref(database, `leaderboards/${tab}`);
             const snapshot = await get(leaderboardChallengesRef);
             //console.log(`database: ${database}`);

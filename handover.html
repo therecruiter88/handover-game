@@ -13,12 +13,12 @@
         <link rel="stylesheet" href="./css/game-challenges.css">
         <link rel="stylesheet" href="./css/leaderboard.css">
         <link rel="stylesheet" href="./pink-soldier/css/soldier.css">
-        <link rel="icon" href="./resources/favicon/icon.png" type="image/x-icon">
+        <link rel="icon" href="./assets/favicon/icon.png" type="image/x-icon">
     </head>
 <body>
     <!-- Audio imports -->
     <audio id="background-music" autoplay loop>
-        <source src="./resources/audio/sg_theme_song.mp3" type="audio/mp3">
+        <source src="./assets/audio/sg_theme_song.mp3" type="audio/mp3">
     </audio>
 
     <!-- Top panel -->
@@ -69,7 +69,7 @@
     <!-- Pink Soldier avatar -->
     <div id="soldier-container" class="soldier-container">
         <div id="soldier" class="soldier" alt="Hello player! I have something to tell you.."></div>
-        <p id="click-me" class="click-me">Click Me!</p>
+        <p id="click-me" class="over-here">Over here!</p>
         <div id="dialog" class="dialog">
             <p id="message">.</p>
         </div>
@@ -85,7 +85,7 @@
     <!-- Challenges selector -->
     <div id="fab-container" class="fab">
         <button id="fab-button" class="fab-btn">
-            <img src="./resources/img/circle_face.png" alt="Challenges selector" />
+            <img src="./assets/img/circle_face.png" alt="Challenges selector" />
         </button>
         <div id="challenge-list" class="challenge-list">
             <div id="challenge-1" class="challenge-item" data-url="./challenge-1/challenge.html" alt="The Pineapple Pizza Invasion">Challenge 1</div>
@@ -111,35 +111,10 @@
         <table id="leaderboard-table" class="leaderboard-table"></table>
     </div>
 
-    <!-- Insert this script at the bottom of the HTML, but before you use any Firebase services -->
-    <!--<script type="module">
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js'
-        // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
-        import { getAnalytics } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js'
-        // Add Firebase products that you want to use
-        import { getAuth } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js'
-        import { getFirestore } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js'
-        import { getDatabase, ref, get } from 'https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js'
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyDyj0Awkh6K4AATQdLnxP8AgEmTD2WqdM4",
-            authDomain: "handover-game.firebaseapp.com",
-            databaseURL: "https://handover-game-default-rtdb.firebaseio.com",
-            projectId: "handover-game",
-            storageBucket: "handover-game.firebasestorage.app",
-            messagingSenderId: "611197045900",
-            appId: "1:611197045900:web:49afa6563517dd16523fa9",
-            measurementId: "G-Z1F7ZPCL1L"
-        };
-
-        // Initialize Firebase bd
-        const app = initializeApp(firebaseConfig);
-    </script>-->
-
+    <script src="./js/obfuscator-audio.js"></script>
     <script src="./js/feature-toggles.js"></script>
     <script src="./pink-soldier/js/soldier.js"></script>
-    <!-- Use the following to prevent CORS error in browser when testing locally -->
-    <script src="https://www.criticalflix.com/js/leaderboard.js" type="module"></script>
+    <script src="./js/leaderboard.js" type="module"></script>></script>
     <script src="./js/scripts.js"></script>    
     <script src="./js/game-challenges.js"></script>
 </body>

@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="./css/instructions.css">
   <link rel="stylesheet" href="./css/storyline.css">
   <link rel="stylesheet" href="./css/victory.css">
-  <link rel="icon" href="../resources/favicon/icon.png" type="image/x-icon">
+  <link rel="icon" href="../assets/favicon/icon.png" type="image/x-icon">
 </head>
 <body>
     <!-- Audio elements for game sounds -->
@@ -20,8 +20,7 @@
     </audio>
   
     <audio id="storyline-sound" preload="auto">
-      <!--<source src="https://assets.soundbible.com/mp3/dark-music-loop-40818.mp3" type="audio/mpeg">-->
-      <source src="./resources/audio/storyline.mp3" type="audio/mp3">
+      <source src="./assets/audio/storyline.mp3" type="audio/mp3">
     </audio>
 
     <audio id="typing-sound" preload="auto">
@@ -29,8 +28,7 @@
     </audio>
 
     <audio id="game-start-sound" preload="auto">
-      <!--<source src="https://assets.mixkit.co/active_storage/sfx/2020/2020-preview.mp3" type="audio/mpeg">-->
-      <source src="./resources/audio/never_gonna_give_you_up.mp3" type="audio/mp3">
+      <source src="./assets/audio/never_gonna_give_you_up.mp3" type="audio/mp3">
     </audio>
 
     <audio id="countdown-sound" preload="auto">
@@ -42,8 +40,7 @@
     </audio>
     
     <audio id="laser-sound" preload="auto">
-      <!--<source src="https://assets.mixkit.co/active_storage/sfx/202/202-preview.mp3" type="audio/mpeg">-->
-      <source src="./resources/audio/laser_beam_efx.mp3" type="audio/mp3">
+      <source src="./assets/audio/laser_beam_efx.mp3" type="audio/mp3">
     </audio>
     
     <audio id="elimination-sound" preload="auto">
@@ -51,8 +48,7 @@
     </audio>
     
     <audio id="victory-sound" preload="auto">
-      <!--<source src="https://assets.mixkit.co/active_storage/sfx/943/943-preview.mp3" type="audio/mpeg">-->
-      <source src="./resources/audio/victory.mp3" type="audio/mp3">
+      <source src="./assets/audio/victory.mp3" type="audio/mp3">
     </audio>
 
    <!-- Player Name Prompt -->
@@ -177,9 +173,9 @@
     </div>
     <div id="score-display">Score: 0</div>
     <div class="hearts-container">
-      <img class="heart" id="heart1" src="./resources/img/heart_full.png" alt="Full Heart">
-      <img class="heart" id="heart2" src="./resources/img/heart_full.png" alt="Full Heart">
-      <img class="heart" id="heart3" src="./resources/img/heart_full.png" alt="Full Heart">
+      <img class="heart" id="heart1" src="./assets/img/heart_full.png" alt="Full Heart">
+      <img class="heart" id="heart2" src="./assets/img/heart_full.png" alt="Full Heart">
+      <img class="heart" id="heart3" src="./assets/img/heart_full.png" alt="Full Heart">
     </div>
     <div id="timer-display">Time: 30</div>
     
@@ -214,8 +210,8 @@
   <script src="./js/player-selector.js"></script>
   <script src="./js/instructions.js"></script>
   <script src="./js/intro.js"></script>
-  <!-- Use the following to prevent CORS error in browser when testing locally -->
-  <script src="https://www.criticalflix.com/challenge-1/js/challenge.js" type="module"></script>
+  <!--<script src="./../common/js/firebaseConfig.js" type="module"></script>-->
+  <script src="./js/challenge.js" type="module"></script>></script>
   <script src="./js/victory.js"></script>
 </body>
 </html>

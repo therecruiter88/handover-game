@@ -43,8 +43,8 @@ body {
     transform: scale(var(--soldier-scale)) translate(-50%, -50%);
     cursor: pointer;
     display: block;
-    background: url('../resources/img/pink-soldier.png') no-repeat center center / cover;
-    animation: soldierPopIn 1s forwards, jump 4s infinite 1s; /* Pop-in first, then jump */
+    background: url('../assets/img/pink-soldier.png') no-repeat center center / cover;
+    animation: soldierPopIn 2s forwards, jump 4s infinite 1s; /* Pop-in first, then jump */
 }
 .soldier:hover {
     cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
@@ -53,17 +53,21 @@ body {
 @keyframes soldierPopIn {
     0% {
         opacity: 0;
-        transform: scale(var(--soldier-scale)) translate(-50%, -50%) translateY(50px); /* Starts below */
+        transform: scale(var(--soldier-scale)) translate(-50%, -50%); /* Starts below */
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(var(--soldier-scale)) translate(-50%, -50%); /* End at original position */
     }
     100% {
         opacity: 1;
-        transform: scale(var(--soldier-scale)) translate(-50%, -50%) translateY(0); /* End at original position */
+        transform: scale(var(--soldier-scale)) translate(-50%, -50%); /* End at original position */
     }
 }
 /* Jumping Animation */
 @keyframes jump {
     0%, 100% { transform: scale(var(--soldier-scale)) translate(-50%, -50%) translateY(0); }
-    5%, 15%, 25% { transform: scale(var(--soldier-scale)) translate(-50%, -50%) translateY(-10px); }
+    5%, 15%, 25% { transform: scale(var(--soldier-scale)) translate(-50%, -50%) translateY(-30px); }
     10%, 20%, 30% { transform: scale(var(--soldier-scale)) translate(-50%, -50%) translateY(0); }
 }
 .click-me{
@@ -71,9 +75,47 @@ body {
     color: #EB257A;
     font-family: 'Press Start 2P', cursive;
     font-size: 12px;
-    left: 16.5%; /* Put below soldier */
+    left: 16.0%; /* Put below soldier */
     bottom: 0%; /* Put below soldier */
     padding: 15px 20px;
+    transition: left 0.1s, top 0.1s; /* Smooth transition when position changes */
+}
+/*.click-me {
+    position: absolute;
+    color: #EB257A;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    padding: 15px 20px;
+    transition: left 0.1s, top 0.1s;
+}*/
+/* === "Over Here!" Animation === */
+.over-here {
+    position: absolute;
+    color: #EB257A;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 60%;
+    left: 17.0%; /* Put below soldier */
+    bottom: 15%; /* Put below soldier */
+    padding: 15px 20px;
+    z-index: 11; /* Make sure it's on top */
+    white-space: nowrap; /* Prevent wrapping */
+    animation: floatAndFade 4s linear infinite; /* Animate and remove */
+    pointer-events: none; /* Don't interfere with clicks */
+}
+
+@keyframes floatAndFade {
+    0% {
+        opacity: 1; /* Fully visible */
+        transform: translateY(0); /* Start at original position */
+    }
+    50% {
+        opacity: 0.5; /* Fully visible */
+        transform: translateY(-15px); /* Move up */
+    }
+    100% {
+        opacity: 0; /* Fully transparent */
+        transform: translateY(-30px); /* Move further up */
+    }
 }
 /* 🟢 INDEX PAGE LAYOUT */
 .index-layout .soldier {
