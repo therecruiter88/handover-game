@@ -183,9 +183,14 @@ select {
 }
 .buttons-link:hover {
     cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
+    text-decoration: none;
+}
+#home-button:hover {
+    background-color: #d62056;
 }
 #scoreboard-button:hover {
     cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
+    background-color: #d62056;
 }
 .hidden {
     display: none;

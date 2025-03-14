@@ -149,6 +149,7 @@ body {
     max-width: 550px;
     line-height: 1.7;
     text-align: justify;
+    z-index: 20;  /* In front */
 }
 /* Speech bubble tail (triangle) */
 .dialog::after {

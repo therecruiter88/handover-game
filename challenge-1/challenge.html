@@ -55,7 +55,7 @@
   <div id="player-name-prompt">
     <h2>Select Your Player Number</h2>
     <!--<input type="text" id="player-number" maxlength="3" placeholder="example: 000">-->
-    <select id="player-number">
+    <select id="player-number" class="sound-efx">
       <option value="" disabled selected>xxx</option>
       <option value="002">002</option>
       <option value="016">016</option>
@@ -96,7 +96,7 @@
       <option value="339">339</option>
       <option value="343">343</option>
     </select>
-    <button id="begin-challenge" disabled>Begin Challenge</button>
+    <button id="begin-challenge" class="sound-efx" disabled>Begin Challenge</button>
   </div>
   
   <!-- Netflix-style intro -->
@@ -109,7 +109,7 @@
     <div id="story-box">
       <h2 id="story-title">Backstory</h2>
       <div id="story-text"></div>
-      <button id="continue-btn">Continue</button>
+      <button id="continue-btn" class="sound-efx">Continue</button>
     </div>
   </div>
   
@@ -120,14 +120,14 @@
     <p>Press SPACE to shoot.</p>
     <p>Each hit earns you 10 points!</p>
     <p>You have 30 seconds to reach 500 points or you'll be ELIMINATED!</p>
-    <button id="instructions-close">Got it!</button>
+    <button id="instructions-close" class="sound-efx">Got it!</button>
   </div>
   
   <!-- Player selector -->
   <div id="player-selector">
     <h2>Choose Your Soldier</h2>
     <div class="player-options">
-      <div class="player-option" data-shape="circle">
+      <div class="player-option sound-efx" data-shape="circle">
         <svg width="60" height="80" viewBox="0 0 60 80">
           <!-- Circle player -->
           <rect x="15" y="10" width="30" height="40" fill="#ff0066" />
@@ -137,7 +137,7 @@
           <rect x="10" y="40" width="40" height="10" fill="#ff0066" />
         </svg>
       </div>
-      <div class="player-option" data-shape="square">
+      <div class="player-option sound-efx" data-shape="square">
         <svg width="60" height="80" viewBox="0 0 60 80">
           <!-- Square player -->
           <rect x="15" y="10" width="30" height="40" fill="#ff0066" />
@@ -147,7 +147,7 @@
           <rect x="10" y="40" width="40" height="10" fill="#ff0066" />
         </svg>
       </div>
-      <div class="player-option" data-shape="triangle">
+      <div class="player-option sound-efx" data-shape="triangle">
         <svg width="60" height="80" viewBox="0 0 60 80">
           <!-- Triangle player -->
           <rect x="15" y="10" width="30" height="40" fill="#ff0066" />
@@ -158,7 +158,7 @@
         </svg>
       </div>
     </div>
-    <button id="start-game" disabled>Start Game</button>
+    <button id="start-game" class="sound-efx" disabled>Start Game</button>
   </div>
   
   <div id="game-container">
@@ -191,7 +191,7 @@
       <p id="reason-eliminated"></p>
       <p>The pineapple pizzas destroyed the planet and you were not able to save player 297 pizza party!</p>
       <div id="elimination-x">X</div>
-      <button id="retry-button">Retry</button>
+      <button id="retry-button" class="sound-efx">Retry</button>
     </div>
   </div>
 
@@ -201,11 +201,12 @@
     <p>You have successfully completed this challenge and unlocked the next game.</p>
     <p>Will attempt to include it next week!</p>
     <div class="buttons">
-      <button id="home-button"><a href="https://www.criticalflix.com/handover.html" class="buttons-link">Return to Base</a></button>
-      <button id="scoreboard-button">Scoreboard</button>
+      <button id="home-button" class="sound-efx"><a href="https://www.criticalflix.com/handover.html" class="buttons-link">Return to Base</a></button>
+      <button id="scoreboard-button" class="sound-efx">Scoreboard</button>
     </div>
   </div>
 
+  <script src="../../common/js/audio.js"></script>
   <script src="./js/storyline.js"></script> <!-- It must load before challenge.js to use its functions -->
   <script src="./js/player-selector.js"></script>
   <script src="./js/instructions.js"></script>

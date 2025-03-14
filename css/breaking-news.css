@@ -2,12 +2,14 @@
     position: relative;
     width: 500px;
     height: 30px;
+    left: 5%;
+    bottom: 1%;
     overflow: hidden;
     white-space: nowrap;
     background-color: rgba(0, 0, 0, 0.7);
     color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
+    padding: 5px 40px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,9 +17,10 @@
 }
 .news-ticker span {
     display: inline-block;
-    animation: ticker 30s linear infinite;
+    animation: ticker 60s linear infinite;
     color: rgb(235, 47, 47);
     animation-delay: 0s;
+    margin-top: auto;
 }
 @keyframes ticker {
     0% {

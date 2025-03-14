@@ -1,0 +1,16 @@
+body {
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+.hidden {
+    display: none;
+}

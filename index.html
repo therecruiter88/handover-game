@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Handover Game</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/mobile-instructions.css">
     <link rel="stylesheet" href="./css/token.css">
     <link rel="icon" href="./assets/favicon/icon.png" type="image/x-icon">
@@ -35,10 +35,11 @@
     <div id="token" class="hidden">
         <label for="token-input">Enter Secret:</label>
         <input type="password" id="token-input" class="token-input">
-        <button id="submit-token" class="token-button">Access</button>
+        <button id="submit-token" class="token-button sound-efx">Access</button>
     </div>
 
+    <script src="./common/js/audio.js"></script>
     <script src="./js/obfuscator.js"></script>
-    <script src="./js/scripts.js"></script>
+    <script src="./js/common.js"></script>
 </body>
 </html>

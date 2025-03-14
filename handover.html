@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Handover Game</title>
         <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="./css/styles.css">
+        <link rel="stylesheet" href="./css/handover.css">
         <link rel="stylesheet" href="./css/breaking-news.css">
         <link rel="stylesheet" href="./css/countdown-timer.css">
         <link rel="stylesheet" href="./css/players-list.css">
@@ -23,11 +23,13 @@
 
     <!-- Top panel -->
     <div id="top-panel" class="top-panel">
-        <div class="icons"><a href="#" id="circle-video-link" target="_blank" class="buttons-link">◯</a> △ ☐</div>
+        <div class="icons"><a href="#" id="circle-video-link" class="buttons buttons-link button-circle sound-efx" target="_blank" >◯</a>
+            <span class="buttons button-triangle sound-efx">△</span>
+            <span class="buttons button-square sound-efx">☐</span></div>
         <div class="news-ticker">
             <span>Players discharged >>> 120; 183 | Thank you for your service🏅 #strongertogether</span>
         </div>
-        <a href="#" id="handover-link" target="_blank" class="handover-link">&gt ACCEPT CHALLENGE</a>
+        <a href="#" id="handover-link" target="_blank" class="handover-link sound-efx">&gt ACCEPT CHALLENGE</a>
     </div>
 
     <!-- Center panel -->
@@ -57,18 +59,15 @@
         </div>
         <!-- Players discharged list -->
         <div id="players-right-panel" class="players-right-panel">
-            <div class="collapse-button" onclick="togglePlayersPanel()">🎮 Players Discharged</div>
+            <div class="collapse-button sound-efx" onclick="togglePlayersPanel()">🎮 Players Discharged</div>
             <ul id="players-list" class="players-list">
-                <li>Player 183 🏅</li>
-                <li>Player 120 🏅</li>
-                <li>Player 002 🏅</li>
             </ul>
         </div>
     </div>
 
     <!-- Pink Soldier avatar -->
     <div id="soldier-container" class="soldier-container">
-        <div id="soldier" class="soldier" alt="Hello player! I have something to tell you.."></div>
+        <div id="soldier" class="soldier sound-efx" alt="Hello player! I have something to tell you.."></div>
         <p id="click-me" class="over-here">Over here!</p>
         <div id="dialog" class="dialog">
             <p id="message">.</p>
@@ -77,19 +76,19 @@
 
     <!-- Music controls -->
     <div id="music-panel" class="music-panel">
-        <button id="music-button" class="music-button" onclick="toggleMusic()">
+        <button id="music-button" class="music-button sound-efx" onclick="toggleMusic()">
             <span id="music-icon" class="music-icon">⏸️</span> Stop Music
         </button>
     </div>
 
     <!-- Challenges selector -->
     <div id="fab-container" class="fab">
-        <button id="fab-button" class="fab-btn">
-            <img src="./assets/img/circle_face.png" alt="Challenges selector" />
+        <button id="fab-button" class="fab-btn sound-efx">
+            <img id="fab-image" src="./assets/img/circle_face.png" alt="Challenges selector" />
         </button>
         <div id="challenge-list" class="challenge-list">
-            <div id="challenge-1" class="challenge-item" data-url="./challenge-1/challenge.html" alt="The Pineapple Pizza Invasion">Challenge 1</div>
-            <div id="challenge-leaderboard" class="challenge-item-leaderboard" alt="Scoreboard">Scoreboard</div>
+            <div id="challenge-1" class="challenge-item sound-efx" data-url="./challenge-1/challenge.html" alt="The Pineapple Pizza Invasion">Challenge 1</div>
+            <div id="challenge-leaderboard" class="challenge-item-leaderboard sound-efx" alt="Scoreboard">Scoreboard</div>
         </div>
     </div>
 
@@ -100,7 +99,7 @@
         <!-- Tabs for each challenge -->
         <div id="leaderboard-tabs" class="leaderboard-tabs">
             <!--<button id="leaderboard-tab-button" class="tab-button active" data-tab="total">Total</button>-->
-            <button id="leaderboard-tab-button" class="tab-button active" data-tab="challenge-1">Challenge 1</button>
+            <button id="leaderboard-tab-button" class="tab-button active sound-efx" data-tab="challenge-1">Challenge 1</button>
             <!--<button id="leaderboard-tab-button" class="tab-button" data-tab="challenge-2">Challenge 2</button>-->
             <!--<button id="leaderboard-tab-button" class="tab-button" data-tab="challenge-3">Challenge 3</button>-->
             <!--<button id="leaderboard-tab-button" class="tab-button" data-tab="challenge-3">Challenge 4</button>-->
@@ -111,11 +110,14 @@
         <table id="leaderboard-table" class="leaderboard-table"></table>
     </div>
 
+    <script src="./common/js/audio.js"></script>
+    <script src="./js/players_discharged.js"></script>
     <script src="./js/obfuscator-audio.js"></script>
     <script src="./js/feature-toggles.js"></script>
     <script src="./pink-soldier/js/soldier.js"></script>
     <script src="./js/leaderboard.js" type="module"></script>></script>
-    <script src="./js/scripts.js"></script>    
+    <script src="./js/common.js"></script>
+    <script src="./js/handover.js"></script>    
     <script src="./js/game-challenges.js"></script>
 </body>
 </html>

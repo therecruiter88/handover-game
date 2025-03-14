@@ -1,0 +1,7 @@
+{
+    "players": [
+        {"id": 183, "name": "Player 183", "badge": "🏅"},
+        {"id": 120, "name": "Player 120", "badge": "🏅"},
+        {"id": 2, "name": "Player 002", "badge": "🏅"}
+    ]
+}

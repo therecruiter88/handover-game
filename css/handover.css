@@ -1,0 +1,125 @@
+body {
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+.hidden {
+    display: none;
+}
+/* Squid Game-inspired Top Panel */
+.top-panel {
+    position: fixed;
+    top: 5px;
+    left: 10px;
+    right: 10px;
+    height: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    border: 3px solid #EB257A; /* Neon pink border */
+    border-radius: 15px;
+    background: linear-gradient(135deg, #222, #333); /* Dark gradient background */
+    box-shadow: 0 0 15px rgba(235, 37, 122, 0.7); /* Glowing neon effect */
+    z-index: 10;
+    font-family: 'Press Start 2P', cursive; /* Squid Game-style font */
+    color: white;
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+/* Add glowing effect to text */
+.top-panel h1 {
+    text-shadow: 0 0 5px #EB257A, 0 0 10px #EB257A, 0 0 15px #EB257A;
+}
+/* Squid Game-inspired border hover effect */
+.top-panel:hover {
+    border: 3px solid #FF00FF; /* Change to bright neon pink when hovering */
+    box-shadow: 0 0 25px rgba(255, 0, 255, 1); /* Stronger glowing neon effect */
+}
+/* Custom Icon / Shapes for the left side (using pseudo-elements for triangle, circle, square) */
+.top-panel .icon {
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border: 3px solid #EB257A;
+    border-radius: 50%;
+    margin-right: 20px;
+    position: relative;
+    background-color: black;
+    color: #EB257A;
+}
+.top-panel .icon:before {
+    /*content: '○';*/  /* Circle symbol */
+    position: absolute;
+    font-size: 35px;
+}
+/* Optional - Add a separator line between the left and right sections */
+.top-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15%;
+    width: 2px;
+    height: 100%;
+    background-color: #EB257A;
+}
+.icons {
+    font-size: 24px;
+    font-weight: bolder;
+    text-align: left;
+    flex-grow: 0;
+}
+.handover-link {
+    font-size: 20px;
+    color: #EB257A;
+    text-decoration: none;
+}
+.handover-link:hover {
+    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 8 8, auto;
+}
+.buttons-link {
+    color: white;
+    text-decoration: none;
+}
+.buttons-link:hover {
+    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 8 8, auto;
+}
+.buttons {
+    font-size: 120%;
+}
+.buttons:hover {
+    font-size: 140%;
+    color: pink;
+}
+.button-circle {
+    color: yellow;
+}
+.button-triangle {
+    color: red;
+}
+.button-square {
+    color: green;
+}
+.image-container img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    margin-left: 1%;
+    margin-top: 3.5%;
+    object-fit: contain;
+}
