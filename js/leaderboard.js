@@ -29,10 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = snapshot.val();
                 //console.log(`Fetched ${tab} data:`, data);
 
-                // Convert the object to an array of { player, score }
+                // Convert the object to an array of { player, score, bestScore }
                 const leaderboardArray = Object.values(data).map(player => ({
                     player: player.player,
-                    score: player.score
+                    score: player.score,
+                    bestScore: player.bestScore
                 }));
 
                 return leaderboardArray;
@@ -51,7 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
         leaderboardTable.innerHTML = '';
         const headerRow = leaderboardTable.insertRow();
         headerRow.insertCell().textContent = "Player";
-        headerRow.insertCell().textContent = "Score";
+        headerRow.insertCell().textContent = "Last Score";
+        headerRow.insertCell().textContent = "Best Score";
     
         // Fetch data from Firebase
         const data = await fetchLeaderboardData(tab);
@@ -62,13 +64,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     
         // Sort the data by score (descending order)
-        data.sort((a, b) => b.score - a.score);
+        data.sort((a, b) => b.bestScore - a.bestScore);
     
         // Populate the table
         data.forEach(entry => {
             const row = leaderboardTable.insertRow();
             row.insertCell().textContent = entry.player;
             row.insertCell().textContent = entry.score;
+            row.insertCell().textContent = entry.bestScore;
         });
     }
 
