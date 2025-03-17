@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Handover Game</title>
         <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <link rel="icon" href="./assets/favicon/icon.png" type="image/x-icon">
         <link rel="stylesheet" href="./css/handover.css">
         <link rel="stylesheet" href="./css/breaking-news.css">
         <link rel="stylesheet" href="./css/countdown-timer.css">
@@ -13,7 +14,15 @@
         <link rel="stylesheet" href="./css/game-challenges.css">
         <link rel="stylesheet" href="./css/leaderboard.css">
         <link rel="stylesheet" href="./pink-soldier/css/soldier.css">
-        <link rel="icon" href="./assets/favicon/icon.png" type="image/x-icon">
+        <link rel="stylesheet" href="./bomb/css/bomb.css">
+        <script type="importmap">
+            {
+                      "imports": {
+                          "three": "https://cdn.jsdelivr.net/npm/three@0.161/build/three.module.js",
+                "jsm/": "https://cdn.jsdelivr.net/npm/three@0.161/examples/jsm/"
+              }
+                  }
+          </script>
     </head>
 <body>
     <!-- Audio imports -->
@@ -27,7 +36,7 @@
             <span class="buttons button-triangle sound-efx">△</span>
             <span class="buttons button-square sound-efx">☐</span></div>
         <div class="news-ticker">
-            <span>Players discharged >>> 120; 183 | Thank you for your service🏅 #strongertogether</span>
+            <span>Players discharged >>> 016; 018; 026; 051; 054; 057; 107; 130; 135; 141; 187; 194; 222; 229; 232; 243; 273; 286; 301; 297 | Thank you for your service🏅 #strongertogether</span>
         </div>
         <a href="#" id="handover-link" target="_blank" class="handover-link sound-efx">&gt ACCEPT CHALLENGE</a>
     </div>
@@ -53,6 +62,7 @@
                 <span class="countdown-label">Seconds</span>
             </div>
         </div>
+
         <!-- Player tiles -->
         <div id="image-container" class="image-container">
             <img id="img" src="" alt="Handover Game Tile"/>
@@ -110,6 +120,19 @@
         <table id="leaderboard-table" class="leaderboard-table"></table>
     </div>
 
+    <div id="bomb-container" class="hidden">
+        <img id="bomb" src="./bomb/assets/img/bomb.png" alt="Bomb" class="sound-efx">
+        <div id="countdown">10</div>
+    </div>
+
+    <audio id="countdown-sound" src="./bomb/assets/audio/countdown-10.mp3"></audio>
+    <audio id="explosion-sound" src="./bomb/assets/audio/explosion.mp3"></audio>
+
+    <canvas id="three-canvas" class="hidden"></canvas>
+    <div id="container">
+      <!--<h1>ROBOT BOBBY</h1>-->   
+    </div> 
+
     <script src="./common/js/audio.js"></script>
     <script src="./js/players_discharged.js"></script>
     <script src="./js/obfuscator-audio.js"></script>
@@ -119,5 +142,8 @@
     <script src="./js/common.js"></script>
     <script src="./js/handover.js"></script>    
     <script src="./js/game-challenges.js"></script>
+    <script src="./bomb/js/explosion.js" type="module"></script>
+    <script src="./bomb/js/obfuscator-audio.js"></script>
+    <script src="./bomb/js/bomb.js"></script>
 </body>
 </html>

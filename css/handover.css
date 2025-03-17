@@ -71,7 +71,7 @@ body {
     position: absolute;
     top: 0;
     left: 15%;
-    width: 2px;
+    width: 3px;
     height: 100%;
     background-color: #EB257A;
 }
@@ -88,6 +88,7 @@ body {
 }
 .handover-link:hover {
     cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 8 8, auto;
+    scale: 1.1;
 }
 .buttons-link {
     color: white;

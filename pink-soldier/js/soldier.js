@@ -121,7 +121,8 @@ document.addEventListener('DOMContentLoaded', function () {
 // Add a click event to the soldier
 soldier.addEventListener('click', () => {
     // Define the message for the dialog
-    const message = "Player, you thought discovering the secret was the challenge? (laughs) \n Oh, you’re just getting started! \n Relax, this next game won’t be too hard...(giggle) but let’s find out, shall we? \n To proceed just click on the circle icon near the music controls...";
+    //const message1 = "Player, you thought discovering the secret was the challenge? (laughs) \n Oh, you’re just getting started! \n Relax, this next game won’t be too hard...(giggle) but let’s find out, shall we? \n To proceed just click on the circle icon near the music controls...";
+    const message = "Oh no! There's a bomb right beside me, and it’s about to explode! 💣💥 What should I do?! Do I run? Do I hide? Or… do YOU have a plan? 🤔 Maybe there’s a way to stop it—or maybe… you want to see what happens?! I hope you make the right choice… for all of us. 😨";
 
     // Replace \n with <br> for line breaks
     messageElement.innerHTML = message.replace(/\n/g, '<br>');

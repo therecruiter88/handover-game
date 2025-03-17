@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/bomb.css">
+    <script type="importmap">
+        {
+                  "imports": {
+                      "three": "https://cdn.jsdelivr.net/npm/three@0.161/build/three.module.js",
+            "jsm/": "https://cdn.jsdelivr.net/npm/three@0.161/examples/jsm/"
+          }
+              }
+      </script>
+</head>
+<body>
+
+    <div id="bomb-container">
+        <img id="bomb" src="./assets/img/bomb.png" alt="Bomb" class="sound-efx">
+        <div id="countdown">10</div>
+    </div>
+
+    <audio id="countdown-sound" src="./assets/audio/countdown-10.mp3"></audio>
+    <audio id="explosion-sound" src="./assets/audio/explosion.mp3"></audio>
+
+    <canvas id="three-canvas"></canvas>
+    <div id="container">
+      <!--<h1>ROBOT BOBBY</h1>-->   
+    </div> 
+
+    <script src="../../common/js/audio.js"></script>
+    <script src="./js/explosion.js" type="module"></script>
+    <script src="./js/obfuscator-audio.js"></script>
+    <script src="./js/bomb.js"></script>
+</body>
+</html>

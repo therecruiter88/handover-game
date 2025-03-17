@@ -3,9 +3,11 @@ let isSoldierAndDialogVisible = true;
 let isFabVisible = true;
 let isChallengeOneVisible = true;
 let isLeaderboardVisible = true;
+let isBombVisible = true;
 
 document.addEventListener('DOMContentLoaded', () => {
     toggleSoldierAndDialog();
+    toggleBomb();
     toggleGameChallengesSelector();
     toggleChallengeOne();
     toggleLeaderboard();
@@ -18,6 +20,26 @@ function toggleSoldierAndDialog() {
         if(soldierContainer) soldierContainer.classList.remove('hidden');
     } else {
         if(soldierContainer) soldierContainer.classList.add('hidden');
+    }
+}
+
+function toggleBomb() {
+    const bombContainer = document.getElementById('bomb-container');
+    const canvasContainer = document.getElementById('three-canvas');
+
+    if (isBombVisible) {
+        if(bombContainer) {
+            bombContainer.classList.remove('hidden');
+            canvasContainer.classList.remove('hidden');
+            bombContainer.classList.add('visible');
+            canvasContainer.classList.add('visible');
+        }
+    } else {
+        if(bombContainer) {
+            bombContainer.classList.add('hidden');
+            canvasContainer.classList.add('hidden');
+            bombContainer.classList.remove('visible');
+        }
     }
 }
 

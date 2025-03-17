@@ -54,7 +54,7 @@
 }
 .players-list li {
     margin-bottom: 8px;
-    align-items: left;
-    min-width: 200px;
+    align-items: right;
+    min-width: 260px;
     font-size: 12px;
 }
