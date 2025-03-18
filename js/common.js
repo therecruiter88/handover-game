@@ -2,6 +2,8 @@ const music = document.getElementById("background-music");
 
 window.onload = showMobileMessage;
 
+// Block devtools
+/*
 document.addEventListener("contextmenu", (event) => event.preventDefault());
 
 setInterval(() => {
@@ -17,6 +19,7 @@ document.addEventListener("keydown", (event) => {
         event.preventDefault();
     }
 });
+*/
 
 function isMobileDevice() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Mobile|Opera Mini/i.test(navigator.userAgent);
