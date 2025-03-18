@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.style.display = isPanelVisible ? "block" : "none";
 
         const challengeList = document.getElementById('challenge-list');
-        challengeList.classList.remove('show'); // Hide the list
+        if (challengeList) challengeList.classList.remove('show'); // Hide the list
     });
 
     // Event listener to close the leaderboard panel when clicking outside of it
