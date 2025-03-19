@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
         countdown.style.display = "block";
         countdown.textContent = timeLeft;
 
+        if (music) music.volume = 0.5;
         countdownSound.play();
 
         let timer = setInterval(() => {
@@ -22,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 clearInterval(timer);
                 explode();
             }
-        }, 1000);
+        }, 1100);
     });
 
     function explode() {
@@ -38,6 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         setTimeout(() => {
             bomb.style.display = "none"; // Hide bomb after explosion
-        }, 1000);
+        }, 1100);
     }
 });

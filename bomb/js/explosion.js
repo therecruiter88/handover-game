@@ -42,9 +42,14 @@ wallChunksGroup.userData.update = () => {
   });
 }
 const wallMat = new THREE.MeshStandardMaterial({
-  color: 0xffffff,
-  transparent: true, // Allow transparency
-  opacity: 0, // Start fully transparent
+  color: 0xff66b2,  
+  transparent: true,
+  opacity: 0,
+  roughness: 0.1,  
+  metalness: 0.6,  
+  transmission: 0.9, // Adds glass-like effect
+  clearcoat: 1.0,   // Adds shine
+  clearcoatRoughness: 0.2
 });
 const loader = new GLTFLoader();
 //const wallPath = "./assets/wallFractured.glb";
