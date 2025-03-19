@@ -162,7 +162,17 @@ select {
     top: 20px;
     right: 80px;
 }
-  
+
+#gitlab-icon {
+    position: absolute;
+    width: 30px; /* Same as the circle's diameter */
+    height: 30px; /* Same as the circle's diameter */
+    top: 15px; /* Adjust to center over the circle */
+    left: 25px; /* Adjust to center over the circle */
+    border-radius: 50%;
+    display: none; /* Initially hidden */
+}
+
 #timer-display {
     position: absolute;
     top: 10px;
@@ -175,10 +185,10 @@ select {
 #light-status {
     position: absolute;
     top: 10px;
-    left: 55%;
+    left: 73%;
     transform: translateX(-50%);
     color: #22ff22;
-    font-size: 24px;
+    font-size: 13px;
     font-weight: bold;
 }
   

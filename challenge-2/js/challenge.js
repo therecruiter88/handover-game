@@ -291,12 +291,21 @@ function changeLight() {
 
 function rotateDoll(facingPlayer) {
   const dollSvg = doll.querySelector('svg');
+  const gitlabIcon = document.getElementById('gitlab-icon');
+  const dollFace = document.getElementById('doll-face');
+
+  if (!dollSvg) return;
+
   if (facingPlayer) {
     // Doll facing player (frontside)
     dollSvg.style.transform = 'rotateY(0deg)';
+    gitlabIcon.style.display = 'block';
+    dollFace.style.fill = '#FFD700';
   } else {
     // Doll facing away (backside)
     dollSvg.style.transform = 'rotateY(180deg)';
+    gitlabIcon.style.display = 'none';
+    dollFace.style.fill = 'transparent';
   }
 }
 
@@ -532,7 +541,7 @@ retryButton.addEventListener('click', () => {
 });
 
 scoreboardButton.addEventListener('click', () => {
-  alert('Not implemented yet! Will implement later, maybe...\nFor now just Return to base and access the scoreboard throught circle icon.');
+  alert('Not implemented yet! Will implement later, maybe...\nFor now just "Return to Base" and access the scoreboard throught circle icon.');
 });
 
 function calculateScore(timeLeft) {

@@ -511,7 +511,7 @@ retryButton.addEventListener('click', () => {
 });
 
 scoreboardButton.addEventListener('click', () => {
-  alert('Not implemented yet! Will implement later, maybe...\nFor now just Return to base and access the scoreboard throught circle icon.');
+  alert('Not implemented yet! Will implement later, maybe...\nFor now just "Return to Base" and access the scoreboard throught circle icon.');
 });
 
 // Function to update the player's score and bestScore in Firebase
