@@ -1,7 +1,3 @@
-> Integrar o codigo do challenge 2 e melhorar
-
-> Implementar scoreboard do total
-
 > Implementar scoreboard no final do challenge
 
 > Colocar div container central em cada página com o mesmo id para usar o showMobileFunction

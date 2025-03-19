@@ -15,6 +15,11 @@
     z-index: 200;
     color: white;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    width: 50%; /* Set a fixed width */
+    min-width: 50%; /* Prevent shrinking */
+    max-width: 50%; /* Prevent expanding */
+    /*overflow-x: auto;*/ /* Allow scrolling if needed */
+    transition: width 0.3s ease-in-out; /* Smooth width transition (optional) */
 }
 
 /* Styling for the leaderboard title */

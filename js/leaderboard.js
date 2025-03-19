@@ -9,25 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(overlay);
     let isPanelVisible = false;
 
-    // Initialize the leaderboard with the first active tab
-    const activeTabButton = document.querySelector('#leaderboard-tab-button.active');
-    if (activeTabButton) {
-        const activeTab = activeTabButton.getAttribute('data-tab');
-        generateLeaderboard(`${activeTab}`);
-    }
-
     // Function to fetch leaderboard data from Firebase
     async function fetchLeaderboardData(tab) {
         try {
             const leaderboardChallengesRef = ref(database, `leaderboards/${tab}`);
             const snapshot = await get(leaderboardChallengesRef);
-            //console.log(`database: ${database}`);
-            //console.log(`leaderboardChallengesRef: ${leaderboardChallengesRef}`);
-            //console.log(`snapshot: ${snapshot}`);
 
             if (snapshot.exists()) {
                 const data = snapshot.val();
-                //console.log(`Fetched ${tab} data:`, data);
 
                 // Convert the object to an array of { player, score, bestScore }
                 const leaderboardArray = Object.values(data).map(player => ({
@@ -47,33 +36,88 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Function to calculate the total score for each player
+    async function calculateTotalScores() {
+        const challenges = ['challenge-1', 'challenge-2']; // Add more challenges here if needed
+        const allPlayerData = {};
+
+        for (const challenge of challenges) {
+            const data = await fetchLeaderboardData(challenge);
+            data.forEach(playerData => {
+                if (!allPlayerData[playerData.player]) {
+                    allPlayerData[playerData.player] = {
+                        player: playerData.player,
+                        totalScore: 0
+                    };
+                }
+                allPlayerData[playerData.player].totalScore += playerData.bestScore;
+            });
+        }
+
+        return Object.values(allPlayerData);
+    }
+
     // Function to generate the leaderboard based on the selected tab
     async function generateLeaderboard(tab) {
-        leaderboardTable.innerHTML = '';
-        const headerRow = leaderboardTable.insertRow();
+        const tempTable = document.createElement('table');
+        tempTable.classList.add('leaderboard-table'); // Ensure consistent styling
+    
+        const headerRow = tempTable.insertRow();
         headerRow.insertCell().textContent = "Player";
-        headerRow.insertCell().textContent = "Last Score";
-        headerRow.insertCell().textContent = "Best Score";
+        const scoreCell = headerRow.insertCell(); 
     
-        // Fetch data from Firebase
-        const data = await fetchLeaderboardData(tab);
-    
-        if (!Array.isArray(data)) {
-            console.error(`Data for ${tab} is not an array:`, data);
-            return;
+        if (tab === 'total') {
+            scoreCell.textContent = "Total Score";
+        } else {
+            scoreCell.textContent = "Last Score";
+            headerRow.insertCell().textContent = "Best Score";
         }
     
-        // Sort the data by score (descending order)
-        data.sort((a, b) => b.bestScore - a.bestScore);
+        let data = tab === 'total' ? await calculateTotalScores() : await fetchLeaderboardData(tab);
+        if (!Array.isArray(data)) return;
     
-        // Populate the table
+        data.sort((a, b) => tab === 'total' ? b.totalScore - a.totalScore : b.bestScore - a.bestScore);
+    
         data.forEach(entry => {
-            const row = leaderboardTable.insertRow();
-            row.insertCell().textContent = entry.player;
-            row.insertCell().textContent = entry.score;
-            row.insertCell().textContent = entry.bestScore;
+            const row = tempTable.insertRow();
+            const playerCell = row.insertCell();
+            playerCell.textContent = entry.player;
+    
+            const scoreCell = row.insertCell();
+            if (tab === 'total') {
+                scoreCell.textContent = entry.totalScore;
+            } else {
+                scoreCell.textContent = entry.score;
+                const bestScoreCell = row.insertCell();
+                bestScoreCell.textContent = entry.bestScore;
+    
+                // Apply golden yellow color for specific conditions
+                const challengeOneGoldenScore = 500;
+                const challengeTwoGoldenScore = 250;
+                const totalGoldenPlayerScore = challengeOneGoldenScore + challengeTwoGoldenScore;
+                const goldenColor = "#D4AF37"; // Less intense gold
+                
+                if (tab === 'total' && entry.totalScore >= totalGoldenPlayerScore) {
+                    if (playerCell) playerCell.style.color = goldenColor;
+                    if (scoreCell) scoreCell.style.color = goldenColor;
+                }
+
+                if (tab === 'challenge-1' && entry.bestScore >= challengeOneGoldenScore) {
+                    if (playerCell) playerCell.style.color = goldenColor;
+                    if (scoreCell) scoreCell.style.color = goldenColor;
+                    if (bestScoreCell) bestScoreCell.style.color = goldenColor;
+                }
+
+                if (tab === 'challenge-2' && entry.bestScore >= challengeTwoGoldenScore) {
+                    if (playerCell) playerCell.style.color = goldenColor;
+                    if (scoreCell) scoreCell.style.color = goldenColor;
+                    if (bestScoreCell) bestScoreCell.style.color = goldenColor;
+                }
+            }
         });
-    }
+    
+        leaderboardTable.replaceChildren(...tempTable.children);
+    }    
 
     // Event listener to toggle the leaderboard panel visibility
     scoreboardTrigger.addEventListener('click', (event) => {
@@ -100,15 +144,18 @@ document.addEventListener('DOMContentLoaded', () => {
     tabButtons.forEach(button => {
         button.addEventListener('click', (event) => {
             const selectedTab = event.target.dataset.tab;
-            
+
             // Remove the "active" class from all tabs
             tabButtons.forEach(tab => tab.classList.remove('active'));
-            
+
             // Add the "active" class to the clicked tab
             event.target.classList.add('active');
-            
+
             // Generate the leaderboard for the selected tab
-            if(isLeaderboardVisible) generateLeaderboard(selectedTab);
+            generateLeaderboard(selectedTab);
         });
     });
+
+    // Generate the leaderboard for the "Total Score" tab initially
+    generateLeaderboard('total');
 });
