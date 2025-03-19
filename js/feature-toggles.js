@@ -2,6 +2,7 @@
 let isSoldierAndDialogVisible = true;
 let isFabVisible = true;
 let isChallengeOneVisible = true;
+let isChallengeTwoVisible = true;
 let isLeaderboardVisible = true;
 let isBombVisible = true;
 
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleBomb();
     toggleGameChallengesSelector();
     toggleChallengeOne();
+    toggleChallengeTwo();
     toggleLeaderboard();
 });
 
@@ -60,6 +62,16 @@ function toggleChallengeOne() {
         if(challengeOneItem) challengeOneItem.classList.remove('hidden');
     } else {
         if(challengeOneItem) challengeOneItem.classList.add('hidden');
+    }
+}
+
+function toggleChallengeTwo() {
+    const challengeTwoItem = document.getElementById('challenge-2');
+
+    if (isChallengeTwoVisible) {
+        if(challengeTwoItem) challengeTwoItem.classList.remove('hidden');
+    } else {
+        if(challengeTwoItem) challengeTwoItem.classList.add('hidden');
     }
 }
 

@@ -1,0 +1,213 @@
+<html>
+<head>
+  <title>Red Light, Green Light</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/player-selector.css">
+  <link rel="stylesheet" href="./css/challenge.css">
+  <link rel="stylesheet" href="./css/elimination.css">
+  <link rel="stylesheet" href="./css/intro.css">
+  <link rel="stylesheet" href="./css/instructions.css">
+  <link rel="stylesheet" href="./css/storyline.css">
+  <link rel="stylesheet" href="./css/victory.css">
+  <link rel="icon" href="../assets/favicon/icon.png" type="image/x-icon">
+</head>
+<body>
+
+    <!-- Audio elements for game sounds -->
+    <audio id="intro-sound" preload="auto">
+      <source src="https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3;muted=1&amp" type="audio/mpeg">
+    </audio>
+  
+    <audio id="storyline-sound" preload="auto">
+      <source src="./assets/audio/storyline.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="typing-sound" preload="auto">
+      <source src="https://assets.mixkit.co/active_storage/sfx/2363/2363-preview.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="game-start-sound" preload="auto">
+      <source src="./assets/audio/game.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="countdown-sound" preload="auto">
+      <source src="https://assets.mixkit.co/active_storage/sfx/212/212-preview.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="countdown-fast-sound" preload="auto">
+      <source src="https://assets.mixkit.co/active_storage/sfx/212/212-preview.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!--<audio id="doll-song" preload="auto">
+      <source src="https://assets.soundbible.com/mp3/Music_Box-Big_Daddy-1389738694.mp3" type="audio/mpeg">
+    </audio>-->
+    
+    <audio id="red-light-sound" preload="auto">
+      <source src="https://assets.mixkit.co/active_storage/sfx/3005/3005-preview.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="green-light-sound" preload="auto">
+      <source src="https://assets.mixkit.co/active_storage/sfx/2865/2865-preview.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="gunshot-sound" preload="auto">
+      <source src="https://assets.mixkit.co/active_storage/sfx/1662/1662-preview.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="elimination-sound" preload="auto">
+      <source src="https://assets.mixkit.co/active_storage/sfx/218/218-preview.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="victory-sound" preload="auto">
+      <source src="./assets/audio/victory.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- Player Name Prompt -->
+    <div id="player-name-prompt">
+      <h2>Select Your Player Number</h2>
+      <!--<input type="text" id="player-number" maxlength="3" placeholder="example: 000">-->
+      <select id="player-number" class="sound-efx">
+      </select>
+      <button id="begin-challenge" class="sound-efx" disabled>Begin Challenge</button>
+    </div>
+    
+    <!-- Netflix-style intro -->
+    <div id="intro-container">
+      <div id="intro-logo">RED LIGHT, GREEN LIGHT</div>
+    </div>
+    
+    <!-- Storyline container -->
+    <div id="story-container">
+      <div id="story-box">
+        <h2 id="story-title">Backstory</h2>
+        <div id="story-text"></div>
+        <button id="continue-btn" class="sound-efx">Continue</button>
+      </div>
+    </div>
+    
+    <!-- Instructions popup -->
+    <div id="instructions-popup">
+      <h2>How to Play</h2>
+      <p>Press SPACE to move forward only when the light is GREEN.</p>
+      <p>The sentinel will turn around randomly with RED light and you must press SPACE to stop immediately.</p>
+      <p>If you move during RED light, you will be ELIMINATED!</p>
+      <p>Reach the finish line before the time runs out to survive! The faster you end, the greater the score!</p>
+      <button id="instructions-close" class="sound-efx">Got it!</button>
+    </div>
+
+    <!-- Player selector -->
+    <div id="player-selector">
+      <h2>Choose Your Player</h2>
+      <div class="player-options">
+        <div class="player-option sound-efx" data-shape="circle">
+          <svg width="30" height="60" viewBox="0 0 30 60">
+            <!-- Circle player -->
+            <rect x="5" y="5" width="20" height="30" fill="#4CAF50" />
+			      <circle cx="15" cy="13" r="7" fill="black" />
+			      <circle cx="15" cy="13" r="3" fill="white" />
+            <rect x="8" y="35" width="14" height="20" fill="#4CAF50" />
+            <rect x="0" y="30" width="80" height="8" fill="#4CAF50" />
+          </svg>
+        </div>
+        <div class="player-option sound-efx" data-shape="square">
+          <svg width="30" height="60" viewBox="0 0 30 60">
+            <!-- Square player -->
+            <rect x="5" y="5" width="20" height="30" fill="#4CAF50" />
+			      <circle cx="15" cy="13" r="7" fill="black" />
+			      <rect x="11" y="9" width="8" height="8" fill="white" />
+            <rect x="8" y="35" width="14" height="20" fill="#4CAF50" />
+            <rect x="0" y="30" width="80" height="8" fill="#4CAF50" />
+          </svg>
+        </div>
+        <div class="player-option sound-efx" data-shape="triangle">
+          <svg width="30" height="60" viewBox="0 0 30 60">
+            <!-- Triangle player -->
+			      <rect x="5" y="5" width="20" height="30" fill="#4CAF50" />
+			      <circle cx="15" cy="13" r="7" fill="black" />
+			      <polygon points="15,8 10,16 20,16" fill="white" />
+			      <rect x="8" y="35" width="14" height="20" fill="#4CAF50" />
+			      <rect x="0" y="30" width="80" height="8" fill="#4CAF50" />
+          </svg>
+        </div>
+      </div>
+      <button id="start-game" class="sound-efx" disabled>Start Game</button>
+    </div>
+    
+    <div id="game-container">
+      <div id="player">
+        <svg width="30" height="60" viewBox="0 0 30 60">
+          <!-- Default player -->
+          <rect x="5" y="5" width="20" height="30" fill="#4CAF50" />
+          <circle cx="15" cy="13" r="7" fill="black" />
+          <circle cx="15" cy="13" r="3" fill="white" />
+          <rect x="8" y="35" width="14" height="20" fill="#4CAF50" />
+          <rect x="0" y="30" width="80" height="8" fill="#4CAF50" />
+        </svg>
+      </div>
+      
+      <div id="finish-line"></div>
+      
+      <div id="doll">
+        <svg width="80" height="120" viewBox="0 0 80 120">
+          <!-- Doll -->
+          <rect x="20" y="10" width="40" height="50" fill="#FFC0CB" />
+          <circle cx="40" cy="30" r="15" fill="#FFD700" />
+          <rect x="30" y="60" width="20" height="40" fill="#FF69B4" />
+          <rect x="25" y="60" width="30" height="10" fill="#FF69B4" />
+        </svg>
+      </div>
+      
+      <div class="hearts-container">
+        <img class="heart" id="heart1" src="./assets/img/heart_full.png" alt="Full Heart">
+        <img class="heart" id="heart2" src="./assets/img/heart_full.png" alt="Full Heart">
+        <img class="heart" id="heart3" src="./assets/img/heart_full.png" alt="Full Heart">
+      </div>
+      <div id="timer-display">Time: 45</div>
+      <div id="light-status">GREEN LIGHT</div>
+      
+      <!-- Laser beam for elimination -->
+      <svg id="laser-beam">
+        <line id="laser-line" class="laser" x1="0" y1="0" x2="0" y2="0"></line>
+      </svg>
+      
+      <!-- Celebration container -->
+      <div id="celebration">
+        <h2>Congratulations!</h2>
+        <p>You have distributed the hotfix in production and escaped the handover!</p>
+        <p id="win-score"></p>
+      </div>
+      
+      <!-- Game over container -->
+      <div id="game-over">
+        <h2>ELIMINATED!</h2>
+        <p id="reason-eliminated"></p>
+        <p>The Pipeline Sentinel detected you and crushed you! The hotfix was not released so you will be stucked in the handover forever...</p>
+        <div id="elimination-x">X</div>
+        <button id="retry-button" class="sound-efx">Retry</button>
+      </div>
+    </div>
+
+      <!-- Game completion popup -->
+    <div id="game-completion">
+      <h2>Next Game Unlocked!</h2>
+      <p>You have successfully completed this challenge and unlocked the next game.</p>
+      <p>Will attempt to include it next week!</p>
+      <div class="buttons">
+        <button id="home-button" class="sound-efx"><a href="https://www.criticalflix.com/handover.html" class="buttons-link">Return to Base</a></button>
+        <button id="scoreboard-button" class="sound-efx">Scoreboard</button>
+      </div>
+    </div>
+
+    <script src="../../common/js/audio.js"></script>
+    <script src="./js/players-list.js"></script>
+    <script src="./js/storyline.js"></script> <!-- It must load before challenge.js to use its functions -->
+    <script src="./js/player-selector.js"></script>
+    <script src="./js/instructions.js"></script>
+    <script src="./js/intro.js"></script>
+    <!--<script src="./../common/js/firebaseConfig.js" type="module"></script>-->
+    <script src="./js/challenge.js" type="module"></script>></script>
+    <script src="./js/victory.js"></script>
+</body>
+</html>

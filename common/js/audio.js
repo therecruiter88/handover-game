@@ -4,24 +4,33 @@ document.addEventListener("DOMContentLoaded", function () {
     const clickSound = new Audio("../../common/assets/audio/mouse_click.wav");
 
     // Get the elements to add sound effects
-    const elements = document.querySelectorAll(".sound-efx");
+    const soundEfxElements = document.querySelectorAll(".sound-efx");
 
-    elements.forEach(element => {
-        // Check if the element is disabled or has the 'disabled' class
-        if (element.disabled || element.classList.contains('disabled')) {
-            return; // Skip the rest of the code if the element is disabled
-        }
-
+    soundEfxElements.forEach(element => {
         // Play sound on hover
         element.addEventListener("mouseenter", () => {
-            hoverSound.currentTime = 0; // Reset sound to start
-            hoverSound.play();
+            if (!element.disabled) { // Check if the element is NOT disabled
+                // Play your sound effect here
+                hoverSound.currentTime = 0; // Reset sound to start
+                hoverSound.play();
+            }
+        });
+
+        element.addEventListener("focus", () => {
+            if (!element.disabled) { // Check if the element is NOT disabled
+                // Play your sound effect here
+                hoverSound.currentTime = 0; // Reset sound to start
+                hoverSound.play();
+            }
         });
 
         // Play sound on click
         element.addEventListener("click", () => {
-            clickSound.currentTime = 0; // Reset sound to start
-            clickSound.play();
+            if (!element.disabled) { // Check if the element is NOT disabled
+                // Play your sound effect here
+                clickSound.currentTime = 0; // Reset sound to start
+                clickSound.play();
+            }
         });
     });
 });

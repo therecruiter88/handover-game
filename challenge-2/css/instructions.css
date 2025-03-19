@@ -1,0 +1,37 @@
+#instructions-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    text-align: center;
+    z-index: 90;
+    display: none;
+    border: 2px solid #E50914;
+}
+#instructions-popup h2 {
+    color: #EB257A;
+    margin-top: 0;
+}
+#instructions-popup p {
+    text-align: center;
+} 
+#instructions-popup button {
+    background-color: #EB257A;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-top: 20px;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+}
+#instructions-close:hover:enabled {
+    background-color: #d62056;
+    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
+}  
