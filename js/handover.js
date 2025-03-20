@@ -57,6 +57,9 @@ document.addEventListener("DOMContentLoaded", function () {
         setInterval(changeFaces, 5000);
     }
 
+    const challengeTwoItem = document.getElementById('challenge-2');
+    challengeTwoItem.classList.add('hidden');
+
     setupBackgroundMusic();
 });
 
