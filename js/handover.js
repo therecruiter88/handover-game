@@ -136,23 +136,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (challengeCompleted) {
         const playersTile = document.getElementById("img");
+        const bombContainer = document.getElementById('bomb-container');
+        const canvasContainer = document.getElementById('three-canvas');
+        const audio = document.getElementById("background-music");
 
         // Force play new music
-        const audio = document.getElementById("background-music");
         if (audio) audio.src = "./assets/audio/sg_theme_song_2.mp3";
         if (music) music.muted = false;
         if (volumeIcon) volumeIcon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>';
 
-        const bombContainer = document.getElementById('bomb-container');
-        const canvasContainer = document.getElementById('three-canvas');
-
-        if (bombContainer) {}
+        if (bombContainer) {
             bombContainer.classList.add('hidden');
             canvasContainer.classList.add('hidden');
             bombContainer.classList.remove('visible');
+            canvasContainer.classList.remove('visible');
         }
 
-        //const messageElement = document.getElementById('message');
         const message = "💥 KABOOM! 💥 \nWell… that escalated quickly. 😳 But hey, every explosion has its silver lining, right? \nAmidst the smoke and rubble, a new path emerges. Was it luck? Was it fate? Or was it all part of a twisted game? 😏 \nA secret challenge has been unlocked. Dare to take the next step… or was blowing things up the only trick you had? \n🔓 Proceed… if you dare.";
 
         // Replace \n with <br> for line breaks
