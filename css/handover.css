@@ -133,6 +133,7 @@ body {
     background-color: rgba(255, 255, 255, 0.2);
     border: 3px solid #FF00FF;
     box-shadow: 0 0 25px rgba(255, 0, 255, 1);
+    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 8 8, auto;
 }
 .mute-button svg {
     width: 24px;

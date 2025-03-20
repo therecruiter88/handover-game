@@ -9,8 +9,8 @@ body {
 #bomb-container {
     display: inline-block;
     position: absolute;
-    top: 78%;
-    left: 25%;
+    bottom: 8%;
+    left: 24%;
     cursor: pointer;
     
 }
@@ -18,8 +18,14 @@ body {
     animation: bombPopIn 2s forwards;
 }
 #bomb {
-    width: 100px;
+    width: 50px;
     transition: transform 0.2s ease-in-out;
+    animation: slowPulse 8s ease-in-out infinite;
+}
+@keyframes slowPulse {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(0, 0) scale(1.2); }
+    100% { transform: translate(0, 0) scale(1); }
 }
 #bomb:hover {
 	cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;

@@ -43,24 +43,31 @@
 .challenge-list {
     display: none; /* Initially hidden */
     position: absolute;
-    width: 300%; /* Adjust width of the list */
+    width: 250px; /* Adjust width of the list */
     bottom: 100%; /* Position the list above the button */
     right: 0;
-    background-color: #333;
+    background: #EB257A;
     color: white;
-    border: 3px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
+    border: 3px solid #EB257A;
+    padding: 15px;
+    border-radius: 10px; /* Rounded corners */
     z-index: 100;
     opacity: 0; /* Start invisible */
+    transition: box-shadow 0.3s ease-in-out;
+    background: linear-gradient(135deg, #EB257A, #333); /* Dark gradient background */
+    box-shadow: 0 0 15px rgba(235, 37, 122, 0.7); /* Glowing neon effect */
+    font-family: 'Press Start 2P', cursive; /* Retro font for style */
     transform: translateY(50%); /* Start from below */
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Smooth slide-up effect */
 }
 /* Sliding Up Animation */
 .challenge-list.show {
     display: block;
     opacity: 1; /* Fade in */
     transform: translateY(0); /* Move to original position */
+}
+.challenge-list:hover {
+    border: 3px solid #FF00FF; /* Change to bright neon pink when hovering */
+    box-shadow: 0 0 15px rgba(255, 0, 255, 1); /* Stronger glowing neon effect */
 }
 /* Sliding Up Animation */
 @keyframes slideUp {
@@ -75,25 +82,42 @@
 }
 .challenge-item {
     margin-bottom: 10px;
-    padding: 5px;
-    background-color: orange;
+    padding: 10px;
+    background: linear-gradient(135deg, #EB257A, #c2466f); /* Gradient background */
+    cursor: pointer;
+    border: 2px solid #FF4081; /* Border with a matching color */
+    border-radius: 5px;
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease; /* Smooth hover effect */
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     border-radius: 5px;
     transition: transform 0.2s ease-in-out;
 }
 .challenge-item:hover {
+    background: rgba(255, 255, 255, 0.2); 
     transform: scale(1.05); /* Add subtle hover effect */
     cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
 }
 .challenge-item-leaderboard {
-    margin-bottom: 2px;
-    padding: 5px;
-    background-color: red;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: rgba(255, 0, 0, 0.2); /* Red semi-transparent background */
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     border-radius: 5px;
     transition: transform 0.2s ease-in-out;
 }
 .challenge-item-leaderboard:hover {
+    background: rgba(255, 0, 0, 0.4);
     transform: scale(1.05); /* Add subtle hover effect */
     cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
 }
