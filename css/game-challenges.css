@@ -1,9 +1,11 @@
 .fab {
     position: fixed;
     bottom: 2.5%;
-    right: 2%;
+    right: 10%;
     z-index: 10;
     z-index: 100;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(235, 37, 122, 0.7);
 }
 .fab-btn {
     width: 70px;
