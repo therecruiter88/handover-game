@@ -43,24 +43,25 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.error("soldier-container element is missing!");
                     return;
                 }
-
-                // Remove any existing "Over here!" text before creating a new one
-                const existingText = document.querySelector('.over-here');
-                if (existingText) {
-                    existingText.remove();
-                }
-
+            
+                // Create a unique ID for the new text element
+                const uniqueId = `over-here-${Date.now()}`;
+            
                 const overHereText = document.createElement('div');
                 overHereText.textContent = 'Over here!';
                 overHereText.classList.add('over-here');
+                overHereText.id = uniqueId; // Assign the unique ID
                 soldierContainer.appendChild(overHereText);
-
+            
                 // Position near the head
                 updatePosition(overHereText);
-
+            
                 // Remove the element after the animation is completed (4 seconds)
                 setTimeout(() => {
-                    overHereText.remove();
+                    const textToRemove = document.getElementById(uniqueId);
+                    if (textToRemove) {
+                        textToRemove.remove();
+                    }
                 }, 4000);
             }
 
@@ -78,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Function to handle the jump event and trigger "Over here!" animation
             function onJump(event) {
                 if (event.animationName === 'jump') {
+                    //console.log("Is jumping");
                     createOverHereText(); // Create the "Over here!" text on jump
                 }
             }
@@ -96,11 +98,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
 
                 // Observe changes in the soldier container's attributes and subtree (for movement detection)
-                soldierContainer.addEventListener('animationiteration', () => {
-                    observer.observe(soldierContainer, {
-                        attributes: true,
-                        subtree: true
-                    });
+                const containerObserver = new MutationObserver(() => {
+                    soldierContainer = document.getElementById('soldier-container');
+                    if (soldierContainer) {
+                        observer.observe(soldierContainer, {
+                            attributes: true,
+                            subtree: true
+                        });
+                    }
+                });
+
+                containerObserver.observe(document.body, {
+                    childList: true,
+                    subtree: true
                 });
 
             } else {

@@ -1,18 +1,12 @@
-> Implementar scoreboard no final do challenge
-
-> Colocar div container central em cada página com o mesmo id para usar o showMobileFunction
-
 > Rever codigo comum e retirar inutilizado (especialmente o do challenge-1)
  > guardar na bd
  > player selector (css, js, etc)
+ 
+> Implementar scoreboard no final do challenge
 
-> adicionar icon de som ligado/desligado (substituir pelo botão)
-https://www.google.com/search?sca_esv=c06ccc95c221bce2&rlz=1C1CHBF_pt-PTPT1108PT1108&sxsrf=AHTn8zoeI8i0wI01VQ3AoshTfe34mi5xDw:1741549292259&q=volume+on+volume+off+icon&udm=2&fbs=ABzOT_CXl75FCxE-ABa2Bmjosyso4AVs-uBumeCm0euUaM9PLKMtwzY97IvESwgqD_MEWl6S6U5oDgsIkYNbHRUBEwfiYXoDuhiFSzWidU7IEelzlaGYHbfE4awX2PtaldMArkfM9t7l-x1MUaR4-fF1lyyJuqYgN-wRNqXKcHCacL0fbFysIM9tsiw41oi4nUoggDKLO2P0gZBVePUg1ZmhKl5qGZR3cg&sa=X&ved=2ahUKEwj4w7HX4P2LAxXxgf0HHVtaLK4QtKgLegQIERAB&biw=1536&bih=695&dpr=1.25#vhid=LnriFrk1_eCJuM&vssid=mosaic
+> Colocar div container central em cada página com o mesmo id para usar o showMobileFunction
+> Aplicar codigo comun de dev tools e isMobileDevice nas pages todas
 
-> New music icon com o mesmo efeito que o icon dos challenges
-
-> Fit content on huge screens
+> Fit content on huge screens or when dev tools is opened
 
 > Corrigir quando perdemos no challenge-1 e no retry o player começa a andar ou fica bloqueado
-
-> Aplicar codigo comun de dev tools e isMobileDevice nas pages todas
