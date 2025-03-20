@@ -68,9 +68,11 @@
 .leaderboard-table th,
 .leaderboard-table td {
     padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #EB257A;
+    text-align: center;
+    border-bottom: 2px solid #EB257A;
     font-family: 'Press Start 2P', cursive;
+    vertical-align: middle;
+    height: 30px;
 }
 
 .leaderboard-table th {
@@ -89,4 +91,11 @@
 
 ::-webkit-scrollbar-thumb {
     background: #EB257A;
+}
+
+.trophy-icon {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

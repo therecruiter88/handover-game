@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to generate the leaderboard based on the selected tab
     async function generateLeaderboard(tab) {
         const tempTable = document.createElement('table');
-        tempTable.classList.add('leaderboard-table'); // Ensure consistent styling
+        tempTable.classList.add('leaderboard-table');
     
         const headerRow = tempTable.insertRow();
         headerRow.insertCell().textContent = "Player";
@@ -72,6 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
             scoreCell.textContent = "Last Score";
             headerRow.insertCell().textContent = "Best Score";
         }
+
+        headerRow.insertCell().textContent = ""; // Add trophy column header
     
         let data = tab === 'total' ? await calculateTotalScores() : await fetchLeaderboardData(tab);
         if (!Array.isArray(data)) return;
@@ -90,29 +92,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 scoreCell.textContent = entry.score;
                 const bestScoreCell = row.insertCell();
                 bestScoreCell.textContent = entry.bestScore;
-    
-                // Apply golden yellow color for specific conditions
-                const challengeOneGoldenScore = 500;
-                const challengeTwoGoldenScore = 250;
-                const totalGoldenPlayerScore = challengeOneGoldenScore + challengeTwoGoldenScore;
-                const goldenColor = "#D4AF37"; // Less intense gold
-                
-                if (tab === 'total' && entry.totalScore >= totalGoldenPlayerScore) {
-                    if (playerCell) playerCell.style.color = goldenColor;
-                    if (scoreCell) scoreCell.style.color = goldenColor;
-                }
+            }
 
-                if (tab === 'challenge-1' && entry.bestScore >= challengeOneGoldenScore) {
-                    if (playerCell) playerCell.style.color = goldenColor;
-                    if (scoreCell) scoreCell.style.color = goldenColor;
-                    if (bestScoreCell) bestScoreCell.style.color = goldenColor;
-                }
+            // Add a new column for the trophy icon
+            const trophyCell = row.insertCell();
+            const challengeOneGoldenScore = 500;
+            const challengeTwoGoldenScore = 250;
+            const totalGoldenPlayerScore = challengeOneGoldenScore + challengeTwoGoldenScore;
 
-                if (tab === 'challenge-2' && entry.bestScore >= challengeTwoGoldenScore) {
-                    if (playerCell) playerCell.style.color = goldenColor;
-                    if (scoreCell) scoreCell.style.color = goldenColor;
-                    if (bestScoreCell) bestScoreCell.style.color = goldenColor;
-                }
+            if (
+                (tab === 'total' && entry.totalScore >= totalGoldenPlayerScore) ||
+                (tab === 'challenge-1' && entry.bestScore >= challengeOneGoldenScore) ||
+                (tab === 'challenge-2' && entry.bestScore >= challengeTwoGoldenScore)
+            ) {
+                trophyCell.innerHTML = '<span class="trophy-icon">🏆</span>'
+            } else {
+                trophyCell.textContent = '';
             }
         });
     
