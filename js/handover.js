@@ -150,6 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
             canvasContainer.classList.add('hidden');
             bombContainer.classList.remove('visible');
             canvasContainer.classList.remove('visible');
+            bombContainer.style.display = 'none';
         }
 
         const message = "💥 KABOOM! 💥 \nWell… that escalated quickly. 😳 But hey, every explosion has its silver lining, right? \nAmidst the smoke and rubble, a new path emerges. Was it luck? Was it fate? Or was it all part of a twisted game? 😏 \nA secret challenge has been unlocked. Dare to take the next step… or was blowing things up the only trick you had? \n🔓 Proceed… if you dare.";
