@@ -58,6 +58,19 @@
     box-shadow: 0 0 15px rgba(235, 37, 122, 0.7); /* Glowing neon effect */
     font-family: 'Press Start 2P', cursive; /* Retro font for style */
     transform: translateY(50%); /* Start from below */
+    animation: borderAnimation 3s linear infinite;
+}
+
+@keyframes borderAnimation {
+    0% {
+        box-shadow: 0 0 10px #EB257A, 0 0 10px #FF4081;
+    }
+    50% {
+        box-shadow: 0 0 20px #FF4081, 0 0 20px #EB257A;
+    }
+    100% {
+        box-shadow: 0 0 10px #EB257A, 0 0 10px #FF4081;
+    }
 }
 /* Sliding Up Animation */
 .challenge-list.show {
