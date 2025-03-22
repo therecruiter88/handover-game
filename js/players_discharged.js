@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Fetch the players JSON file
-    fetch('../data/players_discharged.json')
+    fetch('/data/players_discharged.json')
         .then(response => response.json())  // Parse JSON response
         .then(data => {
             const playersList = document.getElementById('players-list');

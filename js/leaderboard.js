@@ -121,6 +121,11 @@ document.addEventListener('DOMContentLoaded', () => {
         leaderboardPanel.style.display = isPanelVisible ? "block" : "none";
         overlay.style.display = isPanelVisible ? "block" : "none";
 
+        // Reset the scroll position to the top when the leaderboard is opened
+        if (isPanelVisible) {
+            leaderboardPanel.scrollTop = 0;
+        }
+
         const challengeList = document.getElementById('challenge-list');
         if (challengeList) challengeList.classList.remove('show'); // Hide the list
     });
