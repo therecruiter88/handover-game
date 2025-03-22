@@ -247,11 +247,8 @@ select {
     color: white;
     text-decoration: none;
 }
-.buttons-link:hover {
-    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
-    text-decoration: none;
-}
 #home-button:hover {
+    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
     background-color: #d62056;
 }
 #challenge-leaderboard:hover {

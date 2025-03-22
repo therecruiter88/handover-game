@@ -1,5 +1,3 @@
-> Implementar scoreboard no final do challenge
-
 > Rever codigo comum e retirar inutilizado (especialmente o do challenge-1)
  > guardar na bd
  > player selector (css, js, etc)
