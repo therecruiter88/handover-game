@@ -1,3 +1,5 @@
+const music = document.getElementById("background-music");
+
 document.addEventListener("DOMContentLoaded", function () {
     // Create audio objects for hover and click sounds
     const hoverSound = new Audio("../../common/assets/audio/mouse_hover.wav");

@@ -16,6 +16,10 @@
     justify-items: center;
     width: fit-content;
     margin-left: 50px;
+    position: absolute;
+    top: 22%; 
+    left: 4%;
+    margin: 0;
 }
 .countdown-item {
     display: flex;

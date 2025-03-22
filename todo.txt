@@ -1,11 +1,10 @@
+No scoreboard, ao sair e voltar a entrar, fazer scroll ao inicio novamente
+
 > Rever codigo comum e retirar inutilizado (especialmente o do challenge-1)
  > guardar na bd
  > player selector (css, js, etc)
  
 > Implementar scoreboard no final do challenge
-
-> Colocar div container central em cada página com o mesmo id para usar o showMobileFunction
-> Aplicar codigo comun de dev tools e isMobileDevice nas pages todas
 
 > Fit content on huge screens or when dev tools is opened
 

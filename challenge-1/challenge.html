@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../common/css/mobile-instructions.css">
   <link rel="stylesheet" href="./css/player-selector.css">
   <link rel="stylesheet" href="./css/challenge.css">
   <link rel="stylesheet" href="./css/elimination.css">
@@ -52,120 +53,122 @@
       <source src="./assets/audio/victory.mp3" type="audio/mp3">
     </audio>
 
-   <!-- Player Name Prompt -->
-  <div id="player-name-prompt">
-    <h2>Select Your Player Number</h2>
-    <!--<input type="text" id="player-number" maxlength="3" placeholder="example: 000">-->
-    <select id="player-number" class="sound-efx">
-    </select>
-    <button id="begin-challenge" class="sound-efx" disabled>Begin Challenge</button>
-  </div>
-  
-  <!-- Netflix-style intro -->
-  <div id="intro-container">
-    <div id="intro-logo">THE PINEAPPLE PIZZA INVASION</div>
-  </div>
-  
-  <!-- Storyline container -->
-  <div id="story-container">
-    <div id="story-box">
-      <h2 id="story-title">Backstory</h2>
-      <div id="story-text"></div>
-      <button id="continue-btn" class="sound-efx">Continue</button>
-    </div>
-  </div>
-  
-  <!-- Instructions popup -->
-  <div id="instructions-popup">
-    <h2>How to Play</h2>
-    <p>Use arrow keys to move the soldier left and right.</p>
-    <p>Press SPACE to shoot.</p>
-    <p>Each hit earns you 10 points!</p>
-    <p>You have 30 seconds to reach 500 points or you'll be ELIMINATED!</p>
-    <button id="instructions-close" class="sound-efx">Got it!</button>
-  </div>
-  
-  <!-- Player selector -->
-  <div id="player-selector">
-    <h2>Choose Your Soldier</h2>
-    <div class="player-options">
-      <div class="player-option sound-efx" data-shape="circle">
-        <svg width="60" height="80" viewBox="0 0 60 80">
-          <!-- Circle player -->
-          <rect x="15" y="10" width="30" height="40" fill="#ff0066" />
-          <circle cx="30" cy="20" r="10" fill="black" />
-          <circle cx="30" cy="20" r="5" fill="white" />
-          <rect x="18" y="50" width="24" height="25" fill="#ff0066" />
-          <rect x="10" y="40" width="40" height="10" fill="#ff0066" />
-        </svg>
+    <div id="content">
+      <!-- Player Name Prompt -->
+      <div id="player-name-prompt">
+        <h2>Select Your Player Number</h2>
+        <!--<input type="text" id="player-number" maxlength="3" placeholder="example: 000">-->
+        <select id="player-number" class="sound-efx">
+        </select>
+        <button id="begin-challenge" class="sound-efx" disabled>Begin Challenge</button>
       </div>
-      <div class="player-option sound-efx" data-shape="square">
-        <svg width="60" height="80" viewBox="0 0 60 80">
-          <!-- Square player -->
-          <rect x="15" y="10" width="30" height="40" fill="#ff0066" />
-          <circle cx="30" cy="20" r="10" fill="black" />
-          <rect x="25" y="15" width="10" height="10" fill="white" />
-          <rect x="18" y="50" width="24" height="25" fill="#ff0066" />
-          <rect x="10" y="40" width="40" height="10" fill="#ff0066" />
-        </svg>
+      
+      <!-- Netflix-style intro -->
+      <div id="intro-container">
+        <div id="intro-logo">THE PINEAPPLE PIZZA INVASION</div>
       </div>
-      <div class="player-option sound-efx" data-shape="triangle">
-        <svg width="60" height="80" viewBox="0 0 60 80">
-          <!-- Triangle player -->
-          <rect x="15" y="10" width="30" height="40" fill="#ff0066" />
-          <circle cx="30" cy="20" r="10" fill="black" />
-          <polygon points="30,15 25,25 35,25" fill="white" />
-          <rect x="18" y="50" width="24" height="25" fill="#ff0066" />
-          <rect x="10" y="40" width="40" height="10" fill="#ff0066" />
-        </svg>
+      
+      <!-- Storyline container -->
+      <div id="story-container">
+        <div id="story-box">
+          <h2 id="story-title">Backstory</h2>
+          <div id="story-text"></div>
+          <button id="continue-btn" class="sound-efx">Continue</button>
+        </div>
       </div>
-    </div>
-    <button id="start-game" class="sound-efx" disabled>Start Game</button>
-  </div>
-  
-  <div id="game-container">
-    <div id="player">
-      <svg width="60" height="80" viewBox="0 0 60 80">
-        <!-- Squid Game Soldier -->
-        <rect x="15" y="10" width="30" height="40" fill="#ff0066" />
-        <circle cx="30" cy="20" r="10" fill="black" />
-        <rect x="18" y="50" width="24" height="25" fill="#ff0066" />
-        <rect x="10" y="40" width="40" height="10" fill="#ff0066" />
-      </svg>
-    </div>
-    <div id="score-display">Score: 0</div>
-    <div class="hearts-container">
-      <img class="heart" id="heart1" src="./assets/img/heart_full.png" alt="Full Heart">
-      <img class="heart" id="heart2" src="./assets/img/heart_full.png" alt="Full Heart">
-      <img class="heart" id="heart3" src="./assets/img/heart_full.png" alt="Full Heart">
-    </div>
-    <div id="timer-display">Time: 30</div>
-    
-    <!-- Celebration container -->
-    <div id="celebration">
-      <h2>Congratulations!</h2>
-      <p>You have saved the planet from all of the pineapple pizzas!</p>
-    </div>
-    
-    <!-- Game over container -->
-    <div id="game-over">
-      <h2>ELIMINATED!</h2>
-      <p id="reason-eliminated"></p>
-      <p>The pineapple pizzas destroyed the planet and you were not able to save player 297 pizza party!</p>
-      <div id="elimination-x">X</div>
-      <button id="retry-button" class="sound-efx">Retry</button>
-    </div>
-  </div>
+      
+      <!-- Instructions popup -->
+      <div id="instructions-popup">
+        <h2>How to Play</h2>
+        <p>Use arrow keys to move the soldier left and right.</p>
+        <p>Press SPACE to shoot.</p>
+        <p>Each hit earns you 10 points!</p>
+        <p>You have 30 seconds to reach 500 points or you'll be ELIMINATED!</p>
+        <button id="instructions-close" class="sound-efx">Got it!</button>
+      </div>
+      
+      <!-- Player selector -->
+      <div id="player-selector">
+        <h2>Choose Your Soldier</h2>
+        <div class="player-options">
+          <div class="player-option sound-efx" data-shape="circle">
+            <svg width="60" height="80" viewBox="0 0 60 80">
+              <!-- Circle player -->
+              <rect x="15" y="10" width="30" height="40" fill="#ff0066" />
+              <circle cx="30" cy="20" r="10" fill="black" />
+              <circle cx="30" cy="20" r="5" fill="white" />
+              <rect x="18" y="50" width="24" height="25" fill="#ff0066" />
+              <rect x="10" y="40" width="40" height="10" fill="#ff0066" />
+            </svg>
+          </div>
+          <div class="player-option sound-efx" data-shape="square">
+            <svg width="60" height="80" viewBox="0 0 60 80">
+              <!-- Square player -->
+              <rect x="15" y="10" width="30" height="40" fill="#ff0066" />
+              <circle cx="30" cy="20" r="10" fill="black" />
+              <rect x="25" y="15" width="10" height="10" fill="white" />
+              <rect x="18" y="50" width="24" height="25" fill="#ff0066" />
+              <rect x="10" y="40" width="40" height="10" fill="#ff0066" />
+            </svg>
+          </div>
+          <div class="player-option sound-efx" data-shape="triangle">
+            <svg width="60" height="80" viewBox="0 0 60 80">
+              <!-- Triangle player -->
+              <rect x="15" y="10" width="30" height="40" fill="#ff0066" />
+              <circle cx="30" cy="20" r="10" fill="black" />
+              <polygon points="30,15 25,25 35,25" fill="white" />
+              <rect x="18" y="50" width="24" height="25" fill="#ff0066" />
+              <rect x="10" y="40" width="40" height="10" fill="#ff0066" />
+            </svg>
+          </div>
+        </div>
+        <button id="start-game" class="sound-efx" disabled>Start Game</button>
+      </div>
+      
+      <div id="game-container">
+        <div id="player">
+          <svg width="60" height="80" viewBox="0 0 60 80">
+            <!-- Squid Game Soldier -->
+            <rect x="15" y="10" width="30" height="40" fill="#ff0066" />
+            <circle cx="30" cy="20" r="10" fill="black" />
+            <rect x="18" y="50" width="24" height="25" fill="#ff0066" />
+            <rect x="10" y="40" width="40" height="10" fill="#ff0066" />
+          </svg>
+        </div>
+        <div id="score-display">Score: 0</div>
+        <div class="hearts-container">
+          <img class="heart" id="heart1" src="./assets/img/heart_full.png" alt="Full Heart">
+          <img class="heart" id="heart2" src="./assets/img/heart_full.png" alt="Full Heart">
+          <img class="heart" id="heart3" src="./assets/img/heart_full.png" alt="Full Heart">
+        </div>
+        <div id="timer-display">Time: 30</div>
+        
+        <!-- Celebration container -->
+        <div id="celebration">
+          <h2>Congratulations!</h2>
+          <p>You have saved the planet from all of the pineapple pizzas!</p>
+        </div>
+        
+        <!-- Game over container -->
+        <div id="game-over">
+          <h2>ELIMINATED!</h2>
+          <p id="reason-eliminated"></p>
+          <p>The pineapple pizzas destroyed the planet and you were not able to save player 297 pizza party!</p>
+          <div id="elimination-x">X</div>
+          <button id="retry-button" class="sound-efx">Retry</button>
+        </div>
+      </div>
 
-  <!-- Game completion popup -->
-  <div id="game-completion">
-    <h2>Next Game Unlocked!</h2>
-    <p>You have successfully completed this challenge and unlocked the next game.</p>
-    <p>Will attempt to include it next week!</p>
-    <div class="buttons">
-      <button id="home-button" class="sound-efx"><a href="https://www.criticalflix.com/handover.html?challengeCompleted=true" class="buttons-link">Return to Base</a></button>
-      <button id="scoreboard-button" class="sound-efx">Scoreboard</button>
-    </div>
+      <!-- Game completion popup -->
+      <div id="game-completion">
+        <h2>Next Game Unlocked!</h2>
+        <p>You have successfully completed this challenge and unlocked the next game.</p>
+        <p>Will attempt to include it next week!</p>
+        <div class="buttons">
+          <button id="home-button" class="sound-efx"><a href="https://www.criticalflix.com/handover.html?challengeCompleted=true" class="buttons-link">Return to Base</a></button>
+          <button id="scoreboard-button" class="sound-efx">Scoreboard</button>
+        </div>
+      </div>
   </div>
 
   <script src="../../common/js/audio.js"></script>
@@ -177,5 +180,6 @@
   <!--<script src="./../common/js/firebaseConfig.js" type="module"></script>-->
   <script src="./js/challenge.js" type="module"></script>></script>
   <script src="./js/victory.js"></script>
+  <script src="../../common/js/mobile-message.js"></script>
 </body>
 </html>

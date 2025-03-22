@@ -7,6 +7,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
         <link rel="icon" href="./assets/favicon/icon.png" type="image/x-icon">
         <link rel="stylesheet" href="./css/handover.css">
+        <link rel="stylesheet" href="./common/css/mobile-instructions.css">
         <link rel="stylesheet" href="./css/breaking-news.css">
         <link rel="stylesheet" href="./css/countdown-timer.css">
         <link rel="stylesheet" href="./css/players-list.css">
@@ -30,127 +31,130 @@
         <source src="./assets/audio/sg_theme_song.mp3" type="audio/mp3">
     </audio>
 
-    <!-- Top panel -->
-    <div id="top-panel" class="top-panel">
-        <div class="icons"><a href="#" id="circle-video-link" class="buttons buttons-link button-circle sound-efx" target="_blank" >◯</a>
-            <span class="buttons button-triangle sound-efx">△</span>
-            <span class="buttons button-square sound-efx">☐</span></div>
-        <div class="news-ticker">
-            <span>Players discharged >>> 016; 018; 026; 051; 054; 057; 107; 130; 135; 141; 187; 194; 222; 229; 232; 243; 273; 286; 301; 297 | Thank you for your service🏅 #strongertogether</span>
-        </div>
-        <a href="#" id="handover-link" target="_blank" class="handover-link sound-efx">&gt ACCEPT CHALLENGE</a>
-    </div>
-
-    <!-- Center panel -->
-    <div id="center-panel-content" class="content-container visible">
-        <!-- Countdown timer -->
-        <div class="countdown">
-            <div class="countdown-item">
-                <div class="countdown-number" id="days">00</div>
-                <span class="countdown-label">Days</span>
+    <div id="content">
+        <!-- Top panel -->
+        <div id="top-panel" class="top-panel">
+            <div class="icons"><a href="#" id="circle-video-link" class="buttons buttons-link button-circle sound-efx" target="_blank" >◯</a>
+                <span class="buttons button-triangle sound-efx">△</span>
+                <span class="buttons button-square sound-efx">☐</span></div>
+            <div class="news-ticker">
+                <span>Players discharged >>> 016; 018; 026; 051; 054; 057; 107; 130; 135; 141; 187; 194; 222; 229; 232; 243; 273; 286; 301; 297 | Thank you for your service🏅 #strongertogether</span>
             </div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="hours">00</div>
-                <span class="countdown-label">Hours</span>
-            </div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="minutes">00</div>
-                <span class="countdown-label">Minutes</span>
-            </div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="seconds">00</div>
-                <span class="countdown-label">Seconds</span>
-            </div>
+            <a href="#" id="handover-link" target="_blank" class="handover-link sound-efx">&gt ACCEPT CHALLENGE</a>
         </div>
 
-        <!-- Player tiles -->
-        <div id="image-container" class="image-container">
-            <img id="img" src="" alt="Handover Game Tile"/>
-        </div>
-        <!-- Players discharged list -->
-        <div id="players-right-panel" class="players-right-panel">
-            <div class="collapse-button sound-efx" onclick="togglePlayersPanel()">🎮 Players Discharged</div>
-            <ul id="players-list" class="players-list">
-            </ul>
-        </div>
-    </div>
+        <!-- Center panel -->
+        <div id="center-panel-content" class="content-container visible">
+            <!-- Countdown timer -->
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <span class="countdown-label">Seconds</span>
+                </div>
+            </div>
 
-    <!-- Pink Soldier avatar -->
-    <div id="soldier-container" class="soldier-container">
-        <div id="soldier" class="soldier sound-efx" alt="Hello player! I have something to tell you.."></div>
-        <p id="click-me" class="over-here">Over here!</p>
-        <div id="dialog" class="dialog">
-            <p id="message">.</p>
+            <!-- Player tiles -->
+            <div id="image-container" class="image-container">
+                <img id="img" src="" alt="Handover Game Tile"/>
+            </div>
+            <!-- Players discharged list -->
+            <div id="players-right-panel" class="players-right-panel">
+                <div class="collapse-button sound-efx" onclick="togglePlayersPanel()">🎮 Players Discharged</div>
+                <ul id="players-list" class="players-list">
+                </ul>
+            </div>
         </div>
-    </div>
 
-    <!-- Music controls -->
-     <!-- Old button
-    <div id="music-panel" class="music-panel">
-        <button id="music-button" class="music-button sound-efx" onclick="toggleMusic()">
-            <span id="music-icon" class="music-icon">⏸️</span> Stop Music
+        <!-- Pink Soldier avatar -->
+        <div id="soldier-container" class="soldier-container">
+            <div id="soldier" class="soldier sound-efx" alt="Hello player! I have something to tell you.."></div>
+            <p id="click-me" class="over-here">Over here!</p>
+            <div id="dialog" class="dialog">
+                <p id="message">.</p>
+            </div>
+        </div>
+
+        <!-- Music controls -->
+        <!-- Old button
+        <div id="music-panel" class="music-panel">
+            <button id="music-button" class="music-button sound-efx" onclick="toggleMusic()">
+                <span id="music-icon" class="music-icon">⏸️</span> Stop Music
+            </button>
+        </div>-->
+        <button id="muteButton" class="mute-button sound-efx" title="Toggle music">
+            <svg id="volumeIcon" viewBox="0 0 24 24">
+            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            </svg>
         </button>
-    </div>-->
-    <button id="muteButton" class="mute-button sound-efx" title="Toggle music">
-        <svg id="volumeIcon" viewBox="0 0 24 24">
-          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-        </svg>
-    </button>
 
-    <!-- Challenges selector -->
-    <div id="fab-container" class="fab">
-        <button id="fab-button" class="fab-btn sound-efx">
-            <img id="fab-image" src="./assets/img/circle_face.png" alt="Challenges selector" />
-        </button>
-        <div id="challenge-list" class="challenge-list">
-            <div id="challenge-1" class="challenge-item sound-efx" data-url="./challenge-1/challenge.html" alt="The Pineapple Pizza Invasion">Challenge 1</div>
-            <div id="challenge-2" class="challenge-item sound-efx" data-url="./challenge-2/challenge.html" alt="Red Light, Green Light">Challenge 2</div>
-            <div id="challenge-leaderboard" class="challenge-item-leaderboard sound-efx" alt="Scoreboard">Scoreboard</div>
-        </div>
-    </div>
-
-    <!-- Leaderboard popup -->
-    <div id="leaderboard-panel" class="leaderboard-panel">
-        <h3 class="leaderboard-title">Leaderboard</h3>
-
-        <!-- Tabs for each challenge -->
-        <div id="leaderboard-tabs" class="leaderboard-tabs">
-            <button id="leaderboard-tab-button" class="tab-button active sound-efx" data-tab="total">Total</button>
-            <button id="leaderboard-tab-button" class="tab-button sound-efx" data-tab="challenge-1">Challenge 1</button>
-            <button id="leaderboard-tab-button" class="tab-button sound-efx" data-tab="challenge-2">Challenge 2</button>
-            <!--<button id="leaderboard-tab-button" class="tab-button" data-tab="challenge-3">Challenge 3</button>-->
-            <!--<button id="leaderboard-tab-button" class="tab-button" data-tab="challenge-4">Challenge 4</button>-->
-            <!--<button id="leaderboard-tab-button" class="tab-button" data-tab="challenge-5">Challenge 5</button>-->
+        <!-- Challenges selector -->
+        <div id="fab-container" class="fab">
+            <button id="fab-button" class="fab-btn sound-efx">
+                <img id="fab-image" src="./assets/img/circle_face.png" alt="Challenges selector" />
+            </button>
+            <div id="challenge-list" class="challenge-list">
+                <div id="challenge-1" class="challenge-item sound-efx" data-url="./challenge-1/challenge.html" alt="The Pineapple Pizza Invasion">Challenge 1</div>
+                <div id="challenge-2" class="challenge-item sound-efx" data-url="./challenge-2/challenge.html" alt="Red Light, Green Light">Challenge 2</div>
+                <div id="challenge-leaderboard" class="challenge-item-leaderboard sound-efx" alt="Scoreboard">Scoreboard</div>
+            </div>
         </div>
 
-        <!-- Leaderboard Table -->
-        <table id="leaderboard-table" class="leaderboard-table"></table>
+        <!-- Leaderboard popup -->
+        <div id="leaderboard-panel" class="leaderboard-panel">
+            <h3 class="leaderboard-title">Leaderboard</h3>
+
+            <!-- Tabs for each challenge -->
+            <div id="leaderboard-tabs" class="leaderboard-tabs">
+                <button id="leaderboard-tab-button" class="tab-button active sound-efx" data-tab="total">Total</button>
+                <button id="leaderboard-tab-button" class="tab-button sound-efx" data-tab="challenge-1">Challenge 1</button>
+                <button id="leaderboard-tab-button" class="tab-button sound-efx" data-tab="challenge-2">Challenge 2</button>
+                <!--<button id="leaderboard-tab-button" class="tab-button" data-tab="challenge-3">Challenge 3</button>-->
+                <!--<button id="leaderboard-tab-button" class="tab-button" data-tab="challenge-4">Challenge 4</button>-->
+                <!--<button id="leaderboard-tab-button" class="tab-button" data-tab="challenge-5">Challenge 5</button>-->
+            </div>
+
+            <!-- Leaderboard Table -->
+            <table id="leaderboard-table" class="leaderboard-table"></table>
+        </div>
+
+        <div id="bomb-container" class="hidden">
+            <img id="bomb" src="./bomb/assets/img/bomb.png" alt="Bomb" class="sound-efx">
+            <div id="countdown">10</div>
+        </div>
+
+        <audio id="countdown-sound" src="./bomb/assets/audio/countdown-10.mp3"></audio>
+        <audio id="explosion-sound" src="./bomb/assets/audio/explosion.mp3"></audio>
+
+        <canvas id="three-canvas" class="hidden"></canvas>
+        <div id="container">
+        <!--<h1>ROBOT BOBBY</h1>-->   
+        </div>
     </div>
-
-    <div id="bomb-container" class="hidden">
-        <img id="bomb" src="./bomb/assets/img/bomb.png" alt="Bomb" class="sound-efx">
-        <div id="countdown">10</div>
-    </div>
-
-    <audio id="countdown-sound" src="./bomb/assets/audio/countdown-10.mp3"></audio>
-    <audio id="explosion-sound" src="./bomb/assets/audio/explosion.mp3"></audio>
-
-    <canvas id="three-canvas" class="hidden"></canvas>
-    <div id="container">
-      <!--<h1>ROBOT BOBBY</h1>-->   
-    </div> 
 
     <script src="./common/js/audio.js"></script>
     <script src="./js/players_discharged.js"></script>
     <script src="./js/obfuscator-audio.js"></script>
     <script src="./js/feature-toggles.js"></script>
     <script src="./pink-soldier/js/soldier.js"></script>
-    <script src="./js/leaderboard.js" type="module"></script>></script>
+    <script src="./js/leaderboard.js" type="module"></script>
     <script src="./js/common.js"></script>
     <script src="./js/handover.js"></script>    
     <script src="./js/game-challenges.js"></script>
     <script src="./bomb/js/explosion.js" type="module"></script>
     <script src="./bomb/js/obfuscator-audio.js"></script>
     <script src="./bomb/js/bomb.js"></script>
+    <script src="./common/js/mobile-message.js"></script>
 </body>
 </html>
