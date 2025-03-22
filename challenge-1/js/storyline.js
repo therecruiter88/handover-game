@@ -16,58 +16,64 @@ function startStoryline() {
   introContainer.style.display = 'none';
   storyContainer.style.display = 'flex';
   document.getElementById('story-title').textContent = storyTitles[0];
-  
-  // Stop intro sound and start typing sound at a low volume
-  //introSound.pause();
-  //storylineSound.volume = 0.5;
-  //storylineSound.play();
-  //storylineSound.loop = true;
-  
-  // Type out the storyline text
+
   let storyStep = 0;
   let charIndex = 0;
   let currentParagraph = document.createElement('p');
   storyText.innerHTML = ''; // Clear any existing content
   storyText.appendChild(currentParagraph);
-  
-  const typingInterval = setInterval(() => {
-    if (charIndex < storylineText[storyStep].length) {
-      currentParagraph.textContent += storylineText[storyStep][charIndex];
-      charIndex++;
-    } else {
-      // Text complete, show continue button
-      clearInterval(typingInterval);
-      continueBtn.style.display = 'block';
+
+  let typingInterval;
+
+  // Function to start typing the current storyline step
+  function typeStoryline() {
+    typingInterval = setInterval(() => {
+      if (charIndex < storylineText[storyStep].length) {
+        currentParagraph.textContent += storylineText[storyStep][charIndex];
+        charIndex++;
+      } else {
+        // Text complete, show continue button
+        clearInterval(typingInterval);
+        continueBtn.style.display = 'block';
+      }
+    }, 50);
+  }
+
+  // Function to skip typing and show the full text instantly
+  function skipTyping() {
+    clearInterval(typingInterval); // Stop the typing animation
+    currentParagraph.textContent = storylineText[storyStep]; // Show the full text
+    continueBtn.style.display = 'block'; // Show the continue button
+  }
+
+  // Start typing the first storyline step
+  typeStoryline();
+
+  // Add event listener to skip typing when the spacebar is pressed
+  document.addEventListener('keydown', (event) => {
+    if (event.code === 'Space') {
+      event.preventDefault(); // Prevent default spacebar behavior (e.g., scrolling)
+      skipTyping();
     }
-  }, 50);
-  
+  });
+
   continueBtn.addEventListener('click', () => {
     storyStep++;
-    
+
     if (storyStep < storylineText.length) {
-      // Move to next story step
+      // Move to the next story step
       document.getElementById('story-title').textContent = storyTitles[storyStep];
       storyText.innerHTML = '';
       currentParagraph = document.createElement('p');
       storyText.appendChild(currentParagraph);
       charIndex = 0;
       continueBtn.style.display = 'none';
-      
-      const nextTypingInterval = setInterval(() => {
-        if (charIndex < storylineText[storyStep].length) {
-          currentParagraph.textContent += storylineText[storyStep][charIndex];
-          charIndex++;
-        } else {
-          // Text complete, show continue button
-          clearInterval(nextTypingInterval);
-          continueBtn.style.display = 'block';
-        }
-      }, 50);
+
+      typeStoryline(); // Start typing the next storyline step
     } else {
       // Move to instructions
       storyContainer.style.display = 'none';
       instructionsPopup.style.display = 'block';
     }
   });
-
 }

@@ -434,7 +434,7 @@ function checkLifes(){
     
     // Redirect to the new page after 5 seconds
     setTimeout(() => {
-      window.location.href = "https://www.criticalflix.com/handover.html?challengeCompleted=true"; // Replace with the actual URL you want to redirect to
+      window.location.href = "../../handover.html?challengeCompleted=true";
     }, 5000); // 5000 milliseconds = 5 seconds
   }
 }

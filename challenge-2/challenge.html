@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../common/css/mobile-instructions.css">
+  <link rel="stylesheet" href="../common/css/leaderboard.css">
   <link rel="stylesheet" href="./css/player-selector.css">
   <link rel="stylesheet" href="./css/challenge.css">
   <link rel="stylesheet" href="./css/elimination.css">
@@ -194,27 +195,29 @@
         </div>
       </div>
 
-        <!-- Game completion popup -->
+      <!-- Game completion popup -->
       <div id="game-completion">
         <h2>Next Game Unlocked!</h2>
         <p>You have successfully completed this challenge and unlocked the next game.</p>
         <p>Will attempt to include it next week!</p>
         <div class="buttons">
-          <button id="home-button" class="sound-efx"><a href="https://www.criticalflix.com/handover.html?challengeCompleted=true" class="buttons-link">Return to Base</a></button>
+          <button id="home-button" class="sound-efx"><a href="../../handover.html?challengeCompleted=true" class="buttons-link">Return to Base</a></button>
           <button id="challenge-leaderboard" class="sound-efx">Scoreboard</button>
         </div>
       </div>
     </div>
 
-    <script src="../../common/js/audio.js"></script>
     <script src="./js/players-list.js"></script>
     <script src="./js/storyline.js"></script> <!-- It must load before challenge.js to use its functions -->
     <script src="./js/player-selector.js"></script>
     <script src="./js/instructions.js"></script>
     <script src="./js/intro.js"></script>
     <!--<script src="./../common/js/firebaseConfig.js" type="module"></script>-->
-    <script src="./js/challenge.js" type="module"></script>></script>
+    <script src="./js/challenge.js" type="module"></script>
     <script src="./js/victory.js"></script>
+    <script src="../../common/js/leaderboard.js" type="module"></script>
     <script src="../../common/js/mobile-message.js"></script>
-</body>
+    <script src="../../common/js/audio.js"></script>
+
+  </body>
 </html>
