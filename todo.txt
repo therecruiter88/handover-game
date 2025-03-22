@@ -1,11 +1,11 @@
-No scoreboard, ao sair e voltar a entrar, fazer scroll ao inicio novamente
+> Implementar scoreboard no final do challenge
 
 > Rever codigo comum e retirar inutilizado (especialmente o do challenge-1)
  > guardar na bd
  > player selector (css, js, etc)
- 
-> Implementar scoreboard no final do challenge
 
+> Incluir challenge-3 depois de corrigido
+ 
 > Fit content on huge screens or when dev tools is opened
 
 > Corrigir quando perdemos no challenge-1 e no retry o player começa a andar ou fica bloqueado

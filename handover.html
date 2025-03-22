@@ -8,12 +8,12 @@
         <link rel="icon" href="./assets/favicon/icon.png" type="image/x-icon">
         <link rel="stylesheet" href="./css/handover.css">
         <link rel="stylesheet" href="./common/css/mobile-instructions.css">
+        <link rel="stylesheet" href="./common/css/leaderboard.css">
         <link rel="stylesheet" href="./css/breaking-news.css">
         <link rel="stylesheet" href="./css/countdown-timer.css">
         <link rel="stylesheet" href="./css/players-list.css">
         <link rel="stylesheet" href="./css/music.css">
         <link rel="stylesheet" href="./css/game-challenges.css">
-        <link rel="stylesheet" href="./css/leaderboard.css">
         <link rel="stylesheet" href="./pink-soldier/css/soldier.css">
         <link rel="stylesheet" href="./bomb/css/bomb.css">
         <script type="importmap">
@@ -111,24 +111,6 @@
             </div>
         </div>
 
-        <!-- Leaderboard popup -->
-        <div id="leaderboard-panel" class="leaderboard-panel">
-            <h3 class="leaderboard-title">Leaderboard</h3>
-
-            <!-- Tabs for each challenge -->
-            <div id="leaderboard-tabs" class="leaderboard-tabs">
-                <button id="leaderboard-tab-button" class="tab-button active sound-efx" data-tab="total">Total</button>
-                <button id="leaderboard-tab-button" class="tab-button sound-efx" data-tab="challenge-1">Challenge 1</button>
-                <button id="leaderboard-tab-button" class="tab-button sound-efx" data-tab="challenge-2">Challenge 2</button>
-                <!--<button id="leaderboard-tab-button" class="tab-button sound-efx" data-tab="challenge-3">Challenge 3</button>-->
-                <!--<button id="leaderboard-tab-button" class="tab-button sound-efx" data-tab="challenge-4">Challenge 4</button>-->
-                <!--<button id="leaderboard-tab-button" class="tab-button sound-efx" data-tab="challenge-5">Challenge 5</button>-->
-            </div>
-
-            <!-- Leaderboard Table -->
-            <table id="leaderboard-table" class="leaderboard-table"></table>
-        </div>
-
         <div id="bomb-container" class="hidden">
             <img id="bomb" src="./bomb/assets/img/bomb.png" alt="Bomb" class="sound-efx">
             <div id="countdown">10</div>
@@ -144,17 +126,17 @@
     </div>
 
     <script src="./common/js/audio.js"></script>
+    <script src="./common/js/common.js"></script>
+    <script src="./common/js/leaderboard.js" type="module"></script>
+    <script src="./common/js/mobile-message.js"></script>
     <script src="./js/players_discharged.js"></script>
     <script src="./js/obfuscator-audio.js"></script>
     <script src="./js/feature-toggles.js"></script>
     <script src="./pink-soldier/js/soldier.js"></script>
-    <script src="./js/leaderboard.js" type="module"></script>
-    <script src="./js/common.js"></script>
     <script src="./js/handover.js"></script>    
     <script src="./js/game-challenges.js"></script>
     <script src="./bomb/js/explosion.js" type="module"></script>
     <script src="./bomb/js/obfuscator-audio.js"></script>
     <script src="./bomb/js/bomb.js"></script>
-    <script src="./common/js/mobile-message.js"></script>
 </body>
 </html>

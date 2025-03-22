@@ -15,7 +15,7 @@ function showMobileMessage() {
             .then(response => response.text())
             .then(data => {
                 mobileMessageContainer.innerHTML = data;
-                document.body.prepend(mobileMessageContainer); // Add as the first child of <body>
+                document.body.prepend(mobileMessageContainer); // Add as the first last of <body>
             })
             .catch(error => console.error("Error loading mobile message:", error));
         if (contentElement) contentElement.classList.add('hidden');

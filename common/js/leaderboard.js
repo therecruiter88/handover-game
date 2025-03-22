@@ -1,9 +1,52 @@
-import { database, ref, get } from '../common/js/firebaseConfig.js';
+import { database, ref, get } from '/common/js/firebaseConfig.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Check if the URL ends with "challenge.html"
+    if (window.location.pathname.endsWith("challenge.html")) {
+        console.log("Challenge window detected. Waiting for the button to appear...");
+
+        const maxWaitTime = 10000; // Maximum wait time in milliseconds (10 seconds)
+        const startTime = Date.now();
+
+        const interval = setInterval(() => {
+            const scoreboardTrigger = document.getElementById('challenge-leaderboard');
+
+            if (scoreboardTrigger && scoreboardTrigger.offsetParent !== null) {
+                clearInterval(interval); // Stop checking once the button is visible
+                fetchLeaderboardHTML();
+            }
+        }, 1000); // Check every 500ms
+    } else {
+        fetchLeaderboardHTML();
+    }
+});
+
+    function fetchLeaderboardHTML() {
+        fetch("/common/html/leaderboard.html")
+            .then(response => response.text())
+            .then(data => {
+                const leaderboardContainer = document.createElement("div");
+                leaderboardContainer.innerHTML = data;
+    
+                // Find the first <div> inside the <body>
+                const firstDiv = document.querySelector("body > div");
+    
+                if (firstDiv) {
+                    // Append the leaderboardContainer as the last child of the first <div>
+                    firstDiv.appendChild(leaderboardContainer);
+                    loadLeaderBoard();
+                } else {
+                    console.error("No <div> found inside <body> to inject the leaderboard.");
+                }
+            })
+            .catch(error => console.error("Error loading leaderboard:", error));
+    }
+
+function loadLeaderBoard() {
     const scoreboardTrigger = document.getElementById('challenge-leaderboard');
-    const leaderboardPanel = document.getElementById('leaderboard-panel');
-    const leaderboardTable = document.getElementById('leaderboard-table');
+    let leaderboardPanel = document.getElementById('leaderboard-panel');
+    let leaderboardTable = document.getElementById('leaderboard-table');
     const overlay = document.createElement('div');
     overlay.classList.add('overlay');
     document.body.appendChild(overlay);
@@ -111,6 +154,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     
+        // Check if leaderboardTable exists before replacing its children
+        if (!leaderboardTable) {
+            leaderboardTable = document.getElementById('leaderboard-table');
+        }
+
         leaderboardTable.replaceChildren(...tempTable.children);
     }    
 
@@ -118,6 +166,11 @@ document.addEventListener('DOMContentLoaded', () => {
     scoreboardTrigger.addEventListener('click', (event) => {
         event.stopPropagation();
         isPanelVisible = !isPanelVisible;
+
+        if (!leaderboardPanel) {
+            leaderboardPanel = document.getElementById('leaderboard-panel');
+        }
+
         leaderboardPanel.style.display = isPanelVisible ? "block" : "none";
         overlay.style.display = isPanelVisible ? "block" : "none";
 
@@ -158,4 +211,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Generate the leaderboard for the "Total Score" tab initially
     generateLeaderboard('total');
-});
+}

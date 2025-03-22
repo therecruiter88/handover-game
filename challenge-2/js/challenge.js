@@ -10,7 +10,6 @@ const playerSelector = document.getElementById('player-selector');
 const startGameBtn = document.getElementById('start-game');
 const celebration = document.getElementById('celebration');
 const gameCompletion = document.getElementById('game-completion');
-const scoreboardButton = document.getElementById('scoreboard-button');
 const retryButton = document.getElementById('retry-button');
 const doll = document.getElementById('doll');
 const gameOver = document.getElementById('game-over');
@@ -538,10 +537,6 @@ retryButton.addEventListener('click', () => {
 
   // Restart game
   startGame();
-});
-
-scoreboardButton.addEventListener('click', () => {
-  alert('Not implemented yet! Will implement later, maybe...\nFor now just "Return to Base" and access the scoreboard throught circle icon.');
 });
 
 function calculateScore(timeLeft) {

@@ -10,7 +10,6 @@ const startGameBtn = document.getElementById('start-game');
 const celebration = document.getElementById('celebration');
 const gameOver = document.getElementById('game-over');
 const gameCompletion = document.getElementById('game-completion');
-const scoreboardButton = document.getElementById('scoreboard-button');
 const retryButton = document.getElementById('retry-button');
 
 const hearts = [
@@ -508,10 +507,6 @@ retryButton.addEventListener('click', () => {
   
   // Restart game
   startGame();
-});
-
-scoreboardButton.addEventListener('click', () => {
-  alert('Not implemented yet! Will implement later, maybe...\nFor now just "Return to Base" and access the scoreboard throught circle icon.');
 });
 
 // Function to update the player's score and bestScore in Firebase
