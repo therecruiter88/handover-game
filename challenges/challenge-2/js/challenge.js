@@ -1,4 +1,4 @@
-import { database, ref, get, set } from '../../common/js/firebaseConfig.js';
+import { database, ref, get, set } from '/common/js/firebaseConfig.js';
 
 const playerNumberInput = document.getElementById('player-number');
 const beginChallengeBtn = document.getElementById('begin-challenge');
@@ -11,17 +11,20 @@ const startGameBtn = document.getElementById('start-game');
 const celebration = document.getElementById('celebration');
 const gameCompletion = document.getElementById('game-completion');
 const retryButton = document.getElementById('retry-button');
+const homeButton = document.getElementById('home-button');
+
 const doll = document.getElementById('doll');
 const gameOver = document.getElementById('game-over');
 const finishLine = document.getElementById('finish-line');
 
 // Sound elements
 //const typingSound = document.getElementById('typing-sound');
-const countdownFastSound = document.getElementById('countdown-fast-sound');
+const gameStartSound = document.getElementById('game-start-sound');
 const countdownSound = document.getElementById('countdown-sound');
+const countdownFastSound = document.getElementById('countdown-fast-sound');
 const eliminationSound = document.getElementById('elimination-sound');
 const victorySound = document.getElementById('victory-sound');
-const gameStartSound = document.getElementById('game-start-sound');
+
 //const dollSound = document.getElementById('doll-song');
 const redLightSound = document.getElementById('red-light-sound');
 const greenLightSound = document.getElementById('green-light-sound');
@@ -449,10 +452,10 @@ function createBloodEffect() {
 function updateHeartsDisplay() {
   for (let i = 0; i < hearts.length; i++) {
     if (i < lives) {
-      hearts[i].src = './assets/img/heart_full.png'; // Full heart
+      hearts[i].src = './../../challenges/common/assets/img/heart_full.png';
       hearts[i].alt = 'Full Heart';
     } else {
-      hearts[i].src = './assets/img/heart_empty.png'; // Empty heart
+      hearts[i].src = './../../challenges/common/assets/img/heart_empty.png';
       hearts[i].alt = 'Empty Heart';
     }
   }
@@ -471,7 +474,7 @@ function checkLifes(){
     
     // Redirect to the new page after 5 seconds
     setTimeout(() => {
-      window.location.href = "../../handover.html?challengeCompleted=true"; // Replace with the actual URL you want to redirect to
+      window.location.href = "../../../handover.html?challengeCompleted=true"; // Replace with the actual URL you want to redirect to
     }, 5000); // 5000 milliseconds = 5 seconds
   }
 }
@@ -537,6 +540,10 @@ retryButton.addEventListener('click', () => {
 
   // Restart game
   startGame();
+});
+
+homeButton.addEventListener('click', () => {
+  window.location.href = '/handover.html?challengeCompleted=true';
 });
 
 function calculateScore(timeLeft) {

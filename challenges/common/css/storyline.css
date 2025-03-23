@@ -31,10 +31,10 @@
 }
 #story-text {
     max-width: 100%;
-    font-size: 15px;
+    font-size: var(--story-text-font-size, 15px); /* Default font-size */
     line-height: 1.6;
     text-align: justify;
-    height: 210px;
+    height: var(--story-text-height, 210px); /* Default height */
     overflow-y: hidden;
 }
 #story-text p {

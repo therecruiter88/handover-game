@@ -1,0 +1,36 @@
+#player.challenge-1 {
+    width: 60px;
+    height: 80px;
+    left: 50%;
+    transform: translateX(-30px);
+}
+#score-display {
+    position: absolute;
+    top: 10px;
+    display: block;
+    right: 10px;
+    color: #ffccd5;
+    font-size: 24px;
+    font-weight: bold;
+}
+.bullet {
+    width: 5px;
+    height: 15px;
+    background-color: yellow;
+    position: absolute;
+    border-radius: 2px;
+}
+.target {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10; /* Make sure targets appear above other elements */
+}
+.target img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

@@ -5,17 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Handover Game</title>
         <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-        <link rel="icon" href="./assets/favicon/icon.png" type="image/x-icon">
-        <link rel="stylesheet" href="./css/handover.css">
-        <link rel="stylesheet" href="./common/css/mobile-instructions.css">
-        <link rel="stylesheet" href="./common/css/leaderboard.css">
-        <link rel="stylesheet" href="./css/breaking-news.css">
-        <link rel="stylesheet" href="./css/countdown-timer.css">
-        <link rel="stylesheet" href="./css/players-list.css">
-        <link rel="stylesheet" href="./css/music.css">
-        <link rel="stylesheet" href="./css/game-challenges.css">
-        <link rel="stylesheet" href="./pink-soldier/css/soldier.css">
-        <link rel="stylesheet" href="./bomb/css/bomb.css">
+        <link rel="stylesheet" href="/css/handover.css">
+        <link rel="stylesheet" href="/common/css/mobile-instructions.css">
+        <link rel="stylesheet" href="/common/css/leaderboard.css">
+        <link rel="stylesheet" href="/css/breaking-news.css">
+        <link rel="stylesheet" href="/css/countdown-timer.css">
+        <link rel="stylesheet" href="/css/players-list.css">
+        <link rel="stylesheet" href="/css/music.css">
+        <link rel="stylesheet" href="/css/game-challenges.css">
+        <link rel="stylesheet" href="/pink-soldier/css/soldier.css">
+        <link rel="stylesheet" href="/bomb/css/bomb.css">
+        <link rel="icon" href="/common/assets/favicon/icon.png" type="image/x-icon">
         <script type="importmap">
             {
                       "imports": {
@@ -28,7 +28,7 @@
 <body>
     <!-- Audio imports -->
     <audio id="background-music" autoplay loop>
-        <source src="./assets/audio/sg_theme_song.mp3" type="audio/mp3">
+        <source src="/assets/audio/sg_theme_song.mp3" type="audio/mp3">
     </audio>
 
     <div id="content">
@@ -102,22 +102,22 @@
         <!-- Challenges selector -->
         <div id="fab-container" class="fab">
             <button id="fab-button" class="fab-btn sound-efx">
-                <img id="fab-image" src="./assets/img/circle_face.png" alt="Challenges selector" />
+                <img id="fab-image" src="/assets/img/circle_face.png" alt="Challenges selector" />
             </button>
             <div id="challenge-list" class="challenge-list">
-                <div id="challenge-1" class="challenge-item sound-efx" data-url="./challenge-1/challenge.html" alt="The Pineapple Pizza Invasion">Challenge 1</div>
-                <div id="challenge-2" class="challenge-item sound-efx" data-url="./challenge-2/challenge.html" alt="Red Light, Green Light">Challenge 2</div>
+                <div id="challenge-1" class="challenge-item sound-efx" data-url="/challenges/challenge-1/challenge.html" alt="The Pineapple Pizza Invasion">Challenge 1</div>
+                <div id="challenge-2" class="challenge-item sound-efx" data-url="/challenges/challenge-2/challenge.html" alt="Red Light, Green Light">Challenge 2</div>
                 <div id="challenge-leaderboard" class="challenge-item-leaderboard sound-efx" alt="Scoreboard">Scoreboard</div>
             </div>
         </div>
 
         <div id="bomb-container" class="hidden">
-            <img id="bomb" src="./bomb/assets/img/bomb.png" alt="Bomb" class="sound-efx">
+            <img id="bomb" src="/bomb/assets/img/bomb.png" alt="Bomb" class="sound-efx">
             <div id="countdown">10</div>
         </div>
 
-        <audio id="countdown-sound" src="./bomb/assets/audio/countdown-10.mp3"></audio>
-        <audio id="explosion-sound" src="./bomb/assets/audio/explosion.mp3"></audio>
+        <audio id="countdown-sound" src="/bomb/assets/audio/countdown-10.mp3"></audio>
+        <audio id="explosion-sound" src="/bomb/assets/audio/explosion.mp3"></audio>
 
         <canvas id="three-canvas" class="hidden"></canvas>
         <div id="container">
@@ -125,18 +125,18 @@
         </div>
     </div>
 
-    <script src="./common/js/audio.js"></script>
-    <script src="./common/js/common.js"></script>
-    <script src="./common/js/leaderboard.js" type="module"></script>
-    <script src="./common/js/mobile-message.js"></script>
-    <script src="./js/players_discharged.js"></script>
-    <script src="./js/obfuscator-audio.js"></script>
-    <script src="./js/feature-toggles.js"></script>
-    <script src="./pink-soldier/js/soldier.js"></script>
-    <script src="./js/handover.js"></script>    
-    <script src="./js/game-challenges.js"></script>
-    <script src="./bomb/js/explosion.js" type="module"></script>
-    <script src="./bomb/js/obfuscator-audio.js"></script>
-    <script src="./bomb/js/bomb.js"></script>
+    <script src="/common/js/audio.js"></script>
+    <script src="/common/js/common.js"></script>
+    <script src="/common/js/leaderboard.js" type="module"></script>
+    <script src="/common/js/mobile-message.js"></script>
+    <script src="/js/players_discharged.js"></script>
+    <script src="/js/obfuscator-audio.js"></script>
+    <script src="/js/feature-toggles.js"></script>
+    <script src="/pink-soldier/js/soldier.js"></script>
+    <script src="/js/handover.js"></script>    
+    <script src="/js/game-challenges.js"></script>
+    <script src="/bomb/js/explosion.js" type="module"></script>
+    <script src="/bomb/js/obfuscator-audio.js"></script>
+    <script src="/bomb/js/bomb.js"></script>
 </body>
 </html>

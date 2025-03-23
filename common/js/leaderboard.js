@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Check if the URL ends with "challenge.html"
     if (window.location.pathname.endsWith("challenge.html")) {
-        console.log("Challenge window detected. Waiting for the button to appear...");
+        //console.log("Challenge window detected. Waiting for Scoreboard button to be displayed...");
 
         const maxWaitTime = 10000; // Maximum wait time in milliseconds (10 seconds)
         const startTime = Date.now();

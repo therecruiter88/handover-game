@@ -4,16 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../common/css/mobile-instructions.css">
-  <link rel="stylesheet" href="../common/css/leaderboard.css">
-  <link rel="stylesheet" href="./css/player-selector.css">
-  <link rel="stylesheet" href="./css/challenge.css">
-  <link rel="stylesheet" href="./css/elimination.css">
-  <link rel="stylesheet" href="./css/intro.css">
-  <link rel="stylesheet" href="./css/instructions.css">
+  <link rel="stylesheet" href="/common/css/mobile-instructions.css">
+  <link rel="stylesheet" href="/common/css/leaderboard.css">
+  <link rel="stylesheet" href="/challenges/common/css/storyline.css">
+  <link rel="stylesheet" href="/challenges/common/css/player-selector.css">
+  <link rel="stylesheet" href="/challenges/common/css/elimination.css">
+  <link rel="stylesheet" href="/challenges/common/css/intro.css">
+  <link rel="stylesheet" href="/challenges/common/css/instructions.css">
+  <link rel="stylesheet" href="/challenges/common/css/victory.css">
+  <link rel="stylesheet" href="/challenges/common/css/challenge.css">
   <link rel="stylesheet" href="./css/storyline.css">
-  <link rel="stylesheet" href="./css/victory.css">
-  <link rel="icon" href="../assets/favicon/icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="./css/challenge.css">
+  <link rel="icon" href="/common/assets/favicon/icon.png" type="image/x-icon">
 </head>
 <body>
 
@@ -42,16 +44,16 @@
       <source src="https://assets.mixkit.co/active_storage/sfx/212/212-preview.mp3" type="audio/mpeg">
     </audio>
     
-    <audio id="laser-sound" preload="auto">
-      <source src="./assets/audio/laser_beam_efx.mp3" type="audio/mp3">
-    </audio>
-    
     <audio id="elimination-sound" preload="auto">
       <source src="https://assets.mixkit.co/active_storage/sfx/218/218-preview.mp3" type="audio/mpeg">
     </audio>
     
     <audio id="victory-sound" preload="auto">
-      <source src="./assets/audio/victory.mp3" type="audio/mp3">
+      <source src="/challenges/common/assets/audio/victory.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="laser-sound" preload="auto">
+      <source src="./assets/audio/laser_beam_efx.mp3" type="audio/mp3">
     </audio>
 
     <div id="content">
@@ -127,7 +129,7 @@
       </div>
       
       <div id="game-container">
-        <div id="player">
+        <div id="player" class="challenge-1">
           <svg width="60" height="80" viewBox="0 0 60 80">
             <!-- Squid Game Soldier -->
             <rect x="15" y="10" width="30" height="40" fill="#ff0066" />
@@ -138,9 +140,9 @@
         </div>
         <div id="score-display">Score: 0</div>
         <div class="hearts-container">
-          <img class="heart" id="heart1" src="./assets/img/heart_full.png" alt="Full Heart">
-          <img class="heart" id="heart2" src="./assets/img/heart_full.png" alt="Full Heart">
-          <img class="heart" id="heart3" src="./assets/img/heart_full.png" alt="Full Heart">
+          <img class="heart" id="heart1" src="./../common/assets/img/heart_full.png" alt="Full Heart">
+          <img class="heart" id="heart2" src="./../common/assets/img/heart_full.png" alt="Full Heart">
+          <img class="heart" id="heart3" src="./../common/assets/img/heart_full.png" alt="Full Heart">
         </div>
         <div id="timer-display">Time: 30</div>
         
@@ -166,7 +168,7 @@
         <p>You have successfully completed this challenge and unlocked the next game.</p>
         <p>Will attempt to include it next week!</p>
         <div class="buttons">
-          <button id="home-button" class="sound-efx"><a href="../../handover.html?challengeCompleted=true" class="buttons-link">Return to Base</a></button>
+          <button id="home-button" class="sound-efx">Return to Base</button>
           <button id="challenge-leaderboard" class="sound-efx">Scoreboard</button>
         </div>
       </div>
@@ -181,8 +183,8 @@
     <!--<script src="./../common/js/firebaseConfig.js" type="module"></script>-->
     <script src="./js/challenge.js" type="module"></script>
     <script src="./js/victory.js"></script>
-    <script src="../../common/js/leaderboard.js" type="module"></script>
-    <script src="../../common/js/mobile-message.js"></script>
-    <script src="../../common/js/audio.js"></script>
+    <script src="./../../common/js/leaderboard.js" type="module"></script>
+    <script src="./../../common/js/mobile-message.js"></script>
+    <script src="./../../common/js/audio.js"></script>
   </body>
 </html>

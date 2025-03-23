@@ -27,8 +27,8 @@ body {
     overflow: visible;
     padding-bottom: 20px;
     width: 100%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Optional: for better contrast */
-    max-height: 400px; /* Ensure it has a height large enough to allow space for the dropdown */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    max-height: 400px;
 }
 /* Player number input section */
 #player-name-prompt h2 {
@@ -36,13 +36,11 @@ body {
     margin-top: 0;
     font-size: 16px;
 } 
-/* Ensuring the elements are stacked vertically in the same column */
 #player-name-prompt {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-/* Style for select dropdown */
 #player-number {
     background-color: #333;
     color: #fff;
@@ -55,14 +53,14 @@ body {
     border: none;
     cursor: pointer;
     bottom: auto;
-    appearance: none; /* Remove default arrow */
-    -webkit-appearance: none; /* For Safari */
-    -moz-appearance: none; /* For Firefox */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
     background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
     background-repeat: no-repeat;
     background-position-x: 95%;
     background-position-y: 50%;
-    padding-right: 2em; /* Add space for the arrow */
+    padding-right: 2em;
 }
 #player-number:focus {
     outline: none;
@@ -83,7 +81,8 @@ select {
     border: none;
     font-family: 'Press Start 2P', cursive;
     text-align: center;
-    font-size: 10px
+    font-size: 10px;
+    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
 }
 #player-name-prompt button {
     background-color: #EB257A;
@@ -115,12 +114,8 @@ select {
     display: none;
 }
 #player {
-    width: 60px;
-    height: 80px;
     position: absolute;
     bottom: 20px;
-    left: 50%;
-    transform: translateX(-30px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -155,27 +150,6 @@ select {
     color: white;
     font-size: 24px;
     font-weight: bold;
-}
-.bullet {
-    width: 5px;
-    height: 15px;
-    background-color: yellow;
-    position: absolute;
-    border-radius: 2px;
-}
-.target {
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10; /* Make sure targets appear above other elements */
-}
-.target img {
-    width: 100%;  /* Ensure the image fits within the target container */
-    height: 100%; /* Ensure the image fits within the target container */
-    object-fit: cover; /* Ensure the pizza image covers the container */
 }
 .buttons-link {
     color: white;

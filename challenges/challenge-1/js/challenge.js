@@ -1,4 +1,4 @@
-import { database, ref, get, set } from '../../common/js/firebaseConfig.js';
+import { database, ref, get, set } from '/common/js/firebaseConfig.js';
 
 const playerNumberInput = document.getElementById('player-number');
 const beginChallengeBtn = document.getElementById('begin-challenge');
@@ -11,6 +11,7 @@ const celebration = document.getElementById('celebration');
 const gameOver = document.getElementById('game-over');
 const gameCompletion = document.getElementById('game-completion');
 const retryButton = document.getElementById('retry-button');
+const homeButton = document.getElementById('home-button');
 
 const hearts = [
   document.getElementById('heart1'),
@@ -19,13 +20,14 @@ const hearts = [
 ];
 
 // Sound elements
-const victorySound = document.getElementById('victory-sound');
 //const typingSound = document.getElementById('typing-sound');
 const gameStartSound = document.getElementById('game-start-sound');
 const countdownSound = document.getElementById('countdown-sound');
 const countdownFastSound = document.getElementById('countdown-fast-sound');
-const laserSound = document.getElementById('laser-sound');
 const eliminationSound = document.getElementById('elimination-sound');
+const victorySound = document.getElementById('victory-sound');
+
+const laserSound = document.getElementById('laser-sound');
 
 // Game variables
 let playerPosition = 270;
@@ -413,10 +415,10 @@ function createHitEffect(x, y) {
 function updateHeartsDisplay() {
   for (let i = 0; i < hearts.length; i++) {
     if (i < lives) {
-      hearts[i].src = './assets/img/heart_full.png'; // Full heart
+      hearts[i].src = './../../challenges/common/assets/img/heart_full.png';
       hearts[i].alt = 'Full Heart';
     } else {
-      hearts[i].src = './assets/img/heart_empty.png'; // Empty heart
+      hearts[i].src = './../../challenges/common/assets/img/heart_empty.png';
       hearts[i].alt = 'Empty Heart';
     }
   }
@@ -434,7 +436,7 @@ function checkLifes(){
     
     // Redirect to the new page after 5 seconds
     setTimeout(() => {
-      window.location.href = "../../handover.html?challengeCompleted=true";
+      window.location.href = "../../../handover.html?challengeCompleted=true";
     }, 5000); // 5000 milliseconds = 5 seconds
   }
 }
@@ -507,6 +509,10 @@ retryButton.addEventListener('click', () => {
   
   // Restart game
   startGame();
+});
+
+homeButton.addEventListener('click', () => {
+  window.location.href = '/handover.html?challengeCompleted=true';
 });
 
 // Function to update the player's score and bestScore in Firebase
