@@ -1,4 +1,13 @@
 import { database, ref, get, set } from '/common/js/firebaseConfig.js';
+import { startIntro } from '/challenges/common/js/storyline.js';
+
+const storyTitles = ["Storyline", "Challenge"];
+
+// Story text
+const storylineText = [
+  "Today was meant to be a simple farewell pizza party for Player 297. But something went horribly wrong. Dark forces have unleashed an unstoppable plague of pineapple pizzas, threatening to take over the planet and ruining the party...",
+  "What was once a celebration has become a mission, a battle for survival. To save Player 297 farewell party and stop the invasion, you must destroy every mutant pizza before it's too late! You have 30 seconds to do it, so...good luck...i guess..."
+];
 
 const playerNumberInput = document.getElementById('player-number');
 const beginChallengeBtn = document.getElementById('begin-challenge');
@@ -86,14 +95,15 @@ beginChallengeBtn.addEventListener('click', () => {
     return;
   }
 
-  // Proceed with the challenge...
   setTimeout(() => {
-    // Start the intro
-    startIntro();
+    // Start the intro and storyline
+    startIntro(storylineText, storyTitles);
   }, 500);
 });
 
 startGameBtn.addEventListener('click', () => {
+  const storylineSound = document.getElementById('storyline-sound');
+  
   const fadeAudio = setInterval(() => {
     if (storylineSound.volume > 0.1) {
       storylineSound.volume -= 0.1;

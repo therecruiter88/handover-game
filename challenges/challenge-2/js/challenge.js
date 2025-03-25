@@ -1,4 +1,13 @@
 import { database, ref, get, set } from '/common/js/firebaseConfig.js';
+import { startIntro } from '/challenges/common/js/storyline.js';
+
+const storyTitles = ["Storyline", "Challenge"];
+
+// Story text
+const storylineText = [
+  "The handover was going fine for Player 136...until VIC went rogue, rejecting every processing without reason, RabbitMQ clogged, messages stuck in a purgatory of retries, and the Pipeline Guardian activated its failsafe: the Compliance Sentinel! Armed with precision lasers, it is ready to decommision any player out of sync!",
+  "Advance through the pipeline when processing is allowed to distribute the hotfix correctly and end this madness. Stop when a validation check is in progress. Any unauthorized movement will trigger an immediate rollback...and termination. Reach the end before the time runs out, or be stuck in the handover phase forever! Will you do it in 45 seconds?!"
+];
 
 const playerNumberInput = document.getElementById('player-number');
 const beginChallengeBtn = document.getElementById('begin-challenge');
@@ -95,14 +104,15 @@ beginChallengeBtn.addEventListener('click', () => {
     return;
   }
 
-  // Proceed with the challenge...
   setTimeout(() => {
-    // Start the intro
-    startIntro();
+    // Start the intro and storyline
+    startIntro(storylineText, storyTitles);
   }, 500);
 });
 
 startGameBtn.addEventListener('click', () => {
+  const storylineSound = document.getElementById('storyline-sound');
+  
   const fadeAudio = setInterval(() => {
     if (storylineSound.volume > 0.1) {
       storylineSound.volume -= 0.1;

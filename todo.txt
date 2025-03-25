@@ -1,9 +1,11 @@
-> Rever codigo comum e retirar inutilizado (especialmente o do challenge-1)
- > guardar na bd
- > player selector (css, js, etc)
+> Review common code and remove unused code from challenges, etc
+ > js files
+ > refactor modular code
+ > store to bd, get scores, etc
 
-> Incluir challenge-3 depois de corrigido
+> Include challenge-3 after improved
  
 > Fit content on huge screens or when dev tools is opened
 
-> Corrigir quando perdemos no challenge-1 e no retry o player começa a andar ou fica bloqueado
+> Fix bug on challenge-1 when retrying and player stucks
+> Fix bug on challenge-2 when retrying, the overlay is displayed several times
