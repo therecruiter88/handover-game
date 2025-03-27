@@ -1,5 +1,6 @@
+In comparison with challhenge.js of challenge-2 folder, what are all the tasks I can perform to modularize the code and be able to re-use it?
+
 > Review common code and remove unused code from challenges, etc
- > js files
  > refactor modular code
  > store to bd, get scores, etc
 

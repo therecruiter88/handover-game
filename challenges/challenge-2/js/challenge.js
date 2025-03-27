@@ -1,5 +1,6 @@
-import { database, ref, get, set } from '/common/js/firebaseConfig.js';
 import { startIntro } from '/challenges/common/js/storyline.js';
+import { isPlayerNumberValid } from '/challenges/common/js/player-validation.js';
+import { saveScoreToDatabase } from '/challenges/common/js/score-manager.js';
 
 const storyTitles = ["Storyline", "Challenge"];
 
@@ -96,10 +97,7 @@ playerNumberInput.addEventListener('input', () => {
 beginChallengeBtn.addEventListener('click', () => {
   const selectedPlayerNumber = playerNumberSelect.value;
 
-  // Ensure the selected player number is from the dropdown list
-  const validPlayers = ["001", "002", "016", "018", "019", "023", "026", "051", "054", "057", "065", "068", "077", "107", "120", "130", "135", "136", "141", "182", "183", "186", "187", "188", "194", "221", "222", "226", "229", "232", "243", "273", "278", "286", "287", "297", "301", "339", "343"];
-
-  if (!validPlayers.includes(selectedPlayerNumber)) {
+  if (!isPlayerNumberValid(selectedPlayerNumber)) {
     alert("Invalid player number! You're trying to mess up the scoreboard... xD");
     return;
   }
@@ -484,7 +482,7 @@ function checkLifes(){
     
     // Redirect to the new page after 5 seconds
     setTimeout(() => {
-      window.location.href = "../../../handover.html?challengeCompleted=true"; // Replace with the actual URL you want to redirect to
+      window.location.href = "/handover.html?challengeCompleted=true"; // Replace with the actual URL you want to redirect to
     }, 5000); // 5000 milliseconds = 5 seconds
   }
 }
@@ -565,49 +563,4 @@ function calculateScore(timeLeft) {
 
   // If timeLeft is 0, score is 0
   return 0;
-}
-
-// Function to update the player's score and bestScore in Firebase
-function saveScoreToDatabase(playerNumber, score, challengeName) {
-  const playerId = `player${playerNumber.padStart(3, '0')}`;
-  const playerName = `Player ${playerNumber}`;
-  const playerRef = ref(database, `leaderboards/${challengeName}/${playerId}`);
-
-  console.log(`Saving score to database: Player ID: ${playerId}, Player Name: ${playerName}, Challenge Name: ${challengeName}`);
-
-  // Retrieve current player data from Firebase
-  get(playerRef).then((snapshot) => {
-      if (snapshot.exists()) {
-          const playerData = snapshot.val();
-          const bestScore = playerData.bestScore || 0; // Default to 0 if not set
-
-          // Determine if bestScore should be updated
-          const newBestScore = score > bestScore ? score : bestScore;
-
-          // Update the score and bestScore if necessary
-          set(playerRef, {
-              player: playerName,
-              score: score,
-              bestScore: newBestScore
-          }).then(() => {
-              console.log(`Player "${playerName}" score updated to ${score}, best score is ${newBestScore}`);
-          }).catch((error) => {
-              console.error("Error updating score:", error);
-          });
-
-      } else {
-          // If player doesn't exist, create a new player with initial bestScore
-          set(playerRef, {
-              player: playerName,
-              score: score,
-              bestScore: score
-          }).then(() => {
-              console.log(`New player "${playerName}" created with score ${score} and bestScore ${score}`);
-          }).catch((error) => {
-              console.error(`Error creating new player "${playerName}":`, error);
-          });
-      }
-  }).catch((error) => {
-      console.error(`Error checking player "${playerName}":`, error);
-  });
 }
