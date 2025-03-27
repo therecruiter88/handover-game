@@ -1,5 +1,6 @@
 import { startIntro } from '/challenges/common/js/storyline.js';
-import { isPlayerNumberValid } from '/challenges/common/js/player-validation.js';
+import { setupEventListeners, triggerStartGame, createConfetti } from '/challenges/common/js/game-mechanics.js';
+import { showPlayerNumberInput, isPlayerNumberValid } from '/challenges/common/js/player-input.js';
 import { saveScoreToDatabase } from '/challenges/common/js/score-manager.js';
 
 const storyTitles = ["Storyline", "Challenge"];
@@ -10,121 +11,49 @@ const storylineText = [
   "Advance through the pipeline when processing is allowed to distribute the hotfix correctly and end this madness. Stop when a validation check is in progress. Any unauthorized movement will trigger an immediate rollback...and termination. Reach the end before the time runs out, or be stuck in the handover phase forever! Will you do it in 45 seconds?!"
 ];
 
-const playerNumberInput = document.getElementById('player-number');
-const beginChallengeBtn = document.getElementById('begin-challenge');
-const gameContainer = document.getElementById('game-container');
-const player = document.getElementById('player');
-const timerDisplay = document.getElementById('timer-display');
-const lightStatus = document.getElementById('light-status');
-const playerSelector = document.getElementById('player-selector');
-const startGameBtn = document.getElementById('start-game');
-const celebration = document.getElementById('celebration');
-const gameCompletion = document.getElementById('game-completion');
-const retryButton = document.getElementById('retry-button');
-const homeButton = document.getElementById('home-button');
-
+// Specific game variables
 const doll = document.getElementById('doll');
-const gameOver = document.getElementById('game-over');
 const finishLine = document.getElementById('finish-line');
 
-// Sound elements
-//const typingSound = document.getElementById('typing-sound');
-const gameStartSound = document.getElementById('game-start-sound');
-const countdownSound = document.getElementById('countdown-sound');
-const countdownFastSound = document.getElementById('countdown-fast-sound');
-const eliminationSound = document.getElementById('elimination-sound');
-const victorySound = document.getElementById('victory-sound');
-
+// Specific game sounds
 //const dollSound = document.getElementById('doll-song');
 const redLightSound = document.getElementById('red-light-sound');
 const greenLightSound = document.getElementById('green-light-sound');
 const gunshotSound = document.getElementById('gunshot-sound');
 
-const hearts = [
-  document.getElementById('heart1'),
-  document.getElementById('heart2'),
-  document.getElementById('heart3')
-];
-
-// Game variables
+// Common game mechanics variables
 let playerPosition = 30;
 let gameTime = 45;
-let timerInterval;
-let isGameOver = false;
-let isRedLight = false;
-let lightChangeInterval;
-let playerMoving = false;
-let playerAnimationFrame;
-let playerWalking = false;
-let walkSpeed = 0.5; // Slower walking speed
 let lives = 3;
-const winScore = document.getElementById('win-score');
-const reasonEliminated = document.getElementById('reason-eliminated');
+let score = 0;
+let isGameOver = false;
+let timerInterval;
+
+// Specific game mechanics variables
+let walkSpeed = 0.5; // Slower walking speed
+let isRedLight = false;
+let isPlayerMoving = false;
+let isPlayerWalking = false;
+let playerAnimationFrame;
+let lightChangeInterval;
 
 window.onload = showPlayerNumberInput;
 
-// Display player number prompt
-function showPlayerNumberInput() {
-  const playerNumberInputElement = document.getElementById("player-name-prompt");
-  const playerNumberSelect = document.getElementById('player-number');
-  
-  if (playerNumberInputElement) {
-    document.getElementById('player-name-prompt').style.display = 'flex';
-    document.getElementById('intro-container').style.display = 'none';
-    document.getElementById('story-container').style.display = 'none';
-
-    // Reset the select dropdown to its default state
-    playerNumberSelect.value = ''; // This will select the first (disabled) option
-  }
-
-}
-
-const playerNumberSelect = document.getElementById('player-number');
-
-// Enable the "Begin Challenge" button once a player number is selected
-playerNumberSelect.addEventListener('change', () => {
-    // Enable the button if a valid number is selected
-    beginChallengeBtn.disabled = playerNumberSelect.value === '';
+// Call the setup function
+setupEventListeners({
+  playerNumberSelect,
+  playerNumberInput,
+  beginChallengeBtn,
+  isPlayerNumberValid,
+  startIntro,
+  storylineText,
+  storyTitles
 });
 
-// Validate input player number
-playerNumberInput.addEventListener('input', () => {
-  const isValid = playerNumberInput.value.length === 3;
-  beginChallengeBtn.disabled = !isValid;
-});
-
-// Start the intro after input player number
-beginChallengeBtn.addEventListener('click', () => {
-  const selectedPlayerNumber = playerNumberSelect.value;
-
-  if (!isPlayerNumberValid(selectedPlayerNumber)) {
-    alert("Invalid player number! You're trying to mess up the scoreboard... xD");
-    return;
-  }
-
-  setTimeout(() => {
-    // Start the intro and storyline
-    startIntro(storylineText, storyTitles);
-  }, 500);
-});
-
-startGameBtn.addEventListener('click', () => {
-  const storylineSound = document.getElementById('storyline-sound');
-  
-  const fadeAudio = setInterval(() => {
-    if (storylineSound.volume > 0.1) {
-      storylineSound.volume -= 0.1;
-    } else {
-      storylineSound.pause();
-      storylineSound.volume = 0.5;
-      clearInterval(fadeAudio);
-    }
-  }, 200);
-  
+function handleShapeSelection() {
   if (selectedShape) {
-    // Set player shape based on selection
     const playerSvg = player.querySelector('svg');
-    
+
     if (selectedShape === 'circle') {
       playerSvg.innerHTML = `
             <rect x="5" y="5" width="20" height="30" fill="#4CAF50" />
@@ -150,18 +79,18 @@ startGameBtn.addEventListener('click', () => {
 			      <rect x="0" y="30" width="80" height="8" fill="#4CAF50" />
       `;
     }
-    
+
     // Hide player selector and show game
     playerSelector.style.display = 'none';
     gameContainer.style.display = 'block';
-    
+
     // Start the game
-    //dollSound.loop = true;
-    //dollSound.volume = 0.3;
-    //dollSound.play();
     startGame();
   }
-});
+}
+
+// Call the reusable function with custom shape selection logic
+triggerStartGame(startGameBtn, handleShapeSelection);
 
 function startGame() {
   // Initialize game state
@@ -169,7 +98,7 @@ function startGame() {
   gameTime = 45;
   isGameOver = false;
   isRedLight = false;
-  playerWalking = false;
+  isPlayerWalking = false;
   player.classList.remove('walking');
   player.style.left = `${playerPosition}px`;
 
@@ -283,7 +212,7 @@ function changeLight() {
     
     // Check if player is moving during red light
     setTimeout(() => {
-      if (playerMoving && isRedLight && !isGameOver) {
+      if (isPlayerMoving && isRedLight && !isGameOver) {
         eliminatePlayer();
       }
     }, 300); // Small delay to give player time to react
@@ -329,25 +258,25 @@ function handleKeyDown(e) {
 function toggleWalking() {
   if (isGameOver) return;
   
-  playerWalking = !playerWalking;
+  isPlayerWalking = !isPlayerWalking;
   
-  if (playerWalking) {
+  if (isPlayerWalking) {
     player.classList.add('walking');
     startWalking();
   } else {
     player.classList.remove('walking');
-    playerMoving = false;
+    isPlayerMoving = false;
     cancelAnimationFrame(playerAnimationFrame);
   }
 }
 
 function startWalking() {
-  playerMoving = true;
+  isPlayerMoving = true;
   walkPlayer();
 }
 
 function walkPlayer() {
-  if (isGameOver || !playerWalking) return;
+  if (isGameOver || !isPlayerWalking) return;
   
   playerPosition += walkSpeed;
   player.style.left = `${playerPosition}px`;
@@ -375,9 +304,9 @@ function eliminatePlayer() {
   isGameOver = true;
   
   // Stop player movement
-  playerWalking = false;
+  isPlayerWalking = false;
   player.classList.remove('walking');
-  playerMoving = false;
+  isPlayerMoving = false;
   cancelAnimationFrame(playerAnimationFrame);
   
   // Show laser beam from doll to player
@@ -503,7 +432,7 @@ function endGame(isVictory) {
   gameStartSound.pause();
   
   if (isVictory) {
-    const score = calculateScore(gameTime);
+    score = calculateScore(gameTime);
 
     reasonEliminated.innerHTML = "";
     winScore.innerHTML = `You achieved a score of "${score}"`;

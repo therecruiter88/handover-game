@@ -20,16 +20,8 @@
 <body>
 
     <!-- Audio elements for game sounds -->
-    <audio id="intro-sound" preload="auto">
-      <source src="https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3;muted=1&amp" type="audio/mpeg">
-    </audio>
-  
     <audio id="storyline-sound" preload="auto">
       <source src="./assets/audio/storyline.mp3" type="audio/mp3">
-    </audio>
-
-    <audio id="typing-sound" preload="auto">
-      <source src="https://assets.mixkit.co/active_storage/sfx/2363/2363-preview.mp3" type="audio/mpeg">
     </audio>
 
     <audio id="game-start-sound" preload="auto">
@@ -52,6 +44,7 @@
       <source src="/challenges/common/assets/audio/victory.mp3" type="audio/mp3">
     </audio>
 
+    <!-- Specific game sounds -->
     <audio id="laser-sound" preload="auto">
       <source src="./assets/audio/laser_beam_efx.mp3" type="audio/mp3">
     </audio>
@@ -150,6 +143,7 @@
         <div id="celebration">
           <h2>Congratulations!</h2>
           <p>You have saved the planet from all of the pineapple pizzas!</p>
+          <p id="win-score"></p>
         </div>
         
         <!-- Game over container -->
@@ -180,7 +174,6 @@
     <script src="/challenges/common/js/player-selector.js"></script>
     <script src="/challenges/common/js/instructions.js"></script>
     <script src="./js/challenge.js" type="module"></script>
-    <script src="/challenges/common/js/victory.js"></script>
     <script src="/common/js/leaderboard.js" type="module"></script>
     <script src="/common/js/mobile-message.js"></script>
     <script src="/common/js/audio.js"></script>

@@ -1,121 +1,50 @@
 import { startIntro } from '/challenges/common/js/storyline.js';
-import { isPlayerNumberValid } from '/challenges/common/js/player-validation.js';
+import { setupEventListeners, triggerStartGame, createConfetti } from '/challenges/common/js/game-mechanics.js';
+import { showPlayerNumberInput, isPlayerNumberValid } from '/challenges/common/js/player-input.js';
 import { saveScoreToDatabase } from '/challenges/common/js/score-manager.js';
+import * as GAME from '/challenges/common/js/game-variables.js';
+import { getLives, setLives, getScore, setScore, isGameOver, setGameOver, getTimerInterval, setTimerInterval } from '/challenges/common/js/game-variables.js';
 
 const storyTitles = ["Storyline", "Challenge"];
 
-// Story text
+// Specific storyline
 const storylineText = [
   "Today was meant to be a simple farewell pizza party for Player 297. But something went horribly wrong. Dark forces have unleashed an unstoppable plague of pineapple pizzas, threatening to take over the planet and ruining the party...",
   "What was once a celebration has become a mission, a battle for survival. To save Player 297 farewell party and stop the invasion, you must destroy every mutant pizza before it's too late! You have 30 seconds to do it, so...good luck...i guess..."
 ];
 
-const playerNumberInput = document.getElementById('player-number');
-const beginChallengeBtn = document.getElementById('begin-challenge');
-const gameContainer = document.getElementById('game-container');
-const player = document.getElementById('player');
+//Specific game elements
 const scoreDisplay = document.getElementById('score-display');
-const timerDisplay = document.getElementById('timer-display');
-const startGameBtn = document.getElementById('start-game');
-const celebration = document.getElementById('celebration');
-const gameOver = document.getElementById('game-over');
-const gameCompletion = document.getElementById('game-completion');
-const retryButton = document.getElementById('retry-button');
-const homeButton = document.getElementById('home-button');
 
-const hearts = [
-  document.getElementById('heart1'),
-  document.getElementById('heart2'),
-  document.getElementById('heart3')
-];
-
-// Sound elements
-//const typingSound = document.getElementById('typing-sound');
-const gameStartSound = document.getElementById('game-start-sound');
-const countdownSound = document.getElementById('countdown-sound');
-const countdownFastSound = document.getElementById('countdown-fast-sound');
-const eliminationSound = document.getElementById('elimination-sound');
-const victorySound = document.getElementById('victory-sound');
-
+// Specific game sounds
 const laserSound = document.getElementById('laser-sound');
 
-// Game variables
+// Specific game mechanics variables
 let playerPosition = 270;
+let gameTime = 30;
 let bullets = [];
 let targets = [];
-let score = 0;
-let gameTime = 30;
 let gameInterval;
-let timerInterval;
-let isGameOver = false;
 let targetGenerationInterval;
-let lives = 3;
-const reasonEliminated = document.getElementById('reason-eliminated');
 
 window.onload = showPlayerNumberInput;
 
-// Display player number prompt
-function showPlayerNumberInput() {
-  const playerNumberInputElement = document.getElementById("player-name-prompt");
-  const playerNumberSelect = document.getElementById('player-number');
-  
-  if (playerNumberInputElement) {
-    document.getElementById('player-name-prompt').style.display = 'flex';
-    document.getElementById('intro-container').style.display = 'none';
-    document.getElementById('story-container').style.display = 'none';
-
-    // Reset the select dropdown to its default state
-    playerNumberSelect.value = ''; // This will select the first (disabled) option
-  }
-
-}
-
-const playerNumberSelect = document.getElementById('player-number');
-
-// Enable the "Begin Challenge" button once a player number is selected
-playerNumberSelect.addEventListener('change', () => {
-    // Enable the button if a valid number is selected
-    beginChallengeBtn.disabled = playerNumberSelect.value === '';
+// Call the setup function
+setupEventListeners({
+  playerNumberSelect: GAME.playerNumberSelect,
+  playerNumberInput: GAME.playerNumberInput,
+  beginChallengeBtn: GAME.beginChallengeBtn,
+  isPlayerNumberValid,
+  startIntro,
+  storylineText,
+  storyTitles,
+  homeButton: GAME.homeButton,
 });
 
-// Validate input player number
-playerNumberInput.addEventListener('input', () => {
-  const isValid = playerNumberInput.value.length === 3;
-  beginChallengeBtn.disabled = !isValid;
-});
-
-// Start the intro after input player number
-beginChallengeBtn.addEventListener('click', () => {
-  const selectedPlayerNumber = playerNumberSelect.value;
-
-  if (!isPlayerNumberValid(selectedPlayerNumber)) {
-    alert("Invalid player number! You're trying to mess up the scoreboard... xD");
-    return;
-  }
-
-  setTimeout(() => {
-    // Start the intro and storyline
-    startIntro(storylineText, storyTitles);
-  }, 500);
-});
-
-startGameBtn.addEventListener('click', () => {
-  const storylineSound = document.getElementById('storyline-sound');
-  
-  const fadeAudio = setInterval(() => {
-    if (storylineSound.volume > 0.1) {
-      storylineSound.volume -= 0.1;
-    } else {
-      storylineSound.pause();
-      storylineSound.volume = 0.5;
-      clearInterval(fadeAudio);
-    }
-  }, 200);
-  
+function handleShapeSelection() {
   if (selectedShape) {
-    // Set player shape based on selection
-    const playerSvg = player.querySelector('svg');
-    
+    const playerSvg = GAME.player.querySelector('svg');
+
     if (selectedShape === 'circle') {
       playerSvg.innerHTML = `
         <rect x="15" y="10" width="30" height="40" fill="#ff0066" />
@@ -141,97 +70,101 @@ startGameBtn.addEventListener('click', () => {
         <rect x="10" y="40" width="40" height="10" fill="#ff0066" />
       `;
     }
-    
+
     // Hide player selector and show game
-    playerSelector.style.display = 'none';
-    gameContainer.style.display = 'block';
-    
+    GAME.playerSelector.style.display = 'none';
+    GAME.gameContainer.style.display = 'block';
+
     // Start the game
     startGame();
   }
-});
+}
+
+// Call the reusable function with custom shape selection logic
+triggerStartGame(GAME.startGameBtn, handleShapeSelection);
 
 function startGame() {
   // Initialize game state
-  score = 0;
+  setScore(0);
   gameTime = 30;
   bullets = [];
   targets = [];
 
-  for (let i = 0; i < hearts.length; i++) {
-    hearts[i].style.display = 'inline';
+  for (let i = 0; i < GAME.hearts.length; i++) {
+    GAME.hearts[i].style.display = 'inline';
   }
   
-  reasonEliminated.innerHTML= "";
-  isGameOver = false;
+  GAME.reasonEliminated.innerHTML= "";
+  GAME.winScore.innerHTML = "";
+  setGameOver(false);
 
-  gameStartSound.currentTime = 0; // Restart from beginning
-  gameStartSound.play();
-  gameStartSound.volume = 0.5;
+  GAME.gameStartSound.currentTime = 0; // Restart from beginning
+  GAME.gameStartSound.play();
+  GAME.gameStartSound.volume = 0.5;
   
   // Update UI
-  scoreDisplay.textContent = `Score: ${score}`;
-  timerDisplay.textContent = `Time: ${gameTime}`;
+  scoreDisplay.textContent = `Score: ${getScore()}`;
+  GAME.timerDisplay.textContent = `Time: ${gameTime}`;
   
   // Position player
-  playerPosition = (gameContainer.offsetWidth / 2) - 30;
-  player.style.left = `${playerPosition}px`;
+  playerPosition = (GAME.gameContainer.offsetWidth / 2) - 30;
+  GAME.player.style.left = `${playerPosition}px`;
   
   // Start game loops
   gameInterval = setInterval(updateGame, 20);
   targetGenerationInterval = setInterval(generateTarget, 500);
   
   // Start timer countdown
-  timerInterval = setInterval(() => {
+  const interval = setInterval(() => {
     gameTime--;
     if (gameTime <= 0) {
       gameTime = 0; // Ensure timer doesn't go below 0
-      timerDisplay.textContent = `Time: ${gameTime}`;
+      GAME.timerDisplay.textContent = `Time: ${gameTime}`;
       endGame(false);
       return;
     }
-    
+
     // Play sound effects when time is running low
     if (gameTime <= 5) {
-      // For 5 seconds and below, play the countdown every quarter second
-      countdownFastSound.currentTime = 0;
-      countdownFastSound.play();
-      
-      // Add quarter-second intervals for the last 5 seconds
+      GAME.countdownFastSound.currentTime = 0;
+      GAME.countdownFastSound.play();
+
       if (gameTime > 0) {
         setTimeout(() => {
-          countdownFastSound.currentTime = 0;
-          countdownFastSound.play();
+          GAME.countdownFastSound.currentTime = 0;
+          GAME.countdownFastSound.play();
         }, 250);
-        
+
         setTimeout(() => {
-          countdownFastSound.currentTime = 0;
-          countdownFastSound.play();
+          GAME.countdownFastSound.currentTime = 0;
+          GAME.countdownFastSound.play();
         }, 500);
-        
+
         setTimeout(() => {
-          countdownFastSound.currentTime = 0;
-          countdownFastSound.play();
+          GAME.countdownFastSound.currentTime = 0;
+          GAME.countdownFastSound.play();
         }, 750);
       }
     } else if (gameTime <= 10) {
-      countdownFastSound.currentTime = 0;
-      countdownFastSound.play();
-      
-      // Add half-second counter for the last 10 seconds
+      GAME.countdownFastSound.currentTime = 0;
+      GAME.countdownFastSound.play();
+
       if (gameTime > 0) {
         setTimeout(() => {
-          countdownFastSound.currentTime = 0;
-          countdownFastSound.play();
+          GAME.countdownFastSound.currentTime = 0;
+          GAME.countdownFastSound.play();
         }, 500);
       }
     } else {
-      countdownSound.currentTime = 0;
-      countdownSound.play();
+      GAME.countdownSound.currentTime = 0;
+      GAME.countdownSound.play();
     }
-    
-    timerDisplay.textContent = `Time: ${gameTime}`;
+
+    GAME.timerDisplay.textContent = `Time: ${gameTime}`;
   }, 1000);
+
+  // Set the interval using the setter
+  setTimerInterval(interval);
   
   // Setup keyboard controls
   document.addEventListener('keydown', handleKeyDown);
@@ -267,17 +200,17 @@ function handleKeyUp(e) {
 }
 
 function updateGame() {
-  if (isGameOver) return;
+  if (isGameOver()) return;
   
   // Move player
   const moveSpeed = 7;
   if (keys.left && playerPosition > 30) {
     playerPosition -= moveSpeed;
   }
-  if (keys.right && playerPosition < gameContainer.offsetWidth - 30) {
+  if (keys.right && playerPosition < GAME.gameContainer.offsetWidth - 30) {
     playerPosition += moveSpeed;
   }
-  player.style.left = `${playerPosition}px`;
+  GAME.player.style.left = `${playerPosition}px`;
   
   // Update bullets
   for (let i = bullets.length - 1; i >= 0; i--) {
@@ -287,7 +220,7 @@ function updateGame() {
     
     // Remove bullets that are off screen
     if (bullet.y < 0) {
-      gameContainer.removeChild(bullet.element);
+      GAME.gameContainer.removeChild(bullet.element);
       bullets.splice(i, 1);
     }
   }
@@ -299,8 +232,8 @@ function updateGame() {
     target.element.style.top = `${target.y}px`;
     
     // Check if target hit bottom
-    if (target.y > gameContainer.offsetHeight) {
-      gameContainer.removeChild(target.element);      
+    if (target.y > GAME.gameContainer.offsetHeight) {
+      GAME.gameContainer.removeChild(target.element);      
       targets.splice(i, 1);
       continue;
     }
@@ -313,17 +246,17 @@ function updateGame() {
         createHitEffect(target.x, target.y);
         
         // Update score
-        score += 10;
-        scoreDisplay.textContent = `Score: ${score}`;
+        setScore(getScore() + 10);
+        scoreDisplay.textContent = `Score: ${getScore()}`;
         
         // Remove bullet and target
-        gameContainer.removeChild(bullet.element);
-        gameContainer.removeChild(target.element);
+        GAME.gameContainer.removeChild(bullet.element);
+        GAME.gameContainer.removeChild(target.element);
         bullets.splice(j, 1);
         targets.splice(i, 1);
         
         // Check win condition
-        if (score >= 500) endGame(true);
+        if (getScore() >= 500) endGame(true);
         
         break;
       }
@@ -336,12 +269,12 @@ function fireBullet() {
   bulletElement.className = 'bullet';
   
   const bulletX = playerPosition + 27; // Center of player
-  const bulletY = gameContainer.offsetHeight - 100; // Just above player
+  const bulletY = GAME.gameContainer.offsetHeight - 100; // Just above player
   
   bulletElement.style.left = `${bulletX}px`;
   bulletElement.style.top = `${bulletY}px`;
   
-  gameContainer.appendChild(bulletElement);
+  GAME.gameContainer.appendChild(bulletElement);
 
   bullets.push({
     element: bulletElement,
@@ -354,7 +287,7 @@ function fireBullet() {
 }
 
 function generateTarget() {
-  if (isGameOver) return;
+  if (isGameOver()) return;
 
   const targetElement = document.createElement('div');
   targetElement.className = 'target';
@@ -373,7 +306,7 @@ function generateTarget() {
   const targetWidth = 40; // Width of the pizza image
   const leftPadding = 30; // Add padding on the left
   const rightPadding = 0; // Add padding on the right (optional)
-  const gameWidth = gameContainer.offsetWidth;
+  const gameWidth = GAME.gameContainer.offsetWidth;
   const maxTargetX = gameWidth - targetWidth - rightPadding - leftPadding;
   
   const targetX = leftPadding + Math.random() * maxTargetX; // Ensure pizza stays within game area
@@ -385,7 +318,7 @@ function generateTarget() {
   targetElement.style.top = `${targetY}px`;
 
   // Append the target to the game container
-  gameContainer.appendChild(targetElement);
+  GAME.gameContainer.appendChild(targetElement);
 
   targets.push({
     element: targetElement,
@@ -410,37 +343,38 @@ function createHitEffect(x, y) {
   hitEffect.style.left = `${x}px`;
   hitEffect.style.top = `${y}px`;
   
-  gameContainer.appendChild(hitEffect);
+  GAME.gameContainer.appendChild(hitEffect);
   
   // Remove hit effect after animation
   setTimeout(() => {
-    if (gameContainer.contains(hitEffect)) {
-      gameContainer.removeChild(hitEffect);
+    if (GAME.gameContainer.contains(hitEffect)) {
+      GAME.gameContainer.removeChild(hitEffect);
     }
   }, 300);
 }
 
 function updateHeartsDisplay() {
-  for (let i = 0; i < hearts.length; i++) {
-    if (i < lives) {
-      hearts[i].src = './../../challenges/common/assets/img/heart_full.png';
-      hearts[i].alt = 'Full Heart';
+  for (let i = 0; i < GAME.hearts.length; i++) {
+    if (i < getLives()) {
+      GAME.hearts[i].src = './../../challenges/common/assets/img/heart_full.png';
+      GAME.hearts[i].alt = 'Full Heart';
     } else {
-      hearts[i].src = './../../challenges/common/assets/img/heart_empty.png';
-      hearts[i].alt = 'Empty Heart';
+      GAME.hearts[i].src = './../../challenges/common/assets/img/heart_empty.png';
+      GAME.hearts[i].alt = 'Empty Heart';
     }
   }
 }
 
 function checkLifes(){
   // Player lost all lives
-  if (lives <= 0) {
-    reasonEliminated.innerHTML= "Oh no! You have failed this mission!";
-    retryButton.classList.add('hidden');
+  if (getLives() <= 0) {
+    GAME.reasonEliminated.innerHTML= "Oh no! You have failed this mission!";
+    GAME.winScore.innerHTML = "";
+    GAME.retryButton.classList.add('hidden');
 
     // Save score to Firebase
-    const playerNumber = playerNumberSelect.value;
-    saveScoreToDatabase(playerNumber, score, "challenge-1");
+    const playerNumber = GAME.playerNumberSelect.value;
+    saveScoreToDatabase(playerNumber, getScore(), "challenge-1");
     
     // Redirect to the new page after 5 seconds
     setTimeout(() => {
@@ -450,11 +384,12 @@ function checkLifes(){
 }
 
 function endGame(isVictory) {
-  isGameOver = true; // Prevent further execution if the game is already over (player ran out of lives)
+  setGameOver(true); // Prevent further execution if the game is already over (player ran out of lives)
 
   // Clear intervals
+  clearInterval(getTimerInterval());
+
   clearInterval(gameInterval);
-  clearInterval(timerInterval);
   clearInterval(targetGenerationInterval);
   
   // Remove event listeners
@@ -462,16 +397,17 @@ function endGame(isVictory) {
   document.removeEventListener('keyup', handleKeyUp);
   
   // Stop all sounds
-  countdownSound.pause();
-  countdownFastSound.pause();
-  gameStartSound.pause();
+  GAME.countdownSound.pause();
+  GAME.countdownFastSound.pause();
+  GAME.gameStartSound.pause();
    
   if (isVictory) {
-    reasonEliminated.innerHTML = "";
+    GAME.reasonEliminated.innerHTML = "";
+    GAME.winScore.innerHTML = `You achieved a score of "${getScore()}" points!`;
 
     // Victory sequence
-    celebration.style.display = 'flex';
-    victorySound.play();
+    GAME.celebration.style.display = 'flex';
+    GAME.victorySound.play();
     
     // Create confetti
     for (let i = 0; i < 50; i++) {
@@ -479,46 +415,46 @@ function endGame(isVictory) {
     }
 
     // Save score to Firebase
-    const playerNumber = playerNumberSelect.value;
-    saveScoreToDatabase(playerNumber, score, "challenge-1");
+    const playerNumber = GAME.playerNumberSelect.value;
+    saveScoreToDatabase(playerNumber, getScore(), "challenge-1");
     
     // Show game completion after a delay
     setTimeout(() => {
-      celebration.style.display = 'none';
-      gameCompletion.style.display = 'block';
+      GAME.celebration.style.display = 'none';
+      GAME.gameCompletion.style.display = 'block';
     }, 5000);
   } else {
     // Game over sequence
-    gameOver.style.display = 'flex';
-    eliminationSound.play();
+    GAME.gameOverElement.style.display = 'flex';
+    GAME.eliminationSound.play();
     loseLife();
   }
 }
 
 // Call checkLifes when you lose a life
 function loseLife() {
-  lives--;
+  setLives(getLives() - 1);
   updateHeartsDisplay();
   checkLifes();  // This will trigger the end game logic if lives <= 0
 }
 
 // Retry button functionality
-retryButton.addEventListener('click', () => {
+GAME.retryButton.addEventListener('click', () => {
   // Reset game elements
-  gameOver.style.display = 'none';
+  GAME.gameOverElement.style.display = 'none';
   
-  // Clear existing targets and bullets
-  targets.forEach(target => {
-    gameContainer.removeChild(target.element);
-  });
-  bullets.forEach(bullet => {
-    gameContainer.removeChild(bullet.element);
-  });
+  resetGameElements();
   
-  // Restart game
+  // Restart the game
   startGame();
 });
 
-homeButton.addEventListener('click', () => {
-  window.location.href = '/handover.html?challengeCompleted=true';
-});
+function resetGameElements() {
+    // Clear existing targets and bullets
+    targets.forEach(target => {
+      GAME.gameContainer.removeChild(target.element);
+    });
+    bullets.forEach(bullet => {
+      GAME.gameContainer.removeChild(bullet.element);
+    });
+}
