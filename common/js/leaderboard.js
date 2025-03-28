@@ -164,7 +164,7 @@ function loadLeaderBoard() {
 
     // Event listener to toggle the leaderboard panel visibility
     scoreboardTrigger.addEventListener('click', (event) => {
-        event.stopPropagation();
+        //event.stopPropagation();
         isPanelVisible = !isPanelVisible;
 
         if (!leaderboardPanel) {

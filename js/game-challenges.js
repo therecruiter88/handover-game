@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isListVisible = false;
     
     fabButton.addEventListener('click', (event) => {
-        event.stopPropagation(); // Prevent closing the list when clicking the FAB button
+        //event.stopPropagation(); // Prevent closing the list when clicking the FAB button
         isListVisible = !isListVisible;
         
         // Toggle the challenge list visibility
@@ -30,11 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     challengeItems.forEach(item => {
         item.addEventListener('click', (event) => {
-            const url = item.getAttribute('data-url');
             isListVisible = false;
-            if (url) {
-                window.location.href = url;
-            }
         });
     });
 });
