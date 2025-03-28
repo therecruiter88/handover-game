@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // When loading the page, identifies the origin
     const urlParams = new URLSearchParams(window.location.search);
     const challengeCompleted = urlParams.get('challengeCompleted') === 'true';
-    console.log("Challenge Completed:" + challengeCompleted);
+    //console.log("Challenge Completed:" + challengeCompleted);
 
     if (challengeCompleted) {
         const playersTile = document.getElementById("img");
