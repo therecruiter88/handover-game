@@ -7,13 +7,9 @@ export const player = document.getElementById('player');
 export const timerDisplay = document.getElementById('timer-display');
 export const playerSelector = document.getElementById('player-selector');
 export const startGameButton = document.getElementById('start-game');
-export const celebration = document.getElementById('celebration');
-export const gameCompletion = document.getElementById('game-completion');
 export const gameOverElement = document.getElementById('game-over');
 export const retryButton = document.getElementById('retry-button');
 export const homeButton = document.getElementById('home-button');
-export const reasonEliminated = document.getElementById('reason-eliminated');
-export const winScore = document.getElementById('win-score');
 
 export const hearts = [
   document.getElementById('heart1'),

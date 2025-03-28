@@ -5,6 +5,7 @@ import * as GAME from '/challenges/common/js/game-variables.js';
 import { getScore, setScore, isGameOver, getTimerInterval, setTimerInterval } from '/challenges/common/js/game-variables.js';
 
 const gameId = "challenge-1";
+
 const storyTitles = ["Storyline", "Challenge"];
 
 // Specific storyline
@@ -13,7 +14,7 @@ const storylineText = [
   "What was once a celebration has become a mission, a battle for survival. To save Player 297 farewell party and stop the invasion, you must destroy every mutant pizza before it's too late! You have 30 seconds to do it, so...good luck...i guess..."
 ];
 
-//Specific game elements
+// Specific game elements
 const scoreDisplay = document.getElementById('score-display');
 
 // Specific game sounds

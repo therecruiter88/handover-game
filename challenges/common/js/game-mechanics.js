@@ -69,8 +69,10 @@ export function initializeGameParameters(GAME, startTime){
     GAME.hearts[i].style.display = 'inline';
   }
   
-  GAME.reasonEliminated.innerHTML= "";
-  GAME.winScore.innerHTML = "";
+  const reasonEliminated = document.getElementById('reason-eliminated');
+  const winScore = document.getElementById('win-score');
+  reasonEliminated.innerHTML= "";
+  winScore.innerHTML = "";
   setGameOver(false);
 
   // Restart music from beginning
@@ -163,9 +165,13 @@ export function endGame(isVictory, gameId, GAME, options) {
   
     // Victory sequence
     if (isVictory) {
-      GAME.reasonEliminated.innerHTML = "";
-      GAME.winScore.innerHTML = `You achieved a score of "${getScore()}" points!`;
-      GAME.celebration.style.display = 'flex';
+      const gameCompletion = document.getElementById('game-completion');
+      const reasonEliminated = document.getElementById('reason-eliminated');
+      const winScore = document.getElementById('win-score');
+      const celebration = document.getElementById('celebration');
+      reasonEliminated.innerHTML = "";
+      winScore.innerHTML = `You achieved a score of "${getScore()}" points!`;
+      celebration.style.display = 'flex';
       GAME.victorySound.play();
   
       // Create confetti
@@ -179,8 +185,8 @@ export function endGame(isVictory, gameId, GAME, options) {
   
       // Show game completion after a delay
       setTimeout(() => {
-        GAME.celebration.style.display = 'none';
-        GAME.gameCompletion.style.display = 'block';
+        celebration.style.display = 'none';
+        gameCompletion.style.display = 'block';
       }, 5000);
     } else {
       // Game over sequence
@@ -198,8 +204,10 @@ export function loseLife(GAME, challengeId) {
 
 function checkLifes(GAME, challengeId) {
     if (getLives() <= 0) {
-      GAME.reasonEliminated.innerHTML = "Oh no! You have failed this mission!";
-      GAME.winScore.innerHTML = "";
+      const reasonEliminated = document.getElementById('reason-eliminated');
+      const winScore = document.getElementById('win-score');
+      reasonEliminated.innerHTML = "Oh no! You have failed this mission!";
+      winScore.innerHTML = "";
       GAME.retryButton.classList.add('hidden');
   
       // Save score to Firebase

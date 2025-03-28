@@ -1,18 +1,22 @@
 import { startIntro } from '/challenges/common/js/storyline.js';
-import { setupEventListeners, triggerStartGame, createConfetti } from '/challenges/common/js/game-mechanics.js';
+import { setupEventListeners, triggerStartGame, initializeGameParameters, startTimer, endGame } from '/challenges/common/js/game-mechanics.js';
 import { showPlayerNumberInput, isPlayerNumberValid } from '/challenges/common/js/player-input.js';
-import { saveScoreToDatabase } from '/challenges/common/js/score-manager.js';
+import * as GAME from '/challenges/common/js/game-variables.js';
+import { getScore, setScore, isGameOver, setGameOver, getTimerInterval, setTimerInterval } from '/challenges/common/js/game-variables.js';
+
+const gameId = "challenge-2";
 
 const storyTitles = ["Storyline", "Challenge"];
 
-// Story text
+// Specific storyline
 const storylineText = [
   "The handover was going fine for Player 136...until VIC went rogue, rejecting every processing without reason, RabbitMQ clogged, messages stuck in a purgatory of retries, and the Pipeline Guardian activated its failsafe: the Compliance Sentinel! Armed with precision lasers, it is ready to decommision any player out of sync!",
   "Advance through the pipeline when processing is allowed to distribute the hotfix correctly and end this madness. Stop when a validation check is in progress. Any unauthorized movement will trigger an immediate rollback...and termination. Reach the end before the time runs out, or be stuck in the handover phase forever! Will you do it in 45 seconds?!"
 ];
 
-// Specific game variables
+// Specific game elements
 const doll = document.getElementById('doll');
+const lightStatus = document.getElementById('light-status');
 const finishLine = document.getElementById('finish-line');
 
 // Specific game sounds
@@ -20,16 +24,11 @@ const finishLine = document.getElementById('finish-line');
 const redLightSound = document.getElementById('red-light-sound');
 const greenLightSound = document.getElementById('green-light-sound');
 const gunshotSound = document.getElementById('gunshot-sound');
-
-// Common game mechanics variables
-let playerPosition = 30;
-let gameTime = 45;
-let lives = 3;
-let score = 0;
-let isGameOver = false;
-let timerInterval;
+const eliminationSound = document.getElementById('elimination-sound');
 
 // Specific game mechanics variables
+let startTime = 45;
+let playerPosition = 30;
 let walkSpeed = 0.5; // Slower walking speed
 let isRedLight = false;
 let isPlayerMoving = false;
@@ -41,18 +40,19 @@ window.onload = showPlayerNumberInput;
 
 // Call the setup function
 setupEventListeners({
-  playerNumberSelect,
-  playerNumberInput,
-  beginChallengeBtn,
+  playerNumberSelect: GAME.playerNumberSelect,
+  playerNumberInput: GAME.playerNumberInput,
+  beginChallengeButton: GAME.beginChallengeButton,
   isPlayerNumberValid,
   startIntro,
   storylineText,
-  storyTitles
+  storyTitles,
+  homeButton: GAME.homeButton,
 });
 
 function handleShapeSelection() {
   if (selectedShape) {
-    const playerSvg = player.querySelector('svg');
+    const playerSvg = GAME.player.querySelector('svg');
 
     if (selectedShape === 'circle') {
       playerSvg.innerHTML = `
@@ -81,8 +81,8 @@ function handleShapeSelection() {
     }
 
     // Hide player selector and show game
-    playerSelector.style.display = 'none';
-    gameContainer.style.display = 'block';
+    GAME.playerSelector.style.display = 'none';
+    GAME.gameContainer.style.display = 'block';
 
     // Start the game
     startGame();
@@ -90,106 +90,65 @@ function handleShapeSelection() {
 }
 
 // Call the reusable function with custom shape selection logic
-triggerStartGame(startGameBtn, handleShapeSelection);
+triggerStartGame(GAME.startGameButton, handleShapeSelection);
 
 function startGame() {
-  // Initialize game state
+  // Initialize common game state logic
+  initializeGameParameters(GAME, startTime);
+  // Initialize specific game state logic
+  initializeGameSpecificParameters();
+
+  // Start timer countdown
+  setTimerInterval(
+    startTimer(
+      getTimerInterval(),
+      startTime,
+      GAME.timerDisplay, 
+      GAME.countdownSound, 
+      GAME.countdownFastSound,
+      gameId,
+      GAME, 
+      getGameOptions()
+    )
+  );
+  
+}
+
+function initializeGameSpecificParameters(){
+  // Start game loops
   playerPosition = 30;
-  gameTime = 45;
-  isGameOver = false;
+  startTime = 45;
   isRedLight = false;
   isPlayerWalking = false;
-  player.classList.remove('walking');
-  player.style.left = `${playerPosition}px`;
 
-  for (let i = 0; i < hearts.length; i++) {
-    hearts[i].style.display = 'inline';
-  }
+  // Position player
+  GAME.player.classList.remove('walking');
+  GAME.player.style.left = `${playerPosition}px`;
 
-  reasonEliminated.innerHTML= "";
-  winScore.innerHTML = "";
-  isGameOver = false;
-
-  gameStartSound.currentTime = 0; // Restart from beginning
-  gameStartSound.play();
-  gameStartSound.volume = 0.5;
-  
   // Update UI
-  timerDisplay.textContent = `Time: ${gameTime}`;
+  GAME.timerDisplay.textContent = `Time: ${startTime}`;
   lightStatus.textContent = "GREEN LIGHT";
   lightStatus.style.color = "#22ff22";
-  
+
   // Start light changes
   startLightChanges();
   
   // Rotate doll to face away initially
   rotateDoll(false);
 
-  // Start timer countdown
-  timerInterval = setInterval(() => {
-    gameTime--;
-    if (gameTime <= 0) {
-      gameTime = 0; // Ensure timer doesn't go below 0
-      timerDisplay.textContent = `Time: ${gameTime}`;
-      endGame(false);
-      return;
-    }
-    
-    // Play sound effects when time is running low
-    if (gameTime <= 5) {
-      // For 5 seconds and below, play the countdown every quarter second
-      countdownFastSound.currentTime = 0;
-      countdownFastSound.play();
-      
-      // Add quarter-second intervals for the last 5 seconds
-      if (gameTime > 0) {
-        setTimeout(() => {
-          countdownFastSound.currentTime = 0;
-          countdownFastSound.play();
-        }, 250);
-        
-        setTimeout(() => {
-          countdownFastSound.currentTime = 0;
-          countdownFastSound.play();
-        }, 500);
-        
-        setTimeout(() => {
-          countdownFastSound.currentTime = 0;
-          countdownFastSound.play();
-        }, 750);
-      }
-    } else if (gameTime <= 10) {
-      countdownFastSound.currentTime = 0;
-      countdownFastSound.play();
-      
-      // Add half-second counter for the last 10 seconds
-      if (gameTime > 0) {
-        setTimeout(() => {
-          countdownFastSound.currentTime = 0;
-          countdownFastSound.play();
-        }, 500);
-      }
-    } else {
-      countdownSound.currentTime = 0;
-      countdownSound.play();
-    }
-    
-    timerDisplay.textContent = `Time: ${gameTime}`;
-  }, 1000);
-  
-  // Start the game loop
+  // Setup keyboard controls
   document.addEventListener('keydown', handleKeyDown);
 }
 
 function startLightChanges() {
   // Initial green light for a few seconds
   setTimeout(() => {
-    if (!isGameOver) {
+    if (!isGameOver()) {
       changeLight();
       
       // Start random light changes
       lightChangeInterval = setInterval(() => {
-        if (!isGameOver) {
+        if (!isGameOver()) {
           changeLight();
         }
       }, Math.random() * 3000 + 2000); // Random interval between 2-5 seconds
@@ -212,7 +171,7 @@ function changeLight() {
     
     // Check if player is moving during red light
     setTimeout(() => {
-      if (isPlayerMoving && isRedLight && !isGameOver) {
+      if (isPlayerMoving && isRedLight && !isGameOver()) {
         eliminatePlayer();
       }
     }, 300); // Small delay to give player time to react
@@ -256,15 +215,15 @@ function handleKeyDown(e) {
 }
 
 function toggleWalking() {
-  if (isGameOver) return;
+  if (isGameOver()) return;
   
   isPlayerWalking = !isPlayerWalking;
   
   if (isPlayerWalking) {
-    player.classList.add('walking');
+    GAME.player.classList.add('walking');
     startWalking();
   } else {
-    player.classList.remove('walking');
+    GAME.player.classList.remove('walking');
     isPlayerMoving = false;
     cancelAnimationFrame(playerAnimationFrame);
   }
@@ -276,23 +235,27 @@ function startWalking() {
 }
 
 function walkPlayer() {
-  if (isGameOver || !isPlayerWalking) return;
-  
+  if (isGameOver() || !isPlayerWalking) return;
   playerPosition += walkSpeed;
-  player.style.left = `${playerPosition}px`;
+  GAME.player.style.left = `${playerPosition}px`;
       
   // Check if player is moving during red light
   if (isRedLight) {
     eliminatePlayer();
-    endGame(false);
+    gameOver(false);
     return;
   }
   
   // Check if player reached finish line
-  const finishLinePosition = gameContainer.offsetWidth - finishLine.offsetWidth - 50;
+  const finishLinePosition = GAME.gameContainer.offsetWidth - finishLine.offsetWidth - 50;
   if (playerPosition >= finishLinePosition) {
-    score = calculateScore(gameTime);
-    endGame(true);
+    // Extract the time from the timer display
+    const timeLeftText = GAME.timerDisplay.textContent;
+    const timeLeft = parseInt(timeLeftText.replace("Time: ", ""), 10);
+
+    // Calculate the score based on the remaining time
+    setScore(getScore() + calculateScore(timeLeft));
+    gameOver(true);
     return;
   }
   
@@ -301,12 +264,13 @@ function walkPlayer() {
 }
 
 function eliminatePlayer() {
-  if (isGameOver) return; // Prevent multiple elimination
-  isGameOver = true;
+  if (isGameOver()) return; // Prevent multiple elimination
+  
+  setGameOver(true);
   
   // Stop player movement
   isPlayerWalking = false;
-  player.classList.remove('walking');
+  GAME.player.classList.remove('walking');
   isPlayerMoving = false;
   cancelAnimationFrame(playerAnimationFrame);
   
@@ -325,7 +289,7 @@ function eliminatePlayer() {
   
   // Show game over screen after a short delay
   setTimeout(() => {
-    gameOver.style.display = 'flex';
+    GAME.gameOverElement.style.display = 'flex';
   }, 1000);
 }
 
@@ -335,8 +299,8 @@ function fireLaserBeam() {
   
   // Get doll and player positions
   const dollRect = doll.getBoundingClientRect();
-  const playerRect = player.getBoundingClientRect();
-  const gameContainerRect = gameContainer.getBoundingClientRect();
+  const playerRect = GAME.player.getBoundingClientRect();
+  const gameContainerRect = GAME.gameContainer.getBoundingClientRect();
   
   // Calculate positions relative to game container
   const dollX = dollRect.left - gameContainerRect.left + dollRect.width / 2;
@@ -371,118 +335,21 @@ function createBloodEffect() {
     
     // Position around player
     const bloodX = playerPosition + (Math.random() * 30 - 15);
-    const bloodY = gameContainer.offsetHeight - 80 + (Math.random() * 60 - 30);
+    const bloodY = GAME.gameContainer.offsetHeight - 80 + (Math.random() * 60 - 30);
     
     blood.style.left = `${bloodX}px`;
     blood.style.top = `${bloodY}px`;
     
-    gameContainer.appendChild(blood);
+    GAME.gameContainer.appendChild(blood);
     
     // Remove blood after animation
     setTimeout(() => {
-      if (gameContainer.contains(blood)) {
-        gameContainer.removeChild(blood);
+      if (GAME.gameContainer.contains(blood)) {
+        GAME.gameContainer.removeChild(blood);
       }
     }, 2000);
   }
 }
-
-function updateHeartsDisplay() {
-  for (let i = 0; i < hearts.length; i++) {
-    if (i < lives) {
-      hearts[i].src = './../../challenges/common/assets/img/heart_full.png';
-      hearts[i].alt = 'Full Heart';
-    } else {
-      hearts[i].src = './../../challenges/common/assets/img/heart_empty.png';
-      hearts[i].alt = 'Empty Heart';
-    }
-  }
-}
-
-function checkLifes(){
-  // Player lost all lives
-  if (lives <= 0) {
-    reasonEliminated.innerHTML= "Oh no! You have failed this mission!";
-    winScore.innerHTML = "";
-    retryButton.classList.add('hidden');
-
-    // Save score to Firebase
-    const playerNumber = playerNumberSelect.value;
-    saveScoreToDatabase(playerNumber, 0, "challenge-2");
-    
-    // Redirect to the new page after 5 seconds
-    setTimeout(() => {
-      window.location.href = "/handover.html?challengeCompleted=true"; // Replace with the actual URL you want to redirect to
-    }, 5000); // 5000 milliseconds = 5 seconds
-  }
-}
-
-function endGame(isVictory) {
-  isGameOver = true; // Prevent further execution if the game is already over (player ran out of lives)
-
-  // Clear intervals
-  clearInterval(timerInterval);
-
-  // Clear specific game intervals
-  clearInterval(lightChangeInterval);
-  
-  // Remove specific game keyboard event listeners
-  document.removeEventListener('keydown', handleKeyDown);
-  
-  // Stop all sounds
-  countdownSound.pause();
-  countdownFastSound.pause();
-  gameStartSound.pause();
-  
-  if (isVictory) {
-    reasonEliminated.innerHTML = "";
-    winScore.innerHTML = `You achieved a score of "${score}"`;
-
-    // Victory sequence
-    celebration.style.display = 'flex';
-    victorySound.play();
-    
-    // Create confetti
-    for (let i = 0; i < 50; i++) {
-      createConfetti();
-    }
-
-    // Save score to Firebase
-    const playerNumber = playerNumberSelect.value;
-    saveScoreToDatabase(playerNumber, score, "challenge-2");
-    
-    // Show game completion after a delay
-    setTimeout(() => {
-      celebration.style.display = 'none';
-      gameCompletion.style.display = 'block';
-    }, 5000);
-  } else {
-    // Game over sequence
-    gameOver.style.display = 'flex';
-    eliminationSound.play();
-    loseLife();
-  }
-}
-
-// Call checkLifes when you lose a life
-function loseLife() {
-  lives--;
-  updateHeartsDisplay();
-  checkLifes();  // This will trigger the end game logic if lives <= 0
-}
-
-// Retry button functionality
-retryButton.addEventListener('click', () => {
-  // Reset game elements
-  gameOver.style.display = 'none';
-
-  // Restart game
-  startGame();
-});
-
-homeButton.addEventListener('click', () => {
-  window.location.href = '/handover.html?challengeCompleted=true';
-});
 
 function calculateScore(timeLeft) {
   // If timeLeft is 25 or more, the score is always 500
@@ -494,3 +361,25 @@ function calculateScore(timeLeft) {
   // If timeLeft is 0, score is 0
   return 0;
 }
+
+function gameOver(isVictory) {
+  endGame(isVictory, gameId, GAME, getGameOptions());
+}
+
+function getGameOptions() {
+  return {
+    clearIntervals: [lightChangeInterval],
+    removeEventListeners: [
+      { event: 'keydown', handler: handleKeyDown }
+    ]
+  };
+}
+
+// Retry button functionality
+GAME.retryButton.addEventListener('click', () => {
+  // Reset game elements
+  GAME.gameOverElement.style.display = 'none';
+  
+  // Restart the game
+  startGame();
+});
