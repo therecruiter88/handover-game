@@ -280,7 +280,7 @@ function walkPlayer() {
   
   playerPosition += walkSpeed;
   player.style.left = `${playerPosition}px`;
-  
+      
   // Check if player is moving during red light
   if (isRedLight) {
     eliminatePlayer();
@@ -291,6 +291,7 @@ function walkPlayer() {
   // Check if player reached finish line
   const finishLinePosition = gameContainer.offsetWidth - finishLine.offsetWidth - 50;
   if (playerPosition >= finishLinePosition) {
+    score = calculateScore(gameTime);
     endGame(true);
     return;
   }
@@ -421,9 +422,11 @@ function endGame(isVictory) {
 
   // Clear intervals
   clearInterval(timerInterval);
+
+  // Clear specific game intervals
   clearInterval(lightChangeInterval);
   
-  // Remove keyboard controls
+  // Remove specific game keyboard event listeners
   document.removeEventListener('keydown', handleKeyDown);
   
   // Stop all sounds
@@ -432,8 +435,6 @@ function endGame(isVictory) {
   gameStartSound.pause();
   
   if (isVictory) {
-    score = calculateScore(gameTime);
-
     reasonEliminated.innerHTML = "";
     winScore.innerHTML = `You achieved a score of "${score}"`;
 

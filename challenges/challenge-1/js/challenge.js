@@ -1,10 +1,10 @@
 import { startIntro } from '/challenges/common/js/storyline.js';
-import { setupEventListeners, triggerStartGame, createConfetti } from '/challenges/common/js/game-mechanics.js';
+import { setupEventListeners, triggerStartGame, initializeGameParameters, startTimer, endGame } from '/challenges/common/js/game-mechanics.js';
 import { showPlayerNumberInput, isPlayerNumberValid } from '/challenges/common/js/player-input.js';
-import { saveScoreToDatabase } from '/challenges/common/js/score-manager.js';
 import * as GAME from '/challenges/common/js/game-variables.js';
-import { getLives, setLives, getScore, setScore, isGameOver, setGameOver, getTimerInterval, setTimerInterval } from '/challenges/common/js/game-variables.js';
+import { getScore, setScore, isGameOver, getTimerInterval, setTimerInterval } from '/challenges/common/js/game-variables.js';
 
+const gameId = "challenge-1";
 const storyTitles = ["Storyline", "Challenge"];
 
 // Specific storyline
@@ -20,12 +20,21 @@ const scoreDisplay = document.getElementById('score-display');
 const laserSound = document.getElementById('laser-sound');
 
 // Specific game mechanics variables
+let startTime = 30;
 let playerPosition = 270;
-let gameTime = 30;
 let bullets = [];
 let targets = [];
+
+// Specific game mechanics intervals
 let gameInterval;
 let targetGenerationInterval;
+
+// Specific game key controls
+const keys = {
+  left: false,
+  right: false,
+  space: false
+};
 
 window.onload = showPlayerNumberInput;
 
@@ -33,7 +42,7 @@ window.onload = showPlayerNumberInput;
 setupEventListeners({
   playerNumberSelect: GAME.playerNumberSelect,
   playerNumberInput: GAME.playerNumberInput,
-  beginChallengeBtn: GAME.beginChallengeBtn,
+  beginChallengeButton: GAME.beginChallengeButton,
   isPlayerNumberValid,
   startIntro,
   storylineText,
@@ -41,6 +50,7 @@ setupEventListeners({
   homeButton: GAME.homeButton,
 });
 
+// Specific game player selector
 function handleShapeSelection() {
   if (selectedShape) {
     const playerSvg = GAME.player.querySelector('svg');
@@ -81,102 +91,48 @@ function handleShapeSelection() {
 }
 
 // Call the reusable function with custom shape selection logic
-triggerStartGame(GAME.startGameBtn, handleShapeSelection);
+triggerStartGame(GAME.startGameButton, handleShapeSelection);
 
 function startGame() {
-  // Initialize game state
-  setScore(0);
-  gameTime = 30;
-  bullets = [];
-  targets = [];
+  // Initialize common game state logic
+  initializeGameParameters(GAME, startTime);
+  // Initialize specific game state logic
+  initializeGameSpecificParameters();
 
-  for (let i = 0; i < GAME.hearts.length; i++) {
-    GAME.hearts[i].style.display = 'inline';
-  }
+  // Start timer countdown
+  setTimerInterval(
+    startTimer(
+      getTimerInterval(),
+      startTime,
+      GAME.timerDisplay, 
+      GAME.countdownSound, 
+      GAME.countdownFastSound,
+      gameId,
+      GAME, 
+      getGameOptions()
+    )
+  );
   
-  GAME.reasonEliminated.innerHTML= "";
-  GAME.winScore.innerHTML = "";
-  setGameOver(false);
+}
 
-  GAME.gameStartSound.currentTime = 0; // Restart from beginning
-  GAME.gameStartSound.play();
-  GAME.gameStartSound.volume = 0.5;
-  
-  // Update UI
-  scoreDisplay.textContent = `Score: ${getScore()}`;
-  GAME.timerDisplay.textContent = `Time: ${gameTime}`;
-  
-  // Position player
-  playerPosition = (GAME.gameContainer.offsetWidth / 2) - 30;
-  GAME.player.style.left = `${playerPosition}px`;
-  
+function initializeGameSpecificParameters(){
   // Start game loops
   gameInterval = setInterval(updateGame, 20);
   targetGenerationInterval = setInterval(generateTarget, 500);
-  
-  // Start timer countdown
-  const interval = setInterval(() => {
-    gameTime--;
-    if (gameTime <= 0) {
-      gameTime = 0; // Ensure timer doesn't go below 0
-      GAME.timerDisplay.textContent = `Time: ${gameTime}`;
-      endGame(false);
-      return;
-    }
 
-    // Play sound effects when time is running low
-    if (gameTime <= 5) {
-      GAME.countdownFastSound.currentTime = 0;
-      GAME.countdownFastSound.play();
+  // Position player
+  playerPosition = (GAME.gameContainer.offsetWidth / 2) - 30;
+  GAME.player.style.left = `${playerPosition}px`;
 
-      if (gameTime > 0) {
-        setTimeout(() => {
-          GAME.countdownFastSound.currentTime = 0;
-          GAME.countdownFastSound.play();
-        }, 250);
+  // Update UI
+  scoreDisplay.textContent = `Score: ${getScore()}`;
+  bullets = [];
+  targets = [];
 
-        setTimeout(() => {
-          GAME.countdownFastSound.currentTime = 0;
-          GAME.countdownFastSound.play();
-        }, 500);
-
-        setTimeout(() => {
-          GAME.countdownFastSound.currentTime = 0;
-          GAME.countdownFastSound.play();
-        }, 750);
-      }
-    } else if (gameTime <= 10) {
-      GAME.countdownFastSound.currentTime = 0;
-      GAME.countdownFastSound.play();
-
-      if (gameTime > 0) {
-        setTimeout(() => {
-          GAME.countdownFastSound.currentTime = 0;
-          GAME.countdownFastSound.play();
-        }, 500);
-      }
-    } else {
-      GAME.countdownSound.currentTime = 0;
-      GAME.countdownSound.play();
-    }
-
-    GAME.timerDisplay.textContent = `Time: ${gameTime}`;
-  }, 1000);
-
-  // Set the interval using the setter
-  setTimerInterval(interval);
-  
   // Setup keyboard controls
   document.addEventListener('keydown', handleKeyDown);
   document.addEventListener('keyup', handleKeyUp);
 }
-
-// Game key controls
-const keys = {
-  left: false,
-  right: false,
-  space: false
-};
 
 function handleKeyDown(e) {
   if (e.key === 'ArrowLeft') keys.left = true;
@@ -207,9 +163,11 @@ function updateGame() {
   if (keys.left && playerPosition > 30) {
     playerPosition -= moveSpeed;
   }
+
   if (keys.right && playerPosition < GAME.gameContainer.offsetWidth - 30) {
     playerPosition += moveSpeed;
   }
+
   GAME.player.style.left = `${playerPosition}px`;
   
   // Update bullets
@@ -256,7 +214,7 @@ function updateGame() {
         targets.splice(i, 1);
         
         // Check win condition
-        if (getScore() >= 500) endGame(true);
+        if (getScore() >= 500) gameOver(true);
         
         break;
       }
@@ -294,18 +252,18 @@ function generateTarget() {
 
   // Create an image element instead of the SVG
   const pizzaImage = document.createElement('img');
-  pizzaImage.src = './assets/img/pineapple-pizza.png'; // Path to your image
-  pizzaImage.alt = 'Pineapple Pizza'; // For accessibility
-  pizzaImage.style.width = '40px'; // Adjust the size as needed
-  pizzaImage.style.height = '40px'; // Adjust the size as needed
+  pizzaImage.src = './assets/img/pineapple-pizza.png';
+  pizzaImage.alt = 'Pineapple Pizza';
+  pizzaImage.style.width = '40px';
+  pizzaImage.style.height = '40px';
   pizzaImage.style.objectFit = 'cover'; // To ensure the image fits inside the container
 
   targetElement.appendChild(pizzaImage);
 
   // Random position and speed
-  const targetWidth = 40; // Width of the pizza image
-  const leftPadding = 30; // Add padding on the left
-  const rightPadding = 0; // Add padding on the right (optional)
+  const targetWidth = 40;
+  const leftPadding = 30;
+  const rightPadding = 0;
   const gameWidth = GAME.gameContainer.offsetWidth;
   const maxTargetX = gameWidth - targetWidth - rightPadding - leftPadding;
   
@@ -353,89 +311,18 @@ function createHitEffect(x, y) {
   }, 300);
 }
 
-function updateHeartsDisplay() {
-  for (let i = 0; i < GAME.hearts.length; i++) {
-    if (i < getLives()) {
-      GAME.hearts[i].src = './../../challenges/common/assets/img/heart_full.png';
-      GAME.hearts[i].alt = 'Full Heart';
-    } else {
-      GAME.hearts[i].src = './../../challenges/common/assets/img/heart_empty.png';
-      GAME.hearts[i].alt = 'Empty Heart';
-    }
-  }
+function gameOver(isVictory) {
+  endGame(isVictory, gameId, GAME, getGameOptions());
 }
 
-function checkLifes(){
-  // Player lost all lives
-  if (getLives() <= 0) {
-    GAME.reasonEliminated.innerHTML= "Oh no! You have failed this mission!";
-    GAME.winScore.innerHTML = "";
-    GAME.retryButton.classList.add('hidden');
-
-    // Save score to Firebase
-    const playerNumber = GAME.playerNumberSelect.value;
-    saveScoreToDatabase(playerNumber, getScore(), "challenge-1");
-    
-    // Redirect to the new page after 5 seconds
-    setTimeout(() => {
-      window.location.href = "/handover.html?challengeCompleted=true";
-    }, 5000); // 5000 milliseconds = 5 seconds
-  }
-}
-
-function endGame(isVictory) {
-  setGameOver(true); // Prevent further execution if the game is already over (player ran out of lives)
-
-  // Clear intervals
-  clearInterval(getTimerInterval());
-
-  clearInterval(gameInterval);
-  clearInterval(targetGenerationInterval);
-  
-  // Remove event listeners
-  document.removeEventListener('keydown', handleKeyDown);
-  document.removeEventListener('keyup', handleKeyUp);
-  
-  // Stop all sounds
-  GAME.countdownSound.pause();
-  GAME.countdownFastSound.pause();
-  GAME.gameStartSound.pause();
-   
-  if (isVictory) {
-    GAME.reasonEliminated.innerHTML = "";
-    GAME.winScore.innerHTML = `You achieved a score of "${getScore()}" points!`;
-
-    // Victory sequence
-    GAME.celebration.style.display = 'flex';
-    GAME.victorySound.play();
-    
-    // Create confetti
-    for (let i = 0; i < 50; i++) {
-      createConfetti();
-    }
-
-    // Save score to Firebase
-    const playerNumber = GAME.playerNumberSelect.value;
-    saveScoreToDatabase(playerNumber, getScore(), "challenge-1");
-    
-    // Show game completion after a delay
-    setTimeout(() => {
-      GAME.celebration.style.display = 'none';
-      GAME.gameCompletion.style.display = 'block';
-    }, 5000);
-  } else {
-    // Game over sequence
-    GAME.gameOverElement.style.display = 'flex';
-    GAME.eliminationSound.play();
-    loseLife();
-  }
-}
-
-// Call checkLifes when you lose a life
-function loseLife() {
-  setLives(getLives() - 1);
-  updateHeartsDisplay();
-  checkLifes();  // This will trigger the end game logic if lives <= 0
+function getGameOptions() {
+  return {
+    clearIntervals: [gameInterval, targetGenerationInterval],
+    removeEventListeners: [
+      { event: 'keydown', handler: handleKeyDown },
+      { event: 'keyup', handler: handleKeyUp }
+    ]
+  };
 }
 
 // Retry button functionality
@@ -449,12 +336,13 @@ GAME.retryButton.addEventListener('click', () => {
   startGame();
 });
 
+// Reset specific game elements
 function resetGameElements() {
-    // Clear existing targets and bullets
-    targets.forEach(target => {
-      GAME.gameContainer.removeChild(target.element);
-    });
-    bullets.forEach(bullet => {
-      GAME.gameContainer.removeChild(bullet.element);
-    });
+  // Clear existing targets and bullets
+  targets.forEach(target => {
+    GAME.gameContainer.removeChild(target.element);
+  });
+  bullets.forEach(bullet => {
+    GAME.gameContainer.removeChild(bullet.element);
+  });
 }
