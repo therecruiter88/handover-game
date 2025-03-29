@@ -312,22 +312,20 @@ function playerFalls() {
 
 // Game key controls
 function handleKeyDown(e) {
-      if (isGameOver() || isPlayerResetting) return; // Prevent actions if the game is over or the player is resetting
+  if (isGameOver() || isPlayerResetting) return; // Prevent actions if the game is over or the player is resetting
 
-      if (isPlayerResetting) {
-        GAME.player.classList.add('player-resetting');
-      } else {
-        GAME.player.classList.remove('player-resetting');
-      }
+  if (isPlayerResetting) {
+    GAME.player.classList.add('player-resetting');
+  } else {
+    GAME.player.classList.remove('player-resetting');
+  }
 
-      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-        const col = e.key === 'ArrowLeft' ? 0 : 1;
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+    const col = e.key === 'ArrowLeft' ? 0 : 1;
 
-        // Only allow stepping on panels in the current row
-        if (currentRow < maxRows) {
-          stepOnPanel(currentRow, col);
-        }
-      }
+    // Only allow stepping on panels in the current row
+    if (currentRow < maxRows) stepOnPanel(currentRow, col);
+  }
 }
 
 function calculateScore(timeLeft) {
