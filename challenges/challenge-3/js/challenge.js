@@ -2,7 +2,7 @@ import { startIntro } from '/challenges/common/js/storyline.js';
 import { setupEventListeners, triggerStartGame, initializeGameParameters, startTimer, loseLife, endGame } from '/challenges/common/js/game-mechanics.js';
 import { showPlayerNumberInput, isPlayerNumberValid } from '/challenges/common/js/player-input.js';
 import * as GAME from '/challenges/common/js/game-variables.js';
-import { getScore, setScore, isGameOver, getTimerInterval, setTimerInterval } from '/challenges/common/js/game-variables.js';
+import { getLives, getScore, setScore, isGameOver, getTimerInterval, setTimerInterval } from '/challenges/common/js/game-variables.js';
 
 const gameId = "challenge-3";
 
@@ -256,9 +256,7 @@ function stepOnPanel(row, col) {
     glassBreakSound.play();
 
     // Update score
-    if (getScore() > 10) {
-      setScore(getScore() - 10);
-    }
+    if (getScore() > 10) setScore(getScore() - 10);
 
     scoreDisplay.textContent = `Score: ${getScore()}`;
     
@@ -278,6 +276,7 @@ function stepOnPanel(row, col) {
     
     playerFalls();
     loseLife(GAME, gameId);
+    if (getLives() <= 0) gameOver(false);
   }
 }
 

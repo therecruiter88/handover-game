@@ -139,7 +139,7 @@ export function startTimer(timerInterval, gameTime, timerDisplay, countdownSound
     return timerInterval;
 }
 
-export function endGame(isVictory, gameId, GAME, options) {
+export function endGame(isVictory, challengeId, GAME, options) {
     // Prevent further execution if already over
     setGameOver(true);
   
@@ -181,7 +181,7 @@ export function endGame(isVictory, gameId, GAME, options) {
   
       // Save score to Firebase
       const playerNumber = GAME.playerNumberSelect.value;
-      saveScoreToDatabase(playerNumber, getScore(), gameId);
+      saveScoreToDatabase(playerNumber, getScore(), challengeId);
   
       // Show game completion after a delay
       setTimeout(() => {
@@ -192,17 +192,17 @@ export function endGame(isVictory, gameId, GAME, options) {
       // Game over sequence
       GAME.gameOverElement.style.display = 'flex';
       GAME.eliminationSound.play();
-      loseLife(GAME, gameId);
+      loseLife(GAME, challengeId);
+      checkIfPlayerIsOutOfLives(GAME, challengeId);
     }
 }
 
 export function loseLife(GAME, challengeId) {
     setLives(getLives() - 1);
     updateHeartsDisplay(GAME.hearts, getLives());
-    checkLifes(GAME, challengeId);
 }
 
-function checkLifes(GAME, challengeId) {
+function checkIfPlayerIsOutOfLives(GAME, challengeId) {
     if (getLives() <= 0) {
       const reasonEliminated = document.getElementById('reason-eliminated');
       const winScore = document.getElementById('win-score');
