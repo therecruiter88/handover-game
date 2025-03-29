@@ -1,0 +1,185 @@
+<html>
+<head>
+  <title>Tick Tock, Don't Drop</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/common/css/mobile-instructions.css">
+  <link rel="stylesheet" href="/common/css/leaderboard.css">
+  <link rel="stylesheet" href="/challenges/common/css/storyline.css">
+  <link rel="stylesheet" href="/challenges/common/css/player-selector.css">
+  <link rel="stylesheet" href="/challenges/common/css/elimination.css">
+  <link rel="stylesheet" href="/challenges/common/css/intro.css">
+  <link rel="stylesheet" href="/challenges/common/css/instructions.css">
+  <link rel="stylesheet" href="/challenges/common/css/victory.css">
+  <link rel="stylesheet" href="/challenges/common/css/challenge.css">
+  <link rel="stylesheet" href="./css/storyline.css">
+  <link rel="stylesheet" href="./css/challenge.css">
+  <link rel="icon" href="/common/assets/favicon/icon.png" type="image/x-icon">
+</head>
+<body>
+
+    <!-- Audio elements for game sounds -->
+    <audio id="storyline-sound" preload="auto">
+      <source src="./assets/audio/storyline.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="game-start-sound" preload="auto">
+      <source src="./assets/audio/game.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="countdown-sound" preload="auto">
+      <source src="https://assets.mixkit.co/active_storage/sfx/212/212-preview.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="countdown-fast-sound" preload="auto">
+      <source src="https://assets.mixkit.co/active_storage/sfx/212/212-preview.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="elimination-sound" preload="auto">
+      <source src="https://assets.mixkit.co/active_storage/sfx/218/218-preview.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="victory-sound" preload="auto">
+      <source src="/challenges/common/assets/audio/victory.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- Specific game sounds -->
+    <audio id="glass-break-sound" preload="auto">
+      <source src="https://assets.mixkit.co/active_storage/sfx/2648/2648-preview.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="step-sound" preload="auto">
+      <source src="https://assets.mixkit.co/active_storage/sfx/2061/2061-preview.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="content">
+      <!-- Player Name Prompt -->
+      <div id="player-name-prompt">
+        <h2>Select Your Player Number</h2>
+        <!--<input type="text" id="player-number" maxlength="3" placeholder="example: 000">-->
+        <select id="player-number" class="sound-efx">
+        </select>
+        <button id="begin-challenge" class="sound-efx" disabled>Begin Challenge</button>
+      </div>
+      
+      <!-- Netflix-style intro -->
+      <div id="intro-container">
+        <div id="intro-logo">Tick Tock, Don't Drop</div>
+      </div>
+      
+      <!-- Storyline container -->
+      <div id="story-container">
+        <div id="story-box">
+          <h2 id="story-title">Backstory</h2>
+          <div id="story-text"></div>
+          <button id="continue-btn" class="sound-efx">Continue</button>
+        </div>
+      </div>
+      
+      <!-- Instructions popup -->
+      <div id="instructions-popup">
+        <h2>How to Play</h2>
+        <p>Cross the glass bridge by choosing the correct path with left and right arrow keys.</p>
+        <p>Each row has two glass panels - one is tempered and will hold your weight, the other will break!</p>
+        <p>Make your way across all the 8 tempered panels to win.</p>
+        <p>Be careful! You only have 3 lives and a 30 second time limit!</p>
+        <button id="instructions-close" class="sound-efx">Got it!</button>
+      </div>
+
+      <!-- Player selector -->
+      <div id="player-selector">
+        <h2>Choose Your Player</h2>
+        <div class="player-options">
+          <div class="player-option sound-efx" data-shape="circle">
+            <svg width="30" height="60" viewBox="0 0 30 60">
+              <!-- Circle player -->
+              <rect x="5" y="5" width="20" height="30" fill="#4CAF50" />
+              <circle cx="15" cy="13" r="7" fill="black" />
+              <circle cx="15" cy="13" r="3" fill="white" />
+              <rect x="8" y="35" width="14" height="20" fill="#4CAF50" />
+              <rect x="0" y="30" width="80" height="8" fill="#4CAF50" />
+            </svg>
+          </div>
+          <div class="player-option sound-efx" data-shape="square">
+            <svg width="30" height="60" viewBox="0 0 30 60">
+              <!-- Square player -->
+              <rect x="5" y="5" width="20" height="30" fill="#4CAF50" />
+              <circle cx="15" cy="13" r="7" fill="black" />
+              <rect x="11" y="9" width="8" height="8" fill="white" />
+              <rect x="8" y="35" width="14" height="20" fill="#4CAF50" />
+              <rect x="0" y="30" width="80" height="8" fill="#4CAF50" />
+            </svg>
+          </div>
+          <div class="player-option sound-efx" data-shape="triangle">
+            <svg width="30" height="60" viewBox="0 0 30 60">
+              <!-- Triangle player -->
+              <rect x="5" y="5" width="20" height="30" fill="#4CAF50" />
+              <circle cx="15" cy="13" r="7" fill="black" />
+              <polygon points="15,8 10,16 20,16" fill="white" />
+              <rect x="8" y="35" width="14" height="20" fill="#4CAF50" />
+              <rect x="0" y="30" width="80" height="8" fill="#4CAF50" />
+            </svg>
+          </div>
+        </div>
+        <button id="start-game" class="sound-efx" disabled>Start Game</button>
+      </div>
+      
+      <div id="game-container">
+        <div id="player" class="challenge-3">
+          <svg width="30" height="60" viewBox="0 0 30 60">
+            <!-- Default player -->
+            <rect x="5" y="5" width="20" height="30" fill="#4CAF50" />
+            <circle cx="15" cy="13" r="7" fill="black" />
+            <circle cx="15" cy="13" r="3" fill="white" />
+            <rect x="8" y="35" width="14" height="20" fill="#4CAF50" />
+            <rect x="0" y="30" width="80" height="8" fill="#4CAF50" />
+          </svg>
+        </div>
+        <div id="score-display">Score: 0</div>
+        <div class="hearts-container">
+          <img class="heart" id="heart1" src="./../common/assets/img/heart_full.png" alt="Full Heart">
+          <img class="heart" id="heart2" src="./../common/assets/img/heart_full.png" alt="Full Heart">
+          <img class="heart" id="heart3" src="./../common/assets/img/heart_full.png" alt="Full Heart">
+        </div>
+        <div id="timer-display">Time: 30</div>
+        
+        <!-- Celebration container -->
+        <div id="celebration">
+          <h2>Congratulations!</h2>
+          <p>You have successfully crossed the Glass Bridge!</p>
+          <p id="win-score"></p>
+        </div>
+        
+        <!-- Game over container -->
+        <div id="game-over">
+          <h2>ELIMINATED!</h2>
+          <p id="reason-eliminated"></p>
+          <p>You failed to cross the Glass Bridge in time!</p>
+          <div id="elimination-x">X</div>
+          <button id="retry-button" class="sound-efx">Retry</button>
+        </div>
+      </div>
+
+      <!-- Game completion popup -->
+      <div id="game-completion">
+        <h2>Next Game Unlocked!</h2>
+        <p>You have successfully completed this challenge and unlocked the next game.</p>
+        <p>Will attempt to include it next week!</p>
+        <div class="buttons">
+          <button id="home-button" class="sound-efx">Return to Base</button>
+          <button id="challenge-leaderboard-btn" class="sound-efx">Scoreboard</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/challenges/common/js/players-list.js"></script>
+    <script src="/challenges/common/js/storyline.js" type="module"></script> <!-- It must load before challenge.js to use its functions -->
+    <script src="/challenges/common/js/player-selector.js"></script>
+    <script src="/challenges/common/js/instructions.js"></script>
+    <script src="./js/challenge.js" type="module"></script>
+    <script src="/common/js/leaderboard.js" type="module"></script>
+    <script src="/common/js/mobile-message.js"></script>
+    <script src="/common/js/audio.js"></script>
+  </body>
+</html>

@@ -1,11 +1,3 @@
-In comparison with challhenge.js of challenge-2 folder, what are all the tasks I can perform to modularize the code and be able to re-use it?
-
-> Review common code and remove unused code from challenges, etc
- > refactor modular code
- > store to bd, get scores, etc
-
-> Include challenge-3 after improved
- 
 > Fit content on huge screens or when dev tools is opened
 
 > Fix bug on challenge-1 when retrying and player stucks

@@ -1,4 +1,11 @@
+* { box-sizing: border-box; }
+
 body {
+	background: #000;
+	margin: 0;
+	padding: 0;
+}
+div.content {
     background-color: black;
     color: white;
     text-align: center;

@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="/css/game-challenges.css">
         <link rel="stylesheet" href="/pink-soldier/css/soldier.css">
         <link rel="stylesheet" href="/bomb/css/bomb.css">
+        <link rel="stylesheet" href="/ashes/css/styles.css">
         <link rel="icon" href="/common/assets/favicon/icon.png" type="image/x-icon">
         <script type="importmap">
             {
@@ -30,6 +31,11 @@
     <audio id="background-music" autoplay loop>
         <source src="/assets/audio/sg_theme_song.mp3" type="audio/mp3">
     </audio>
+
+	<div id="canvascontainer" class="ashes-container">
+        <canvas id="buffer" class="ashes"></canvas>
+        <canvas id="canvas" class="ashes"></canvas>
+    </div>
 
     <div id="content">
         <!-- Top panel -->
@@ -94,6 +100,7 @@
             <div id="challenge-list" class="challenge-list">
                 <div id="challenge-1" class="challenge-item sound-efx" data-url="/challenges/challenge-1/challenge.html" alt="The Pineapple Pizza Invasion">Challenge 1</div>
                 <div id="challenge-2" class="challenge-item sound-efx" data-url="/challenges/challenge-2/challenge.html" alt="Red Light, Green Light">Challenge 2</div>
+                <div id="challenge-3" class="challenge-item sound-efx" data-url="/challenges/challenge-3/challenge.html" alt="Glass Roof">Challenge 3</div>
                 <div id="challenge-leaderboard" class="challenge-item-leaderboard sound-efx" alt="Scoreboard">Scoreboard</div>
             </div>
         </div>
@@ -138,5 +145,6 @@
     <script src="/bomb/js/explosion.js" type="module"></script>
     <script src="/bomb/js/obfuscator-audio.js"></script>
     <script src="/bomb/js/bomb.js"></script>
+    <script src="/ashes/js/scripts.js"></script>
 </body>
 </html>

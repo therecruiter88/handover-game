@@ -11,7 +11,14 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 17%;
     transform: translate(-50%, -50%);
+}
+.token-container label {
+    font-family: 'Press Start 2P', cursive;
+    color: #fff;
+    font-size: 16px;
+    display: block;
 }
 .token-input {
     background-color: #EB257A;
@@ -19,10 +26,18 @@
     padding: 10px;
     border: none;
     border-radius: 5px;
-    width: 200px;
+    width: 220px;
     font-family: 'Press Start 2P', cursive;
     font-size: 16px;
     text-align: center;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .token-button {
     background-color: white;

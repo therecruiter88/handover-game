@@ -81,7 +81,7 @@ function loadLeaderBoard() {
 
     // Function to calculate the total score for each player
     async function calculateTotalScores() {
-        const challenges = ['challenge-1', 'challenge-2']; // Add more challenges here if needed
+        const challenges = ['challenge-1', 'challenge-2', 'challenge-3']; // Add more challenges here if needed
         const allPlayerData = {};
 
         for (const challenge of challenges) {
@@ -141,12 +141,14 @@ function loadLeaderBoard() {
             const trophyCell = row.insertCell();
             const challengeOneGoldenScore = 500;
             const challengeTwoGoldenScore = 250;
-            const totalGoldenPlayerScore = challengeOneGoldenScore + challengeTwoGoldenScore;
+            const challengeThreeGoldenScore = 400;
+            const totalGoldenPlayerScore = challengeOneGoldenScore + challengeTwoGoldenScore + challengeThreeGoldenScore;
 
             if (
                 (tab === 'total' && entry.totalScore >= totalGoldenPlayerScore) ||
                 (tab === 'challenge-1' && entry.bestScore >= challengeOneGoldenScore) ||
-                (tab === 'challenge-2' && entry.bestScore >= challengeTwoGoldenScore)
+                (tab === 'challenge-2' && entry.bestScore >= challengeTwoGoldenScore) ||
+                (tab === 'challenge-3' && entry.bestScore >= challengeTwoGoldenScore)
             ) {
                 trophyCell.innerHTML = '<span class="trophy-icon">🏆</span>'
             } else {
