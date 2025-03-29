@@ -32,6 +32,7 @@ let currentRow = 0;
 let currentCol = 0;
 let glassPanels = [];
 let maxRows = 8;
+let deductedPoints = 25;
 let isPlayerResetting = false; // Tracks whether the player is being reset
 
 window.onload = showPlayerNumberInput;
@@ -200,9 +201,10 @@ function stepOnPanel(row, col) {
     //console.log(panel.revealed);
     // Increase score only if player did not step the glass
     if (!panel.revealed) {
-      setScore(getScore() + 50);
+      let actualScore = getScore();
+      setScore(actualScore + 50);
       //console.log(getScore());
-      scoreDisplay.textContent = `Score: ${getScore()}`;
+      scoreDisplay.textContent = `Score: ${actualScore}`;
       
       // Safe panel
       panel.revealed = true;
@@ -256,7 +258,8 @@ function stepOnPanel(row, col) {
     glassBreakSound.play();
 
     // Update score
-    if (getScore() > 10) setScore(getScore() - 10);
+    let actualScore = getScore();
+    if (actualScore > deductedPoints) setScore(actualScore - deductedPoints);
 
     scoreDisplay.textContent = `Score: ${getScore()}`;
     
@@ -328,13 +331,14 @@ function handleKeyDown(e) {
 }
 
 function calculateScore(timeLeft) {
+  let victoryBonusPoints = 100;
   if (timeLeft >= 15 && timeLeft <= startTime) {
     // Calculate the time difference and apply the multiplier
     const timeDifference = timeLeft - 15;
     const bonusScore = timeDifference * 10;
-    setScore(getScore() + bonusScore);
+    setScore(getScore() + victoryBonusPoints + bonusScore);
   }
-  return getScore();
+  return getScore() + victoryBonusPoints;
 }
 
 function gameOver(isVictory) {
