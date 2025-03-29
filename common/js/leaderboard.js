@@ -141,7 +141,7 @@ function loadLeaderBoard() {
             const trophyCell = row.insertCell();
             const challengeOneGoldenScore = 500;
             const challengeTwoGoldenScore = 250;
-            const challengeThreeGoldenScore = 400;
+            const challengeThreeGoldenScore = 480;
             const totalGoldenPlayerScore = challengeOneGoldenScore + challengeTwoGoldenScore + challengeThreeGoldenScore;
 
             if (
