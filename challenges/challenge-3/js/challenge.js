@@ -54,27 +54,27 @@ function handleShapeSelection() {
 
     if (selectedShape === 'circle') {
       playerSvg.innerHTML = `
-        <rect x="5" y="5" width="20" height="30" fill="yellow" />
+        <rect x="5" y="5" width="20" height="30" fill="#FFD700" />
         <circle cx="15" cy="13" r="7" fill="black" />
         <circle cx="15" cy="13" r="3" fill="white" />
-        <rect x="8" y="35" width="14" height="20" fill="yellow" />
-        <rect x="0" y="30" width="80" height="8" fill="yellow" />
+        <rect x="8" y="35" width="14" height="20" fill="#FFD700" />
+        <rect x="0" y="30" width="80" height="8" fill="#FFD700" />
       `;
     } else if (selectedShape === 'square') {
       playerSvg.innerHTML = `
-        <rect x="5" y="5" width="20" height="30" fill="yellow" />
+        <rect x="5" y="5" width="20" height="30" fill="#FFD700" />
         <circle cx="15" cy="13" r="7" fill="black" />
         <rect x="11" y="9" width="8" height="8" fill="white" />
-        <rect x="8" y="35" width="14" height="20" fill="yellow" />
-        <rect x="0" y="30" width="80" height="8" fill="yellow" />
+        <rect x="8" y="35" width="14" height="20" fill="#FFD700" />
+        <rect x="0" y="30" width="80" height="8" fill="#FFD700" />
       `;
     } else if (selectedShape === 'triangle') {
       playerSvg.innerHTML = `
-        <rect x="5" y="5" width="20" height="30" fill="yellow" />
+        <rect x="5" y="5" width="20" height="30" fill="#FFD700" />
         <circle cx="15" cy="13" r="7" fill="black" />
         <polygon points="15,8 10,16 20,16" fill="white" />
-        <rect x="8" y="35" width="14" height="20" fill="yellow" />
-        <rect x="0" y="30" width="80" height="8" fill="yellow" />
+        <rect x="8" y="35" width="14" height="20" fill="#FFD700" />
+        <rect x="0" y="30" width="80" height="8" fill="#FFD700" />
       `;
     }
 

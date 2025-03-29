@@ -58,27 +58,27 @@ function handleShapeSelection() {
 
     if (selectedShape === 'circle') {
       playerSvg.innerHTML = `
-        <rect x="5" y="10" width="20" height="30" fill="red" />
-        <circle cx="15" cy="20" r="7" fill="black" />
-        <circle cx="15" cy="20" r="3" fill="white" />
-        <rect x="8" y="50" width="14" height="20" fill="red" />
-        <rect x="0" y="40" width="80" height="8" fill="red" />
+        <rect x="5" y="14" width="20" height="30" fill="#DC143C" />
+        <circle cx="15" cy="22" r="7" fill="black" />
+        <circle cx="15" cy="21" r="3" fill="white" />
+        <rect x="0" y="43" width="30" height="8" fill="#DC143C" />
+        <rect x="8" y="50" width="14" height="20" fill="#DC143C" />
       `;
     } else if (selectedShape === 'square') {
       playerSvg.innerHTML = `
-        <rect x="5" y="5" width="20" height="30" fill="red" />
-        <circle cx="15" cy="13" r="7" fill="black" />
-        <rect x="11" y="9" width="8" height="8" fill="white" />
-        <rect x="8" y="35" width="14" height="20" fill="red" />
-        <rect x="0" y="30" width="80" height="8" fill="red" />
+        <rect x="5" y="14" width="20" height="30" fill="#DC143C" />
+        <circle cx="15" cy="22" r="7" fill="black" />
+        <rect x="11" y="18" width="8" height="8" fill="white" />
+        <rect x="0" y="43" width="30" height="8" fill="#DC143C" />
+        <rect x="8" y="50" width="14" height="20" fill="#DC143C" />
       `;
     } else if (selectedShape === 'triangle') {
       playerSvg.innerHTML = `
-        <rect x="5" y="5" width="20" height="30" fill="red" />
-        <circle cx="15" cy="13" r="7" fill="black" />
-        <polygon points="15,8 10,16 20,16" fill="white" />
-        <rect x="8" y="35" width="14" height="20" fill="red" />
-        <rect x="0" y="30" width="80" height="8" fill="red" />
+        <rect x="5" y="14" width="20" height="30" fill="#DC143C" />
+        <circle cx="15" cy="22" r="7" fill="black" />
+        <polygon points="15,16 10,26 20,26" fill="white" />
+        <rect x="0" y="43" width="30" height="8" fill="#DC143C" />
+        <rect x="8" y="50" width="14" height="20" fill="#DC143C" />
       `;
     }
 
@@ -161,11 +161,11 @@ function updateGame() {
   
   // Move player
   const moveSpeed = 7;
-  if (keys.left && playerPosition > 30) {
+  if (keys.left && playerPosition > 40) {
     playerPosition -= moveSpeed;
   }
 
-  if (keys.right && playerPosition < GAME.gameContainer.offsetWidth - 30) {
+  if (keys.right && playerPosition < GAME.gameContainer.offsetWidth - 15) {
     playerPosition += moveSpeed;
   }
 
@@ -227,7 +227,7 @@ function fireBullet() {
   const bulletElement = document.createElement('div');
   bulletElement.className = 'bullet';
   
-  const bulletX = playerPosition + 27; // Center of player
+  const bulletX = playerPosition + 5; // Center of player
   const bulletY = GAME.gameContainer.offsetHeight - 100; // Just above player
   
   bulletElement.style.left = `${bulletX}px`;
