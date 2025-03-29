@@ -201,10 +201,9 @@ function stepOnPanel(row, col) {
     //console.log(panel.revealed);
     // Increase score only if player did not step the glass
     if (!panel.revealed) {
-      let actualScore = getScore();
-      setScore(actualScore + 50);
+      setScore(getScore() + 50);
       //console.log(getScore());
-      scoreDisplay.textContent = `Score: ${actualScore}`;
+      scoreDisplay.textContent = `Score: ${getScore()}`;
       
       // Safe panel
       panel.revealed = true;
@@ -330,10 +329,13 @@ function handleKeyDown(e) {
 
 function calculateScore(timeLeft) {
   let victoryBonusPoints = 100;
+  let bonusScoreMultplier = 10;
+  console.log("Victory bonus: +" + victoryBonusPoints);
   if (timeLeft >= 15 && timeLeft <= startTime) {
     // Calculate the time difference and apply the multiplier
     const timeDifference = timeLeft - 15;
-    const bonusScore = timeDifference * 10;
+    const bonusScore = timeDifference * bonusScoreMultplier;
+    console.log("Bonus score: +" + bonusScore);
     setScore(getScore() + victoryBonusPoints + bonusScore);
   }
   return getScore() + victoryBonusPoints;

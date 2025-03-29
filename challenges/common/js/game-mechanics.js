@@ -170,7 +170,7 @@ export function endGame(isVictory, challengeId, GAME, options) {
       const winScore = document.getElementById('win-score');
       const celebration = document.getElementById('celebration');
       reasonEliminated.innerHTML = "";
-      winScore.innerHTML = `You achieved a score of "${getScore()}" points!`;
+      winScore.innerHTML = `You achieved a final score of "${getScore()}" points!`;
       celebration.style.display = 'flex';
       GAME.victorySound.play();
   
