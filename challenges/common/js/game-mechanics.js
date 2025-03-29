@@ -37,7 +37,7 @@ export function setupEventListeners({
     });
 
     homeButton.addEventListener('click', () => {
-        window.location.href = '/handover.html?challengeCompleted=true';
+        window.location.href = '/handover.html?bombExploded=true';
     });
 }
 
@@ -216,7 +216,7 @@ function checkLifes(GAME, challengeId) {
   
       // Redirect to the handover page after 5 seconds
       setTimeout(() => {
-        window.location.href = "/handover.html?challengeCompleted=true";
+        window.location.href = "/handover.html?bombExploded=true";
       }, 5000);
     }
 }

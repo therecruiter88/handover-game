@@ -58,27 +58,27 @@ function handleShapeSelection() {
 
     if (selectedShape === 'circle') {
       playerSvg.innerHTML = `
-        <rect x="15" y="10" width="30" height="40" fill="#ff0066" />
-        <circle cx="30" cy="20" r="10" fill="black" />
-        <circle cx="30" cy="20" r="5" fill="white" />
-        <rect x="18" y="50" width="24" height="25" fill="#ff0066" />
-        <rect x="10" y="40" width="40" height="10" fill="#ff0066" />
+        <rect x="5" y="10" width="20" height="30" fill="red" />
+        <circle cx="15" cy="20" r="7" fill="black" />
+        <circle cx="15" cy="20" r="3" fill="white" />
+        <rect x="8" y="50" width="14" height="20" fill="red" />
+        <rect x="0" y="40" width="80" height="8" fill="red" />
       `;
     } else if (selectedShape === 'square') {
       playerSvg.innerHTML = `
-        <rect x="15" y="10" width="30" height="40" fill="#ff0066" />
-        <circle cx="30" cy="20" r="10" fill="black" />
-        <rect x="25" y="15" width="10" height="10" fill="white" />
-        <rect x="18" y="50" width="24" height="25" fill="#ff0066" />
-        <rect x="10" y="40" width="40" height="10" fill="#ff0066" />
+        <rect x="5" y="5" width="20" height="30" fill="red" />
+        <circle cx="15" cy="13" r="7" fill="black" />
+        <rect x="11" y="9" width="8" height="8" fill="white" />
+        <rect x="8" y="35" width="14" height="20" fill="red" />
+        <rect x="0" y="30" width="80" height="8" fill="red" />
       `;
     } else if (selectedShape === 'triangle') {
       playerSvg.innerHTML = `
-        <rect x="15" y="10" width="30" height="40" fill="#ff0066" />
-        <circle cx="30" cy="20" r="10" fill="black" />
-        <polygon points="30,15 25,25 35,25" fill="white" />
-        <rect x="18" y="50" width="24" height="25" fill="#ff0066" />
-        <rect x="10" y="40" width="40" height="10" fill="#ff0066" />
+        <rect x="5" y="5" width="20" height="30" fill="red" />
+        <circle cx="15" cy="13" r="7" fill="black" />
+        <polygon points="15,8 10,16 20,16" fill="white" />
+        <rect x="8" y="35" width="14" height="20" fill="red" />
+        <rect x="0" y="30" width="80" height="8" fill="red" />
       `;
     }
 
