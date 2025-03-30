@@ -22,7 +22,7 @@ function randomRange(from, to, seed) {
         var i,
             j,
             m = Math.random(),
-            p = randomRange(4, 8, m);
+            p = randomRange(4, 6, m); // original: p = randomRange(4, 8, m);
 
         if (o && o.x) this.x = o.x;
         else this.x = m * W;
@@ -98,12 +98,17 @@ function randomRange(from, to, seed) {
             if (p.y > H) {
                 A[i] = new ash({ y: -10, a: p.a, d: p.d, dp: p.dp }); // Reset to the top
             }
+            if (p.y > H) {
+                A[i] = new ash({ y: -10, a: p.a, d: p.d, dp: p.dp }); // Reset to the top
+            }
+            if (p.y > H) {
+                A[i] = new ash({ y: -10, a: p.a, d: p.d, dp: p.dp }); // Reset to the top
+            }
             /* New code block */
 
             /* Original code block */
-            /*
-            p.y += Math.cos(angle + A.length) + 1 + p.a / 200; // before was divided by 2
-            p.x += Math.sin(angle) * 2; // Angle where the wind blows (before: 2)
+            p.y += Math.cos(angle + A.length) + 1 + p.a / 7000; // before was divided by 2
+            p.x += Math.sin(angle) * 1; // Angle where the wind blows (before: 2)
             
             if (p.x > W + 5 || p.x < -5 || p.y > H) {
                 if (i % 3 > 0) A[i] = new ash({ y: -10, a: p.a, d: p.d, dp: p.dp });
@@ -114,7 +119,6 @@ function randomRange(from, to, seed) {
                     else A[i] = new ash({ x: W + 5, a: p.a, d: p.d, dp: p.dp });
                 }
             }
-            */
             /* Original code block */
         }
     }
@@ -125,7 +129,10 @@ function randomRange(from, to, seed) {
     canvas[1].width = W;
     canvas[1].height = H;
 
-    // Create 200 ashes (instead of 50)
-    for (var i = 0; i < 600; i++) A.push(new ash());  // Changed 50 to 200
-    setInterval(draw, 35); // original value:
+    for (var i = 0; i < 600; i++) {
+        A.push(new ash());  // Changed 50 to 200
+        A.push(new ash());  // Changed 50 to 200
+        A.push(new ash());  // Changed 50 to 200
+    } 
+    setInterval(draw, 40); // original value: 33
 })(bg);

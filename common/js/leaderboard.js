@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.endsWith("challenge.html")) {
         //console.log("Challenge window detected. Waiting for Scoreboard button to be displayed...");
 
-        const maxWaitTime = 10000; // Maximum wait time in milliseconds (10 seconds)
+        const maxWaitTime = 10000;
         const startTime = Date.now();
 
         const interval = setInterval(() => {
@@ -130,6 +130,7 @@ function loadLeaderBoard() {
     
             const scoreCell = row.insertCell();
             if (tab === 'total') {
+                console.log("Tab:" + tab);
                 scoreCell.textContent = entry.totalScore;
             } else {
                 scoreCell.textContent = entry.score;
@@ -143,7 +144,7 @@ function loadLeaderBoard() {
             const challengeTwoGoldenScore = 250;
             const challengeThreeGoldenScore = 450;
             const totalGoldenPlayerScore = challengeOneGoldenScore + challengeTwoGoldenScore + challengeThreeGoldenScore;
-
+            
             if (
                 (tab === 'total' && entry.totalScore >= totalGoldenPlayerScore) ||
                 (tab === 'challenge-1' && entry.bestScore >= challengeOneGoldenScore) ||
