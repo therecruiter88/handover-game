@@ -3,9 +3,8 @@ import { getPinkSoldierMessage} from '/js/pink-soldier-messages.js';
 const contentContainer = document.querySelector(".content-container");
 
 document.addEventListener("DOMContentLoaded", function () {
-    const circleVideoLink = document.getElementById("circle-video-link");
-    const challengeLink = document.getElementById("handover-link");
-
+    //const circleVideoLink = document.getElementById("circle-video-link");
+    /*
     if (circleVideoLink) {
         circleVideoLink.addEventListener("click", function (event) {
             event.preventDefault();
@@ -13,7 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
             window.open(decodedURL, "_blank");
         });
     }
+    */
 
+    const challengeLink = document.getElementById("handover-link");
     if (challengeLink) {
         challengeLink.addEventListener("click", function (event) {
             event.preventDefault();
@@ -93,6 +94,11 @@ if (window.location.pathname.endsWith("handover.html")) {
     contentContainer.classList.add("visible");
 }
 
+document.getElementById('movie-button').addEventListener('click', () => {
+    const decodedURL = atob("aHR0cHM6Ly90aW55dXJsLmNvbS81NmprOG51aw==");
+    window.open(decodedURL, "_blank");
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     // List of face images
     const faceImages = [
@@ -159,6 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ashesContainer.style.display = '';
         }
 
+        console.log("Bomb: " + bombContainer);
         if (bombContainer) {
             bombContainer.classList.add('hidden');
             canvasContainer.classList.add('hidden');

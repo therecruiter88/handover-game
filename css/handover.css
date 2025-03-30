@@ -139,7 +139,38 @@ body {
     width: 24px;
     height: 24px;
     fill: currentColor;
-  }
+}
+.movie-button {
+    position: absolute;
+    left: 16%;
+    width: 50px;
+    height: 50px;
+    background-color: #333;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 1000;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: 1px solid #EB257A;
+    box-shadow: 0 0 15px rgba(235, 37, 122, 0.7);
+    cursor: pointer;
+}
+.movie-button:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 3px solid #FF00FF;
+    box-shadow: 0 0 25px rgba(255, 0, 255, 1);
+    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 8 8, auto;
+}
+#movie-icon {
+    fill: #fff;
+    width: 24px;
+    height: 24px;
+}
 .image-container img {
     position: absolute;
     top: 50%;

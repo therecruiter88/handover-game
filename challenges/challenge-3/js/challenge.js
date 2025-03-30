@@ -10,8 +10,12 @@ const storyTitles = ["Storyline", "Challenge"];
 
 // Specific storyline
 const storylineText = [
-  "Just after escaping the clutches of the dreaded Compliance Sentinel, you find yourself staring at a long, seemingly fragile bridge...the potential path to salvation! But as soon as you step on it, its flaws become painfully clear, and all you can think about is survival!",
-  "The challenge seems straightforward, but the bridge? It’s anything but predictable. One wrong step, one miscalculation, and the entire database could come crashing down. Can you make it across before time runs out, or will you fall into the depths of oblivion? The clock is ticking."
+  //"Just after escaping the clutches of the dreaded Compliance Sentinel, you find yourself staring at a long, seemingly fragile bridge...the potential path to salvation! But as soon as you step on it, its flaws become painfully clear, and all you can think about is survival!",
+  //"The challenge seems straightforward, but the bridge? It’s anything but predictable. One wrong step, one miscalculation, and the entire database could come crashing down. Can you make it across before time runs out, or will you fall into the depths of oblivion? The clock is ticking."
+  //"After narrowly escaping the clutches of the dreaded Compliance Sentinel, you breathe a sigh of relief. But your celebration is short-lived. The hotfix was deployed to production...but someone forgot to TEST!!! Now, the database is on the verge of collapse, and the only thing standing between you and salvation is a long, fragile bridge..",
+  //"Help Player 77, the database master, cross the bridge before time runs out, or risk losing all the data. One wrong move could send the entire database crashing into the abyss. Will you make it to the other side and stabilize the system, or will you fall into the depths of chaos? The clock is ticking...TICK...TOCK...DON'T DROP!"
+  "Player 77, the legendary database master, thought the worst was over after escaping the clutches of the dreaded Compliance Sentinel. But now, a new nightmare looms — a bridge so fragile it feels like it was designed by an intern on their first day! Beneath it lies the abyss of chaos, where corrupted tables and cascading failures await.",
+  "Your mission? Cross this treacherous glass bridge before the clock hits zero. But beware! One wrong step, and the entire database will implode into oblivion. The bridge creaks, groans, and mocks your every move. Can you outwit its unpredictability and stabilize the system? Or will you plummet into the depths of despair? TICK...TOCK...DON'T DROP!"
 ];
 
 // Specific game elements
