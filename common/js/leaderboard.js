@@ -198,6 +198,7 @@ function loadLeaderBoard() {
     const tabButtons = document.querySelectorAll('#leaderboard-tab-button');
     tabButtons.forEach(button => {
         button.addEventListener('click', (event) => {
+            //event.stopPropagation();
             const selectedTab = event.target.dataset.tab;
 
             // Remove the "active" class from all tabs

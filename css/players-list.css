@@ -34,7 +34,7 @@
 }
 .players-list {
     list-style-type: none;
-    padding-left: 20px;
+    padding-left: 15%;
     visibility: hidden;
     opacity: 0;
     max-height: 200px;

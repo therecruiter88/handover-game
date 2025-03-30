@@ -93,9 +93,18 @@ function randomRange(from, to, seed) {
         for (i = 0; i < A.length; i++) {
             p = A[i];
 
-            p.y += Math.cos(angle + A.length) + 1 + p.a / 200; // before was divided by 2
-            p.x += Math.sin(angle) * 1; // Angle where the wind blows (before: 2)
+            /* New code block */
+            p.y += 2 + p.a / 7000; // Constant vertical speed
+            if (p.y > H) {
+                A[i] = new ash({ y: -10, a: p.a, d: p.d, dp: p.dp }); // Reset to the top
+            }
+            /* New code block */
 
+            /* Original code block */
+            /*
+            p.y += Math.cos(angle + A.length) + 1 + p.a / 200; // before was divided by 2
+            p.x += Math.sin(angle) * 2; // Angle where the wind blows (before: 2)
+            
             if (p.x > W + 5 || p.x < -5 || p.y > H) {
                 if (i % 3 > 0) A[i] = new ash({ y: -10, a: p.a, d: p.d, dp: p.dp });
                 else {
@@ -105,6 +114,8 @@ function randomRange(from, to, seed) {
                     else A[i] = new ash({ x: W + 5, a: p.a, d: p.d, dp: p.dp });
                 }
             }
+            */
+            /* Original code block */
         }
     }
 
@@ -115,6 +126,6 @@ function randomRange(from, to, seed) {
     canvas[1].height = H;
 
     // Create 200 ashes (instead of 50)
-    for (var i = 0; i < 200; i++) A.push(new ash());  // Changed 50 to 200
-    setInterval(draw, 33);
+    for (var i = 0; i < 600; i++) A.push(new ash());  // Changed 50 to 200
+    setInterval(draw, 35); // original value:
 })(bg);

@@ -53,7 +53,7 @@ const wallMat = new THREE.MeshStandardMaterial({
 });
 const loader = new GLTFLoader();
 //const wallPath = "./assets/wallFractured.glb";
-const wallPath = "./bomb/assets/wallFractured.glb";
+const wallPath = "./animations/bomb/assets/wallFractured.glb";
 loader.load( `${wallPath}`, (gltf) => {
     wallChunksGroup.add(...gltf.scene.children);
     wallChunksGroup.children.forEach((chunk) => {
@@ -94,7 +94,7 @@ camera.add(audioListener);
 const glassShatterSound = new THREE.Audio(audioListener);
 const audioLoader = new THREE.AudioLoader();
 //const audioPath = "./assets/audio/glass-shatter.mp3";
-const audioPath = "./bomb/assets/audio/glass-shatter.mp3";
+const audioPath = "./animations/bomb/assets/audio/glass-shatter.mp3";
 
 audioLoader.load(`${audioPath}`, (buffer) => {
   glassShatterSound.setBuffer(buffer);

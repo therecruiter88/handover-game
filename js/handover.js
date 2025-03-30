@@ -61,10 +61,10 @@ function setupBackgroundMusic() {
     });
 }
 
-function togglePlayersPanel() {
+window.togglePlayersPanel = function( ) {
     const playersList = document.getElementById("players-list");
-    playersList.classList.toggle("visible");
-}
+    if(playersList) playersList.classList.toggle("visible");
+};
 
 function updateCountdown() {
     const targetDate = new Date("2025-04-04T19:00:00");

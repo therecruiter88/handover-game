@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function explode() {
         countdown.style.display = "none";
         //bomb.src = "./assets/img/explosion.png";  // Change to explosion image
-        bomb.src = "./bomb/assets/img/explosion.png"; // Use this path when integrating
+        bomb.src = "./animations/bomb/assets/img/explosion.png"; // Use this path when integrating
         bomb.classList.add("explosion");
 
         explosionSound.play();
