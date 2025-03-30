@@ -2,6 +2,9 @@ let player;
 const videoPanel = document.getElementById('video-panel');
 const movieButton = document.getElementById('movie-button');
 let justDisplayed = false; // Flag to track if the video panel was just displayed
+let isPanelVisible = false;
+
+const overlay = document.createElement('div');
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('youtube-player', {
@@ -36,6 +39,13 @@ function onPlayerStateChange(event) {
 
 movieButton.addEventListener('click', () => {
     setTimeout(() => {
+        overlay.classList.add('overlay-video');
+        document.body.appendChild(overlay);
+        isPanelVisible = !isPanelVisible;
+
+        videoPanel.style.display = isPanelVisible ? "block" : "none";
+        overlay.style.display = isPanelVisible ? "block" : "none";
+
         if (videoPanel.classList.contains('hidden')) {
             // If the panel is hidden, display it and stop the music
             videoPanel.classList.remove('hidden');
@@ -44,7 +54,9 @@ movieButton.addEventListener('click', () => {
             stopMusic();
             justDisplayed = true; // Set the flag to true
             if (player && typeof player.playVideo === 'function') {
-                player.playVideo(); // Start the video automatically
+                setTimeout(() => {
+                    player.playVideo(); // Wait and start the video automatically
+                }, 1000);
             }
         } else {
             // If the panel is displayed, hide it and play the music
@@ -73,6 +85,9 @@ document.addEventListener('click', (event) => {
             player.stopVideo();
             playMusic();
         }
+        isPanelVisible = false;
+        videoPanel.style.display = "none";
+        overlay.style.display = "none";
         videoPanel.classList.add('hidden'); // Hide the panel
         justDisplayed = false; // Reset the flag
     }

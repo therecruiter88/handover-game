@@ -37,7 +37,7 @@
 }
 
 .leaderboard-table tr {
-    height: 50px; /* Adjust as needed */
+    height: 50px;
 }
 
 .leaderboard-table tr:active {
