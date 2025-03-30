@@ -32,7 +32,7 @@ function createLeaderboardPanel() {
             leaderboardContainer.innerHTML = data;
     
             // Find the first <div> inside the <body>
-            const firstDiv = document.querySelector("body > div");
+            const firstDiv = document.querySelector("body div#content");
     
             if (firstDiv) {
                 // Append the leaderboardContainer as the last child of the first <div>
