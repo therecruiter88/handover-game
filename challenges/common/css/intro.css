@@ -19,7 +19,6 @@
     font-size: 3rem;
     font-weight: bold;
     letter-spacing: 0.2rem;
-    font-family: 'Press Start 2P', cursive;
     position: relative;
     opacity: 0;
     animation: logoReveal 4s ease-in-out forwards;

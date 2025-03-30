@@ -45,7 +45,6 @@
 /* Styling for the leaderboard title */
 .leaderboard-title {
     text-align: center;
-    font-family: 'Press Start 2P', cursive;
     margin-bottom: 20px;
     color: #EB257A;
     background: linear-gradient(90deg, #EB257A, #FF4081, #EB257A);
@@ -76,14 +75,13 @@
     color: #EB257A;
     border: none;
     padding: 10px 20px;
-    font-family: 'Press Start 2P', cursive;
     cursor: pointer;
     margin: 0 5px;
     border-radius: 5px;
 }
 
 .tab-button:hover {
-    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
+    cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
 }
 
 .tab-button.active {
@@ -109,9 +107,8 @@
     padding: 10px;
     text-align: center;
     border-bottom: 2px solid #EB257A;
-    font-family: 'Press Start 2P', cursive;
     vertical-align: middle;
-    height: 30px;
+    height: 50x;
 }
 
 .leaderboard-table th {

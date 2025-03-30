@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Handover Game</title>
         <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/common/css/video-panel.css">
+        <link rel="stylesheet" href="/common/css/fonts.css">
         <link rel="stylesheet" href="/css/handover.css">
         <link rel="stylesheet" href="/common/css/mobile-instructions.css">
         <link rel="stylesheet" href="/common/css/leaderboard.css">
@@ -50,11 +52,16 @@
             </div>
             <a href="#" id="handover-link" target="_blank" class="handover-link sound-efx">&gt ACCEPT CHALLENGE</a>
             <!-- Movie FAB Button -->
-            <button id="movie-button" class="movie-button sound-efx" title="Watch Video">
+            <button id="movie-button" class="movie-button sound-efx" title="Card invitation video">
                 <svg id="movie-icon" viewBox="0 0 24 24">
                     <path d="M10 16.5l6-4.5-6-4.5v9zm-6-13h16c1.1 0 2 .9 2 2v13c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2zm0 15h16V5H4v13z"/>
                 </svg>
             </button>
+
+            <!-- Video Panel -->
+            <div id="video-panel" class="video-panel hidden">
+                <div id="youtube-player"></div>
+            </div>
         </div>
 
         <!-- Center panel -->
@@ -140,7 +147,7 @@
         </div>
     </div>
 
-    <script src="/common/js/audio.js"></script>
+    <script src="/common/js/audio.js" type="module"></script>
     <script src="/common/js/common.js"></script>
     <script src="/common/js/leaderboard.js" type="module"></script>
     <script src="/common/js/mobile-message.js"></script>
@@ -154,5 +161,7 @@
     <script src="/animations/bomb/js/obfuscator-audio.js"></script>
     <script src="/animations/bomb/js/bomb.js"></script>
     <script src="/animations/ashes/js/scripts.js"></script>
+    <script src="/common/js/video-panel.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>

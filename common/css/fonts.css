@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'Press Start 2P';
+    src: url('/assets/fonts/PressStart2P-Regular.ttf') format('truetype'),
+         url('/common/assets/fonts/PressStart2P-Regular.woff2') format('woff2'),
+         url('/common/assets/fonts/PressStart2P-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Game of Squids';
+    src: url('/assets/fonts/Game Of Squids.ttf') format('truetype'),
+         url('/assets/fonts/Game Of Squids.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body, input, button, select, label, span {
+    font-family: 'Press Start 2P', cursive;
+}

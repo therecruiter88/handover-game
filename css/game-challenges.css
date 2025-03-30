@@ -28,7 +28,7 @@
     transition: all 0.3s ease; /* Added transition for smooth effect */
 }
 .fab-btn img:hover {
-    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
+    cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
     background-color: white;
     color: #EB257A;
     transform: scale(1.05); /* Slightly enlarge on hover */
@@ -56,7 +56,6 @@
     transition: box-shadow 0.3s ease-in-out;
     background: linear-gradient(135deg, #EB257A, #333); /* Dark gradient background */
     box-shadow: 0 0 15px rgba(235, 37, 122, 0.7); /* Glowing neon effect */
-    font-family: 'Press Start 2P', cursive; /* Retro font for style */
     transform: translateY(50%); /* Start from below */
     animation: borderAnimation 3s linear infinite;
 }
@@ -112,7 +111,7 @@
 .challenge-item:hover {
     background: rgba(255, 255, 255, 0.2); 
     transform: scale(1.05); /* Add subtle hover effect */
-    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
+    cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
 }
 .challenge-item-leaderboard {
     margin-bottom: 10px;
@@ -131,6 +130,6 @@
 }
 .challenge-item-leaderboard:hover {
     background: rgba(255, 0, 0, 0.4);
-    transform: scale(1.05); /* Add subtle hover effect */
-    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
+    transform: scale(1.05);
+    cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
 }

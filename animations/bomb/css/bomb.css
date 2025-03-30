@@ -1,6 +1,5 @@
 body {
     background-color: black;
-	font-family: 'Press Start 2P', cursive;
     overflow: hidden;
 }
 .hidden {
@@ -28,7 +27,7 @@ body {
     100% { transform: translate(0, 0) scale(1); }
 }
 #bomb:hover {
-	cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
+    cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
     transform: scale(1.1);
 }
 /* Bomb Pop-in Animation */

@@ -1,4 +1,5 @@
 import { getPinkSoldierMessage} from '/js/pink-soldier-messages.js';
+import { toggleBackgroundMusic} from '/common/js/audio.js';
 
 const contentContainer = document.querySelector(".content-container");
 
@@ -13,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
     */
-
     const challengeLink = document.getElementById("handover-link");
     if (challengeLink) {
         challengeLink.addEventListener("click", function (event) {
@@ -38,27 +38,21 @@ document.addEventListener("DOMContentLoaded", function () {
 }*/
 
 function setupBackgroundMusic() {
-    const muteButton = document.getElementById('muteButton');
-    const volumeIcon = document.getElementById('volumeIcon');
+    const music = document.getElementById("background-music");
     music.volume = 0.5; // Set volume to 50%
     
     // Start playing music on first user interaction
     const startMusic = () => {
-      music.play();
-      document.removeEventListener('click', startMusic);
+        music.play();
+        document.removeEventListener('click', startMusic);
     };
     
     document.addEventListener('click', startMusic);
 
+    const muteButton = document.getElementById('muteButton');
     // Setup mute button functionality
     muteButton.addEventListener('click', () => {
-      if (music.muted) {
-        music.muted = false;
-        volumeIcon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>';
-      } else {
-        music.muted = true;
-        volumeIcon.innerHTML = '<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>';
-      }
+      toggleBackgroundMusic()
     });
 }
 
@@ -94,10 +88,12 @@ if (window.location.pathname.endsWith("handover.html")) {
     contentContainer.classList.add("visible");
 }
 
+/*
 document.getElementById('movie-button').addEventListener('click', () => {
     const decodedURL = atob("aHR0cHM6Ly90aW55dXJsLmNvbS81NmprOG51aw==");
     window.open(decodedURL, "_blank");
 });
+*/
 
 document.addEventListener("DOMContentLoaded", function () {
     // List of face images
@@ -158,6 +154,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Force play new music
         if (audio) audio.src = "/assets/audio/sg_theme_song_2.mp3";
+        const music = document.getElementById("background-music");
+        const volumeIcon = document.getElementById('volumeIcon');
+
         if (music) music.muted = false;
         if (volumeIcon) volumeIcon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>';
 
@@ -165,7 +164,6 @@ document.addEventListener("DOMContentLoaded", function () {
             ashesContainer.style.display = '';
         }
 
-        console.log("Bomb: " + bombContainer);
         if (bombContainer) {
             bombContainer.classList.add('hidden');
             canvasContainer.classList.add('hidden');

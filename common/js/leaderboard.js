@@ -1,50 +1,50 @@
 import { database, ref, get } from '/common/js/firebaseConfig.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+// Add more challenges here if needed
+const challenges = ['challenge-1', 'challenge-2', 'challenge-3'];
+const leaderboardButton = document.getElementById('challenge-leaderboard');
 
-    // Check if the URL ends with "challenge.html"
+document.addEventListener('DOMContentLoaded', () => {
+    // Check if the URL ends with "challenge.html" to trigger the leaderboard from the end game challenge
     if (window.location.pathname.endsWith("challenge.html")) {
         //console.log("Challenge window detected. Waiting for Scoreboard button to be displayed...");
-
         const maxWaitTime = 10000;
         const startTime = Date.now();
 
         const interval = setInterval(() => {
-            const scoreboardTrigger = document.getElementById('challenge-leaderboard');
-
-            if (scoreboardTrigger && scoreboardTrigger.offsetParent !== null) {
-                clearInterval(interval); // Stop checking once the button is visible
-                fetchLeaderboardHTML();
+            if (leaderboardButton && leaderboardButton.offsetParent !== null) {
+                // Stop checking once the button is visible
+                clearInterval(interval);
+                createLeaderboardPanel();
             }
-        }, 1000); // Check every 500ms
+        }, 1000); // Check every second
     } else {
-        fetchLeaderboardHTML();
+        createLeaderboardPanel();
     }
 });
 
-    function fetchLeaderboardHTML() {
-        fetch("/common/html/leaderboard.html")
-            .then(response => response.text())
-            .then(data => {
-                const leaderboardContainer = document.createElement("div");
-                leaderboardContainer.innerHTML = data;
+// Get the common html for scoreboard to inject on the current html page
+function createLeaderboardPanel() {
+    fetch("/common/html/leaderboard.html")
+        .then(response => response.text())
+        .then(data => {
+            const leaderboardContainer = document.createElement("div");
+            leaderboardContainer.innerHTML = data;
     
-                // Find the first <div> inside the <body>
-                const firstDiv = document.querySelector("body > div");
+            // Find the first <div> inside the <body>
+            const firstDiv = document.querySelector("body > div");
     
-                if (firstDiv) {
-                    // Append the leaderboardContainer as the last child of the first <div>
-                    firstDiv.appendChild(leaderboardContainer);
-                    loadLeaderBoard();
-                } else {
-                    console.error("No <div> found inside <body> to inject the leaderboard.");
-                }
-            })
-            .catch(error => console.error("Error loading leaderboard:", error));
-    }
+            if (firstDiv) {
+                // Append the leaderboardContainer as the last child of the first <div>
+                firstDiv.appendChild(leaderboardContainer);
+                loadLeaderboardBehavior();
+            } else {
+                console.error("No <div> found inside <body> to inject the leaderboard.");
+            }
+        }).catch(error => console.error("Error loading leaderboard:", error));
+}
 
-function loadLeaderBoard() {
-    const scoreboardTrigger = document.getElementById('challenge-leaderboard');
+function loadLeaderboardBehavior() {;
     let leaderboardPanel = document.getElementById('leaderboard-panel');
     let leaderboardTable = document.getElementById('leaderboard-table');
     const overlay = document.createElement('div');
@@ -52,8 +52,8 @@ function loadLeaderBoard() {
     document.body.appendChild(overlay);
     let isPanelVisible = false;
 
-    // Function to fetch leaderboard data from Firebase
-    async function fetchLeaderboardData(tab) {
+    // Function to fetch leaderboard data from the database (Firebase db)
+    async function getLeaderboardDataFromDatabase(tab) {
         try {
             const leaderboardChallengesRef = ref(database, `leaderboards/${tab}`);
             const snapshot = await get(leaderboardChallengesRef);
@@ -79,13 +79,12 @@ function loadLeaderBoard() {
         }
     }
 
-    // Function to calculate the total score for each player
-    async function calculateTotalScores() {
-        const challenges = ['challenge-1', 'challenge-2', 'challenge-3']; // Add more challenges here if needed
+    // Function to calculate the total score that each player accomplished in all games
+    async function getTotalScores() {
         const allPlayerData = {};
 
         for (const challenge of challenges) {
-            const data = await fetchLeaderboardData(challenge);
+            const data = await getLeaderboardDataFromDatabase(challenge);
             data.forEach(playerData => {
                 if (!allPlayerData[playerData.player]) {
                     allPlayerData[playerData.player] = {
@@ -101,7 +100,7 @@ function loadLeaderBoard() {
     }
 
     // Function to generate the leaderboard based on the selected tab
-    async function generateLeaderboard(tab) {
+    async function createLeaderboardForTab(tab) {
         const tempTable = document.createElement('table');
         tempTable.classList.add('leaderboard-table');
     
@@ -116,9 +115,10 @@ function loadLeaderBoard() {
             headerRow.insertCell().textContent = "Best Score";
         }
 
-        headerRow.insertCell().textContent = ""; // Add trophy column header
+        // Add trophy column header
+        headerRow.insertCell().textContent = "";
     
-        let data = tab === 'total' ? await calculateTotalScores() : await fetchLeaderboardData(tab);
+        let data = tab === 'total' ? await getTotalScores() : await getLeaderboardDataFromDatabase(tab);
         if (!Array.isArray(data)) return;
     
         data.sort((a, b) => tab === 'total' ? b.totalScore - a.totalScore : b.bestScore - a.bestScore);
@@ -130,7 +130,6 @@ function loadLeaderBoard() {
     
             const scoreCell = row.insertCell();
             if (tab === 'total') {
-                console.log("Tab:" + tab);
                 scoreCell.textContent = entry.totalScore;
             } else {
                 scoreCell.textContent = entry.score;
@@ -166,7 +165,7 @@ function loadLeaderBoard() {
     }    
 
     // Event listener to toggle the leaderboard panel visibility
-    scoreboardTrigger.addEventListener('click', (event) => {
+    leaderboardButton.addEventListener('click', (event) => {
         //event.stopPropagation();
         isPanelVisible = !isPanelVisible;
 
@@ -178,17 +177,16 @@ function loadLeaderBoard() {
         overlay.style.display = isPanelVisible ? "block" : "none";
 
         // Reset the scroll position to the top when the leaderboard is opened
-        if (isPanelVisible) {
-            leaderboardPanel.scrollTop = 0;
-        }
+        if (isPanelVisible) leaderboardPanel.scrollTop = 0;
 
+        // Hide the list
         const challengeList = document.getElementById('challenge-list');
-        if (challengeList) challengeList.classList.remove('show'); // Hide the list
+        if (challengeList) challengeList.classList.remove('show');
     });
 
     // Event listener to close the leaderboard panel when clicking outside of it
     document.addEventListener('click', (event) => {
-        if (isPanelVisible && !leaderboardPanel.contains(event.target) && event.target !== scoreboardTrigger) {
+        if (isPanelVisible && !leaderboardPanel.contains(event.target) && event.target !== leaderboardButton) {
             isPanelVisible = false;
             leaderboardPanel.style.display = "none";
             overlay.style.display = "none";
@@ -199,7 +197,7 @@ function loadLeaderBoard() {
     const tabButtons = document.querySelectorAll('#leaderboard-tab-button');
     tabButtons.forEach(button => {
         button.addEventListener('click', (event) => {
-            //event.stopPropagation();
+            event.stopPropagation();
             const selectedTab = event.target.dataset.tab;
 
             // Remove the "active" class from all tabs
@@ -209,10 +207,10 @@ function loadLeaderBoard() {
             event.target.classList.add('active');
 
             // Generate the leaderboard for the selected tab
-            generateLeaderboard(selectedTab);
+            createLeaderboardForTab(selectedTab);
         });
     });
 
     // Generate the leaderboard for the "Total Score" tab initially
-    generateLeaderboard('total');
+    createLeaderboardForTab('total');
 }

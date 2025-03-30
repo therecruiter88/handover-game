@@ -9,8 +9,7 @@
 /* General page styling */
 /*body {*/
     /*font-family: 'Rubik Mono One', sans-serif;*/
-    /*font-family: 'Press Start 2P', cursive;
-    display: flex;
+    /*display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -22,7 +21,6 @@ body {
     background-color: black;
     color: white;
     text-align: center;
-    font-family: 'Press Start 2P', cursive;
     margin: 0;
     overflow: hidden;
     display: flex;
@@ -47,7 +45,7 @@ body {
     animation: soldierPopIn 2s forwards, jump 4s infinite 1s; /* Pop-in first, then jump */
 }
 .soldier:hover {
-    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
+    cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
 }
 /* Soldier Pop-in Animation */
 @keyframes soldierPopIn {
@@ -73,7 +71,6 @@ body {
 .click-me{
     position: absolute;
     color: #EB257A;
-    font-family: 'Press Start 2P', cursive;
     font-size: 12px;
     left: 16.0%; /* Put below soldier */
     bottom: 0%; /* Put below soldier */
@@ -83,7 +80,6 @@ body {
 /*.click-me {
     position: absolute;
     color: #EB257A;
-    font-family: 'Press Start 2P', cursive;
     font-size: 12px;
     padding: 15px 20px;
     transition: left 0.1s, top 0.1s;
@@ -92,7 +88,6 @@ body {
 .over-here {
     position: absolute;
     color: #EB257A;
-    font-family: 'Press Start 2P', cursive;
     font-size: 60%;
     left: 17.0%; /* Put below soldier */
     bottom: 15%; /* Put below soldier */

@@ -2,7 +2,6 @@ body {
     background-color: black;
     color: white;
     text-align: center;
-    font-family: 'Press Start 2P', cursive;
     margin: 0;
     overflow: hidden;
     display: flex;
@@ -29,7 +28,6 @@ body {
     background: linear-gradient(135deg, #222, #333);
     box-shadow: 0 0 15px rgba(235, 37, 122, 0.7);
     z-index: 10;
-    font-family: 'Press Start 2P', cursive;
     color: white;
     font-size: 18px;
     letter-spacing: 2px;
@@ -84,7 +82,7 @@ body {
     text-decoration: none;
 }
 .handover-link:hover {
-    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 8 8, auto;
+    cursor: url('/assets/cursors/sg-pointer.png') 8 8, auto;
     scale: 1.1;
 }
 .buttons-link {
@@ -92,7 +90,7 @@ body {
     text-decoration: none;
 }
 .buttons-link:hover {
-    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 8 8, auto;
+    cursor: url('/assets/cursors/sg-pointer.png') 8 8, auto;
 }
 .buttons {
     font-size: 120%;
@@ -100,7 +98,7 @@ body {
 .buttons:hover {
     font-size: 140%;
     color: pink;
-    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 8 8, auto;
+    cursor: url('/assets/cursors/sg-pointer.png') 8 8, auto;
 }
 .button-circle {
     color: yellow;
@@ -133,7 +131,7 @@ body {
     background-color: rgba(255, 255, 255, 0.2);
     border: 3px solid #FF00FF;
     box-shadow: 0 0 25px rgba(255, 0, 255, 1);
-    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 8 8, auto;
+    cursor: url('/assets/cursors/sg-pointer.png') 8 8, auto;
 }
 .mute-button svg {
     width: 24px;
@@ -164,7 +162,7 @@ body {
     background-color: rgba(255, 255, 255, 0.2);
     border: 3px solid #FF00FF;
     box-shadow: 0 0 25px rgba(255, 0, 255, 1);
-    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 8 8, auto;
+    cursor: url('/assets/cursors/sg-pointer.png') 8 8, auto;
 }
 #movie-icon {
     fill: #fff;

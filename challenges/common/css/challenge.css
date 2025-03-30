@@ -1,5 +1,4 @@
 body {
-    font-family: 'Press Start 2P', cursive;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,10 +65,9 @@ body {
     outline: none;
 }
 #player-number:hover {
-    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
+    cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
 }
 #player-number option {
-    font-family: 'Press Start 2P', cursive;
     text-align: center;
     font-size: 14px
 }
@@ -79,7 +77,6 @@ select {
     width: 100%;
     margin-bottom: 20px;
     border: none;
-    font-family: 'Press Start 2P', cursive;
     text-align: center;
     font-size: 14px;
     padding: 5px;
@@ -88,7 +85,7 @@ select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
+    cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
 }
 select:hover {
     height: 10%;
@@ -104,7 +101,6 @@ select:hover {
     font-size: 1rem;
     margin-top: 20px;
     cursor: pointer;
-    font-family: 'Press Start 2P', cursive;
 }
 #begin-challenge:disabled {
     background-color: #666;
@@ -112,7 +108,7 @@ select:hover {
 }
 #begin-challenge:hover:enabled {
     background-color: #d62056;
-    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
+    cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
 }
 #game-container {
     width: 600px;
@@ -167,11 +163,11 @@ select:hover {
     text-decoration: none;
 }
 #home-button:hover {
-    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
+    cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
     background-color: #d62056;
 }
-#challenge-leaderboard-btn:hover {
-    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
+#challenge-leaderboard:hover {
+    cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
     background-color: #d62056;
 }
 .hidden {

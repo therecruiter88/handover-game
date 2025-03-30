@@ -9,7 +9,6 @@
     justify-content: center;
     align-items: center;
     z-index: 95;
-    font-family: 'Press Start 2P', cursive;
     color: white;
     display: none;
 }
@@ -50,7 +49,6 @@
     font-size: 0.8rem;
     margin-top: 20px;
     cursor: pointer;
-    font-family: 'Press Start 2P', cursive;
     display: none;
     position: absolute;
     bottom: 30px;
@@ -59,5 +57,5 @@
 }
 #continue-btn:hover:enabled {
     background-color: #d62056;
-    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
+    cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
 }  

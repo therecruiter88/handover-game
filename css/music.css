@@ -10,7 +10,6 @@
     background-color: #EB257A;
     border: 3px solid white;
     color: white;
-    font-family: 'Press Start 2P', cursive;
     font-size: 15px;
     padding: 10px 15px;
     cursor: pointer;
@@ -24,7 +23,7 @@
 .music-button:hover {
     background-color: white;
     color: #EB257A;
-    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
+    cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
 }
 .music-icon {
     font-size: 20px;

@@ -29,9 +29,8 @@
     font-size: 1rem;
     margin-top: 20px;
     cursor: pointer;
-    font-family: 'Press Start 2P', cursive;
 }
 #instructions-close:hover:enabled {
     background-color: #d62056;
-    cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
+    cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
 }  

@@ -8,6 +8,12 @@ function randomRange(from, to, seed) {
 
 //Fire
 (function (b) {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // If the bomb did not explode, ashes don't fall...
+    const bombExploded = urlParams.get('bombExploded') === 'true';
+    if (!bombExploded) return;
+
     var cntr = document.getElementById("canvascontainer"),
         W = cntr.offsetWidth,
         H = cntr.offsetHeight,

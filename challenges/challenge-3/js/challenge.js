@@ -206,7 +206,6 @@ function stepOnPanel(row, col) {
     // Increase score only if player did not step the glass
     if (!panel.revealed) {
       setScore(getScore() + 50);
-      //console.log(getScore());
       scoreDisplay.textContent = `Score: ${getScore()}`;
       
       // Safe panel

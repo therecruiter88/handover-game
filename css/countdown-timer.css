@@ -26,7 +26,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: 'Game of Squids';
+    font-family: 'Game of Squids', sans-serif !important;
 }
 .countdown-number {
     background: #EB257A;
@@ -35,21 +35,22 @@
     font-size: 34px;
     width: 100px;
     text-align: center;
-    border: 3px solid #EB257A; /* Neon pink border */
+    border: 3px solid #EB257A;
     border-radius: 15px;
-    padding: 10px; /* Ensure space around text */
+    padding: 10px;
     transition: box-shadow 0.3s ease-in-out;
-    background: linear-gradient(135deg, #EB257A, #333); /* Dark gradient background */
-    box-shadow: 0 0 15px rgba(235, 37, 122, 0.7); /* Glowing neon effect */
+    background: linear-gradient(135deg, #EB257A, #333);
+    box-shadow: 0 0 15px rgba(235, 37, 122, 0.7);
     z-index: 10;
 }
 .countdown-number:hover {
-    border: 3px solid #FF00FF; /* Change to bright neon pink when hovering */
-    box-shadow: 0 0 15px rgba(255, 0, 255, 1); /* Stronger glowing neon effect */
+    border: 3px solid #FF00FF;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 1);
 }
 .countdown-label {
     font-size: 16px;
     color: #EB257A;
     white-space: nowrap;
     text-align: center;
+    font-family: 'Game of Squids', sans-serif !important;
 }

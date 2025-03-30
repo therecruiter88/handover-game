@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let timeLeft = 10;
         countdown.style.display = "block";
         countdown.textContent = timeLeft;
+        const music = document.getElementById("background-music");
 
         if (music) music.volume = 0.5;
         countdownSound.play();

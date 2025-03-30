@@ -192,12 +192,12 @@ export function endGame(isVictory, challengeId, GAME, options) {
       // Game over sequence
       GAME.gameOverElement.style.display = 'flex';
       GAME.eliminationSound.play();
-      loseLife(GAME, challengeId);
+      loseLife(GAME);
       checkIfPlayerIsOutOfLives(GAME, challengeId);
     }
 }
 
-export function loseLife(GAME, challengeId) {
+export function loseLife(GAME) {
     setLives(getLives() - 1);
     updateHeartsDisplay(GAME.hearts, getLives());
 }
