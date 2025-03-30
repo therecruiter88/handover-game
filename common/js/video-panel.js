@@ -1,6 +1,7 @@
 let player;
 const videoPanel = document.getElementById('video-panel');
 const movieButton = document.getElementById('movie-button');
+let justDisplayed = false; // Flag to track if the video panel was just displayed
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('youtube-player', {
@@ -34,33 +35,46 @@ function onPlayerStateChange(event) {
 }
 
 movieButton.addEventListener('click', () => {
-    videoPanel.classList.toggle('hidden');
     setTimeout(() => {
-    if (videoPanel.classList.contains('hidden')) {
-        // If the panel is hidden, display it and stop the music
-        videoPanel.classList.remove('hidden');
-        videoPanel.style.display = 'block'; // Show the panel
-        console.log("Video panel is displayed");
-        stopMusic();
-    } else {
-        // If the panel is displayed, hide it and play the music
-        videoPanel.classList.add('hidden');
-        videoPanel.style.display = 'none'; // Hide the panel
-        console.log("Video panel is not displayed");
-        playMusic();
-    }
-}, 100);
+        if (videoPanel.classList.contains('hidden')) {
+            // If the panel is hidden, display it and stop the music
+            videoPanel.classList.remove('hidden');
+            videoPanel.style.display = 'block'; // Show the panel
+            console.log("Video panel is displayed");
+            stopMusic();
+            justDisplayed = true; // Set the flag to true
+            if (player && typeof player.playVideo === 'function') {
+                player.playVideo(); // Start the video automatically
+            }
+        } else {
+            // If the panel is displayed, hide it and play the music
+            videoPanel.classList.add('hidden');
+            videoPanel.style.display = 'none'; // Hide the panel
+            console.log("Video panel is not displayed");
+            playMusic();
+        }
+    }, 100);
 });
 
 document.addEventListener('click', (event) => {
-    if (videoPanel && !videoPanel.contains(event.target) && event.target !== movieButton) {
-        // Click occurred outside the video panel
+    // Check if the click occurred on the music button or its children
+    let targetElement = event.target;
+    while (targetElement) {
+        if (targetElement.id === 'muteButton' || targetElement.id === 'volumeIcon') {
+            return; // Ignore the click if it's on the music button
+        }
+        targetElement = targetElement.parentNode;
+    }
+
+    if (justDisplayed && videoPanel && !videoPanel.contains(event.target) && event.target !== movieButton) {
+        // Click occurred outside the video panel right after it was displayed
         if (player && typeof player.stopVideo === 'function') {
             // Stop the video and start background music
             player.stopVideo();
             playMusic();
         }
         videoPanel.classList.add('hidden'); // Hide the panel
+        justDisplayed = false; // Reset the flag
     }
 });
 
