@@ -74,15 +74,26 @@ body {
     font-size: 14px
 }
 select {
-    max-height: none;
-    overflow-y: visible;
+    max-height: 150px;
+    overflow-y: auto; /* Enable vertical scrolling */
     width: 100%;
     margin-bottom: 20px;
     border: none;
     font-family: 'Press Start 2P', cursive;
     text-align: center;
-    font-size: 10px;
+    font-size: 14px;
+    padding: 5px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
     cursor: url('https://i.postimg.cc/br0HSkkW/sg-pointer.png') 16 16, auto;
+}
+select:hover {
+    height: 10%;
+    padding: 5px;
+    line-height: 1.5;
 }
 #player-name-prompt button {
     background-color: #EB257A;
