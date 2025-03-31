@@ -94,19 +94,23 @@ body {
 }
 .buttons {
     font-size: 120%;
+    display: inline-block;
+    color: pink;
+    position: relative;
+    overflow: hidden;
 }
 .buttons:hover {
-    font-size: 140%;
-    color: pink;
+    transform: scale(1.5);
+    transform-origin: center;
     cursor: url('/assets/cursors/sg-pointer.png') 8 8, auto;
 }
-.button-circle {
+.button-circle:hover {
     color: yellow;
 }
-.button-triangle {
+.button-triangle:hover {
     color: red;
 }
-.button-square {
+.button-square:hover {
     color: green;
 }
 .mute-button {

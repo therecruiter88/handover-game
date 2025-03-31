@@ -34,6 +34,10 @@ function onPlayerStateChange(event) {
         videoPanel.style.display = 'none'; // Hide the panel
         console.log("Video panel dismissed.");
         playMusic();
+        isPanelVisible = false;
+        overlay.style.display = "none";
+        justDisplayed = false; // Reset the flag
+
     }
 }
 

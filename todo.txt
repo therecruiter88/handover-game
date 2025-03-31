@@ -1,4 +1,11 @@
+> When entering the page with the new background music, the old one starts to play first for a brief second.
+
+> Move img to new obfuscated file.
+
+> Fix "Over here" pink soldier assistant text, it only appears for brief seconds. Isolated it works well.
+
 > Fit content on huge screens or when dev tools is opened
 
 > Fix bug on challenge-1 when retrying and player stucks
+
 > Fix bug on challenge-2 when retrying, the overlay is displayed several times

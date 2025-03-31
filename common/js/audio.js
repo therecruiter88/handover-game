@@ -53,9 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
         "click", 
         (event) => {
             const targetElement = event.target.closest(".sound-efx");
-            console.log("Target Element:", targetElement);
             if (targetElement && !targetElement.disabled) {
-                console.log("Element clicked:", targetElement);
+                //console.log("Element clicked:", targetElement);
         
                 const url = targetElement.getAttribute("data-url");
 

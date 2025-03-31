@@ -83,6 +83,7 @@
 
 .tab-button:hover {
     cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
+    transform: scale(1.03);
 }
 
 .tab-button.active {
@@ -90,6 +91,7 @@
     color: #fff;
     box-shadow: 0 0 10px #EB257A, 0 0 20px #FF4081;
     transition: box-shadow 0.3s ease-in-out;
+    transform: scale(1.03);
 }
 
 .leaderboard-table {

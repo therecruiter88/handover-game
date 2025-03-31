@@ -36,7 +36,7 @@ body {
     width: 394px;
     height: 597px;
     position: absolute;
-    top: 50%;
+    top: 56%;
     left: 10%;
     transform: scale(var(--soldier-scale)) translate(-50%, -50%);
     cursor: pointer;
@@ -90,7 +90,7 @@ body {
     color: #EB257A;
     font-size: 60%;
     left: 17.0%; /* Put below soldier */
-    bottom: 15%; /* Put below soldier */
+    bottom: 10%; /* Put below soldier */
     padding: 15px 20px;
     z-index: 11; /* Make sure it's on top */
     white-space: nowrap; /* Prevent wrapping */
