@@ -330,7 +330,6 @@ function getGameOptions() {
 GAME.retryButton.addEventListener('click', () => {
   // Reset game elements
   GAME.gameOverElement.style.display = 'none';
-  
   resetGameElements();
   
   // Restart the game

@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>The Pineapple Pizza Invasion</title>
+  <title>UNDER CONSTRUCTION</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/common/css/fonts.css">
@@ -45,8 +45,12 @@
     </audio>
 
     <!-- Specific game sounds -->
-    <audio id="laser-sound" preload="auto">
-      <source src="./assets/audio/laser_beam_efx.mp3" type="audio/mp3">
+    <audio id="glass-break-sound" preload="auto">
+      <source src="./assets/audio/glass-break-sound.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="step-sound" preload="auto">
+      <source src="./assets/audio/step-sound.mp3" type="audio/mpeg">
     </audio>
 
     <div id="content">
@@ -60,7 +64,7 @@
       
       <!-- Netflix-style intro -->
       <div id="intro-container">
-        <div id="intro-logo">THE PINEAPPLE PIZZA INVASION</div>
+        <div id="intro-logo">UNDER CONSTRUCTION</div>
       </div>
       
       <!-- Storyline container -->
@@ -75,13 +79,10 @@
       <!-- Instructions popup -->
       <div id="instructions-popup">
         <h2>How to Play</h2>
-        <p>Use arrow keys to move the soldier left and right.</p>
-        <p>Press SPACE to shoot.</p>
-        <p>Each hit earns you 10 points!</p>
-        <p>You have 30 seconds to reach 500 points or you'll be ELIMINATED!</p>
+        <p></p>UNDER CONSTRUCTION</p>
         <button id="instructions-close" class="sound-efx">Got it!</button>
       </div>
-      
+
       <!-- Player selector -->
       <div id="player-selector">
         <h2>Choose Your Player</h2>
@@ -121,7 +122,7 @@
       </div>
       
       <div id="game-container">
-        <div id="player" class="challenge-1">
+        <div id="player" class="challenge-4">
           <svg width="60" height="80" viewBox="0 0 60 80">
             <!-- Default player -->
             <rect x="5" y="14" width="20" height="30" fill="#DC143C" />
@@ -142,7 +143,7 @@
         <!-- Celebration container -->
         <div id="celebration">
           <h2>Congratulations!</h2>
-          <p>You have saved the planet from all of the pineapple pizzas!</p>
+          <p>You have successfully crossed the Glass Bridge!</p>
           <p id="win-score"></p>
         </div>
         
@@ -150,7 +151,7 @@
         <div id="game-over">
           <h2>ELIMINATED!</h2>
           <p id="reason-eliminated"></p>
-          <p>The pineapple pizzas destroyed the planet and you were not able to save player 297 pizza party!</p>
+          <p>You were not able to cross the Glass Bridge in time! The database collapsed...</p>
           <div id="elimination-x">X</div>
           <button id="retry-button" class="sound-efx">Retry</button>
         </div>
@@ -166,7 +167,6 @@
           <button id="challenge-leaderboard" class="challenge-leaderboard-btn sound-efx">Scoreboard</button>
         </div>
       </div>
-
     </div>
 
     <script src="/challenges/common/js/players-list.js"></script>

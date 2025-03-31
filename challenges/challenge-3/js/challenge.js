@@ -27,13 +27,12 @@ const stepSound = document.getElementById('step-sound');
 
 // Specific game mechanics variables
 let gameInterval;
-let startTime = 30;
+let startTime = 15;
 let playerXOrigin = 180;
 let playerYOrigin = 310;
 let playerX;
 let playerY;
 let currentRow = 0;
-let currentCol = 0;
 let glassPanels = [];
 let maxRows = 8;
 let deductedPoints = 25;
@@ -122,7 +121,6 @@ function initializeGameSpecificParameters(){
   gameInterval = setInterval(updateGame, 20);
 
   currentRow = 0;
-  currentCol = 0;
   playerX = playerXOrigin;
   playerY = playerYOrigin;
 
@@ -231,7 +229,6 @@ function stepOnPanel(row, col) {
     GAME.player.style.bottom = `${playerY}px`;
     
     // Update current position
-    currentCol = col;
     currentRow++;
     
     // Check if player reached the end
@@ -305,7 +302,6 @@ function playerFalls() {
         
     // Reset current position
     currentRow = 0;
-    currentCol = 0;
         
     // Re-enable arrow key events
     isPlayerResetting = false;
@@ -332,12 +328,13 @@ function handleKeyDown(e) {
 
 function calculateScore(timeLeft) {
   let victoryBonusPoints = 100;
-  let bonusScoreMultplier = 10;
+  let bonusScoreMultiplier = 10;
+  let minimumBonusTimeThreshold = 5;
   console.log("Victory bonus: +" + victoryBonusPoints);
-  if (timeLeft >= 15 && timeLeft <= startTime) {
+  if (timeLeft >= minimumBonusTimeThreshold && timeLeft <= startTime) {
     // Calculate the time difference and apply the multiplier
-    const timeDifference = timeLeft - 15;
-    const bonusScore = timeDifference * bonusScoreMultplier;
+    const timeDifference = timeLeft - minimumBonusTimeThreshold;
+    const bonusScore = timeDifference * bonusScoreMultiplier;
     console.log("Bonus score: +" + bonusScore);
     return getScore() + victoryBonusPoints + bonusScore;
   }
