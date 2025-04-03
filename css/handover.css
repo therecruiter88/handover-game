@@ -117,7 +117,8 @@ body {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     color: var(--text-color);
     border: 1px solid #EB257A;
     padding: 10px;
@@ -132,7 +133,8 @@ body {
     box-shadow: 0 0 15px rgba(235, 37, 122, 0.7);
 }
 .mute-button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+    background-color: #333;
     border: 3px solid #FF00FF;
     box-shadow: 0 0 25px rgba(255, 0, 255, 1);
     cursor: url('/assets/cursors/sg-pointer.png') 8 8, auto;

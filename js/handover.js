@@ -105,7 +105,7 @@ challengeElements.forEach(element => {
     const queryParams = new URLSearchParams(window.location.search);
     const playerNumber = queryParams.get('playerNumber');
     let url = element.getAttribute('data-url');
-    console.log("url:" + url);
+
     // If playerNumber exists in the URL, append it to the challenge elements
     if (playerNumber) {
         // Check if the URL already contains query parameters
@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
             bombContainer.style.display = 'none';
         }
 
-        const message = getPinkSoldierMessage("thirdChallengeIntro");
+        const message = getPinkSoldierMessage("fourthChallengeIntro");
 
         // Replace \n with <br> for line breaks
         messageElement.innerHTML = message.replace(/\n/g, '<br>');

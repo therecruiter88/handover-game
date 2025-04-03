@@ -43,9 +43,31 @@
     box-shadow: 0 0 15px rgba(235, 37, 122, 0.7);
     z-index: 10;
 }
+
 .countdown-number:hover {
-    border: 3px solid #FF00FF;
     box-shadow: 0 0 15px rgba(255, 0, 255, 1);
+    /*animation: morseBlink 1s steps(4, end) infinite;*/ /* 6 seconds for 4 steps */
+}
+
+@keyframes morseBlink {
+    0%, 100% {
+        border-color: #EB257A; /* No border color during this time */
+    }
+    25% {
+        border-color: #FF00FF; /* First dash, 2 seconds */
+    }
+    50% {
+        border-color: #EB257A; /* First dot, 1 second */
+    }
+    62.5% {
+        border-color: #FF00FF; /* Second dot, 1 second */
+    }
+    75% {
+        border-color: #EB257A; /* Third dot, 1 second */
+    }
+    87.5% {
+        border-color: #FF00FF; /* Third dot, 1 second */
+    }
 }
 .countdown-label {
     font-size: 16px;
