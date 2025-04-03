@@ -1,3 +1,4 @@
+import { getPlayerNumber } from '/challenges/common/js/player-input.js';
 import { saveScoreToDatabase } from '/challenges/common/js/score-manager.js';
 import { getLives, setLives, getScore, setScore, setGameOver, getTimerInterval } from '/challenges/common/js/game-variables.js';
 
@@ -24,10 +25,10 @@ export function setupEventListeners({
   
     // Start the intro after input player number
     beginChallengeButton.addEventListener('click', () => {
-      const selectedPlayerNumber = playerNumberSelect.value;
+      const selectedPlayerNumber = getPlayerNumber();
   
       if (!isPlayerNumberValid(selectedPlayerNumber)) {
-        alert("Invalid player number! You're trying to mess up the scoreboard... xD");
+        alert("Invalid player number! \n\n You're trying to mess up the scoreboard... xD");
         return;
       }
   
@@ -37,8 +38,29 @@ export function setupEventListeners({
     });
 
     homeButton.addEventListener('click', () => {
-        window.location.href = '/handover.html?bombExploded=true';
+      redirectToHomePage();
     });
+}
+
+
+
+function redirectToHomePage() {
+  // Build the new URL with the player number parameter
+  const baseURL = "handover.html"; // The base URL you want to navigate to
+  const queryParams = new URLSearchParams(window.location.search); // Get existing query parameters
+  
+  // Check if 'bombExploded' is already set to 'true', if not, set it
+  if (queryParams.get('bombExploded') !== 'true') {
+    queryParams.set('bombExploded', 'true');
+  }
+
+  // Check if 'playerNumber' is already set to the selected player number, if not, set it
+  if (queryParams.get('playerNumber') !== selectedPlayerNumber) {
+    queryParams.set('playerNumber', selectedPlayerNumber);
+  }
+  
+  // Redirect to the new URL with the added parameters
+  window.location.href = `/${baseURL}?${queryParams.toString()}`;
 }
 
 export function triggerStartGame(startGameButton, handleShapeSelection) {

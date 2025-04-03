@@ -1,3 +1,5 @@
+import { showPlayerNumberInput } from '/challenges/common/js/player-input.js';
+
 window.addEventListener("load", showMobileMessage);
 
 function isMobileDevice() {
@@ -15,11 +17,15 @@ function showMobileMessage() {
             .then(response => response.text())
             .then(data => {
                 mobileMessageContainer.innerHTML = data;
-                document.body.prepend(mobileMessageContainer); // Add as the first last of <body>
+                document.body.prepend(mobileMessageContainer);
             })
             .catch(error => console.error("Error loading mobile message:", error));
         if (contentElement) contentElement.classList.add('hidden');
     } else {
+        var path = window.location.pathname;
+        if (path === "/handovergame" || path === "/index.html") {
+            showPlayerNumberInput();
+        }
         if (contentElement) contentElement.classList.remove('hidden');
         if (tokenInput) tokenInput.focus();
     }

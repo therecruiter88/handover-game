@@ -18,7 +18,7 @@
     position: relative;
 }*/
 body {
-    background-color: black;
+    background-color: #f9c0c0;
     color: white;
     text-align: center;
     margin: 0;
@@ -89,13 +89,13 @@ body {
     position: absolute;
     color: #EB257A;
     font-size: 60%;
-    left: 17.0%; /* Put below soldier */
-    bottom: 10%; /* Put below soldier */
+    left: 50%; /* Center it */
+    top: 90%; /* Put below soldier */
     padding: 15px 20px;
-    z-index: 11; /* Make sure it's on top */
     white-space: nowrap; /* Prevent wrapping */
     animation: floatAndFade 4s linear infinite; /* Animate and remove */
     pointer-events: none; /* Don't interfere with clicks */
+    z-index: 20;  /* In front */
 }
 
 @keyframes floatAndFade {

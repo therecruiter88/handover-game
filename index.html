@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/common/css/mobile-instructions.css">
     <link rel="stylesheet" href="/css/token.css">
+    <link rel="stylesheet" href="/challenges/common/css/player-input.css">
     <link rel="icon" href="/common/assets/favicon/icon.png" type="image/x-icon">
 </head>
 <body>
@@ -17,17 +18,27 @@
     </audio>
     
     <div id="content">
+        <!-- Player Name Prompt -->
+        <div id="player-name-prompt">
+            <h2>Select Your Player Number</h2>
+            <select id="player-number" class="sound-efx"></select>
+            <label for="token-input">Enter Secret:</label>
+            <input id="token-input" type="password"  class="token-input">
+            <button id="submit-token" class="token-button sound-efx">Access</button>
+        </div>
         <!-- Authentication panel -->
+        <!--
         <div id="token" class="token-container">
             <label for="token-input">Enter Secret:</label>
             <input type="password" id="token-input" class="token-input">
             <button id="submit-token" class="token-button sound-efx">Access</button>
-        </div>
+        </div>-->
     </div>
 
+    <script src="/challenges/common/js/players-list.js"></script>
     <script src="/common/js/audio.js" type="module"></script>
-    <script src="/js/obfuscator.js"></script>
+    <script src="/js/obfuscator.js" type="module"></script>
     <script src="/common/js/common.js"></script>
-    <script src="/common/js/mobile-message.js"></script>
+    <script src="/common/js/mobile-message.js" type="module"></script>
 </body>
 </html>

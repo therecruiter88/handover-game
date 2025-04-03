@@ -1,7 +1,20 @@
-.mobile-message{
+/* Ensure the body and html elements take full height and center everything */
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;  /* Centers content horizontally */
+    align-items: flex-start;  /* Aligns content from the top, with added spacing below */
+    flex-direction: column;   /* Stacks the content vertically */
+    padding-top: 20px;        /* Adds some space from the top */
+    overflow: hidden;  /* Disables both horizontal and vertical scrolling */
+    height: 100%;      /* Ensures the height is 100% to prevent unwanted scrolling */
+}
+
+/* Styles for the .mobile-message */
+.mobile-message {
     border-radius: 10px;
     color: #EB257A;
-    display: block;
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.7);
     border: 2px solid white;
@@ -9,16 +22,30 @@
     max-width: 500px;
     min-width: 300px;
     box-sizing: border-box;
-    margin: 10px;
+    margin: 10px 0;          /* Reduced margin to bring it closer to the "Let the Game Begin" text */
     text-align: center;
     font-size: 12px;
-}
-.let-the-game-begin {
-    color: white;
-    font-size: 20px;
-    animation: neon-glow 1.5s ease-in-out infinite alternate; 
+    display: flex;
+    flex-direction: column;  /* Stacks elements vertically */
+    align-items: center;     /* Centers the child elements horizontally */
+    margin-top: 10px;        /* Gives some space from the top */
+    margin-bottom: 20px;     /* Adds a little distance from the bottom of the screen */
 }
 
+/* Styling for .let-the-game-begin */
+.let-the-game-begin {
+    margin-bottom: 10px; /* Reduced the margin to bring it closer to the .mobile-message container */
+    margin-top: 20px;    /* Adds a little space from the top */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    animation: neon-glow 1.5s ease-in-out infinite alternate;
+}
+
+/* Keyframes for the neon-glow animation */
 @keyframes neon-glow {
     from {
         text-shadow: 0 0 10px #EB257A, 0 0 20px #EB257A, 0 0 30px #EB257A, 0 0 40px #EB257A;
@@ -27,24 +54,39 @@
         text-shadow: 0 0 5px #EB257A, 0 0 10px #EB257A, 0 0 15px #EB257A, 0 0 20px #EB257A;
     }
 }
-.instruction-section {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid #EB257A;
-    padding: 10px;
-    margin-top: 20px;
-    border-radius: 5px;
-    text-align: left;
+
+/* Paragraph styling inside #mobile-message */
+#mobile-message p {
+    text-align: center;  /* Centers text inside each paragraph */
+    margin: 0;           /* Optional: Remove default margin */
 }
-.instruction-section p {
-    margin-bottom: 5px;
-    text-align: left;
-}
-.instruction-section a {
-    word-break: break-all;
-}
+
+/* Styling for the instruction title */
 .instruction-title {
     color: white;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 40px;  /* Increased space below the title */
+    margin-top: 20px;     /* Moves title a little further up */
+}
+
+/* Styling for the instruction section */
+.instruction-section {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid #EB257A;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+/* Paragraph styling inside instruction-section */
+.instruction-section p {
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+/* Styling for links inside instruction-section */
+.instruction-section a {
+    word-break: break-all;
 }

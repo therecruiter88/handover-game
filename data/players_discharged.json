@@ -1,5 +1,6 @@
 {
     "players": [
+		{"id": 19, "name": "Player 019", "badge": "🏅"},
 		{"id": 16, "name": "Player 016", "badge": "🏅"},
 		{"id": 18, "name": "Player 018", "badge": "🏅"},
 		{"id": 26, "name": "Player 026", "badge": "🏅"},	

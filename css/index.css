@@ -1,10 +1,15 @@
 * { box-sizing: border-box; }
 
 body {
-	background: #000;
-	margin: 0;
-	padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f9c0c0;
+    margin: 1%;
+    color: white;
 }
+
 div.content {
     background-color: black;
     color: white;

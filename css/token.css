@@ -29,17 +29,58 @@
     text-align: center;
 }
 .token-button {
-    background-color: white;
-    color: #EB257A;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: 0.3s;
-}
-.token-button:hover {
     background-color: #EB257A;
     color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.token-button:hover {
+    background-color: #d62056;
+    cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
+}
+#player-name-prompt label {
+    margin-top: 0;
+    color: #EB257A;
+    font-size: 16px;
+    text-align: center;
+    padding-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+#player-name-prompt input {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #EB257A;
+    padding: 15px;
+    border: 2px solid #EB257A;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 250px;
+    height: 40px;
+    font-size: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+#player-name-prompt input:hover {
+    background-color: #EB257A;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px rgba(235, 37, 122, 0.7);
+    cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
+}
+#player-name-prompt button:hover {
+    background-color: #ff69b4;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(235, 37, 122, 0.7);
     cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
 }
