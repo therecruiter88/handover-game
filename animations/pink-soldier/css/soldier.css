@@ -95,7 +95,7 @@ body {
     white-space: nowrap; /* Prevent wrapping */
     animation: floatAndFade 4s linear infinite; /* Animate and remove */
     pointer-events: none; /* Don't interfere with clicks */
-    z-index: 20;  /* In front */
+    z-index: 1;  /* In front */
 }
 
 @keyframes floatAndFade {

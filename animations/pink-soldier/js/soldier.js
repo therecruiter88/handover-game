@@ -79,8 +79,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 const headTopOffset = soldierRect.top - containerRect.top;
                 const headLeftOffset = soldierRect.left - containerRect.left;
 
-                overHereText.style.left = `${headLeftOffset + soldierRect.width * 0.5}px`;
-                overHereText.style.top = `${headTopOffset - soldierRect.height * 0.2}px`; // Just above the head
+                overHereText.style.left = `${headLeftOffset + soldierRect.width * (-0.5)}px`;
+                overHereText.style.top = `${headTopOffset - soldierRect.height * (-4.7)}px`; // Just above the head
             }
 
             // Function to handle the jump event and trigger "Over here!" animation
@@ -93,7 +93,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Check if the browser supports animations
             if (soldier.style.animation !== undefined) {
+
+                // Create first animation of text
+                setTimeout(() => {
+                    createOverHereText(); // Create the "Over here!" text on jump
+                }, 800);
+
                 // Listen for the animation iteration event to detect a jump and trigger "Over here!" animation
+                
                 soldier.addEventListener('animationiteration', onJump);
 
                 // Observer to keep the "Over here!" text position updated while soldier moves

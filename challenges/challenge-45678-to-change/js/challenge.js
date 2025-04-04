@@ -51,7 +51,6 @@ window.onload = showPlayerNumberInput;
 // Call the setup function
 setupEventListeners({
   playerNumberSelect: GAME.playerNumberSelect,
-  playerNumberInput: GAME.playerNumberInput,
   beginChallengeButton: GAME.beginChallengeButton,
   isPlayerNumberValid,
   startIntro,

@@ -4,7 +4,6 @@ import { getLives, setLives, getScore, setScore, setGameOver, getTimerInterval }
 
 export function setupEventListeners({
     playerNumberSelect,
-    playerNumberInput,
     beginChallengeButton,
     isPlayerNumberValid,
     startIntro,
@@ -18,8 +17,8 @@ export function setupEventListeners({
     });
   
     // Validate input player number
-    playerNumberInput.addEventListener('input', () => {
-      const isValid = playerNumberInput.value.length === 3;
+    playerNumberSelect.addEventListener('input', () => {
+      const isValid = playerNumberSelect.value.length === 3;
       beginChallengeButton.disabled = !isValid;
     });
   
@@ -202,7 +201,7 @@ export function endGame(isVictory, challengeId, GAME, options) {
       }
   
       // Save score to Firebase
-      const playerNumber = GAME.playerNumberSelect.value;
+      const playerNumber = getPlayerNumber();
       saveScoreToDatabase(playerNumber, getScore(), challengeId);
   
       // Show game completion after a delay
@@ -233,7 +232,7 @@ function checkIfPlayerIsOutOfLives(GAME, challengeId) {
       GAME.retryButton.classList.add('hidden');
   
       // Save score to Firebase
-      const playerNumber = GAME.playerNumberSelect.value;
+      const playerNumber = getPlayerNumber();
       saveScoreToDatabase(playerNumber, getScore(), challengeId);
   
       // Redirect to the handover page after 5 seconds

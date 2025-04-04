@@ -1,10 +1,16 @@
 // Display player number prompt
-export function showPlayerNumberInput() {
+export function showPlayerNumberInput(startIntro, storylineText, storyTitles,) {
   const playerNumberInputElement = document.getElementById("player-name-prompt");
 
   if (urlHasPlayerNumberFromQuery() && isPlayerNumberValid(getPlayerNumberFromQuery())) {
     if (playerNumberInputElement) playerNumberInputElement.style.display = 'none';
-    return;
+
+    // Call the startIntro directly here, as player number is valid in the query string
+    setTimeout(() => {
+      startIntro(storylineText, storyTitles);
+    }, 100);
+
+    return; // Exit the function early if intro starts
   }
 
   const introContainerElement = document.getElementById("intro-container");
@@ -47,7 +53,6 @@ export function getPlayerNumber() {
 
 function urlHasPlayerNumberFromQuery() {
   const queryParams = new URLSearchParams(window.location.search); // Get query parameters from URL
-
   // Check if 'playerNumber' exists in query parameters and return the result directly
   return queryParams.has('playerNumber');
 }
@@ -58,7 +63,7 @@ function getPlayerNumberFromQuery() {
     const playerNumber = queryParams.get('playerNumber');
 
     if (playerNumber) {
-      console.log("player:" + playerNumber)
+      console.log("Welcome Player:" + playerNumber)
       return playerNumber;
     }
 }

@@ -38,12 +38,11 @@ let maxRows = 8;
 let deductedPoints = 25;
 let isPlayerResetting = false; // Tracks whether the player is being reset
 
-window.onload = showPlayerNumberInput;
+window.onload = showPlayerNumberInput(startIntro, storylineText,storyTitles);
 
 // Call the setup function
 setupEventListeners({
   playerNumberSelect: GAME.playerNumberSelect,
-  playerNumberInput: GAME.playerNumberInput,
   beginChallengeButton: GAME.beginChallengeButton,
   isPlayerNumberValid,
   startIntro,

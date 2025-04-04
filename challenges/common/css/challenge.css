@@ -24,6 +24,7 @@ body {
     overflow: hidden;
     box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
     display: none;
+    border-radius: 10px;
 }
 #player {
     position: absolute;

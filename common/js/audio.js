@@ -54,11 +54,16 @@ document.addEventListener("DOMContentLoaded", function () {
         (event) => {
             const targetElement = event.target.closest(".sound-efx");
             if (targetElement && !targetElement.disabled) {
-                //console.log("Element clicked:", targetElement);
-        
+                // Grab the playerNumber from the URL query parameters
+                const queryParams = new URLSearchParams(window.location.search);
+                const playerNumber = queryParams.get('playerNumber');
                 const url = targetElement.getAttribute("data-url");
-
-                if (url) {
+            
+                if (!url) {
+                    // Play click sound if there's no data-url
+                    clickSound.currentTime = 0;
+                    clickSound.play().catch((error) => console.error("Click audio playback error:", error));
+                } else if (url && !playerNumber) {
                     clickChallengeSound.currentTime = 0; // Reset sound to start
                     clickChallengeSound.play().catch((error) => console.error("Challenge click audio playback error:", error));
 
@@ -69,9 +74,6 @@ document.addEventListener("DOMContentLoaded", function () {
                             window.location.href = url;
                         }, 300);
                     }
-                } else {
-                    clickSound.currentTime = 0; // Reset sound to start
-                    clickSound.play().catch((error) => console.error("Click audio playback error:", error));
                 }
             }
         });

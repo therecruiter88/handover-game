@@ -1,5 +1,4 @@
 // Export each element individually
-export const playerNumberInput = document.getElementById('player-number');
 export const playerNumberSelect = document.getElementById('player-number');
 export const beginChallengeButton = document.getElementById('begin-challenge');
 export const gameContainer = document.getElementById('game-container');
