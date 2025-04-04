@@ -42,24 +42,9 @@ export function setupEventListeners({
 }
 
 
-
 function redirectToHomePage() {
-  // Build the new URL with the player number parameter
-  const baseURL = "handover.html"; // The base URL you want to navigate to
-  const queryParams = new URLSearchParams(window.location.search); // Get existing query parameters
-  
-  // Check if 'bombExploded' is already set to 'true', if not, set it
-  if (queryParams.get('bombExploded') !== 'true') {
-    queryParams.set('bombExploded', 'true');
-  }
-
-  // Check if 'playerNumber' is already set to the selected player number, if not, set it
-  if (queryParams.get('playerNumber') !== selectedPlayerNumber) {
-    queryParams.set('playerNumber', selectedPlayerNumber);
-  }
-  
-  // Redirect to the new URL with the added parameters
-  window.location.href = `/${baseURL}?${queryParams.toString()}`;
+  const playerNumber = getPlayerNumber();
+  window.location.href = "/handover.html?bombExploded=true&playerNumber=" + playerNumber;
 }
 
 export function triggerStartGame(startGameButton, handleShapeSelection) {
@@ -237,7 +222,7 @@ function checkIfPlayerIsOutOfLives(GAME, challengeId) {
   
       // Redirect to the handover page after 5 seconds
       setTimeout(() => {
-        window.location.href = "/handover.html?bombExploded=true";
+        window.location.href = "/handover.html?bombExploded=true&playerNumber=" + playerNumber;
       }, 5000);
     }
 }
