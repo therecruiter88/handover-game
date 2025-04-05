@@ -15,6 +15,6 @@
     font-style: normal;
 }
 
-body, input, button, select, label, span {
+body, input, button, select, label, span, h2, h3, h4, h5, h6 {
     font-family: 'Press Start 2P', cursive;
 }

@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="/css/countdown-timer.css">
         <link rel="stylesheet" href="/css/players-list.css">
         <link rel="stylesheet" href="/css/music.css">
+        <link rel="stylesheet" href="/css/bug-report.css">
         <link rel="stylesheet" href="/css/game-challenges.css">
         <link rel="stylesheet" href="/animations/pink-soldier/css/soldier.css">
         <link rel="stylesheet" href="/animations/bomb/css/bomb.css">
@@ -148,12 +149,44 @@
         <div id="container">
         <!--<h1>ROBOT BOBBY</h1>-->   
         </div>
+
+        <div id="bug-report-container">
+            <!-- Bug Icon that links to email for bug reports -->
+            <a href="#" id="bug-report-link">
+                <img src="/assets/img/bug.png" alt="Report a bug" id="bug-icon"  class="sound-efx" />
+            </a>
+        </div>
+        <!-- Modal for Bug Report -->
+        <div id="bug-report-modal" class="modal">
+            <div class="modal-content squid-theme">
+                <span id="close-modal" class="close-btn sound-efx">&times;</span>
+                <h2>Report a Bug</h2>
+                <form id="bug-form" action="https://formsubmit.co/therecruiterhg88@gmail.com" method="POST">
+                    <!-- PLAYER NUMBER DISPLAY -->
+                    <div class="form-group">
+                        <label>Player Number:</label>
+                        <div id="player-number-display" class="player-number-box" name="player">###</div> <!-- Replace with dynamic player number -->
+                        <input type="hidden" name="Player Number" id="player-number" value="456" /> <!-- Hidden form value -->
+                    </div>
+        
+                    <!-- BUG DESCRIPTION -->
+                    <div class="form-group">
+                        <label for="bug-description">Bug Description:</label>
+                        <textarea id="bug-description" name="Bug Description" placeholder="Describe the bug" required></textarea>
+                    </div>
+        
+                    <button id="submit-bug" type="submit" class="sound-efx">Send Bug Report</button>
+                </form>
+            </div>
+        </div>
+
     </div>
 
     <script src="/common/js/audio.js" type="module"></script>
     <script src="/common/js/common.js"></script>
     <script src="/common/js/leaderboard.js" type="module"></script>
     <script src="/common/js/mobile-message.js" type="module"></script>
+    <script src="/js/bug-report.js" type="module"></script></script>
     <script src="/js/players_discharged.js"></script>
     <script src="/js/obfuscator-audio.js"></script>
     <script src="/js/feature-toggles.js"></script>
@@ -163,6 +196,7 @@
     <script src="/animations/bomb/js/explosion.js" type="module"></script>
     <script src="/animations/bomb/js/obfuscator-audio.js"></script>
     <script src="/animations/bomb/js/bomb.js"></script>
+    <script src="/animations/bugs-on-screen/js/bugs.js"></script>
     <!--<script src="/animations/ashes/js/ashes.js"></script>-->
     <script src="/common/js/video-panel.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>

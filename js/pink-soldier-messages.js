@@ -4,7 +4,7 @@ const pinkSoldierMessages = {
     secondChallengeOutro: "💥 KABOOM! 💥 \nWell… that escalated quickly. 😳 But hey, every explosion has its silver lining, right? \nAmidst the smoke and rubble, a new path emerges. Was it luck? Was it fate? Or was it all part of a twisted game? 😏 \nA secret challenge has been unlocked. Dare to take the next step… or was blowing things up the only trick you had? \n🔓 Proceed… if you dare.",
     //thirdChallengeIntro: "Alright, alright… the dust is settling. 😏 \nI’m cooking up something new, and trust me, it’s gonna be a wild ride! 🔥 Ready to face the next challenge? 🧩 \n 🔓 Stay tuned, it's coming soon... if you dare!"
     thirdChallengeIntro: "Alright, alright… the dust is still swirling like a dramatic movie scene, but it's almost settling… 😏💨 \n Meanwhile, get ready! Another adventure awaits you... ⚔️✨ Brace yourselves, warriors! This game ain’t over yet, it's just getting spicy! 🌶️🔥 \n Think you’ve got what it takes for the next challenge? Let’s see if you can handle the heat! 🕹️😈",
-    fourthChallengeIntro: "Now that the dust is set..."
+    fourthChallengeIntro: "Now that the dust is set and the air seems more fresh...and you STILL didn't find out who is person behind the mask, are you up for more challenges? \n I know you are! \n I'm cooking up something new and maybe some enigmas to solve... \n 🔓 Stay tuned, it's coming soon... if you dare!",
 };
 
 export function getPinkSoldierMessage(key) {

@@ -1,0 +1,159 @@
+.squid-theme {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    background-color: #333;
+    border: 2px solid #EB257A;
+    /*overflow-x: auto;*/ /* Allow scrolling if needed */
+    transition: width 0.3s ease-in-out;
+    background: linear-gradient(135deg, #333, #444);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+h2 {
+    text-align: center;
+    color: #EB257A;
+    margin-bottom: 10%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    color: #EB257A;
+    font-weight: bold;
+    font-size: 1.2rem;
+    align-self: flex-start;
+    margin-bottom: 5px;
+    font-size: 1.0rem;
+    text-align: left;
+    display: block;
+}
+.player-number-box {
+    width: 95%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #1a1a1a;
+    color: white;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+textarea, input {
+    width: 95%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #1a1a1a;
+    color: white;
+}
+#bug-report-container {
+    position: fixed; /* Make it stay in the same spot even when scrolling */
+    left: 90%; /* Position at the left edge of the screen */
+    bottom: 9%; /* Position at the bottom of the screen */
+    right: 100px; /* Position at the right edge of the screen */
+    z-index: 1000; /* Ensure it's on top of other elements */
+}
+#bug-icon {
+    width: 40px; /* Adjust icon size */
+    height: 40px;
+    cursor: pointer; /* Show pointer cursor on hover */
+    position: absolute; /* Make the bug icon positionable */
+    transition: all 0.2s ease; /* Smooth transition */
+    will-change: transform; /* Optimize performance */
+    z-index: 1000; /* Ensure it's on top of other elements */
+}
+
+/* Create an animation that makes the icon move little steps forward */
+@keyframes moveSteps {
+    0% {
+        transform: translate(0, 0); /* Start at its original position */
+    }
+    25% {
+        transform: translate(0, 10px); /* Move slightly to the right */
+    }
+    50% {
+        transform: translate(0, 20px); /* Move further right */
+    }
+    75% {
+        transform: translate(0, 30px); /* Move more right */
+    }
+    100% {
+        transform: translate(0, 40px); /* Final small movement */
+    }
+}
+#bug-icon:hover {
+    transform: scale(1.1); /* Slightly enlarge icon on hover */
+    animation: moveSteps 0.5s ease forwards; /* Make the icon move forward in small steps */
+    transition: transform 0.2s; /* Smooth transition */
+    cursor: url('/assets/cursors/sg-pointer.png') 8 8, auto;
+}
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    max-width: 500px;
+}
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.close-btn:hover {
+        cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
+    background-color: #d62056;
+}
+#submit-bug {
+    background-color: #EB257A;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-top: 10px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+#submit-bug:hover {
+    background-color: #d62056;
+    cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
+}
