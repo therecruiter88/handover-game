@@ -36,6 +36,22 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     document.addEventListener(
+        "mouseenter",
+        (event) => {
+            if (
+                event.target &&
+                event.target.classList &&
+                event.target.classList.contains("sound-efx") &&
+                !event.target.disabled
+            ) {
+                hoverSound.currentTime = 0; // Reset sound to start
+                hoverSound.play().catch((error) => console.error("Mouse enter audio playback error:", error));
+            }
+        },
+        true
+    );
+
+    document.addEventListener(
         "focus",
         (event) => {
             const targetElement = event.target.closest(".sound-efx");
