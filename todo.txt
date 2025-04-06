@@ -1,8 +1,6 @@
-> Integrar Novo painel lateral (lado direito)
-	> Com challenges
-		> Criar um panel rotativo para os Challenges
-            > Quando o slider tem 4 elementos, fica muito espaço livre...
-            > Corrigir o overlay no botão de previous e garantir que o clique funciona e muda a direcção
+> Game Challenges Slider
+  > With less then 8 elements, there is too much space and time taken to start the animation all over again
+  > Fix previous and next button that don't do nothing right now
 
 > When entering the page with the new background music, the old one starts to play first for a brief second.
 
