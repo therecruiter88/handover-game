@@ -1,0 +1,134 @@
+/* Global Styles */
+body {
+    background-color: #141414;
+    margin: 0;
+    padding: 0;
+    color: white;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+/* Container for the Netflix Slider */
+.challenges-slider-container {
+    width: 80%; /* Make the container a bit smaller */
+    max-width: 750px; /* Maximum width to keep it nice */
+    padding: 20px;
+    overflow: hidden; /* Prevents items from spilling out of the container */
+    position: fixed;
+    bottom: 5%;
+    right: 2px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    display: none; /* Initially hidden */
+    z-index: 1000;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+.challenges-slider-container.open {
+    display: block;
+    width: 30%;
+    height: 30%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+}
+/* The sliding wrapper */
+.challenges-slider {
+    margin-left: 100px;
+    display: flex;
+    width: max-content; /* Ensures items keep moving horizontally */
+    animation: slide 55s linear infinite; /* Continuous slide animation */
+}
+/* Continuous Slide Animation */
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-75%); /* Move the slider by the width of 3 items (adjust based on your items) */
+    }
+}
+/* Each item (movie/poster) in the slider */
+.challenges-slider-item {
+    position: relative;
+    flex: 0 0 11.3333%; /* Show 3 items at a time */
+    margin-right: 10px;
+    margin-top: -30px;
+    cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
+    transition: transform 0.3s ease;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.challenges-slider-item.disabled{
+    cursor: not-allowed;
+}
+/* The image inside the slider item */
+.challenges-slider-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    transition: opacity 0.3s ease;
+    transform: scale(0.8);  /* Scale down to 80% of its size */
+    transform-origin: center center; /* Keeps it centered */
+}
+/* Show overlay on hover */
+.challenges-slider-item:hover .overlay-challenges {
+    display: block; /* Ensure the overlay becomes visible */
+    opacity: 0.6
+}
+.challenges-slider-item:hover .overlay-text {
+    opacity: 9;
+    padding-top: 70%;
+}
+.challenges-slider-item:hover img {
+    opacity: 0.2; /* Slightly fade out the image on hover */
+    cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
+}
+.challenges-slider-item:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+/* Buttons for sliding left and right */
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
+    z-index: 10;
+    border-radius: 50%;
+    font-size: 20px;
+}
+.prev {
+    left: 10px;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+.next {
+    right: 10px;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+.prev:hover,
+.next:hover {
+    background-color: rgba(235, 37, 122, 0.5);
+}
+.overlay-challenges {
+    display: none; /* Initially hidden */
+    position: absolute; /* Position relative to the image */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Dark background with some transparency */
+    backdrop-filter: blur(5px); /* Optional: add blur effect to background */
+    z-index: 10; /* Ensure it's above the image */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease; /* Smooth transition for opacity */
+    display: flex; /* Use flexbox to center the text */
+    align-items: center; /* Vertically center the text */
+    justify-content: center; /* Horizontally center the text */
+}
+/* Text inside the overlay */
+.overlay-text {
+    font-size: 10px;
+    color: white;
+    text-align: center; /* Center the text */
+}

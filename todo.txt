@@ -1,8 +1,12 @@
+> Integrar Novo painel lateral (lado direito)
+	> Com challenges
+		> Criar um panel rotativo para os Challenges
+            > Quando o slider tem 4 elementos, fica muito espaço livre...
+            > Corrigir o overlay no botão de previous e garantir que o clique funciona e muda a direcção
+
 > When entering the page with the new background music, the old one starts to play first for a brief second.
 
 > Move img to new obfuscated file.
-
-> Fix "Over here" pink soldier assistant text, it only appears for brief seconds. Isolated it works well.
 
 > Fit content on huge screens or when dev tools is opened
 

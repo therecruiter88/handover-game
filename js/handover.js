@@ -107,7 +107,7 @@ challengeElements.forEach(element => {
     let url = element.getAttribute('data-url');
 
     // If playerNumber exists in the URL, append it to the challenge elements
-    if (playerNumber) {
+    if (url && playerNumber) {
         // Check if the URL already contains query parameters
         const separator = url.includes('?') ? '&' : '?';
         // Append playerNumber query parameter to the URL

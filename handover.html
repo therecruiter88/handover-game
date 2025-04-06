@@ -4,7 +4,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Handover Game</title>
-        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="/common/css/video-panel.css">
         <link rel="stylesheet" href="/common/css/fonts.css">
         <link rel="stylesheet" href="/css/handover.css">
@@ -15,7 +14,9 @@
         <link rel="stylesheet" href="/css/players-list.css">
         <link rel="stylesheet" href="/css/music.css">
         <link rel="stylesheet" href="/css/bug-report.css">
-        <link rel="stylesheet" href="/css/game-challenges.css">
+        <!--<link rel="stylesheet" href="/css/game-challenges-fab.css">-->
+        <link rel="stylesheet" href="/css/game-challenges-slider.css">
+        <link rel="stylesheet" href="/css/menu.css">
         <link rel="stylesheet" href="/animations/pink-soldier/css/soldier.css">
         <link rel="stylesheet" href="/animations/bomb/css/bomb.css">
         <link rel="stylesheet" href="/animations/ashes/css/ashes.css">
@@ -30,35 +31,47 @@
           </script>
     </head>
 <body>
-    <!-- Audio imports -->
+
+    <!-- Audio -->
     <audio id="background-music" autoplay loop>
         <source src="/assets/audio/sg_theme_song.mp3" type="audio/mp3">
     </audio>
 
-    <!--
-	<div id="canvascontainer" class="ashes-container">
+    <audio id="countdown-sound" src="/animations/bomb/assets/audio/countdown-10.mp3"></audio>
+    <audio id="explosion-sound" src="/animations/bomb/assets/audio/explosion.mp3"></audio>
+
+    <!--Ashes Container-->
+    <!--<div id="canvascontainer" class="ashes-container">
         <canvas id="buffer" class="ashes"></canvas>
         <canvas id="canvas" class="ashes"></canvas>
     </div>-->
 
+    <!-- Main panel -->
     <div id="content">
         <!-- Top panel -->
         <div id="top-panel" class="top-panel">
+            <!-- Squid Games icons-->
             <div class="icons">
                 <span class="buttons button-circle sound-efx">◯</span>
                 <span class="buttons button-triangle sound-efx">△</span>
-                <span class="buttons button-square sound-efx">☐</span></div>
-            <div class="news-ticker">
-                <span>Players discharged >>> 023, 065, 068, 077, 136, 182, 186, 188, 221, 226, 278, 287, 339, 343 | Thank you for your service🏅 #strongertogether💪💪💪</span>
-                <!--🏅-->
+                <span class="buttons button-square sound-efx">☐</span>
             </div>
-            <a href="#" id="handover-link" target="_blank" class="handover-link sound-efx">&gt ACCEPT CHALLENGE</a>
+
             <!-- Movie FAB Button -->
             <button id="movie-button" class="movie-button sound-efx" title="Card invitation video">
                 <svg id="movie-icon" viewBox="0 0 24 24">
                     <path d="M10 16.5l6-4.5-6-4.5v9zm-6-13h16c1.1 0 2 .9 2 2v13c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2zm0 15h16V5H4v13z"/>
                 </svg>
             </button>
+
+            <!-- Breaking News -->
+            <div class="news-ticker">
+                <span>Players discharged >>> 023, 065, 068, 077, 136, 182, 186, 188, 221, 226, 278, 287, 339, 343 | Thank you for your service🏅 #strongertogether💪💪💪</span>
+                <!--🏅-->
+            </div>
+
+            <!-- Handover Link -->
+            <a href="#" id="handover-link" target="_blank" class="handover-link sound-efx">&gt ACCEPT CHALLENGE</a>
         </div>
 
         <!-- Video Panel -->
@@ -68,6 +81,7 @@
 
         <!-- Center panel -->
         <div id="center-panel-content" class="content-container visible">
+
             <!-- Countdown timer -->
             <div class="countdown">
                 <div class="countdown-item">
@@ -92,14 +106,47 @@
             <div id="image-container" class="image-container">
                 <img id="img" src="" alt="Handover Game Tile"/>
             </div>
+
             <!-- Players discharged list -->
-            <div id="players-right-panel" class="players-right-panel">
+            <!--<div id="players-right-panel" class="players-right-panel">
                 <div class="collapse-button sound-efx" onclick="togglePlayersPanel()">🎮 Players Discharged</div>
                 <ul id="players-list" class="players-list">
                 </ul>
+            </div>-->
+
+            <!-- Side Menu -->
+            <div id="menu" class="menu-panel-container">
+                <div class="menu-button-wrapper sound-efx">
+                  <div id="menuPlayers" class="menu-button">
+                    <img src="./assets/img/players-discharged.png" alt="Players Discharged icon" class="menu-icon" />
+                    <span class="label">Players Discharged</span>
+                  </div>
+                </div>
+            
+                <div class="menu-button-wrapper sound-efx">
+                  <div id="menuChallenges" class="menu-button">
+                    <img src="./assets/img/challenges.png" alt="Challenges icon" class="menu-icon" />
+                    <span class="label">Challenges</span>
+                  </div>
+                </div>
+            
+                <div class="menu-button-wrapper sound-efx">
+                  <div id="menuLeaderboard" class="menu-button">
+                    <img src="./assets/img/leaderboard.png" alt="Leaderboard icon" class="menu-icon" />
+                    <span class="label">Leaderboard</span>
+                  </div>
+                </div>
+            
+                <div class="menu-button-wrapper sound-efx">
+                  <div id="menuReportBug" class="menu-button">
+                    <img src="./assets/img/bug.png" alt="Report Bug icon" class="menu-icon" />
+                    <span class="label">Report Bug</span>
+                  </div>
+                </div>
             </div>
         </div>
 
+        <!-- Bottom Panel -->
         <!-- Pink Soldier avatar -->
         <div id="soldier-container" class="soldier-container">
             <div id="soldier" class="soldier sound-efx" alt="Hello player! I have something to tell you.."></div>
@@ -109,20 +156,30 @@
             </div>
         </div>
 
+        <!-- Bomb -->
+        <div id="bomb-container" class="hidden">
+            <img id="bomb" src="/animations/bomb/assets/img/bomb.png" alt="Bomb" class="sound-efx">
+            <div id="countdown">10</div>
+        </div>
+        
+        <!-- Breaking Glass animation -->
+        <canvas id="three-canvas" class="hidden"></canvas>
+        <div id="container"><!--<h1>ROBOT BOBBY</h1>--></div>
+
         <!-- Challenges selector -->
-        <div id="fab-container" class="fab">
-            <button id="fab-button" class="fab-btn sound-efx">
+        <!--<div id="fab-container" class="fab-container">
+            <button id="fab-button" class="fab-button sound-efx">
                 <img id="fab-image" src="/assets/img/circle_face.png" alt="Challenges selector" />
             </button>
             <div id="challenge-list" class="challenge-list">
                 <div id="challenge-1" class="challenge-item sound-efx" data-url="/challenges/challenge-1/challenge.html" alt="The Pineapple Pizza Invasion">Challenge 1</div>
-                <div id="challenge-2" class="challenge-item sound-efx" data-url="/challenges/challenge-2/challenge.html" alt="Red Light, Green Light">Challenge 2</div>
-                <div id="challenge-3" class="challenge-item sound-efx" data-url="/challenges/challenge-3/challenge.html" alt="Glass Roof">Challenge 3</div>
+                <div id="challenge-2" class="challenge-item sound-efx" data-url="/challenges/challenge-2/challenge.html" alt="Pipeline of Doom">Challenge 2</div>
+                <div id="challenge-3" class="challenge-item sound-efx" data-url="/challenges/challenge-3/challenge.html" alt="Tick Tock, Don't Drop">Challenge 3</div>
                 <div id="challenge-4" class="challenge-item sound-efx disabled" alt="TBD" disabled>Challenge 4</div>
-                <!--<div id="challenge-5" class="challenge-item sound-efx" data-url="/challenges/challenge-5/challenge.html" alt="Glass Roof">Challenge 5</div>-->
+                <div id="challenge-5" class="challenge-item sound-efx" data-url="/challenges/challenge-5/challenge.html" alt="Glass Roof">Challenge 5</div>
                 <div id="challenge-leaderboard" class="challenge-item-leaderboard sound-efx" alt="Scoreboard">Scoreboard</div>
             </div>
-        </div>
+        </div>-->
 
         <!-- Music controls -->
         <!-- Old button
@@ -137,44 +194,57 @@
             </svg>
         </button>
 
-        <div id="bomb-container" class="hidden">
-            <img id="bomb" src="/animations/bomb/assets/img/bomb.png" alt="Bomb" class="sound-efx">
-            <div id="countdown">10</div>
+        <!-- Players Discharded popup -->
+        <div id="players-discharged-panel" class="players-discharged-panel">
+            <h3 class="players-discharged-title">Players Discharged</h3>
+            <!-- Players Discharged Table -->
+            <table id="players-discharged-table" class="players-discharged-table">
+                <!-- Table content will be dynamically generated -->
+            </table>
         </div>
 
-        <audio id="countdown-sound" src="/animations/bomb/assets/audio/countdown-10.mp3"></audio>
-        <audio id="explosion-sound" src="/animations/bomb/assets/audio/explosion.mp3"></audio>
-
-        <canvas id="three-canvas" class="hidden"></canvas>
-        <div id="container">
-        <!--<h1>ROBOT BOBBY</h1>-->   
+        <!-- Challenges Slider panel -->
+        <div id="challenges-slider-container" class="challenges-slider-container">
+            <!-- Left Arrow Button -->
+            <button class="prev" onclick="moveSlider(-1)">&#8249;</button>
+            
+            <!-- The Image Slider -->
+            <div id="challenges-slider" class="challenges-slider">
+                <!-- Slider Items (Images of Movies/TV Shows) -->
+                <div id="challenge-1" class="challenges-slider-item sound-efx" data-cover="Challenge 1" data-url="/challenges/challenge-1/challenge.html"><img src="/assets/img/covers/challenge-1.png" alt="The Pineapple Pizza Invasion"><div class="overlay-challenges"><div class="overlay-text">Challenge 1</div></div></div>
+                <div id="challenge-2" class="challenges-slider-item sound-efx" data-cover="Challenge 2" data-url="/challenges/challenge-2/challenge.html"><img id="challenge-2" src="/assets/img/covers/challenge-2.png" alt="Pipeline of Doom"><div class="overlay-challenges"><div class="overlay-text">Challenge 2</div></div></div>
+                <div id="challenge-3" class="challenges-slider-item sound-efx" data-cover="Challenge 3" data-url="/challenges/challenge-3/challenge.html"><img id="challenge-3" src="/assets/img/covers/challenge-3.png" alt="Tick Tock, Don't Drop"><div class="overlay-challenges"><div class="overlay-text">Challenge 3</div></div></div>
+                <div id="challenge-4" class="challenges-slider-item sound-efx disabled" data-cover="Challenge 4"><img id="challenge-4" src="/assets/img/covers/challenge-4.png" alt="Challenge 4"><div class="overlay-challenges"><div class="overlay-text">Challenge 4</div></div></div>
+            </div>
+            
+            <!-- Right Arrow Button -->
+            <button class="next" onclick="moveSlider(1)">&#8250;</button>
         </div>
 
-        <div id="bug-report-container">
-            <!-- Bug Icon that links to email for bug reports -->
-            <a href="#" id="bug-report-link">
+        <!-- Bug -->
+        <div id="report-bug-container">
+            <a href="#" id="report-bug-link">
                 <img src="/assets/img/bug.png" alt="Report a bug" id="bug-icon"  class="sound-efx" />
             </a>
         </div>
+
         <!-- Modal for Bug Report -->
-        <div id="bug-report-modal" class="modal">
+        <div id="report-bug-modal" class="modal">
             <div class="modal-content squid-theme">
                 <span id="close-modal" class="close-btn sound-efx">&times;</span>
                 <h2>Report a Bug</h2>
                 <form id="bug-form" action="https://formsubmit.co/therecruiterhg88@gmail.com" method="POST">
-                    <!-- PLAYER NUMBER DISPLAY -->
+                    <!-- Player Number Display -->
                     <div class="form-group">
                         <label>Player Number:</label>
-                        <div id="player-number-display" class="player-number-box" name="player">###</div> <!-- Replace with dynamic player number -->
-                        <input type="hidden" name="Player Number" id="player-number" value="456" /> <!-- Hidden form value -->
+                        <div id="player-number-display" class="player-number-box" name="player">###</div>
+                        <input type="hidden" name="Player Number" id="player-number" value="456" />
                     </div>
-        
-                    <!-- BUG DESCRIPTION -->
+                    <!-- Bug Description -->
                     <div class="form-group">
                         <label for="bug-description">Bug Description:</label>
                         <textarea id="bug-description" name="Bug Description" placeholder="Describe the bug" required></textarea>
                     </div>
-        
                     <button id="submit-bug" type="submit" class="sound-efx">Send Bug Report</button>
                 </form>
             </div>
@@ -187,18 +257,19 @@
     <script src="/common/js/leaderboard.js" type="module"></script>
     <script src="/common/js/mobile-message.js" type="module"></script>
     <script src="/js/bug-report.js" type="module"></script></script>
-    <script src="/js/players_discharged.js"></script>
+    <script src="/js/players-discharged.js"></script>
     <script src="/js/obfuscator-audio.js"></script>
     <script src="/js/feature-toggles.js"></script>
     <script src="/animations/pink-soldier/js/soldier.js"></script>
     <script src="/js/handover.js" type="module"></script>
-    <script src="/js/game-challenges.js"></script>
+    <!--<script src="/js/game-challenges-fab.js"></script>-->
+    <script src="/js/game-challenges-slider.js"></script>
     <script src="/animations/bomb/js/explosion.js" type="module"></script>
     <script src="/animations/bomb/js/obfuscator-audio.js"></script>
     <script src="/animations/bomb/js/bomb.js"></script>
     <script src="/animations/bugs-on-screen/js/bugs.js"></script>
-    <!--<script src="/animations/ashes/js/ashes.js"></script>-->
     <script src="/common/js/video-panel.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
+    <!--<script src="/animations/ashes/js/ashes.js"></script>-->
 </body>
 </html>

@@ -1,27 +1,51 @@
 import { getPlayerNumber } from '/challenges/common/js/player-input.js';
 
 // Get modal elements
-const modal = document.getElementById("bug-report-modal");
+const reportBugModal = document.getElementById("report-bug-modal");
 const openModalButton = document.getElementById("bug-icon");
 const closeModalButton = document.getElementById("close-modal");
 const playerNumberElement = document.getElementById("player-number-display");
 const playerNumberInput = document.getElementById("player-number");
 const bugIcon = document.getElementById('bug-icon');
+const menuReportBug = document.getElementById('menuReportBug');
+
+const overlayBug = document.createElement('div');
+overlayBug.classList.add('overlay');
+document.body.appendChild(overlayBug);
+
+menuReportBug.addEventListener('click', (event) => {
+    // Get viewport dimensions
+    const maxWidth = window.innerWidth - bugIcon.offsetWidth;
+    const maxHeight = window.innerHeight - bugIcon.offsetHeight;
+    
+    // Generate random X and Y
+    const randomX = Math.floor(Math.random() * maxWidth);
+    const randomY = Math.floor(Math.random() * maxHeight);
+    
+    // Position the bug icon
+    bugIcon.style.left = `${randomX}px`;
+    bugIcon.style.top = `${randomY}px`;   
+
+    bugIcon.style.display = "block";
+});
 
 // Open the modal
 openModalButton.addEventListener("click", function(event) {
     event.preventDefault();
-    modal.style.display = "block";
+    
+    reportBugModal.style.display = "flex";
+    overlayBug.style.display = isPanelVisible = "block";
 
     const playerNumber = getPlayerNumber();
     playerNumberElement.textContent = `Player ${playerNumber}`;
 
-    playerNumberInput.value = `Player ${playerNumber}`;;
+    playerNumberInput.value = `Player ${playerNumber}`;
 });
 
 // Close the modal
 closeModalButton.addEventListener("click", function() {
-    modal.style.display = "none";
+    reportBugModal.style.display = "none";
+    overlayBug.style.display = isPanelVisible = "none";
 });
 
 // Define movement directions: up, down, left, right
@@ -72,7 +96,7 @@ function moveBugIcon() {
 function startMovingBug() {
     // Start moving the bug immediately when hovering
     moveBugIcon();
-
+console.log("startMovingBug");
     // Set an interval to move the bug icon every 200ms
     setInterval(moveBugIcon, 200); // Adjust the interval as needed (200ms in this case)
 }

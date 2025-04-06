@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+}
+.menu-panel-container {
+  position: fixed;
+  top: 60%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+  justify-content: center;
+}
+.menu-button-wrapper {
+  margin-bottom: 2%;
+  margin-right: -50%;
+  position: relative;
+}
+.menu-button {
+  background: #EB257A;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 25px 0 0 25px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  min-width: 220px;
+  max-width: 100%;
+  justify-content: flex-start;
+  overflow: hidden;
+  transition: transform 0.4s ease;
+  transform: translateX(50%);
+  box-shadow: 0 0 10px rgba(235, 37, 122, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+.menu-button .menu-icon {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+.menu-button:hover {
+  transform: translateX(0);
+  background-color: #d62056;
+  transform: translateX(0);
+  box-shadow: 0 0 10px #EB257A, 0 0 20px #FF4081;
+  animation: shimmer 3s infinite;
+  cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
+}
+@keyframes shimmer {
+  0% {
+      background-position: 0% 50%;
+  }
+  100% {
+      background-position: 100% 50%;
+  }
+}
+.menu-button .label {
+  white-space: nowrap;
+  margin-left: 10px;
+  opacity: 0;
+  font-size: 14px;
+  transform: translateX(50%);
+  transition: opacity 0.3s ease 0.2s, transform 0.4s ease;
+}
+.menu-button:hover .label {
+  opacity: 1;
+  transform: translateX(0);
+}
+.menu-button .menu-icon,
+.menu-button .label {
+  pointer-events: none;
+}

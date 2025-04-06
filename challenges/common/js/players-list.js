@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Fetch the players JSON file
-    fetch('/challenges/common/data/selectable_players.json')
+    fetch('/challenges/common/data/selectable-players.json')
         .then(response => response.json())  // Parse JSON response
         .then(data => {
             const selectElement = document.getElementById('player-number');

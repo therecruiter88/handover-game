@@ -2,7 +2,8 @@ import { database, ref, get } from '/common/js/firebaseConfig.js';
 
 // Add more challenges here if needed
 const challenges = ['challenge-1', 'challenge-2', 'challenge-3'];
-const leaderboardButton = document.getElementById('challenge-leaderboard');
+const leaderboardButton = document.getElementById('menuLeaderboard');
+//const leaderboardButton = document.getElementById('challenge-leaderboard');
 
 document.addEventListener('DOMContentLoaded', () => {
     // Check if the URL ends with "challenge.html" to trigger the leaderboard from the end game challenge
