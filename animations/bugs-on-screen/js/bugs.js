@@ -1,7 +1,6 @@
 // Bugs use JS of course.
 "use strict";
 
-
 var BugDispatch = {
 
     options: {
@@ -966,8 +965,6 @@ var SpawnBug = function() {
 // debated about which pattern to use to instantiate each bug...
 // see http://jsperf.com/obj-vs-prototype-vs-other
 
-
-
 /**
  * Helper methods:
  **/
@@ -1011,28 +1008,26 @@ window.requestAnimFrame = (function() {
         };
 })();
 
+function startBugs() {
+    // default fruit fly bug:
+    new BugController({
+    });
 
-// default fruit fly bug:
-			new BugController({
-			});
+    // default spiders:
+    new SpiderController({
+    });
 
-			// default spiders:
-			new SpiderController({
-			});
+    new BugController({
+    });
 
-            new BugController({
-			});
+    new SpiderController({
+    });
 
-			// default spiders:
-			new SpiderController({
-			});
+    new BugController({
+    });
 
-            new BugController({
-			});
-
-			// default spiders:
-			new SpiderController({
-			});
-
+    new SpiderController({
+    });
+}
 
 // 1030 lines of code. OOF.
