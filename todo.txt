@@ -1,12 +1,8 @@
-> Add database info for challenges unblock, bomb exploded, bau opened, etc
-
 > Game Challenges Slider
   > With less then 8 elements, there is too much space and time taken to start the animation all over again
   > Fix previous and next button that don't do nothing right now
 
 > When entering the page with the new background music, the old one starts to play first for a brief second.
-
-> Move img to new obfuscated file.
 
 > Fit content on huge screens or when dev tools is opened
 

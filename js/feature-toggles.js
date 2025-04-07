@@ -5,6 +5,7 @@ let isChallengeOneVisible = true;
 let isChallengeTwoVisible = true;
 let isChallengeThreeVisible = true;
 let isChallengeFourVisible = true;
+let isChallengeFiveVisible = true;
 let isLeaderboardVisible = true;
 let isBombVisible = true;
 
@@ -16,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleChallengeTwo();
     toggleChallengeThree();
     toggleChallengeFour();
+    toggleChallengeFive();
     toggleLeaderboard();
 });
 
@@ -96,6 +98,16 @@ function toggleChallengeFour() {
         if(challengeFourItem) challengeFourItem.classList.remove('hidden');
     } else {
         if(challengeFourItem) challengeFourItem.classList.add('hidden');
+    }
+}
+
+function toggleChallengeFive() {
+    const challengeFiveItem = document.getElementById('challenge-5');
+
+    if (isChallengeFiveVisible) {
+        if(challengeFiveItem) challengeFiveItem.classList.remove('hidden');
+    } else {
+        if(challengeFiveItem) challengeFiveItem.classList.add('hidden');
     }
 }
 
