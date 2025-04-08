@@ -1,0 +1,115 @@
+/*body {
+  font-family: 'Orbitron', sans-serif;
+  background: #111;
+  color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}*/
+
+.vault-container {
+  display: inline-block;
+  position: fixed;
+  bottom: 1%; /* Keep it near the bottom */
+  left: 26%;  /* Use 50% for horizontal centering */
+  transform: translateX(-50%); /* Offset the 50% to truly center it */
+  cursor: pointer;
+  z-index: 1000;
+}
+.vault-container.visible{
+  animation: popIn 2s forwards;
+}
+@keyframes popIn {
+  0% {
+      opacity: 0;
+  }
+  50% {
+      opacity: 0.5;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+.vault {
+  width: 70px;
+  height: 70px;
+  background-size: cover; /* Make the image fill the container */
+  background-position: center; /* Center the background image */
+  transition: transform 0.2s ease-in-out;
+}
+@keyframes slowPulse {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(0, 0) scale(1.2); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+.vault:hover {
+  cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
+  transform: scale(1.1);
+}
+.vault-closed {
+  background-image: url('../assets/img/vault-closed.png');
+}
+.vault-closed.opened {
+  background-image: url('../assets/img/vault-open.png');
+}
+.code-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center the button */
+  align-items: center; /* Horizontally center the button */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #333;
+  border: 2px solid #EB257A;
+  border-radius: 10px;
+  padding: 30px;
+  border-radius: 10px;
+  z-index: 500;
+  color: white;
+  max-width: 400px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.code-panel input {
+  padding: 10px;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  width: 100%; /* Make the input width flexible */
+  max-width: 300px; /* Limit the width to 300px */
+  text-align: center;
+  margin-bottom: 20px; /* Increase margin for spacing */
+  background: #111;
+  border: 2px solid #f0f0f0;
+  color: #f0f0f0;
+}
+
+.code-panel button {
+  background-color: #EB257A;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.code-panel button:hover:enabled {
+  cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
+  background-color: #d62056;
+}
+
+.hidden {
+  display: none;
+}

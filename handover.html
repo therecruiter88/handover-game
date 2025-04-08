@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="/animations/pink-soldier/css/soldier.css">
         <link rel="stylesheet" href="/animations/bomb/css/bomb.css">
         <link rel="stylesheet" href="/animations/ashes/css/ashes.css">
+        <link rel="stylesheet" href="/animations/vault/css/vault.css">
         <link rel="icon" href="/common/assets/favicon/icon.png" type="image/x-icon">
         <script type="importmap">
             {
@@ -36,9 +37,17 @@
     <audio id="background-music" autoplay loop>
         <source src="/assets/audio/sg_theme_song.mp3" type="audio/mp3">
     </audio>
+    
+    <audio id="mc1" src="/assets/audio/mc1.wav"></audio>
+	<audio id="mc2" src="/assets/audio/mc2.wav"></audio>
+	<audio id="mc3" src="/assets/audio/mc3.wav"></audio>
 
     <audio id="countdown-sound" src="/animations/bomb/assets/audio/countdown-10.mp3"></audio>
     <audio id="explosion-sound" src="/animations/bomb/assets/audio/explosion.mp3"></audio>
+
+    <audio id="wrongCode" src="/animations/vault/assets/audio/wrong-code.mp3"></audio>
+	<audio id="correctCode" src="/animations/vault/assets/audio/correct-code.mp3"></audio>
+	<audio id="vaultOpen" src="/animations/vault/assets/audio/vault-open.mp3"></audio>
 
     <!--Ashes Container-->
     <!--<div id="canvascontainer" class="ashes-container">
@@ -84,19 +93,19 @@
 
             <!-- Countdown timer -->
             <div class="countdown">
-                <div class="countdown-item">
+                <div id="countdown-days" class="countdown-item">
                     <div class="countdown-number" id="days">00</div>
                     <span class="countdown-label">Days</span>
                 </div>
-                <div class="countdown-item">
+                <div id="countdown-hours" class="countdown-item">
                     <div class="countdown-number" id="hours">00</div>
                     <span class="countdown-label">Hours</span>
                 </div>
-                <div class="countdown-item">
+                <div id="countdown-minutes"  class="countdown-item">
                     <div class="countdown-number" id="minutes">00</div>
                     <span class="countdown-label">Minutes</span>
                 </div>
-                <div class="countdown-item">
+                <div id="countdown-seconds"  class="countdown-item">
                     <div class="countdown-number" id="seconds">00</div>
                     <span class="countdown-label">Seconds</span>
                 </div>
@@ -165,6 +174,18 @@
         <!-- Breaking Glass animation -->
         <canvas id="three-canvas" class="hidden"></canvas>
         <div id="container"><!--<h1>ROBOT BOBBY</h1>--></div>
+
+        <div id="vault-container" class="vault-container">
+            <div id="vault" class="vault vault-closed sound-efx" onclick="showCodePanel()"></div>
+        </div>
+      
+        <div id="codePanel" class="code-panel hidden">
+            <div class="panel-content">
+                <h2>Enter Code:</h2>
+                <input id="codeInput" maxlength="7" placeholder="XXX-XXXX" />
+                <button onclick="checkVaultCode()" class="sound-efx">Unlock</button>
+            </div>
+        </div>
 
         <!-- Challenges selector -->
         <!--<div id="fab-container" class="fab-container">
@@ -258,6 +279,7 @@
     <script src="/common/js/mobile-message.js" type="module"></script>
     <script src="/js/bug-report.js" type="module"></script></script>
     <script src="/js/players-discharged.js"></script>
+    <script src="/js/countdown-timer.js"></script>
     <script src="/js/obfuscator-audio.js"></script>
     <script src="/js/feature-toggles.js"></script>
     <script src="/animations/pink-soldier/js/soldier.js"></script>
@@ -268,6 +290,7 @@
     <script src="/animations/bomb/js/obfuscator-audio.js"></script>
     <script src="/animations/bomb/js/bomb.js"></script>
     <script src="/animations/bugs-on-screen/js/bugs.js"></script>
+    <script src="/animations/vault/js/vault.js"></script>
     <script src="/common/js/video-panel.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
     <!--<script src="/animations/ashes/js/ashes.js"></script>-->

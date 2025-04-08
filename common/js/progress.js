@@ -7,7 +7,7 @@ export function getProgressFlag(playerNumber, flagName) {
     return get(flagRef)
         .then((snapshot) => {
             if (snapshot.exists()) {
-                console.log(`Flag "${flagName}" for ${playerId} is:`, snapshot.val());
+                //console.log(`Flag "${flagName}" for ${playerId} is:`, snapshot.val());
                 return snapshot.val();
             } else {
                 console.warn(`Flag "${flagName}" not found for ${playerId}. Returning false.`);

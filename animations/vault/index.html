@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Handover Game</title>
+    <link rel="stylesheet" href="vault.css">
+	<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+	<audio id="wrongCode" src="/assets/audio/wrong-code.mp3"></audio>
+	<audio id="correcTcode" src="/assets/audio/correct-code.mp3"></audio>
+	<audio id="vaultOpen" src="/assets/audio/vault-open.mp3"></audio>
+
+	<div class="vault-container">
+	  <div id="vault" class="vault-closed" onclick="showCodePanel()">
+	  </div>
+	</div>
+
+	<div id="codePanel" class="code-panel hidden">
+	  <div class="panel-content">
+		<h2>Enter Code:</h2>
+		<input id="codeInput" maxlength="7" placeholder="XXX-XXXX" />
+		<button onclick="checkVaultCode()">Unlock</button>
+	  </div>
+	</div>
+
+    <script src="vault.js"></script>
+</body>
+</html>

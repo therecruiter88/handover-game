@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const hoverSound = new Audio("/common/assets/audio/mouse_hover.wav");
     const clickSound = new Audio("/common/assets/audio/mouse_click.wav");
     const clickChallengeSound = new Audio("/common/assets/audio/mouse_click_challenge.wav");
+    const vaultSound = new Audio("/animations/vault/assets/audio/bank-vault.mp3");
 
     // Event delegation for hover and focus
     document.addEventListener(
@@ -29,7 +30,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 !event.target.disabled
             ) {
                 hoverSound.currentTime = 0; // Reset sound to start
-                hoverSound.play().catch((error) => console.error("Mouse enter audio playback error:", error));
+
+                // Check if the element has the id 'vault-container'
+                if (event.target.id.includes("vault")) {
+                    vaultSound.play().catch((error) => {
+                        console.error("Mouse enter audio playback error:", error);
+                    });
+                } else {
+                    hoverSound.play().catch((error) => {
+                        console.error("Mouse enter audio playback error:", error);
+                    });
+                }
             }
         },
         true
