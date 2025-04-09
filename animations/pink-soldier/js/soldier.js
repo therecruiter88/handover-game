@@ -165,5 +165,5 @@ soldier.addEventListener('click', () => {
         dialog.style.display = "none"; // Fully hide after animation
     }, 10000);
 
-    clickMe.style.display="none"
+    if (clickMe) clickMe.style.display="none"
 });

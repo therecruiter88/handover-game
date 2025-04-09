@@ -12,23 +12,26 @@
   display: inline-block;
   position: fixed;
   bottom: 1%; /* Keep it near the bottom */
-  left: 26%;  /* Use 50% for horizontal centering */
+  left: 24%;  /* Use 50% for horizontal centering */
   transform: translateX(-50%); /* Offset the 50% to truly center it */
   cursor: pointer;
   z-index: 1000;
+  animation: popIn 2s forwards; /* Apply pop-in animation */
 }
-.vault-container.visible{
-  animation: popIn 2s forwards;
-}
+
+/* Pop-in effect when vault becomes visible */
 @keyframes popIn {
   0% {
       opacity: 0;
+      transform: scale(0.5); /* Start smaller */
   }
   50% {
       opacity: 0.5;
+      transform: scale(1.05); /* Slight zoom effect */
   }
   100% {
       opacity: 1;
+      transform: scale(1); /* Final size */
   }
 }
 .vault {
@@ -36,28 +39,34 @@
   height: 70px;
   background-size: cover; /* Make the image fill the container */
   background-position: center; /* Center the background image */
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, box-shadow 0.3s ease;
+  animation: slowPulse 3s ease-in-out infinite; /* Pulse animation */
 }
+
+/* Slow pulse effect */
 @keyframes slowPulse {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(0, 0) scale(1.2); }
-  100% { transform: translate(0, 0) scale(1); }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); } /* Slight zoom effect */
+  100% { transform: scale(1); }
 }
 .vault:hover {
   cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
-  transform: scale(1.1);
+  transform: scale(1.2); /* Increase size on hover */
 }
 .vault-closed {
   background-image: url('../assets/img/vault-closed.png');
 }
 .vault-closed.opened {
-  background-image: url('../assets/img/vault-open.png');
+  background-image: url('../assets/img/vault-open-key.png');
+}
+.vault-closed.opened-no-key {
+  background-image: url('../assets/img/vault-open-no-key.png');
 }
 .code-panel {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Vertically center the button */
-  align-items: center; /* Horizontally center the button */
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -66,34 +75,77 @@
   border: 2px solid #EB257A;
   border-radius: 10px;
   padding: 30px;
-  border-radius: 10px;
   z-index: 500;
   color: white;
   max-width: 400px;
   width: 100%;
   max-height: 80vh;
   overflow-y: auto;
-}
-
-@keyframes gradientAnimation {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.code-panel input {
-  padding: 10px;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  width: 100%; /* Make the input width flexible */
-  max-width: 300px; /* Limit the width to 300px */
   text-align: center;
-  margin-bottom: 20px; /* Increase margin for spacing */
-  background: #111;
-  border: 2px solid #f0f0f0;
-  color: #f0f0f0;
 }
+#enter-code {
+  margin-bottom: 5%;
+}
+.code-display {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 20px;
+  background: #111;
+  color: #f0f0f0;
+  padding: 10px;
+  border: 2px solid #f0f0f0;
+  border-radius: 10px;
+  width: 100%;
+  text-align: center;
+  max-width: 93%;
+}
+.code-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+.box {
+  width: 50px;
+  height: 60px;
+  background-color: #111;
+  color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  margin: 0 5px;
+  border: 2px solid #f0f0f0;
+  position: relative;
+}
+.box span {
+  display: block;
+}
+.arrow-up, .arrow-down {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background-color: #EB257A;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  cursor: pointer;
+}
+.arrow-up {
+  top: -25px; /* Positioned outside the box */
+}
+.arrow-down {
+  bottom: -25px; /* Positioned outside the box */
+  transform: translateX(-50%) rotate(180deg);
+}
+.hyphen {
+  font-size: 2rem;
+  color: #f0f0f0;
+  margin: 0 5px;
 
+}
 .code-panel button {
   background-color: #EB257A;
   color: white;
@@ -104,12 +156,33 @@
   margin-top: 20px;
   cursor: pointer;
 }
-
 .code-panel button:hover:enabled {
   cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
   background-color: #d62056;
 }
-
+.panel-content-wrapper.shake {
+  animation: shake 0.4s;
+}
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
+.overlay-vault {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  z-index: 100;
+  box-shadow: 0 0 20px rgba(235, 37, 122, 0.5);
+}
 .hidden {
   display: none;
 }

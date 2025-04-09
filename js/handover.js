@@ -134,7 +134,6 @@ challengeElements.forEach(element => {
   });
 });
 
-
 document.addEventListener("DOMContentLoaded", function () {
     // Changed to new netflix challenges slider
     //updatedChallengesFabIcon();
@@ -142,8 +141,6 @@ document.addEventListener("DOMContentLoaded", function () {
     updateAshesContainerVisibility(false);
 
     const bombExploded = getProgressFlag(playerNumber, 'bombExploded');
-    const challenge5KeyFound =  getProgressFlag(playerNumber, 'challenge5KeyFound');
-    const trunkCodeUnblocked = getProgressFlag(playerNumber, 'trunkCodeUnblocked');
     
     if (bombExploded) {
         // Force play new music
@@ -163,6 +160,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         enableChallengesAfterBombExploded();
         getPhase3PlayerTiles();
+        updateVaultImage();
+
     } else {
         setupBackgroundMusic("/assets/audio/sg_theme_song.mp3");
     }
@@ -229,4 +228,25 @@ function disableAllChallengesBeforeBombExploded() {
 function enableChallengesAfterBombExploded() {
    if (challengeTwoItem) challengeTwoItem.classList.remove('hidden');
    if (challengeThreeItem) challengeThreeItem.classList.remove('hidden');
+}
+
+async function updateVaultImage() {
+    const isVaultOpened = await getProgressFlag(playerNumber, 'isVaultOpened');
+    const isVaultKeyFound = await getProgressFlag(playerNumber, 'isVaultKeyFound');
+
+    const vaultElement = document.getElementById('vault');
+
+    // If the vault is opened and the key is found, change the background image accordingly
+    if (isVaultOpened) {
+        if (isVaultKeyFound) {
+            // If both flags are true, set the "open" image with key
+            vaultElement.classList.add("opened-no-key");
+        } else {
+            // If the vault is opened but no key is found, set the regular opened image
+            vaultElement.classList.add("opened");
+        }
+    } else {
+        // If the vault is not opened, set the "closed" image
+        vaultElement.classList.add("vault-closed");
+    }
 }

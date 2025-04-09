@@ -45,9 +45,9 @@
     <audio id="countdown-sound" src="/animations/bomb/assets/audio/countdown-10.mp3"></audio>
     <audio id="explosion-sound" src="/animations/bomb/assets/audio/explosion.mp3"></audio>
 
-    <audio id="wrongCode" src="/animations/vault/assets/audio/wrong-code.mp3"></audio>
-	<audio id="correctCode" src="/animations/vault/assets/audio/correct-code.mp3"></audio>
-	<audio id="vaultOpen" src="/animations/vault/assets/audio/vault-open.mp3"></audio>
+    <audio id="wrong-code" src="/animations/vault/assets/audio/wrong-code.mp3"></audio>
+	<audio id="correct-code" src="/animations/vault/assets/audio/correct-code.mp3"></audio>
+	<audio id="vault-open" src="/animations/vault/assets/audio/vault-open.mp3"></audio>
 
     <!--Ashes Container-->
     <!--<div id="canvascontainer" class="ashes-container">
@@ -176,14 +176,61 @@
         <div id="container"><!--<h1>ROBOT BOBBY</h1>--></div>
 
         <div id="vault-container" class="vault-container">
-            <div id="vault" class="vault vault-closed sound-efx" onclick="showCodePanel()"></div>
+            <div id="vault" class="vault vault-closed sound-efx"></div>
         </div>
       
-        <div id="codePanel" class="code-panel hidden">
-            <div class="panel-content">
-                <h2>Enter Code:</h2>
-                <input id="codeInput" maxlength="7" placeholder="XXX-XXXX" />
-                <button onclick="checkVaultCode()" class="sound-efx">Unlock</button>
+        <div id="code-panel" class="code-panel hidden">
+            <div id="panel-content-wrapper" class="panel-content-wrapper">
+                <div class="panel-content">
+                    <h2 id="enter-code">Enter Code:</h2>
+                    <div id="code-display" class="code-display">___-____</div>
+
+                    <!-- Character pickers (boxes) for code input -->
+                    <div class="code-input">
+                        <!-- Number boxes -->
+                        <div class="box" id="box1">
+                            <span>0</span>
+                            <div class="arrow-up" data-box="box1" data-direction="up"></div>
+                            <div class="arrow-down" data-box="box1" data-direction="down"></div>
+                        </div>
+                        <div class="box" id="box2">
+                            <span>0</span>
+                            <div class="arrow-up" data-box="box2" data-direction="up"></div>
+                            <div class="arrow-down" data-box="box2" data-direction="down"></div>
+                        </div>
+                        <div class="box" id="box3">
+                            <span>0</span>
+                            <div class="arrow-up" data-box="box3" data-direction="up"></div>
+                            <div class="arrow-down" data-box="box3" data-direction="down"></div>
+                        </div>
+            
+                        <!-- Hyphen separator -->
+                        <div class="hyphen">-</div>
+            
+                        <!-- Character boxes -->
+                        <div class="box" id="box4">
+                            <span>A</span>
+                            <div class="arrow-up" data-box="box4" data-direction="up"></div>
+                            <div class="arrow-down" data-box="box4" data-direction="down"></div>
+                        </div>
+                        <div class="box" id="box5">
+                            <span>A</span>
+                            <div class="arrow-up" data-box="box5" data-direction="up"></div>
+                            <div class="arrow-down" data-box="box5" data-direction="down"></div>
+                        </div>
+                        <div class="box" id="box6">
+                            <span>A</span>
+                            <div class="arrow-up" data-box="box6" data-direction="up"></div>
+                            <div class="arrow-down" data-box="box6" data-direction="down"></div>
+                        </div>
+                        <div class="box" id="box7">
+                            <span>A</span>
+                            <div class="arrow-up" data-box="box7" data-direction="up"></div>
+                            <div class="arrow-down" data-box="box7" data-direction="down"></div>
+                        </div>
+                    </div>
+                    <button id="unblock" class="sound-efx">Unlock</button>
+                </div>
             </div>
         </div>
 
@@ -290,7 +337,7 @@
     <script src="/animations/bomb/js/obfuscator-audio.js"></script>
     <script src="/animations/bomb/js/bomb.js"></script>
     <script src="/animations/bugs-on-screen/js/bugs.js"></script>
-    <script src="/animations/vault/js/vault.js"></script>
+    <script src="/animations/vault/js/vault.js" type="module"></script>
     <script src="/common/js/video-panel.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
     <!--<script src="/animations/ashes/js/ashes.js"></script>-->
