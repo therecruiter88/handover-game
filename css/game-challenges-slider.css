@@ -46,9 +46,9 @@ body {
 /* Each item (movie/poster) in the slider */
 .challenges-slider-item {
     position: relative;
-    flex: 0 0 11.3333%; /* Show 3 items at a time */
-    margin-right: 10px;
-    margin-top: -30px;
+    flex: 0 0 8%; /* Smaller width for each item (was 11.3333%) */
+    margin-right: 8px;
+    margin-top: -10px;
     cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
     transition: transform 0.3s ease;
     border-radius: 5px;
@@ -119,7 +119,7 @@ body {
     height: 100%;
     background: rgba(0, 0, 0, 0.6); /* Dark background with some transparency */
     backdrop-filter: blur(5px); /* Optional: add blur effect to background */
-    z-index: 10; /* Ensure it's above the image */
+    z-index: 1000; /* Ensure it's above the image */
     opacity: 0; /* Initially hidden */
     transition: opacity 0.3s ease; /* Smooth transition for opacity */
     display: flex; /* Use flexbox to center the text */

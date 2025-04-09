@@ -15,7 +15,7 @@
   left: 24%;  /* Use 50% for horizontal centering */
   transform: translateX(-50%); /* Offset the 50% to truly center it */
   cursor: pointer;
-  z-index: 1000;
+  z-index: 600;
   animation: popIn 2s forwards; /* Apply pop-in animation */
 }
 

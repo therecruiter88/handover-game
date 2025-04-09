@@ -26,7 +26,8 @@ export function setProgressFlag(playerNumber, flagName, value) {
 
     return set(flagRef, value)
         .then(() => {
-            console.log(`Flag "${flagName}" for ${playerId} set to ${value}`);
+            //console.log(`Flag "${flagName}" for ${playerId} set to ${value}`);
+            console.log("Player did some progress...");
         })
         .catch((error) => {
             console.error(`Error setting progress flag "${flagName}" for ${playerId}:`, error);

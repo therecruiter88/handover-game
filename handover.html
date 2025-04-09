@@ -175,10 +175,12 @@
         <canvas id="three-canvas" class="hidden"></canvas>
         <div id="container"><!--<h1>ROBOT BOBBY</h1>--></div>
 
+        <!-- Vault -->
         <div id="vault-container" class="vault-container">
             <div id="vault" class="vault vault-closed sound-efx"></div>
         </div>
       
+        <!-- Vault code panel -->
         <div id="code-panel" class="code-panel hidden">
             <div id="panel-content-wrapper" class="panel-content-wrapper">
                 <div class="panel-content">
@@ -279,10 +281,11 @@
             <!-- The Image Slider -->
             <div id="challenges-slider" class="challenges-slider">
                 <!-- Slider Items (Images of Movies/TV Shows) -->
-                <div id="challenge-1" class="challenges-slider-item sound-efx" data-cover="Challenge 1" data-url="/challenges/challenge-1/challenge.html"><img src="/assets/img/covers/challenge-1.png" alt="The Pineapple Pizza Invasion"><div class="overlay-challenges"><div class="overlay-text">Challenge 1</div></div></div>
-                <div id="challenge-2" class="challenges-slider-item sound-efx" data-cover="Challenge 2" data-url="/challenges/challenge-2/challenge.html"><img id="challenge-2" src="/assets/img/covers/challenge-2.png" alt="Pipeline of Doom"><div class="overlay-challenges"><div class="overlay-text">Challenge 2</div></div></div>
-                <div id="challenge-3" class="challenges-slider-item sound-efx" data-cover="Challenge 3" data-url="/challenges/challenge-3/challenge.html"><img id="challenge-3" src="/assets/img/covers/challenge-3.png" alt="Tick Tock, Don't Drop"><div class="overlay-challenges"><div class="overlay-text">Challenge 3</div></div></div>
-                <div id="challenge-4" class="challenges-slider-item sound-efx disabled" data-cover="Challenge 4"><img id="challenge-4" src="/assets/img/covers/challenge-4.png" alt="Challenge 4"><div class="overlay-challenges"><div class="overlay-text">Challenge 4</div></div></div>
+                <div id="challenge-1" class="challenges-slider-item sound-efx" data-cover="Challenge 1" data-url="/challenges/challenge-1/challenge.html"><img id="challenge-1-cover" src="/assets/img/covers/challenge-1.png" alt="The Pineapple Pizza Invasion"><div class="overlay-challenges"><div class="overlay-text">Challenge 1</div></div></div>
+                <div id="challenge-2" class="challenges-slider-item sound-efx" data-cover="Challenge 2" data-url="/challenges/challenge-2/challenge.html"><img id="challenge-2-cover" src="/assets/img/covers/challenge-2.png" alt="Pipeline of Doom"><div class="overlay-challenges"><div class="overlay-text">Challenge 2</div></div></div>
+                <div id="challenge-3" class="challenges-slider-item sound-efx" data-cover="Challenge 3" data-url="/challenges/challenge-3/challenge.html"><img id="challenge-3-cover" src="/assets/img/covers/challenge-3.png" alt="Tick Tock, Don't Drop"><div class="overlay-challenges"><div class="overlay-text">Challenge 3</div></div></div>
+                <div id="challenge-4" class="challenges-slider-item sound-efx disabled" data-cover="Challenge 4"><img id="challenge-4-cover" src="/assets/img/covers/challenge-blocked.png" alt="Challenge 4"><div class="overlay-challenges"><div class="overlay-text">Challenge 4</div></div></div>
+                <div id="challenge-5" class="challenges-slider-item sound-efx disabled" data-cover="Challenge 5"><img id="challenge-5-cover" src="/assets/img/covers/challenge-coming-soon.png" alt="Challenge 5"><div class="overlay-challenges"><div class="overlay-text">Challenge 5</div></div></div>
             </div>
             
             <!-- Right Arrow Button -->
@@ -332,7 +335,7 @@
     <script src="/animations/pink-soldier/js/soldier.js"></script>
     <script src="/js/handover.js" type="module"></script>
     <!--<script src="/js/game-challenges-fab.js"></script>-->
-    <script src="/js/game-challenges-slider.js"></script>
+    <script src="/js/game-challenges-slider.js" type="module"></script>
     <script src="/animations/bomb/js/explosion.js" type="module"></script>
     <script src="/animations/bomb/js/obfuscator-audio.js"></script>
     <script src="/animations/bomb/js/bomb.js"></script>

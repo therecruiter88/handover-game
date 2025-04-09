@@ -140,7 +140,7 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(5px);
-    z-index: 100;
+    z-index: 700;
     box-shadow: 0 0 20px rgba(235, 37, 122, 0.5);
 }
 

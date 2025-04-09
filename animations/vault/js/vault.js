@@ -1,4 +1,4 @@
-import { displayRandomHint} from '/js/pink-soldier-messages.js';
+import { displayRandomHint, getPinkSoldierMessage } from '/js/pink-soldier-messages.js';
 import { getProgressFlag, setProgressFlag } from '/common/js/progress.js';
 
 const overlayVault = document.createElement('div');
@@ -10,6 +10,7 @@ const codeDisplay = document.getElementById("code-display");
 const vault = document.getElementById("vault");
 const unblockButton = document.getElementById("unblock");
 
+let hintInterval;
 let isCodePanelVisible = false;
 let isVaultClickedOnce = false;
 
@@ -32,7 +33,7 @@ vault.addEventListener("click", async (event) => {
   if (!isVaultOpened) {
      showCodePanel();
 
-     if (!isVaultClickedOnce) setInterval(displayRandomHint, 30000);
+     if (!isVaultClickedOnce) hintInterval = setInterval(displayRandomHint, 30000);
      isVaultClickedOnce = true;
   };
   
@@ -141,6 +142,11 @@ function checkVaultCode() {
     }, 1000);
 
     setProgressFlag(playerNumber, 'isVaultOpened', true);
+
+    // Update pink soldier message
+    clearInterval(hintInterval);
+    const message = getPinkSoldierMessage("fourthChallengeIntro");
+    messageElement.innerHTML = message.replace(/\n/g, '<br>'); // Replace \n with <br> for line breaks
   } else {
     wrongCodeSound.play();
     const panelWrapper = document.getElementById("panel-content-wrapper");

@@ -155,12 +155,13 @@ document.addEventListener("DOMContentLoaded", function () {
         hideBombAfterExplosion();
 
         // Update pink soldier message
-        const message = getPinkSoldierMessage("fourthChallengeIntro");
+        const message = getPinkSoldierMessage("enigmasIntro");
         messageElement.innerHTML = message.replace(/\n/g, '<br>'); // Replace \n with <br> for line breaks
 
         enableChallengesAfterBombExploded();
         getPhase3PlayerTiles();
         updateVaultImage();
+        updateChallenge4();
 
     } else {
         setupBackgroundMusic("/assets/audio/sg_theme_song.mp3");
@@ -238,6 +239,9 @@ async function updateVaultImage() {
 
     // If the vault is opened and the key is found, change the background image accordingly
     if (isVaultOpened) {
+        // Update pink soldier message
+        const message = getPinkSoldierMessage("fourthChallengeIntro");
+        messageElement.innerHTML = message.replace(/\n/g, '<br>'); // Replace \n with <br> for line breaks
         if (isVaultKeyFound) {
             // If both flags are true, set the "open" image with key
             vaultElement.classList.add("opened-no-key");
@@ -248,5 +252,16 @@ async function updateVaultImage() {
     } else {
         // If the vault is not opened, set the "closed" image
         vaultElement.classList.add("vault-closed");
+    }
+}
+
+async function updateChallenge4() {
+    const isChallenge4Unlocked = await getProgressFlag(playerNumber, 'isChallenge4Unlocked');
+
+    // Check if the vault is opened but the key is not found
+    if (isChallenge4Unlocked) {
+        // Change cover
+        const challenge4Cover = document.getElementById("challenge-4-cover");
+        challenge4Cover.src = "/assets/img/covers/challenge-4.png";
     }
 }
