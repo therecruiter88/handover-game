@@ -144,13 +144,12 @@ challengeElements.forEach(element => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  // When player puts the wrong handover.html without query parameters on the url directy, applies this failsafe
-  const urlParams = new URLSearchParams(window.location.search);
-  const hasPlayerNumber = urlParams.has('playerNumber');
-  const hasBombExploded = urlParams.has('bombExploded');
-  if (!hasPlayerNumber && !hasBombExploded) window.location.href = "index.html";
+    // When player puts the wrong handover.html without query parameters on the url directy, applies this failsafe
+    const urlParams = new URLSearchParams(window.location.search);
+    const hasPlayerNumber = urlParams.has('playerNumber');
+    const hasBombExploded = urlParams.has('bombExploded');
+    if (!hasPlayerNumber && !hasBombExploded) window.location.href = "index.html";
 
-  console.log("Both playerNumber and bombExploded are in the URL!");
     // Changed to new netflix challenges slider
     //updatedChallengesFabIcon();
     disableAllChallengesBeforeBombExploded();
@@ -159,11 +158,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const bombExploded = getProgressFlag(playerNumber, 'bombExploded');
     
     if (bombExploded) {
+
         // Force play new music
         setupBackgroundMusic("/assets/audio/sg_theme_song_2.mp3");
         const music = document.getElementById("background-music");
         const volumeIcon = document.getElementById('volumeIcon');
-
+        console.log("aqui");
         if (music) music.muted = false;
         if (volumeIcon) volumeIcon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>';
 

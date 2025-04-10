@@ -44,27 +44,47 @@ challenge4Cover.addEventListener("click", async (event) => {
     }
   });
 
-function adjustSliderKeyframes() {
+  function adjustSliderKeyframes() {
+    const slider = document.querySelector('.challenges-slider');
+    const container = document.querySelector('.challenges-slider-container');
     const sliderItems = document.querySelectorAll('.challenges-slider-item');
-    const totalItems = sliderItems.length;
-    
-    let percentage = 100 / totalItems;
-    let keyframes = '';
 
-    for (let i = 0; i < totalItems; i++) {
-        keyframes += `${(i * percentage)}% { transform: translateX(-${i * percentage}%); }\n`;
+    const totalItems = sliderItems.length;
+    const itemWidth = sliderItems[0].offsetWidth + 8; // including margin-right
+    const visibleWidth = container.offsetWidth;
+
+    const totalSliderWidth = itemWidth * totalItems;
+    const maxTranslateX = totalSliderWidth - visibleWidth;
+
+    // Stop here if the slider fits inside the container (no need to animate)
+    if (totalSliderWidth <= visibleWidth) {
+        slider.style.animation = 'none';
+        return;
     }
 
-    // Add the final keyframe to reset the animation
-    keyframes += `100% { transform: translateX(0); }`;
+    // Calculate animation duration dynamically
+    const speed = 1; // pixels per second, you can tweak this
+    const duration = maxTranslateX / speed;
 
-    // Apply the dynamic keyframes to the CSS rule
+    // Remove old keyframes if any
     const styleSheet = document.styleSheets[0];
+    for (let i = styleSheet.cssRules.length - 1; i >= 0; i--) {
+        const rule = styleSheet.cssRules[i];
+        if (rule.name === 'slide') {
+            styleSheet.deleteRule(i);
+        }
+    }
+
+    // Add new keyframes that only scroll to maxTranslateX
     styleSheet.insertRule(`
         @keyframes slide {
-            ${keyframes}
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-${maxTranslateX}px); }
         }
     `, styleSheet.cssRules.length);
+
+    // Apply animation
+    slider.style.animation = `slide ${duration}s linear infinite`;
 }
 
 // Call this function once the DOM is ready

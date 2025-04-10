@@ -13,9 +13,14 @@ const overlayBug = document.createElement('div');
 overlayBug.classList.add('overlay');
 document.body.appendChild(overlayBug);
 
+let areBugsOnScreen = false;
+
 menuReportBug.addEventListener('click', (event) => {
-    // Start the bugs animation
-    startBugs();
+    // Start the bugs animation if not started yet
+    if (!areBugsOnScreen) {
+        startBugs();
+        areBugsOnScreen = true;
+    }
     
     // Get viewport dimensions
     const maxWidth = window.innerWidth - bugIcon.offsetWidth;

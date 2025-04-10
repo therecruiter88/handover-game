@@ -1,7 +1,6 @@
 > Add let keysInterval; in all challenges, except 4
 
 > Game Challenges Slider
-  > With less then 8 elements, there is too much space and time taken to start the animation all over again
   > Fix previous and next button that don't do nothing right now
 
 > When entering the page with the new background music, the old one starts to play first for a brief second.
