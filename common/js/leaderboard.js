@@ -1,7 +1,7 @@
 import { database, ref, get } from '/common/js/firebaseConfig.js';
 
 // Add more challenges here if needed
-const challenges = ['challenge-1', 'challenge-2', 'challenge-3'];
+const challenges = ['challenge-1', 'challenge-2', 'challenge-3', 'challenge-4', 'challenge-5'];
 const leaderboardButton = document.getElementById('menuLeaderboard');
 //const leaderboardButton = document.getElementById('challenge-leaderboard');
 
@@ -143,13 +143,17 @@ function loadLeaderboardBehavior() {;
             const challengeOneGoldenScore = 500;
             const challengeTwoGoldenScore = 250;
             const challengeThreeGoldenScore = 450;
-            const totalGoldenPlayerScore = challengeOneGoldenScore + challengeTwoGoldenScore + challengeThreeGoldenScore;
+            const challengeFourGoldenScore = 600;
+            const challengeFiveGoldenScore = 1000;
+            const totalGoldenPlayerScore = challengeOneGoldenScore + challengeTwoGoldenScore + challengeThreeGoldenScore + challengeFourGoldenScore + challengeFourGoldenScore;
             
             if (
                 (tab === 'total' && entry.totalScore >= totalGoldenPlayerScore) ||
                 (tab === 'challenge-1' && entry.bestScore >= challengeOneGoldenScore) ||
                 (tab === 'challenge-2' && entry.bestScore >= challengeTwoGoldenScore) ||
-                (tab === 'challenge-3' && entry.bestScore >= challengeTwoGoldenScore)
+                (tab === 'challenge-3' && entry.bestScore >= challengeThreeGoldenScore) ||
+                (tab === 'challenge-4' && entry.bestScore >= challengeFourGoldenScore) ||
+                (tab === 'challenge-5' && entry.bestScore >= challengeFiveGoldenScore)
             ) {
                 trophyCell.innerHTML = '<span class="trophy-icon">🏆</span>'
             } else {

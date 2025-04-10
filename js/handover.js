@@ -112,29 +112,45 @@ const challengeElements = document.querySelectorAll('[id*="challenge-"]');
 
 // Loop over each element and attach a click event listener
 challengeElements.forEach(element => {
-  element.addEventListener('click', function () {
-    let url = element.getAttribute('data-url');
+  element.addEventListener('click', async function () {
+    const challengeId = element.getAttribute('id');
+    const isVaultOpened = await getProgressFlag(playerNumber, 'isVaultOpened');
+    const isVaultKeyFound = await getProgressFlag(playerNumber, 'isVaultKeyFound');
+    let canRedirect = true;
 
-    // If playerNumber exists in the URL, append it to the challenge elements
-    if (url && playerNumber) {
-        // Check if the URL already contains query parameters
-        const separator = url.includes('?') ? '&' : '?';
-        // Append playerNumber query parameter to the URL
-        url = url + separator + 'playerNumber=' + playerNumber;
+    if (challengeId === 'challenge-4' && (!isVaultOpened || !isVaultKeyFound)) canRedirect = false;
 
-        const clickChallengeSound = new Audio("/common/assets/audio/mouse_click_challenge.wav");
-        clickChallengeSound.currentTime = 0; // Reset sound to start
-        clickChallengeSound.play().catch((error) => console.error("Challenge click audio playback error:", error));
+    if (canRedirect) {
+        let url = element.getAttribute('data-url');
 
-        setTimeout(() => {
-            window.location.href = url;
-        }, 1000);
+        // If playerNumber exists in the URL, append it to the challenge elements
+        if (url && playerNumber) {
+            // Check if the URL already contains query parameters
+            const separator = url.includes('?') ? '&' : '?';
+            // Append playerNumber query parameter to the URL
+            url = url + separator + 'playerNumber=' + playerNumber;
 
+            const clickChallengeSound = new Audio("/common/assets/audio/mouse_click_challenge.wav");
+            clickChallengeSound.currentTime = 0; // Reset sound to start
+            clickChallengeSound.play().catch((error) => console.error("Challenge click audio playback error:", error));
+
+            setTimeout(() => {
+                window.location.href = url;
+            }, 1000);
+
+        }
     }
   });
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+  // When player puts the wrong handover.html without query parameters on the url directy, applies this failsafe
+  const urlParams = new URLSearchParams(window.location.search);
+  const hasPlayerNumber = urlParams.has('playerNumber');
+  const hasBombExploded = urlParams.has('bombExploded');
+  if (!hasPlayerNumber && !hasBombExploded) window.location.href = "index.html";
+
+  console.log("Both playerNumber and bombExploded are in the URL!");
     // Changed to new netflix challenges slider
     //updatedChallengesFabIcon();
     disableAllChallengesBeforeBombExploded();

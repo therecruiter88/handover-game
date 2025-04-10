@@ -8,11 +8,14 @@ export function startIntro(storylineText, storyTitles) {
   storylineSound.play();
   storylineSound.loop = true;
 
+  let timeBeforeStoryline = 4000;
+  if (window.location.href.includes('challenge-4')) timeBeforeStoryline = 5800;
+
   // Wait for intro animation to complete before starting storyline
   setTimeout(() => {
     // After the intro animation, start the storyline
     startStoryline(storylineText, storyTitles);
-  }, 4000); // 4000ms = 4 seconds, matching the duration of your logo reveal animation
+  }, timeBeforeStoryline); // 4000ms = 4 seconds, matching the duration of your logo reveal animation
 }
 
 export function startStoryline(storylineText, storyTitles) {

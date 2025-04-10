@@ -11,12 +11,12 @@
     max-height: 80vh;
     overflow-y: auto;
     overflow-x: hidden;
-    z-index: 500;
+    z-index: 800;
     color: white;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    width: 50%;
+    width: 90%;
     min-width: 50%;
-    max-width: 50%;
+    max-width: 70%;
     /*overflow-x: auto;*/ /* Allow scrolling if needed */
     transition: width 0.3s ease-in-out;
     background: linear-gradient(135deg, #333, #444);

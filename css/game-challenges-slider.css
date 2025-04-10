@@ -40,7 +40,7 @@ body {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-75%); /* Move the slider by the width of 3 items (adjust based on your items) */
+        transform: translateX(-100%); /* Move the slider by the width of 3 items (adjust based on your items) */
     }
 }
 /* Each item (movie/poster) in the slider */

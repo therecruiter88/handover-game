@@ -6,7 +6,7 @@ const pinkSoldierMessages = {
     thirdChallengeIntro: "Alright, alright… the dust is still swirling like a dramatic movie scene, but it's almost settling… 😏💨 \n Meanwhile, get ready! Another adventure awaits you... ⚔️✨ Brace yourselves, warriors! This game ain’t over yet, it's just getting spicy! 🌶️🔥 \n Think you’ve got what it takes for the next challenge? Let’s see if you can handle the heat! 🕹️😈",
     thirdChallengeOutro: "Now that the dust is set and the air seems more fresh...and you STILL didn't find out who is the person behind the mask, are you up for more two challenges? \n I know you are! \n I'm cooking up something new and maybe some enigmas to solve... \n 🔓 Stay tuned, it's coming soon... if you dare!",
     enigmasIntro: "Guess who’s back for more? ⚡️ \n I was starting to think you forgot about the challenges. 👀 But fear not, the adventure isn't over yet! 🌟 \n Guess what? A mysterious vault awaits you with some secrets inside! 🔐 C'mon, hurry up... that vault isn’t going to open itself! 🔑 \n Give it a try, if you're brave enough! I’ll even give you 5 hints to help you solve the enigma. 🧩",
-    fourthChallengeIntro: "Well done Inspector Gadget!!! 🕵 \n I wonder what this key might open...🔑🔓 \n Will there be any more challenges ahead? 🎮",
+    fourthChallengeIntro: "Well done Inspector Gadget!!! 🕵 \n I wonder what this key might open...🔑🔓 \n Will there be any more challenges ahead? 🎮 What pill should you take? 💊🔵🔴 \n  the answers you need?",
 };
 
 const pinkSoldierEnigmaHints = {
