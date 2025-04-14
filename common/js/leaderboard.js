@@ -128,14 +128,32 @@ function loadLeaderboardBehavior() {;
             const row = tempTable.insertRow();
             const playerCell = row.insertCell();
             playerCell.textContent = entry.player;
+            let hackerDisqualified = false;
     
             const scoreCell = row.insertCell();
             if (tab === 'total') {
-                scoreCell.textContent = entry.totalScore;
+                if (entry.totalScore < 0 || entry.totalScore > 3000) {
+                    hackerDisqualified = true;
+                    scoreCell.textContent = "Hacker Disqualified";
+                } else {
+                    scoreCell.textContent = entry.totalScore;
+                }
             } else {
-                scoreCell.textContent = entry.score;
+                if (entry.score < 0 || entry.score > 1000) {
+                    hackerDisqualified = true;
+                    scoreCell.textContent = "Hacker";
+                } else {
+                    scoreCell.textContent = entry.score;
+                }
+
+                // Insert the bestScoreCell and apply the same logic
                 const bestScoreCell = row.insertCell();
-                bestScoreCell.textContent = entry.bestScore;
+                if (entry.score < 0 || entry.score > 1000) {
+                    hackerDisqualified = true;
+                    bestScoreCell.textContent = "Disqualified";
+                } else {
+                    bestScoreCell.textContent = entry.bestScore;
+                }
             }
 
             // Add a new column for the trophy icon
@@ -155,7 +173,8 @@ function loadLeaderboardBehavior() {;
                 (tab === 'challenge-4' && entry.bestScore >= challengeFourGoldenScore) ||
                 (tab === 'challenge-5' && entry.bestScore >= challengeFiveGoldenScore)
             ) {
-                trophyCell.innerHTML = '<span class="trophy-icon">🏆</span>'
+                if (hackerDisqualified === true) trophyCell.innerHTML = '<span class="trophy-icon">👹</span>';
+                else trophyCell.innerHTML = '<span class="trophy-icon">🏆</span>';
             } else {
                 trophyCell.textContent = '';
             }
