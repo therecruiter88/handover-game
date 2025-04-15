@@ -1,10 +1,11 @@
 const playerOptions = document.querySelectorAll('.player-option');
 const startGameButton = document.getElementById('start-game');
 
+let selectedShape = null;
+
 // Check if the startGameButton exists before proceeding
 if (playerOptions) {
     // Add player selection functionality
-    let selectedShape = null;
 
     playerOptions.forEach(option => {
         option.addEventListener('click', () => {
