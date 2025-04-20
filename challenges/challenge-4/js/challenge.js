@@ -146,10 +146,6 @@ function initializeGameSpecificParameters(){
 
   // Set up keyboard listeners
   setupControls();
-
-  // Setup keyboard controls
-  document.addEventListener('keydown', handleKeyDown);
-  document.addEventListener('keyup', handleKeyUp);
 }
 
 function resetGameState() {

@@ -41,6 +41,7 @@ export function setupEventListeners({
     });
 }
 
+
 function redirectToHomePage() {
   const playerNumber = getPlayerNumber();
   window.location.href = "/handover.html?bombExploded=true&playerNumber=" + playerNumber;
@@ -83,7 +84,7 @@ export function initializeGameParameters(GAME, startTime){
 
   // Restart music from beginning
   GAME.gameStartSound.currentTime = 0;
-  GAME.gameStartSound.play();
+  //GAME.gameStartSound.play();
   GAME.gameStartSound.volume = 0.5;
 
   // Update UI
@@ -91,6 +92,7 @@ export function initializeGameParameters(GAME, startTime){
 }
 
 export function startTimer(timerInterval, gameTime, timerDisplay, countdownSound, countdownFastSound, gameId, GAME, options) { 
+    countdownFastSound.volume = 0;
     timerInterval = setInterval(() => {
         gameTime--;
         if (gameTime <= 0) {

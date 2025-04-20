@@ -37,6 +37,7 @@ const shieldExplosionSound = document.getElementById('shield-explosion-sound');
 const spaceshipExplosionSound = document.getElementById('spaceship-explosion-sound');
 const asteroidExplosionSound = document.getElementById('asteroid-explosion-sound');
 const boostPickUpSound = document.getElementById('boost-pick-up-sound');
+const rocketEngineSound = document.getElementById('rocket-engine-sound');
 
 // Specific game mechanics variables
 let startTime = 30;
@@ -171,7 +172,7 @@ setupEventListeners({
   homeButton: GAME.homeButton,
 });
 
-// Specific game player selector
+// Specific game player selector (for this game there is not a player selector)
 function handleShapeSelection() {
   // Hide player selector and show game
   instructionsPopup.style.display = 'none';
@@ -226,10 +227,6 @@ function initializeGameSpecificParameters(){
 
   // Set up keyboard listeners
   setupControls();
-
-  // Setup keyboard controls
-  document.addEventListener('keydown', handleKeyDown);
-  document.addEventListener('keyup', handleKeyUp);
 }
 
 function resetGameState() {
@@ -294,33 +291,36 @@ function resetGameState() {
   isPaused = false;
 }
 
-function setupControls() {
+function setupControls() { 
   document.addEventListener('keydown', handleKeyDown);
   document.addEventListener('keyup', handleKeyUp);
 
   function checkKeys() {
-    // Don't process inputs if game is paused or not in active state
-    if (isPaused || gameState === 'intro' || gameState === 'end' || gameState === 'gameOver') return;
+      // Don't process inputs if game is paused or not in active state
+      if (isPaused || gameState === 'intro' || gameState === 'end' || gameState === 'gameOver') return;
 
-    // Horizontal movement
-    if (keys['ArrowLeft'] && player.x > 0) {
-      player.x -= player.speed;
-    }
-    if (keys['ArrowRight'] && player.x + player.width < canvas.width) {
-      player.x += player.speed;
-    }
+      // Horizontal movement
+      if (keys['ArrowLeft'] && player.x > 0) {
+        player.x -= player.speed;
+      }
+      if (keys['ArrowRight'] && player.x + player.width < canvas.width) {
+        player.x += player.speed;
+      }
 
-    // Vertical movement
-    if (keys['ArrowDown'] && player.y + player.height < canvas.height) {
-      player.y += player.speed;
-    }
+      // Vertical movement
+      if (keys['ArrowDown'] && player.y + player.height < canvas.height) {
+        player.y += player.speed;
+      }
 
-    if (keys['ArrowUp'] && player.y > 0) {
-      player.y -= player.speed;
-      isPropulsorActive = true;
+      if (keys['ArrowUp'] && player.y > 0) {
+        player.y -= player.speed;
+        if (!isPropulsorActive) {
+          isPropulsorActive = true;
+          playSound(rocketEngineSound, 0.5);
+        }
+      }
     }
-  }
-
+  
   keysInterval = setInterval(checkKeys, 20);
 }
 
@@ -337,6 +337,9 @@ function handleKeyDown(e) {
 
   // Shoot (spacebar or "Space" code)
   if ((e.key === ' ' || e.code === 'Space') && canShoot) {
+    // Don't process inputs if game is paused or not in active state
+    if (isPaused || gameState === 'intro' || gameState === 'end' || gameState === 'gameOver') return;
+
     shootPlayerBullet();
     if (!isPaused) playSound(playerLaserSound, 0.5);
     canShoot = false;
@@ -356,6 +359,7 @@ function handleKeyUp(e) {
   if (e.key === 'ArrowUp') {
     isPropulsorActive = false;
     propulsorFrame = 0;
+    rocketEngineSound.pause();
   }
 }
 
@@ -366,8 +370,11 @@ function updateGameState() {
 }
 
 function renderGame() {
+  if (isGameOver()) return;
+
   // Continue animation loop
-  animationFrame = requestAnimationFrame(draw);
+  animationFrame = requestAnimationFrame(renderGame);
+  draw();
 }
 
 function createStars(numStars) {
@@ -1023,6 +1030,8 @@ function damagePlayer(damage) {
       playSound(spaceshipExplosionSound, 0.5);
       //console.log("Player HP depleted and ship was destroyed!");
       gameState = 'gameOver';
+      setGameOver(true);
+      gameOver(false);
     }
 
     // Trigger hit effect
@@ -1287,18 +1296,6 @@ function triggerScreenShake() {
 // Update the game state
 function update() {
   if (isPaused || !imagesLoaded || isBossDefeated) return;
-
-  // Movement and key control
-  if (keys["ArrowLeft"] && player.x > 0) player.x -= player.speed;
-  if (keys["ArrowRight"] && player.x + player.width < canvas.width) player.x += player.speed;
-  if (keys["ArrowDown"] && player.y + player.height < canvas.height) player.y += player.speed;
-  if (keys["ArrowUp"] && player.y > 0) {
-    player.y -= player.speed;   // Move player up
-    isPropulsorActive = true;
-  } else {
-    isPropulsorActive = false;
-    propulsorFrame = 0;         // Reset to the first frame when the key is released
-  }
 
   applyPlayerPropulsorAnimation();
   applyHitBehavior();
@@ -1626,6 +1623,7 @@ function checkBounds() {
 // Draw everything on the canvas
 function draw() {
   if (isGameOver()) return;
+
   // Save the current canvas state (before shake)
   ctx.save();
 
