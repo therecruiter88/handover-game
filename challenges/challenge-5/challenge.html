@@ -1,0 +1,169 @@
+<html>
+<head>
+  <title>Glitch Universe: Key To The Stars</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--<link rel="stylesheet" href="/common/css/mobile-instructions.css">-->
+  <link rel="stylesheet" href="/common/css/fonts.css">
+  <link rel="stylesheet" href="/common/css/leaderboard.css">
+  <link rel="stylesheet" href="/challenges/common/css/storyline.css">
+  <link rel="stylesheet" href="/challenges/common/css/player-input.css">
+  <link rel="stylesheet" href="/challenges/common/css/elimination.css">
+  <link rel="stylesheet" href="/challenges/common/css/intro.css">
+  <link rel="stylesheet" href="/challenges/common/css/instructions.css">
+  <link rel="stylesheet" href="/challenges/common/css/victory.css">
+  <link rel="stylesheet" href="/challenges/common/css/challenge.css">
+  <link rel="stylesheet" href="./css/storyline.css">
+  <link rel="stylesheet" href="./css/challenge.css">
+  <link rel="icon" href="/common/assets/favicon/icon.png" type="image/x-icon">
+</head>
+<body>
+
+    <!-- Audio elements for game sounds -->
+    <audio id="storyline-sound" preload="auto">
+      <source src="./assets/audio/storyline.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="game-start-sound" preload="auto">
+      <source src="./assets/audio/game.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="countdown-sound" preload="auto">
+      <source src="/challenges/common/assets/audio/countdown-sound.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="countdown-fast-sound" preload="auto">
+      <source src="/challenges/common/assets/audio/countdown-fast-sound.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="elimination-sound" preload="auto">
+      <source src="/challenges/common/assets/audio/elimination-sound.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="victory-sound" preload="auto">
+      <source src="/challenges/common/assets/audio/victory.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- Specific game sounds -->
+    <audio id="enemy-hit-sound" preload="auto">
+      <source src="./assets/audio/enemy-hit.wav" type="audio/mpeg">
+    </audio>
+      
+    <audio id="jump-sound" preload="auto">
+      <source src="./assets/audio/jump.wav" type="audio/mpeg">
+    </audio>
+    
+    <audio id="coin-collect-sound" preload="auto">
+      <source src="./assets/audio/collect-coin.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="rocket-launch-sound" preload="auto">
+      <source src="./assets/audio/rocket-launch.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="rocket-unblocked-sound" preload="auto">
+      <source src="./assets/audio/rocket-unblocked.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="content">
+      <!-- Player Name Prompt -->
+      <div id="player-name-prompt">
+        <h2>Select Your Player Number</h2>
+        <!--<input type="text" id="player-number" maxlength="3" placeholder="example: 000">-->
+        <select id="player-number" class="sound-efx"></select>
+        <button id="begin-challenge" class="sound-efx" disabled>Begin Challenge</button>
+      </div>
+      
+      <!-- Netflix-style intro -->
+      <div id="intro-container">
+        <div id="intro-logo">Glitch Universe: Key To The Stars</div>
+      </div>
+      
+      <!-- Storyline container -->
+      <div id="story-container">
+        <div id="story-box">
+          <h2 id="story-title">Backstory</h2>
+          <div id="story-text"></div>
+          <button id="continue-btn" class="sound-efx">Continue</button>
+        </div>
+      </div>
+      
+      <!-- Instructions popup -->
+      <div id="instructions-popup">
+        <h2>How to Play</h2>
+        <p>Use the left and right arrow keys to move across the platforms.</p>
+        <p>Jump to collect all the coins scattered around!</p>
+        <p>Each coin you collect brings you closer to unlocking a secret reward...so make sure to grab them all!</p>
+        <p>Watch out for enemies! Avoid them to keep your lives intact.</p>
+        <button id="start-game" class="sound-efx">Start Game</button>
+      </div>
+      
+      <div id="game-container">
+        <div id="player" class="challenge-4">
+            <svg width="16" height="30" viewBox="0 0 16 30">
+                <!-- Body (yellow) -->
+                <rect x="0" y="8" width="16" height="22" rx="3" fill="#FFE733"/>
+                <!-- Overalls (blue) -->
+                <rect x="0" y="15" width="16" height="15" rx="2" fill="#4575D4"/>
+                <!-- Overall straps -->
+                <rect x="2" y="8" width="3" height="12" fill="#4575D4"/>
+                <rect x="11" y="8" width="3" height="12" fill="#4575D4"/>
+                <!-- Head (yellow) -->
+                <circle cx="8" cy="8" r="7" fill="#FFE733"/>
+                <!-- Goggle strap (black) -->
+                <rect x="2" y="7" width="12" height="2" fill="#333333"/>
+                <!-- Goggle (silver) -->
+                <rect x="3" y="5" width="10" height="4" rx="2" fill="#C0C0C0"/>
+                <!-- Eye (white with black pupil) -->
+                <circle cx="8" cy="7.5" r="2.5" fill="#FFFFFF"/>
+                <circle cx="8" cy="7.5" r="1.2" fill="#333333"/>
+              </svg>
+        </div>
+        <div id="timer-display">Time: 60</div>
+        <div class="hearts-container">
+          <img class="heart" id="heart1" src="./../common/assets/img/heart_full.png" alt="Full Heart">
+          <img class="heart" id="heart2" src="./../common/assets/img/heart_full.png" alt="Full Heart">
+          <img class="heart" id="heart3" src="./../common/assets/img/heart_full.png" alt="Full Heart">
+        </div>
+        <div id="score-display">Score: 0</div>
+
+        <div id="rocket" class="hidden"></div>
+        
+        <!-- Celebration container -->
+        <div id="celebration">
+          <h2>Congratulations!</h2>
+          <p>You have successfully escaped from the glitch universe!</p>
+          <p id="win-score"></p>
+        </div>
+        
+        <!-- Game over container -->
+        <div id="game-over">
+          <h2>ELIMINATED!</h2>
+          <p id="reason-eliminated"></p>
+          <p>You were not able to escape the glitch universe...</p>
+          <div id="elimination-x">X</div>
+          <button id="retry-button" class="sound-efx">Retry</button>
+        </div>
+      </div>
+
+      <!-- Game completion popup -->
+      <div id="game-completion">
+        <h2>Next Game Unlocked!</h2>
+        <p>You have successfully completed this challenge and unlocked the last game.</p>
+        <p>Will conclude it next week!</p>
+        <div class="buttons">
+          <button id="home-button" class="sound-efx">Return to Base</button>
+          <button id="menuLeaderboard" class="challenge-leaderboard-btn sound-efx">Scoreboard</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/challenges/common/js/players-list.js"></script>
+    <script src="/challenges/common/js/storyline.js" type="module"></script> <!-- It must load before challenge.js to use its functions -->
+    <script src="/challenges/common/js/instructions.js"></script>
+    <script src="./js/challenge.js" type="module"></script>
+    <script src="/common/js/leaderboard.js" type="module"></script>
+    <script src="/common/js/mobile-message.js" type="module"></script>
+    <script src="/common/js/audio.js" type="module"></script>
+  </body>
+</html>

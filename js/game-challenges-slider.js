@@ -3,6 +3,7 @@ import { getProgressFlag, setProgressFlag } from '/common/js/progress.js';
 const menuChallenges = document.getElementById('menuChallenges');
 const sliderContainer = document.getElementById("challenges-slider-container");
 const challenge4Cover = document.getElementById("challenge-4");
+const challenge5Cover = document.getElementById("challenge-5");
 
 const overlayChallengesSlider = document.createElement('div');
 overlayChallengesSlider.classList.add('overlay');
@@ -15,7 +16,7 @@ document.body.appendChild(overlayChallengesSlider);
 const queryParams = new URLSearchParams(window.location.search);
 const playerNumber = queryParams.get('playerNumber');
 
-challenge4Cover.addEventListener("mouseenter", async (event) => {
+challenge4Cover.addEventListener("mouseenter", async () => {
     const isVaultKeyFound = await getProgressFlag(playerNumber, 'isVaultKeyFound');
     const isChallenge4Unlocked = await getProgressFlag(playerNumber, 'isChallenge4Unlocked');
 
@@ -29,9 +30,21 @@ challenge4Cover.addEventListener("mouseenter", async (event) => {
       // Key found and challenge unlocked
       challenge4Cover.style.cursor = 'url("/assets/cursors/sg-pointer.png") 16 16, auto';
     }
-  });
+});
 
-challenge4Cover.addEventListener("click", async (event) => {
+challenge5Cover.addEventListener("mouseenter", async () => {
+  const isChallenge5Unlocked = await getProgressFlag(playerNumber, 'isChallenge5KeyFound');
+
+  if (!isChallenge5Unlocked) {
+    // Player hasn't found the challenge 4 key
+    challenge5Cover.style.cursor = 'not-allowed';
+  } else {
+    // Key found and challenge unlocked
+    challenge5Cover.style.cursor = 'url("/assets/cursors/sg-pointer.png") 16 16, auto';
+  }
+});
+
+challenge4Cover.addEventListener("click", async () => {
     // Wait for the flags to be fetched from the database
     const isVaultKeyFound = await getProgressFlag(playerNumber, 'isVaultKeyFound');
   
@@ -42,49 +55,49 @@ challenge4Cover.addEventListener("click", async (event) => {
       const challenge4Cover = document.getElementById("challenge-4-cover");
       challenge4Cover.src = "/assets/img/covers/challenge-4.png";
     }
-  });
+});
 
-  function adjustSliderKeyframes() {
-    const slider = document.querySelector('.challenges-slider');
-    const container = document.querySelector('.challenges-slider-container');
-    const sliderItems = document.querySelectorAll('.challenges-slider-item');
+function adjustSliderKeyframes() {
+  const slider = document.querySelector('.challenges-slider');
+  const container = document.querySelector('.challenges-slider-container');
+  const sliderItems = document.querySelectorAll('.challenges-slider-item');
 
-    const totalItems = sliderItems.length;
-    const itemWidth = sliderItems[0].offsetWidth + 8; // including margin-right
-    const visibleWidth = container.offsetWidth;
+  const totalItems = sliderItems.length;
+  const itemWidth = sliderItems[0].offsetWidth + 8; // including margin-right
+  const visibleWidth = container.offsetWidth;
 
-    const totalSliderWidth = itemWidth * totalItems;
-    const maxTranslateX = totalSliderWidth - visibleWidth;
+  const totalSliderWidth = itemWidth * totalItems;
+  const maxTranslateX = totalSliderWidth - visibleWidth;
 
-    // Stop here if the slider fits inside the container (no need to animate)
-    if (totalSliderWidth <= visibleWidth) {
-        slider.style.animation = 'none';
-        return;
-    }
+  // Stop here if the slider fits inside the container (no need to animate)
+  if (totalSliderWidth <= visibleWidth) {
+      slider.style.animation = 'none';
+      return;
+  }
 
-    // Calculate animation duration dynamically
-    const speed = 1; // pixels per second, you can tweak this
-    const duration = maxTranslateX / speed;
+  // Calculate animation duration dynamically
+  const speed = 1; // pixels per second, you can tweak this
+  const duration = maxTranslateX / speed;
 
-    // Remove old keyframes if any
-    const styleSheet = document.styleSheets[0];
-    for (let i = styleSheet.cssRules.length - 1; i >= 0; i--) {
-        const rule = styleSheet.cssRules[i];
-        if (rule.name === 'slide') {
-            styleSheet.deleteRule(i);
-        }
-    }
+  // Remove old keyframes if any
+  const styleSheet = document.styleSheets[0];
+  for (let i = styleSheet.cssRules.length - 1; i >= 0; i--) {
+      const rule = styleSheet.cssRules[i];
+      if (rule.name === 'slide') {
+          styleSheet.deleteRule(i);
+      }
+  }
 
-    // Add new keyframes that only scroll to maxTranslateX
-    styleSheet.insertRule(`
-        @keyframes slide {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-${maxTranslateX}px); }
-        }
-    `, styleSheet.cssRules.length);
+  // Add new keyframes that only scroll to maxTranslateX
+  styleSheet.insertRule(`
+      @keyframes slide {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-${maxTranslateX}px); }
+      }
+  `, styleSheet.cssRules.length);
 
-    // Apply animation
-    slider.style.animation = `slide ${duration}s linear infinite`;
+  // Apply animation
+  slider.style.animation = `slide ${duration}s linear infinite`;
 }
 
 // Call this function once the DOM is ready
@@ -134,4 +147,3 @@ document.addEventListener('click', (event) => {
 		overlayChallengesSlider.style.display = "none";
     }
 });
-

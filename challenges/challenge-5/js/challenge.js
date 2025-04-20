@@ -3,7 +3,6 @@ import { setupEventListeners, triggerStartGame, initializeGameParameters, startT
 import { showPlayerNumberInput, isPlayerNumberValid } from '/challenges/common/js/player-input.js';
 import * as GAME from '/challenges/common/js/game-variables.js';
 import { getScore, setScore, isGameOver, setGameOver, getTimerInterval, setTimerInterval } from '/challenges/common/js/game-variables.js';
-import { setProgressFlag } from '/common/js/progress.js';
 
 const gameId = "challenge-4";
 
@@ -631,11 +630,6 @@ function launchRocket() {
   if (isRocketLaunched) return;
 
   isRocketLaunched = true;
-
-  // Grab the playerNumber from the URL query parameters
-  const queryParams = new URLSearchParams(window.location.search);
-  const playerNumber = queryParams.get('playerNumber');
-  setProgressFlag(playerNumber, 'isChallenge5KeyFound', true);
 
   if (!GAME.player || !rocket) return;
 

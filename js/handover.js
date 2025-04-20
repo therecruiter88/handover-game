@@ -116,9 +116,14 @@ challengeElements.forEach(element => {
     const challengeId = element.getAttribute('id');
     const isVaultOpened = await getProgressFlag(playerNumber, 'isVaultOpened');
     const isVaultKeyFound = await getProgressFlag(playerNumber, 'isVaultKeyFound');
+    const isChallenge5Unlocked = await getProgressFlag(playerNumber, 'isChallenge5KeyFound');
+
     let canRedirect = true;
 
-    if (challengeId === 'challenge-4' && (!isVaultOpened || !isVaultKeyFound)) canRedirect = false;
+    if (
+        (challengeId === 'challenge-4' && (!isVaultOpened || !isVaultKeyFound)) ||
+        (challengeId === 'challenge-5' && !isChallenge5Unlocked)
+    ) canRedirect = false;
 
     if (canRedirect) {
         let url = element.getAttribute('data-url');
@@ -178,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
         getPhase3PlayerTiles();
         updateVaultImage();
         updateChallenge4();
-
+        updateChallenge5();
     } else {
         setupBackgroundMusic("/assets/audio/sg_theme_song.mp3");
     }
@@ -279,5 +284,16 @@ async function updateChallenge4() {
         // Change cover
         const challenge4Cover = document.getElementById("challenge-4-cover");
         challenge4Cover.src = "/assets/img/covers/challenge-4.png";
+    }
+}
+
+async function updateChallenge5() {
+    const isChallenge5Unlocked = await getProgressFlag(playerNumber, 'isChallenge5KeyFound');
+
+    // Check if rocket was found in challenge 4
+    if (isChallenge5Unlocked) {
+        // Change cover
+        const challenge5Cover = document.getElementById("challenge-5-cover");
+        challenge5Cover.src = "/assets/img/covers/challenge-5.png";
     }
 }

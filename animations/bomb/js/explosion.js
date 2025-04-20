@@ -163,10 +163,12 @@ document.addEventListener('bombExploded', () => {
   // Unblock new challenge
   const challengeTwoItem = document.getElementById('challenge-2');
   const challengeThreeItem = document.getElementById('challenge-3');
-  const challengeFourItem = document.getElementById('challenge-4');
+  //const challengeFourItem = document.getElementById('challenge-4');
+  //const challengeFiveItem = document.getElementById('challenge-5');
   if (challengeTwoItem) challengeTwoItem.classList.remove('hidden');
   if (challengeThreeItem) challengeThreeItem.classList.remove('hidden');
-  if (challengeFourItem) challengeFourItem.classList.remove('hidden');
+  //if (challengeFourItem) challengeFourItem.classList.remove('hidden');
+  //if (challengeFiveItem) challengeFourItem.classList.remove('hidden');
 
   const ashesContainer = document.getElementById('canvascontainer');
   if (ashesContainer) {
