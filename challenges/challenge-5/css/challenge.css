@@ -1,132 +1,40 @@
-#game-container {
-  background-image: url('../assets/img/background.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+body.c5 {
+  font-family: 'Press Start 2P', cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #0a0a1a;
+  margin: 0;
+  overflow: hidden;
+  color: white;
 }
-#game-container::after {
+#game-container {
+  width: 600px;
+  height: 400px;
+  background-color: #000;
+  background: radial-gradient(circle at center, #1a1a3a 0%, #000 70%);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 100, 255, 0.6);
+}
+/* Add stars to background */
+#game-container::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.02),
-    rgba(255, 255, 255, 0.02) 1px,
-    transparent 1px,
-    transparent 2px
-  );
-  pointer-events: none;
-  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 2px),
+    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 1px),
+    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 2px);
+  background-size: 550px 550px, 350px 350px, 250px 250px;
+  background-position: 0 0, 40px 60px, 130px 270px;
+  z-index: 1;
 }
 #start-game:hover:enabled {
   background-color: #d62056;
   cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
-}
-#player.challenge-4 {
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  left: 50px;
-  top: 300px;
-  z-index: 10;
-  transition: transform 0.2s ease;
-  image-rendering: pixelated;
-}
-.platform {
-  position: absolute;
-  background-image: url('../assets/img/platform-tile-1.png');
-  background-repeat: repeat-x;
-  background-size: auto 100%; /* Keeps original width, scales height to fit */
-  background-position: bottom;
-  image-rendering: pixelated;
-  border: 1px solid #444;
-}
-.enemy {
-  position: absolute;
-  background-color: transparent;
-  border-radius: 0;
-  overflow: visible;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 5;
-  image-rendering: pixelated;
-}
-.enemy::after {
-  content: '';
-  display: none;
-}
-.enemy::before {
-  content: '';
-  display: none;
-}
-.enemy svg, .coin, #player {
-  image-rendering: pixelated;
-}
-.coin {
-  position: absolute;
-  background-color: gold;
-  border-radius: 50%;
-  box-shadow: 0 0 5px rgba(255, 215, 0, 0.7);
-  animation: coinSpin 1s infinite linear;
-  z-index: 3;
-  image-rendering: pixelated;
-}
-@keyframes coinSpin {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.2); opacity: 0.8; }
-  100% { transform: scale(1); opacity: 1; }
-}
-.player-hit {
-  animation: fadeOutShrink 0.5s ease-out forwards;
-}
-@keyframes chomp {
-  0% {
-    transform: scale(1) rotate(0deg);
-    background-color: transparent;
-  }
-  25% {
-    transform: scale(1.4) rotate(-5deg);
-    background-color: red;
-  }
-  50% {
-    transform: scale(1.5) rotate(5deg);
-    background-color: red;
-  }
-  75% {
-    transform: scale(1.4) rotate(-5deg);
-    background-color: red;
-  }
-  100% {
-    transform: scale(1) rotate(0deg);
-    background-color: transparent;
-  }
-}
-.enemy.eat-animation {
-  animation: chomp 0.6s ease-in-out;
-  z-index: 10;
-}
-@keyframes fadeOutShrink {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0.2);
-  }
-}
-#rocket {
-  position: absolute;
-  width: 50px;
-  height: 80px;
-  background: url('../assets/img/rocket.png') no-repeat center center / contain;
-  top: 300px; /* Set based on your level */
-  left: 500px;
-  z-index: 5;
 }
 .hidden {
   display: none;

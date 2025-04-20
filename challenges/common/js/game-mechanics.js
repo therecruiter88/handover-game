@@ -41,7 +41,6 @@ export function setupEventListeners({
     });
 }
 
-
 function redirectToHomePage() {
   const playerNumber = getPlayerNumber();
   window.location.href = "/handover.html?bombExploded=true&playerNumber=" + playerNumber;
@@ -49,6 +48,7 @@ function redirectToHomePage() {
 
 export function triggerStartGame(startGameButton, handleShapeSelection) {
     startGameButton.addEventListener('click', () => {
+
       const storylineSound = document.getElementById('storyline-sound');
   
       const fadeAudio = setInterval(() => {

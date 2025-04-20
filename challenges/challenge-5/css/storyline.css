@@ -2,3 +2,50 @@
     --story-text-font-size: 13px;
     --story-text-height: 220px;
 }
+#intro-container {
+    font-family: 'Press Start 2P', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #0a0a1a;
+    margin: 0;
+    overflow: hidden;
+    color: white;
+}
+#story-container {
+    font-family: 'Press Start 2P', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #0a0a1a;
+    margin: 0;
+    overflow: hidden;
+    color: white;
+}
+#story-box {
+    background-color: #000;
+    background: radial-gradient(circle at center, #1a1a3a 0%, #000 70%);
+    box-shadow: 0 0 20px rgba(0, 100, 255, 0.6);
+}
+#instructions-popup {
+    background-color: #000;
+    background: radial-gradient(circle at center, #1a1a3a 0%, #000 70%);
+    box-shadow: 0 0 20px rgba(0, 100, 255, 0.6);
+}
+#player-name-prompt {
+    background-color: #000;
+    background: radial-gradient(circle at center, #1a1a3a 0%, #000 70%);
+    box-shadow: 0 0 20px rgba(0, 100, 255, 0.6);
+}
+#player-selector {
+    background-color: #000;
+    background: radial-gradient(circle at center, #1a1a3a 0%, #000 70%);
+    box-shadow: 0 0 20px rgba(0, 100, 255, 0.6);
+}
+#game-over {
+    background-color: #000;
+    background: radial-gradient(circle at center, #1a1a3a 0%, #000 70%);
+    box-shadow: 0 0 20px rgba(0, 100, 255, 0.6);
+}
