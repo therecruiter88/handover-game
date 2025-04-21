@@ -11,8 +11,8 @@ const storyTitles = ["Storyline", "Challenge"];
 
 // Specific storyline
 const storylineText = [
-  "...",
-  "..."
+  "The handover phase is long gone...Your floor is empty. Desks abandoned. Monitors unplugged. The great migration has begun. With your rocket launcher slung over your shoulder and a box of tangled cables in hand, you set out to conquer the uncharted lands of...another office floor. But this is no end...just the beginning of new, bizarre challenges ahead.",
+  "Aliens are blocking the exits, asteroids are crashing through the ceiling, and the elevator’s out—again! Only one way out: survive five relentless waves of extreme chaos. Thankfully, Master Chef’s snacks drop from the rubble—bite-sized miracles to restore your HP. Make it to the end and the Game Master will finally show their face...just in time for dessert!"
 ];
 
 // Specific game elements
@@ -143,10 +143,10 @@ const boosterTypes = [
 ];
 
 const waveScoreThresholds = {
-  1: 30, //250,
-  2: 30, //500, 
-  3: 30, //750,
-  4: 30, //1000,
+  1: 10, //250,
+  2: 10, //500, 
+  3: 10, //750,
+  4: 10, //1000,
 };
 
 // Specific game mechanics intervals
@@ -1020,19 +1020,12 @@ function damagePlayer(damage) {
       player.isShieldActive = false;
       player.shieldBreakTimer = 30;
       //console.log("Player shield is destroyed!");
+      isPlayedHpDepleted();
     }
   } else {
     // When player is hit and shield is inactive
     player.hp -= damage;
-    
-    if (player.hp <= 0) {
-      player.hp = 0;
-      playSound(spaceshipExplosionSound, 0.5);
-      //console.log("Player HP depleted and ship was destroyed!");
-      gameState = 'gameOver';
-      setGameOver(true);
-      gameOver(false);
-    }
+    isPlayedHpDepleted();
 
     // Trigger hit effect
     player.hit = true;
@@ -1042,6 +1035,17 @@ function damagePlayer(damage) {
     //if (player.hp > 0) console.log("Player suffered " + damage + " damage. Player hp: " + player.hp);
   }
 
+}
+
+function isPlayedHpDepleted() {
+  if (player.hp <= 0) {
+    player.hp = 0;
+    playSound(spaceshipExplosionSound, 0.5);
+    //console.log("Player HP depleted and ship was destroyed!");
+    gameState = 'gameOver';
+    setGameOver(true);
+    gameOver(false);
+  }
 }
 
 function drawPlayerHPBar() { 
@@ -1696,7 +1700,7 @@ function draw() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   
     ctx.fillStyle = "#fff";
-    ctx.font = "52px Press Start 2P";
+    ctx.font = "22px 'Press Start 2P', monospace";
     ctx.textAlign = "center";
     ctx.fillText("Game Paused", canvas.width / 2, canvas.height / 2);
   }
@@ -1734,7 +1738,10 @@ function handleGameState() {
   }
 
   if (gameState === 'boss') player.damage = 5;
-  if (gameState === 'end' || gameState === 'gameOver' ) clearAllElements();
+  if (gameState === 'end' || gameState === 'gameOver' ) {
+    clearAllElements()
+    gameOver(true);
+  }
 }
 
 function createEnemiesWave() {
@@ -1808,7 +1815,7 @@ function showWaveText() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.fillStyle = "#fff";
-    ctx.font = "52px Press Start 2P";
+    ctx.font = "22px 'Press Start 2P', monospace";
     ctx.textAlign = "center";
     ctx.fillText(nextWaveIsBoss ? "FINAL BOSS" : `WAVE ${currentWave}`, canvas.width / 2, canvas.height / 2);
   }

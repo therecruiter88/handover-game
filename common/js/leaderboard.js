@@ -129,17 +129,18 @@ function loadLeaderboardBehavior() {;
             const playerCell = row.insertCell();
             playerCell.textContent = entry.player;
             let hackerDisqualified = false;
+            const minScoreToDisqualify = 5000;
     
             const scoreCell = row.insertCell();
             if (tab === 'total') {
-                if (entry.totalScore < 0 || entry.totalScore > 3000) {
+                if (entry.totalScore < 0 || entry.totalScore > minScoreToDisqualify) {
                     hackerDisqualified = true;
                     scoreCell.textContent = "Hacker Disqualified";
                 } else {
                     scoreCell.textContent = entry.totalScore;
                 }
             } else {
-                if (entry.score < 0 || entry.score > 1000) {
+                if (entry.score < 0 || entry.score > minScoreToDisqualify) {
                     hackerDisqualified = true;
                     scoreCell.textContent = "Hacker";
                 } else {
@@ -148,7 +149,7 @@ function loadLeaderboardBehavior() {;
 
                 // Insert the bestScoreCell and apply the same logic
                 const bestScoreCell = row.insertCell();
-                if (entry.score < 0 || entry.score > 1000) {
+                if (entry.score < 0 || entry.score > minScoreToDisqualify) {
                     hackerDisqualified = true;
                     bestScoreCell.textContent = "Disqualified";
                 } else {
