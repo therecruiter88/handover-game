@@ -1,8 +1,8 @@
 import { startIntro } from '/challenges/common/js/storyline.js';
-import { setupEventListeners, triggerStartGame, initializeGameParameters, startTimer, endGame } from '/challenges/common/js/game-mechanics.js';
+import { setupEventListeners, triggerStartGame, initializeGameParameters, startWaveTimer, endGame } from '/challenges/common/js/game-mechanics.js';
 import { showPlayerNumberInput, isPlayerNumberValid } from '/challenges/common/js/player-input.js';
 import * as GAME from '/challenges/common/js/game-variables.js';
-import { getScore, setScore, isGameOver, setGameOver, getTimerInterval, setTimerInterval } from '/challenges/common/js/game-variables.js';
+import { getScore, setScore, isGameOver, setGameOver, setTimerInterval } from '/challenges/common/js/game-variables.js';
 import { getPlayerImage } from './players.js';
 
 const gameId = "challenge-5";
@@ -142,12 +142,14 @@ const boosterTypes = [
   { type: "double-gun",     img: "./assets/img/double-gun.png",     effect: () => player.hasDoubleGun = true }
 ];
 
+/*
 const waveScoreThresholds = {
   1: 10, //250,
   2: 10, //500, 
   3: 10, //750,
   4: 10, //1000,
 };
+*/
 
 // Specific game mechanics intervals
 let gameInterval;
@@ -190,20 +192,6 @@ function startGame() {
   initializeGameParameters(GAME, startTime);
   // Initialize specific game state logic
   initializeGameSpecificParameters();
-
-  // Start timer countdown
-  setTimerInterval(
-    startTimer(
-      getTimerInterval(),
-      startTime,
-      GAME.timerDisplay, 
-      GAME.countdownSound, 
-      GAME.countdownFastSound,
-      gameId,
-      GAME, 
-      getGameOptions()
-    )
-  );
 }
 
 function initializeGameSpecificParameters(){
@@ -964,15 +952,16 @@ function spawnHpBoost(asteroid) {
 }
 
 function getGeneratedHpBooster() {
+  const safeWeight = (value) => Math.max(0, Math.round(Number.isFinite(value) ? value : 0));
   const hpRatio = player.maxHP > 0 ? Math.min(Math.max(player.hp / player.maxHP, 0), 1) : 1;
   const isAtFullHealth = player.hp >= player.maxHP;
-  const extraShieldWeight = Math.max(0, Math.round((1 - hpRatio) * 5));
+  const extraShieldWeight = safeWeight((1 - hpRatio) * 5);
   const weightedBoosters = [];
 
   // Only add HP-related boosters if not at full health
   if (!isAtFullHealth) {
-    const extraHP50Weight = Math.max(0, Math.round((1 - hpRatio) * 3));
-    const extraFullHPWeight = Math.max(0, Math.round((1 - hpRatio) * 4));
+    const extraHP50Weight = safeWeight((1 - hpRatio) * 3);
+    const extraFullHPWeight = safeWeight((1 - hpRatio) * 4);
 
     weightedBoosters.push(
       boosterTypes[0], // slice
@@ -1711,6 +1700,33 @@ function handleGameState() {
     if (waveStartTime === 0) {
       waveStartTime = Date.now();
       playWaveSound();
+      //console.log("Wave start time:", waveStartTime);
+      // Start wave timer
+      setTimerInterval(
+        startWaveTimer({
+          waveDuration: startTime,
+          getWaveStartTime: () => waveStartTime,
+          waveIntroDelay: waveIntroTextDuration,
+          timerDisplay: GAME.timerDisplay,
+          countdownSound: GAME.countdownSound,
+          countdownFastSound: GAME.countdownFastSound,
+          isPaused: () => isPaused,
+          onWaveComplete: () => {
+            if (gameState === 'running') {
+              //console.log("Wave completed!");
+              clearAllElements();
+              currentWave++;
+              if (currentWave > 4) { 
+                nextWaveIsBoss = true;
+                startTime = 60;
+              }
+              waveStartTime = 0;
+              gameState = 'intro';
+            }
+          }
+        })
+      );
+
     } else if (Date.now() - waveStartTime >= waveIntroTextDuration) {
       if (nextWaveIsBoss) {
         spawnFinalBoss();
@@ -1726,18 +1742,8 @@ function handleGameState() {
     }
   }
 
-  if (gameState === 'running') {
-    // Transition to next wave if conditions are met
-    if (!isBossActive && getScore() >= waveScoreThresholds[currentWave]) {
-      clearAllElements();
-      currentWave++;
-      if (currentWave > 4) nextWaveIsBoss = true;
-      waveStartTime = 0;
-      gameState = 'intro'; // Go to wave intro
-    }
-  }
-
   if (gameState === 'boss') player.damage = 5;
+  
   if (gameState === 'end' || gameState === 'gameOver' ) {
     clearAllElements()
     gameOver(true);

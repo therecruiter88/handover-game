@@ -102,49 +102,109 @@ export function startTimer(timerInterval, gameTime, timerDisplay, countdownSound
           return;
         }
         
-        // Play sound effects when time is running low
-        if (gameTime <= 5) {
-          // For 5 seconds and below, play the countdown every quarter second
-          countdownFastSound.currentTime = 0;
-          countdownFastSound.play();
-          
-          // Add quarter-second intervals for the last 5 seconds
-          if (gameTime > 0) {
-            setTimeout(() => {
-              countdownFastSound.currentTime = 0;
-              countdownFastSound.play();
-            }, 250);
-            
-            setTimeout(() => {
-              countdownFastSound.currentTime = 0;
-              countdownFastSound.play();
-            }, 500);
-            
-            setTimeout(() => {
-              countdownFastSound.currentTime = 0;
-              countdownFastSound.play();
-            }, 750);
-          }
-        } else if (gameTime <= 10) {
-          countdownFastSound.currentTime = 0;
-          countdownFastSound.play();
-          
-          // Add half-second counter for the last 10 seconds
-          if (gameTime > 0) {
-            setTimeout(() => {
-              countdownFastSound.currentTime = 0;
-              countdownFastSound.play();
-            }, 500);
-          }
-        } else {
-          countdownSound.currentTime = 0;
-          countdownSound.play();
-        }
-        
+        playSoundEffectforTimer(gameTime, countdownSound, countdownFastSound);
         timerDisplay.textContent = `Time: ${gameTime}`;
       }, 1000);
   
     return timerInterval;
+}
+
+export function startWaveTimer(options) {
+  const {
+    waveDuration = 30,
+    getWaveStartTime,
+    waveIntroDelay = 3000,
+    timerDisplay,
+    countdownSound,
+    countdownFastSound,
+    onWaveComplete,
+    isPaused = false
+  } = options;
+
+  const resolveWaveStartTime = typeof getWaveStartTime === "function"
+    ? getWaveStartTime
+    : () => 0; // fallback if not provided
+
+  let waveTime = waveDuration;
+  let timerStarted = false;
+
+  const waveTimerInterval = setInterval(() => {
+    if (typeof isPaused === "function" ? isPaused() : isPaused) return;
+
+    // Only start counting after intro delay
+    if (Date.now() - resolveWaveStartTime() >= waveIntroDelay) {
+      if (!timerStarted) {
+        //console.log("Wave timer started!");
+        timerStarted = true;
+      }
+
+      if (timerStarted) {
+        //console.log("Wave time left:", waveTime);
+        waveTime--;
+        if (waveTime <= 0) {
+          //console.log("Wave time is up!");
+          waveTime = 0;
+          clearInterval(getTimerInterval());
+          timerDisplay.textContent = `Time: ${waveDuration}`;
+          if (onWaveComplete) onWaveComplete();
+          return;
+        }
+
+        playSoundEffectforTimer(waveTime, countdownSound, countdownFastSound);
+        timerDisplay.textContent = `Time: ${waveTime}`;
+      }
+    }
+  }, 1000);
+
+  return waveTimerInterval;
+}
+
+function playSoundEffectforTimer(gameTime, countdownSound, countdownFastSound) {
+  // Play sound effects when time is running low
+  if (gameTime <= 5) {
+    // For 5 seconds and below, play the countdown every quarter second
+    countdownFastSound.currentTime = 0;
+    countdownFastSound.volume = 0.7;
+    countdownFastSound.play();
+        
+    // Add quarter-second intervals for the last 5 seconds
+    if (gameTime > 0) {
+      setTimeout(() => {
+        countdownFastSound.currentTime = 0;
+        countdownFastSound.volume = 0.5;
+        countdownFastSound.play();
+      }, 250);
+          
+      setTimeout(() => {
+        countdownFastSound.currentTime = 0;
+        countdownFastSound.volume = 0.5;
+        countdownFastSound.play();
+      }, 500);
+          
+      setTimeout(() => {
+        countdownFastSound.currentTime = 0;
+        countdownFastSound.volume = 0.5;
+        countdownFastSound.play();
+      }, 750);
+    }
+  } else if (gameTime <= 10) {
+    countdownFastSound.currentTime = 0;
+    countdownFastSound.volume = 0.5;
+    countdownFastSound.play();
+        
+    // Add half-second counter for the last 10 seconds
+    if (gameTime > 0) {
+      setTimeout(() => {
+        countdownFastSound.currentTime = 0;
+        countdownFastSound.volume = 0.5;
+        countdownFastSound.play();
+      }, 500);
+    }
+  } else {
+    countdownSound.currentTime = 0;
+    countdownFastSound.volume = 0.1;
+    countdownSound.play();
+  }
 }
 
 export function endGame(isVictory, challengeId, GAME, options) {

@@ -184,6 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
         updateVaultImage();
         updateChallenge4();
         updateChallenge5();
+        updatePinkSoldierAssistantMessage();
     } else {
         setupBackgroundMusic("/assets/audio/sg_theme_song.mp3");
     }
@@ -260,9 +261,6 @@ async function updateVaultImage() {
 
     // If the vault is opened and the key is found, change the background image accordingly
     if (isVaultOpened) {
-        // Update pink soldier message
-        const message = getPinkSoldierMessage("fourthChallengeIntro");
-        messageElement.innerHTML = message.replace(/\n/g, '<br>'); // Replace \n with <br> for line breaks
         if (isVaultKeyFound) {
             // If both flags are true, set the "open" image with key
             vaultElement.classList.add("opened-no-key");
@@ -273,6 +271,25 @@ async function updateVaultImage() {
     } else {
         // If the vault is not opened, set the "closed" image
         vaultElement.classList.add("vault-closed");
+    }
+}
+
+async function updatePinkSoldierAssistantMessage() {
+    const isVaultOpened = await getProgressFlag(playerNumber, 'isVaultOpened');
+    const isChallenge5Unlocked = await getProgressFlag(playerNumber, 'isChallenge5KeyFound');
+
+    // If the vault is opened and the key is found...
+    if (isVaultOpened) {
+        // Update pink soldier message
+        const message = getPinkSoldierMessage("fourthChallengeIntro");
+        messageElement.innerHTML = message.replace(/\n/g, '<br>'); // Replace \n with <br> for line breaks
+    }
+
+    // If the vault is opened and the key is found...
+    if (isChallenge5Unlocked) {
+        // Update pink soldier message
+        const message = getPinkSoldierMessage("fifthChallengeIntro");
+        messageElement.innerHTML = message.replace(/\n/g, '<br>'); // Replace \n with <br> for line breaks
     }
 }
 

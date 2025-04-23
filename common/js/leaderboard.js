@@ -163,7 +163,7 @@ function loadLeaderboardBehavior() {;
             const challengeTwoGoldenScore = 250;
             const challengeThreeGoldenScore = 450;
             const challengeFourGoldenScore = 600;
-            const challengeFiveGoldenScore = 1000;
+            const challengeFiveGoldenScore = 2000;
             const totalGoldenPlayerScore = challengeOneGoldenScore + challengeTwoGoldenScore + challengeThreeGoldenScore + challengeFourGoldenScore + challengeFourGoldenScore;
             
             if (

@@ -39,3 +39,18 @@ body.c5 {
 .hidden {
   display: none;
 }
+#timer-display {
+  font-size: 20px;
+  top: 11px;
+}
+.hearts-container {
+  left: 55%;
+  transform: translateX(-80%);
+}
+.heart {
+  width: 25px;
+  height: 25px;
+}
+#score-display {
+  font-size: 20px;
+}
