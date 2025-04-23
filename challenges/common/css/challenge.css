@@ -76,6 +76,10 @@ body {
     cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
     background-color: #d62056;
 }
+#menuLeaderboard:hover {
+    cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
+    background-color: #d62056;
+}
 .challenge-leaderboard-btn:hover {
     cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
     background-color: #d62056;

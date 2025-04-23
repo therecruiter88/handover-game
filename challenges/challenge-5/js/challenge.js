@@ -40,7 +40,9 @@ const boostPickUpSound = document.getElementById('boost-pick-up-sound');
 const rocketEngineSound = document.getElementById('rocket-engine-sound');
 
 // Specific game mechanics variables
-let startTime = 30;
+let enemiesWaveStartTime = 30;
+let finalBossWaveStarttime = 60;
+let startTime = enemiesWaveStartTime;
 let isPaused = false;
 
 // Set canvas size (reduce the scale of the canvas)
@@ -218,7 +220,7 @@ function initializeGameSpecificParameters(){
 }
 
 function resetGameState() {
-  startTime = 30;
+  startTime = enemiesWaveStartTime;
   
   // Reset player
   player.x = canvas.width / 2 - 20;
@@ -285,7 +287,7 @@ function setupControls() {
 
   function checkKeys() {
       // Don't process inputs if game is paused or not in active state
-      if (isPaused || gameState === 'intro' || gameState === 'end' || gameState === 'gameOver') return;
+      if (isPaused || gameState === 'intro' || gameState === 'end' || gameState === 'gameOver' || document.hidden) return;
 
       // Horizontal movement
       if (keys['ArrowLeft'] && player.x > 0) {
@@ -326,7 +328,7 @@ function handleKeyDown(e) {
   // Shoot (spacebar or "Space" code)
   if ((e.key === ' ' || e.code === 'Space') && canShoot) {
     // Don't process inputs if game is paused or not in active state
-    if (isPaused || gameState === 'intro' || gameState === 'end' || gameState === 'gameOver') return;
+    if (isPaused || gameState === 'intro' || gameState === 'end' || gameState === 'gameOver' || document.hidden) return;
 
     shootPlayerBullet();
     if (!isPaused) playSound(playerLaserSound, 0.5);
@@ -427,7 +429,7 @@ function moveStars() {
 
 // Function to spawn a new enemy spaceship
 function spawnEnemy() {
-  if (isPaused || boss) return;
+  if (isPaused || boss || document.hidden) return;
 
   switch (currentWave) {
     case 1:
@@ -679,6 +681,7 @@ function drawFinalBoss() {
 // Check for collisions between bullets, enemies, player, asteroids, etc
 function checkCollision() {
   checkFinalBossCollisions();
+  checkBossPlayerCollision();
   checkPlayerBulletsCollisions();
   checkEnemyCollisions();
   checkAsteroidCollisions();
@@ -897,6 +900,21 @@ function checkAsteroidCollisions() {
  });
 }
 
+function checkBossPlayerCollision() {
+  if (isBossActive && boss) {
+    if (
+      player.x < boss.x + boss.width &&
+      player.x + player.width > boss.x &&
+      player.y < boss.y + boss.height &&
+      player.y + player.height > boss.y
+    ) {
+      // Boss collides with player, player loses HP
+      damagePlayer(10);
+      triggerScreenShake();
+    }
+  }
+}
+
 function getAsteroidMaxHits(wave) {
   if (wave <= 2) return 1;
   if (wave <= 4) return 2;
@@ -922,7 +940,7 @@ function drawExplosions() {
 }
 
 function spawnHpBoost(asteroid) {
-  if (isPaused) return;
+  if (isPaused || document.hidden) return;
 
   // Drop chance increases with wave
   const targetHeight = 32;
@@ -960,27 +978,37 @@ function getGeneratedHpBooster() {
 
   // Only add HP-related boosters if not at full health
   if (!isAtFullHealth) {
-    const extraHP50Weight = safeWeight((1 - hpRatio) * 3);
-    const extraFullHPWeight = safeWeight((1 - hpRatio) * 4);
+    if (currentWave === 3) {
+      weightedBoosters.push(
+        boosterTypes[0], // slice
+        boosterTypes[1], // pizza,
+      );
+    }
 
-    weightedBoosters.push(
-      boosterTypes[0], // slice
-      boosterTypes[1], // pizza,
-      ...Array(extraHP50Weight).fill(boosterTypes[2]),
-      ...Array(extraFullHPWeight).fill(boosterTypes[3])
-    );
-  }
+    if (currentWave >= 4) {
+      const extraHP50Weight = safeWeight((1 - hpRatio) * 3);
+      const extraFullHPWeight = safeWeight((1 - hpRatio) * 4);
+  
+      weightedBoosters.push(
+        boosterTypes[0], // slice
+        boosterTypes[1], // pizza,
+        ...Array(extraHP50Weight).fill(boosterTypes[2]),
+        ...Array(extraFullHPWeight).fill(boosterTypes[3])
+      );
+    }
     
-  // Add shield only if not owned and wave is 4 or greater
-  if (!player.isShieldActive && currentWave >= 4) {
-    weightedBoosters.push(
-      ...Array(extraShieldWeight).fill(boosterTypes[4])
-    );
   }
 
   // Add double gun only if not owned and wave is 3 or greater
   if (!player.hasDoubleGun && currentWave >= 3) {
     weightedBoosters.push(...Array(3).fill(boosterTypes[5])); // Higher weight
+  }
+
+  // Add shield only if not owned and wave is 4 or greater
+  if (!player.isShieldActive && currentWave >= 4) {
+    weightedBoosters.push(
+      ...Array(extraShieldWeight).fill(boosterTypes[4])
+    );
   }
 
   // If there is a chance to get a boost but is not applicable to player at the moment due to previous logic
@@ -1014,14 +1042,14 @@ function damagePlayer(damage) {
   } else {
     // When player is hit and shield is inactive
     player.hp -= damage;
+    //console.log("Player suffered " + damage + " damage. Player hp: " + player.hp);
+    if (player.hp < 0) player.hp = 0; // Prevent negative HP
     isPlayedHpDepleted();
 
     // Trigger hit effect
     player.hit = true;
     player.hitTimer = 10;  // Frames or ticks the effect lasts (~10 frames)
     playSound(spaceshipHit, 0.5);
-
-    //if (player.hp > 0) console.log("Player suffered " + damage + " damage. Player hp: " + player.hp);
   }
 
 }
@@ -1032,8 +1060,6 @@ function isPlayedHpDepleted() {
     playSound(spaceshipExplosionSound, 0.5);
     //console.log("Player HP depleted and ship was destroyed!");
     gameState = 'gameOver';
-    setGameOver(true);
-    gameOver(false);
   }
 }
 
@@ -1288,7 +1314,7 @@ function triggerScreenShake() {
 
 // Update the game state
 function update() {
-  if (isPaused || !imagesLoaded || isBossDefeated) return;
+  if (isPaused || !imagesLoaded || isBossDefeated || document.hidden) return;
 
   applyPlayerPropulsorAnimation();
   applyHitBehavior();
@@ -1389,7 +1415,7 @@ function moveFinalBoss() {
 }
 
 function drawFinalBossBullets() {
-  if (isPaused) return;
+  if (isPaused || document.hidden) return;
 
   if (Math.random() < 0.03) {
     const pattern = Math.floor(Math.random() * 6);
@@ -1520,6 +1546,7 @@ function shootHomingMissile() {
     height: 10,
     angle: angle,
     speed: 2,
+    damage: 40,
     homing: true,
     fromBoss: true
   });
@@ -1582,7 +1609,7 @@ function checkRageMode() {
 
 // Update enemy shooting behavior
 function updateEnemyShooting() {
-  if (isPaused) return;
+  if (isPaused || document.hidden) return;
 
   enemies.forEach((enemy) => {
     if (Math.random() < 0.005) {  // Reduced chance for enemies to shoot
@@ -1654,12 +1681,12 @@ function draw() {
   if (gameState === 'running' || gameState === 'boss') {
     drawEnemyBullets();
     drawExplosions();
+    drawBoosters(); // Draw boosters in both running and boss states
   }
   
   if (gameState === 'running') {
     drawEnemies();
     drawAsteroids();
-    drawBoosters();
   }
   
   if (gameState === 'boss') {
@@ -1718,10 +1745,13 @@ function handleGameState() {
               currentWave++;
               if (currentWave > 4) { 
                 nextWaveIsBoss = true;
-                startTime = 60;
+                startTime = finalBossWaveStarttime;
               }
               waveStartTime = 0;
               gameState = 'intro';
+            } else if (gameState === 'boss' && isBossActive) {
+              // Time's up during boss fight - game over
+              gameState = 'gameOver';
             }
           }
         })
@@ -1744,9 +1774,26 @@ function handleGameState() {
 
   if (gameState === 'boss') player.damage = 5;
   
-  if (gameState === 'end' || gameState === 'gameOver' ) {
-    clearAllElements()
-    gameOver(true);
+  function handleGameEnd(isVictory) {
+    if (backgroundMusic && isSoundPlaying(backgroundMusic)) {
+      backgroundMusic.pause();
+    }
+    clearAllElements();
+    if (!isVictory) setGameOver(true);
+    gameOver(isVictory);
+
+    // Continue background music after a delay
+    setTimeout(() => {
+      backgroundMusic.play();
+    }, 5000);
+  }
+  
+  if (gameState === 'end') {
+    handleGameEnd(true);
+  }
+
+  if (gameState === 'gameOver') {
+    handleGameEnd(false);
   }
 }
 
@@ -1846,8 +1893,19 @@ function playWaveSound() {
   else console.warn("No music for wave:", currentWave);
 }
 
+function stopWaveSound() {
+  const index = currentWave - 1;
+  const musicElement = gameWaveSounds[index];
+
+  if (musicElement) {
+    playSound(musicElement, 1.0);
+    backgroundMusic = musicElement;
+  }
+  else console.warn("No music for wave:", currentWave);
+}
+
 function spawnAsteroid() {
-  if (isPaused) return;
+  if (isPaused || document.hidden) return;
 
   const asteroidImages = [new Image(), new Image(), new Image()];
   asteroidImages[0].src = "./assets/img/asteroid-1.png";

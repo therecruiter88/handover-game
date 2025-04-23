@@ -2,6 +2,9 @@ import { getPlayerNumber } from '/challenges/common/js/player-input.js';
 import { saveScoreToDatabase } from '/challenges/common/js/score-manager.js';
 import { getLives, setLives, getScore, setScore, setGameOver, getTimerInterval } from '/challenges/common/js/game-variables.js';
 
+let lastUpdateTime = Date.now();
+let hiddenTime = 0;
+
 export function setupEventListeners({
     playerNumberSelect,
     beginChallengeButton,
