@@ -150,7 +150,7 @@ body {
     max-width: 30%;  /* Set maximum width */
     line-height: 1.7;
     text-align: justify;
-    z-index: 20;
+    z-index: 1000;
 }
 /* Speech bubble tail (triangle) */
 .dialog::after {
