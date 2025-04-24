@@ -245,7 +245,7 @@ body {
     z-index: 10;
     width: 55%;
     height: 80vh; /* Changed to viewport height percentage */
-    border: #222 solid 3px;
+    /*border: #222 solid 3px;*/
 }
 .soldier-container {
     position: relative;
