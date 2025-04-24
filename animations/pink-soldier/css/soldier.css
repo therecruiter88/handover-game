@@ -36,13 +36,14 @@ body {
     width: 394px;
     height: 597px;
     position: absolute;
-    top: 56%;
-    left: 10%;
-    transform: scale(var(--soldier-scale)) translate(-50%, -50%);
+    bottom: 0;
+    left: 140%;
+    transform-origin: bottom left;
+    transform: scale(var(--soldier-scale));
     cursor: pointer;
     display: block;
     background: url('../assets/img/pink-soldier.png') no-repeat center center / cover;
-    animation: soldierPopIn 2s forwards, jump 4s infinite 1s; /* Pop-in first, then jump */
+    animation: soldierPopIn 2s forwards, jump 4s infinite 1s;
 }
 .soldier:hover {
     cursor: url('/assets/cursors/sg-pointer.png') 16 16, auto;
@@ -51,22 +52,22 @@ body {
 @keyframes soldierPopIn {
     0% {
         opacity: 0;
-        transform: scale(var(--soldier-scale)) translate(-50%, -50%); /* Starts below */
+        transform: scale(var(--soldier-scale)) translateY(100%); /* Start from below */
     }
     50% {
         opacity: 0.5;
-        transform: scale(var(--soldier-scale)) translate(-50%, -50%); /* End at original position */
+        transform: scale(var(--soldier-scale)) translateY(50%); /* Move halfway up */
     }
     100% {
         opacity: 1;
-        transform: scale(var(--soldier-scale)) translate(-50%, -50%); /* End at original position */
+        transform: scale(var(--soldier-scale)) translateY(0); /* Final position */
     }
 }
 /* Jumping Animation */
 @keyframes jump {
-    0%, 100% { transform: scale(var(--soldier-scale)) translate(-50%, -50%) translateY(0); }
-    5%, 15%, 25% { transform: scale(var(--soldier-scale)) translate(-50%, -50%) translateY(-30px); }
-    10%, 20%, 30% { transform: scale(var(--soldier-scale)) translate(-50%, -50%) translateY(0); }
+    0%, 100% { transform: scale(var(--soldier-scale)) translateY(0); }
+    5%, 15%, 25% { transform: scale(var(--soldier-scale)) translateY(-30px); }
+    10%, 20%, 30% { transform: scale(var(--soldier-scale)) translateY(0); }
 }
 .click-me{
     position: absolute;

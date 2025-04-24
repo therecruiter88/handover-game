@@ -3,7 +3,7 @@ const ctx = canvas.getContext("2d");
 
 function resizeCanvas() {
 	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
+	canvas.height = window.innerHeight + 100;
 }
 
 resizeCanvas();
@@ -54,8 +54,8 @@ function animate() {
 		egg.update();
 		egg.draw();
 		// Remove if some time has passed
-		if (egg.y > canvas.height) {
-			eggs.splice(index, 1);
+        if (egg.y > canvas.height + egg.size) {
+            eggs.splice(index, 1);
 		}
 	});
 	requestAnimationFrame(animate);

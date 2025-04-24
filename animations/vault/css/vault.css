@@ -16,7 +16,8 @@
   transform: translateX(-50%); /* Offset the 50% to truly center it */
   cursor: pointer;
   z-index: 600;
-  animation: popIn 2s forwards; /* Apply pop-in animation */
+  animation: popIn 2s forwards 2s; /* Added 3s delay before animation starts */
+  opacity: 0; /* Hide vault initially */
 }
 
 /* Pop-in effect when vault becomes visible */
