@@ -131,6 +131,7 @@ body {
     justify-content: center;
     transition: all 0.3s ease;
     box-shadow: 0 0 15px rgba(235, 37, 122, 0.7);
+    z-index: 200;
 }
 .mute-button:hover {
     transform: scale(1.1);

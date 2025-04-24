@@ -76,7 +76,7 @@ function adjustSliderKeyframes() {
   }
 
   // Calculate animation duration dynamically
-  const speed = 1; // pixels per second, you can tweak this
+  const speed = 2; // pixels per second, you can tweak this
   const duration = maxTranslateX / speed;
 
   // Remove old keyframes if any
@@ -90,11 +90,13 @@ function adjustSliderKeyframes() {
 
   // Add new keyframes that only scroll to maxTranslateX
   styleSheet.insertRule(`
-      @keyframes slide {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-${maxTranslateX}px); }
-      }
-  `, styleSheet.cssRules.length);
+    @keyframes slide {
+        0% { transform: translateX(0); }
+        5% { transform: translateX(0); } /* Hold at start */
+        95% { transform: translateX(-${maxTranslateX}px); } /* Hold at end */
+        100% { transform: translateX(-${maxTranslateX}px); }
+    }
+`, styleSheet.cssRules.length);
 
   // Apply animation
   slider.style.animation = `slide ${duration}s linear infinite`;
