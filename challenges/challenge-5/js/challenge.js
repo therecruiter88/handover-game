@@ -1,6 +1,6 @@
 import { startIntro } from '/challenges/common/js/storyline.js';
 import { setupEventListeners, triggerStartGame, initializeGameParameters, startWaveTimer, endGame } from '/challenges/common/js/game-mechanics.js';
-import { showPlayerNumberInput, isPlayerNumberValid } from '/challenges/common/js/player-input.js';
+import { showPlayerNumberInput, isPlayerNumberValid, getPlayerNumber } from '/challenges/common/js/player-input.js';
 import * as GAME from '/challenges/common/js/game-variables.js';
 import { getScore, setScore, isGameOver, setGameOver, setTimerInterval } from '/challenges/common/js/game-variables.js';
 import { getPlayerImage } from './players.js';
@@ -74,7 +74,8 @@ const player = {
 };
 
 let playerPortrait = new Image();
-let playerBase64Img = getPlayerImage('player');
+const playerNumber = getPlayerNumber();
+let playerBase64Img = getPlayerImage(`${playerNumber}`);
 if (playerBase64Img) playerPortrait.src = playerBase64Img;
 
 const playerBarHeight = 100;
@@ -1782,10 +1783,12 @@ function handleGameState() {
     if (!isVictory) setGameOver(true);
     gameOver(isVictory);
 
-    // Continue background music after a delay
-    setTimeout(() => {
-      backgroundMusic.play();
-    }, 5000);
+    // Continue background music after a delay, only if winning
+    if (isVictory) {
+      setTimeout(() => {
+        backgroundMusic.play();
+      }, 5000);
+    }
   }
   
   if (gameState === 'end') {
@@ -1974,7 +1977,7 @@ function moveBoosters() {
 }
 
 function spawnFinalBoss() {
-  let base64Img = getPlayerImage('player001');
+  let base64Img = getPlayerImage('game-master');
   if (base64Img) bossPortrait.src = base64Img;
 
   if (!isBossActive) {

@@ -63,7 +63,7 @@ function getPlayerNumberFromQuery() {
     const playerNumber = queryParams.get('playerNumber');
 
     if (playerNumber) {
-      console.log("Welcome Player: " + playerNumber)
+      //console.log("Welcome Player: " + playerNumber)
       return playerNumber;
     }
 }
