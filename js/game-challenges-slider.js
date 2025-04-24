@@ -76,7 +76,7 @@ function adjustSliderKeyframes() {
   }
 
   // Calculate animation duration dynamically
-  const speed = 2; // pixels per second, you can tweak this
+  const speed = 1; // pixels per second, you can tweak this
   const duration = maxTranslateX / speed;
 
   // Remove old keyframes if any

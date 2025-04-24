@@ -133,7 +133,7 @@ body {
 }
 /* Text inside the overlay */
 .overlay-text {
-    font-size: clamp(10px, 1vw, 16px); /* Responsive font size */
+    font-size: clamp(10px, 1vw, 10px); /* Responsive font size */
     color: white;
     text-align: center; /* Center the text */
 }
