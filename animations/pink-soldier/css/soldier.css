@@ -89,9 +89,10 @@ body {
 .over-here {
     position: absolute;
     color: #EB257A;
-    font-size: 60%;
+    font-size: 260%;
     left: 50%; /* Center it */
-    top: 90%; /* Put below soldier */
+    transform: translateY(-50%); /* Start at original position */
+    top: 190%; /* Put below soldier */
     padding: 15px 20px;
     white-space: nowrap; /* Prevent wrapping */
     animation: floatAndFade 4s linear infinite; /* Animate and remove */
@@ -133,31 +134,32 @@ body {
     left: 65%;
 }
 .dialog {
-    position: relative;
+    position: absolute; /* Changed from relative */
     display: none;
-    padding: 5px 5px;
+    padding: 20px 30px;
     margin: 0;
     background-color: #333;
     color: white;
     font-size: 14px;
-    transform: translateX(-90%);
-    transform: translateY(-142%);
+    bottom: 280%; /* Fixed distance from bottom */
+    left: -100%; /* Center horizontally */
+    transform: translateY(-25%); /* Center adjustment */
     border-radius: 15px;
     box-shadow: 4px 4px 10px rgba(181, 149, 149, 0.3);
-    min-width: 1000%;  /* Set minimum width */
-    width: auto;
-    height: auto;
-    max-width: 30%;  /* Set maximum width */
+    width: 150%; /* Fixed width */
+    min-width: auto; /* Remove min-width */
+    max-width: none; /* Remove max-width */
     line-height: 1.7;
     text-align: justify;
+    height: fit-content;
     z-index: 1000;
 }
-/* Speech bubble tail (triangle) */
+/* Update speech bubble tail position */
 .dialog::after {
     content: '';
     position: absolute;
-    left: 4%; /* Changed from default 50% to move tail more to the right */
-    transform: translateX(-50%);
+    bottom: -2%;
+    left: 15%; /* Adjust tail position */
     width: 0;
     height: 0;
     border-left: 15px solid transparent;

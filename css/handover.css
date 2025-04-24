@@ -237,14 +237,15 @@ body {
     position: fixed;
     bottom: 0;
     left: 25%;
-    transform: translateX(-50%);
+    transform: translateX(-10%);
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     padding: 0;
     z-index: 10;
-    width: 15%;
-    height: 20vh; /* Changed to viewport height percentage */
+    width: 55%;
+    height: 80vh; /* Changed to viewport height percentage */
+    border: #222 solid 3px;
 }
 .soldier-container {
     position: relative;
@@ -258,7 +259,7 @@ body {
 .vault-container {
     position: relative;
     margin: 0;
-    left: -15%;
+    left: -41%;
     display: flex;
     align-items: flex-end;
     flex-shrink: 0;
