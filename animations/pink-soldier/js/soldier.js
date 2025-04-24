@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
 soldier.addEventListener('click', () => {
     // Temporarily make the dialog visible to get its dimensions
     dialog.style.display = "block";
-    dialog.style.visibility = "hidden"; // Hide it but still allow measuring
+    dialog.style.opacity = 0; // Initially hide
 
     // Calculate the correct position above the soldier
     const soldierRect = soldier.getBoundingClientRect();
@@ -155,15 +155,21 @@ soldier.addEventListener('click', () => {
     dialog.style.top = `${soldierRect.top - dialogHeight - 10}px`; // 10px gap above head
     dialog.style.left = `${soldierRect.left + soldierRect.width + 250 / 2 - dialog.offsetWidth / 2}px`; // Centered
 
-    // Now make it fully visible
-    dialog.style.visibility = "visible";
-    dialog.classList.add('show');
-
-    // Hide the dialog after a few seconds
+    // Use opacity for fade-in effect, then show the dialog
     setTimeout(() => {
-        dialog.classList.remove('show');
-        dialog.style.display = "none"; // Fully hide after animation
-    }, 10000);
+        dialog.style.opacity = 1; // Fade in
+        dialog.classList.add('show');
+    }, 100); // Ensure it's after position adjustments
 
-    if (clickMe) clickMe.style.display="none"
+    // Hide the dialog after a few seconds (fade out)
+    setTimeout(() => {
+        dialog.style.opacity = 0; // Fade out
+        setTimeout(() => {
+            dialog.classList.remove('show');
+            dialog.style.display = "none"; // Fully hide after animation
+        }, 300); // Allow time for fade-out
+    }, 1000000);
+
+    // Hide the click-me button after soldier is clicked
+    if (clickMe) clickMe.style.display = "none";
 });

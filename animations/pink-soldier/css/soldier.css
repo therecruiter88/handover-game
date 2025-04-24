@@ -133,32 +133,36 @@ body {
     left: 65%;
 }
 .dialog {
-    position: absolute;
+    position: relative;
     display: none;
     background-color: #333;
     color: white;
-    left: 50%; /* Center it */
-    padding: 15px 20px;
-    font-size: 12px;
+    left: 50%;
+    top: -200px;
+    transform: translateX(-50%);
+    font-size: 14px;
     border-radius: 15px;
     box-shadow: 4px 4px 10px rgba(181, 149, 149, 0.3);
-    max-width: 550px;
+    min-width: 400px;  /* Set minimum width */
+    width: auto;
+    height: auto;
+    max-width: 600px;  /* Set maximum width */
     line-height: 1.7;
     text-align: justify;
-    z-index: 20;  /* In front */
+    z-index: 20;
 }
 /* Speech bubble tail (triangle) */
 .dialog::after {
     content: '';
     position: absolute;
-    bottom: -10px; /* Moves the tail below the dialog */
-    left: 25%; /* Center it */
-    transform: translateX(-50%); /* Ensures it's perfectly centered */
+    bottom: -15px;
+    left: 0%; /* Center the tail */
+    transform: translateX(-50%);
     width: 0;
     height: 0;
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
-    border-top: 15px solid #333; /* Matches the dialog background */
+    border-top: 15px solid #333;
 }
 /* Show dialog animation */
 @keyframes fadeIn {

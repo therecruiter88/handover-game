@@ -243,6 +243,7 @@ body {
     padding: 0;
     z-index: 10;
     min-height: 20px;
+    width: 50%;
 }
 .soldier-container {
     position: relative;
