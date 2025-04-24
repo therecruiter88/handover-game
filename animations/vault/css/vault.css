@@ -9,11 +9,11 @@
 }*/
 
 .vault-container {
-  display: inline-block;
-  position: fixed;
-  bottom: 1%; /* Keep it near the bottom */
-  left: 24%;  /* Use 50% for horizontal centering */
-  transform: translateX(-50%); /* Offset the 50% to truly center it */
+  /*display: inline-block;*/
+  /*position: fixed;*/
+  /*bottom: 1%;*/ /* Keep it near the bottom */
+  /*left: 24%;*/  /* Use 50% for horizontal centering */
+  /*transform: translateX(-50%);*/ /* Offset the 50% to truly center it */
   cursor: pointer;
   z-index: 600;
   animation: popIn 2s forwards 2s; /* Added 3s delay before animation starts */

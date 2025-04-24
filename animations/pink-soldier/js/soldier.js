@@ -168,7 +168,7 @@ soldier.addEventListener('click', () => {
             dialog.classList.remove('show');
             dialog.style.display = "none"; // Fully hide after animation
         }, 300); // Allow time for fade-out
-    }, 1000000);
+    }, 10000);
 
     // Hide the click-me button after soldier is clicked
     if (clickMe) clickMe.style.display = "none";

@@ -37,9 +37,9 @@ body {
     height: 597px;
     position: absolute;
     bottom: 0;
-    left: 140%;
+    /*left: 140%;*/
     transform-origin: bottom left;
-    transform: scale(var(--soldier-scale));
+    /*transform: scale(var(--soldier-scale));*/
     cursor: pointer;
     display: block;
     background: url('../assets/img/pink-soldier.png') no-repeat center center / cover;
@@ -135,18 +135,19 @@ body {
 .dialog {
     position: relative;
     display: none;
+    padding: 5px 5px;
+    margin: 0;
     background-color: #333;
     color: white;
-    left: 50%;
-    top: -200px;
-    transform: translateX(-50%);
     font-size: 14px;
+    transform: translateX(-90%);
+    transform: translateY(-142%);
     border-radius: 15px;
     box-shadow: 4px 4px 10px rgba(181, 149, 149, 0.3);
-    min-width: 400px;  /* Set minimum width */
+    min-width: 1000%;  /* Set minimum width */
     width: auto;
     height: auto;
-    max-width: 600px;  /* Set maximum width */
+    max-width: 30%;  /* Set maximum width */
     line-height: 1.7;
     text-align: justify;
     z-index: 20;
@@ -155,8 +156,7 @@ body {
 .dialog::after {
     content: '';
     position: absolute;
-    bottom: -15px;
-    left: 0%; /* Center the tail */
+    left: 4%; /* Changed from default 50% to move tail more to the right */
     transform: translateX(-50%);
     width: 0;
     height: 0;
