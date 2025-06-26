@@ -129,7 +129,7 @@ function loadLeaderboardBehavior() {;
             const playerCell = row.insertCell();
             playerCell.textContent = entry.player;
             let hackerDisqualified = false;
-            const minScoreToDisqualify = 5000;
+            const minScoreToDisqualify = 5500;
     
             const scoreCell = row.insertCell();
             if (tab === 'total') {
