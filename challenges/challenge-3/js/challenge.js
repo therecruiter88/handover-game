@@ -159,7 +159,7 @@ function createGlassBridge() {
     
     // Determine which panel in this row is safe (0 = left, 1 = right)
     const safePanel = Math.floor(Math.random() * 2);
-    console.log(`Row ${row}: Safe panel is ${safePanel}`);
+    //console.log(`Row ${row}: Safe panel is ${safePanel}`);
     
     for (let col = 0; col < 2; col++) {
       const panelElement = document.createElement('div');
