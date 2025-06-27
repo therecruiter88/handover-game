@@ -87,7 +87,7 @@ export function initializeGameParameters(GAME, startTime){
 
   // Restart music from beginning
   GAME.gameStartSound.currentTime = 0;
-  //GAME.gameStartSound.play();
+  GAME.gameStartSound.play();
   GAME.gameStartSound.volume = 0.5;
 
   // Update UI
